@@ -1,0 +1,2 @@
+# SSRD
+Super Rhythm Duel.
