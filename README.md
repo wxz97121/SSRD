@@ -1,2 +1,2 @@
 # SSRD
-Super Rhythm Duel.
+Shin · Super Rhythm Duel.
