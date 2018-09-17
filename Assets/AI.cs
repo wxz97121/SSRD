@@ -20,11 +20,21 @@ public class AI : Character {
     override protected void Update()
     {
         base.Update();
+        float a = Random.Range(0, 3f);
+        if (a<=1f){
+            barController.ShowAction(actionType.Charge);
+        }
+        else if (a<=2f){
+            barController.ShowAction(actionType.Hit);
+        }
+        else {
+            barController.ShowAction(actionType.Defense);
+        }
+
     }
 
     protected override void UpdateInput()
     {
         base.UpdateInput();
-
     }
 }

@@ -15,6 +15,13 @@ public enum beatPhase {
     During = 1,
 }
 
+public enum beatType
+{
+    Pre = 0,
+    Battle = 1,
+    Result = 2
+}
+
 public class BarController : MonoBehaviour {
 
     public GameObject mBar;
@@ -29,6 +36,7 @@ public class BarController : MonoBehaviour {
     public Sprite[] mBeatActionIcons;
     public int mBeatCurrent;
     public beatPhase mBeatPhaseCurrent = beatPhase.Wait;
+    public beatType mBeatTypeCurrent = beatType.Result;
 
     public AudioSource mSong;
     public int mBpm = 120;
@@ -45,7 +53,7 @@ public class BarController : MonoBehaviour {
 	void Update () {
         float songPosition = (float)(AudioSettings.dspTime - songDspTime);
         float songPosInBeats = songPosition / secPerBeat;
-        if (NumDiscretize(songPosInBeats / 4.0f - ((int)songPosInBeats / 4), 1f / 8f) > 7f/8f)
+        if (NumDiscretize(songPosInBeats / 4.0f - ((int)songPosInBeats / 4), 1f / 8f) > 6f/8f)
         {
             BeatEnd();
         }
@@ -54,7 +62,7 @@ public class BarController : MonoBehaviour {
             mBeatCurrent += 4;
             BeatStart();
         }
-
+        
         float mBarPercent = songPosInBeats / 4.0f - ((int)songPosInBeats / 4);
         mJudge.transform.localPosition = new Vector3(mBarLength * (mBarPercent - 0.5f) * mJudgeDir, -16f, 0);
     }
@@ -72,6 +80,9 @@ public class BarController : MonoBehaviour {
 
     public void ShowAction(actionType type){
         if (mBeatLock){
+            return;
+        }
+        if (mBeatTypeCurrent != beatType.Battle){
             return;
         }
 
@@ -125,8 +136,11 @@ public class BarController : MonoBehaviour {
     public void BeatEnd (){
         if (mBeatPhaseCurrent == beatPhase.During)
         {
-            mBeatLock = true;
-            ActionEffect();
+            if (mBeatTypeCurrent == beatType.Battle)
+            {
+                mBeatLock = true;
+                ActionEffect();
+            }
             mBeatPhaseCurrent = beatPhase.Wait;
         }
     }
@@ -140,17 +154,17 @@ public class BarController : MonoBehaviour {
                 break;
             case actionType.Charge:
                 {
-                    player.Charge();
+                    //player.Charge();
                 }
                 break;
             case actionType.Hit:
                 {
-                    player.Hit();
+                    //player.Hit();
                 }
                 break;
             case actionType.Defense:
                 {
-                    player.Defense();
+                    //player.Defense();
                 }
                 break;
         }
@@ -158,10 +172,24 @@ public class BarController : MonoBehaviour {
 
     public void BeatStart (){
         if (mBeatPhaseCurrent == beatPhase.Wait){
-            mBeatLock = false;
-            mBeatAction.GetComponent<Image>().sprite = mBeatActionIcons[0];
-            mBeatActionCurrent = actionType.None;
-            mBeatPhaseCurrent = beatPhase.During;
+            if (mBeatTypeCurrent == beatType.Battle){
+                mBeatTypeCurrent = beatType.Result;
+                mBar.SetActive(false);
+                mJudge.SetActive(false);
+
+                mBeatLock = false;
+                mBeatPhaseCurrent = beatPhase.During;
+            }
+            else {
+                mBeatTypeCurrent = beatType.Battle;
+                mBar.SetActive(true);
+                mJudge.SetActive(true);
+
+                mBeatAction.GetComponent<Image>().sprite = mBeatActionIcons[0];
+                mBeatActionCurrent = actionType.None;
+                mBeatPhaseCurrent = beatPhase.During;
+            }
+
         }
 
     }

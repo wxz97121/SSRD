@@ -25,21 +25,24 @@ public class Character : MonoBehaviour {
 
     }
 
-    virtual public void Charge()
+    virtual public bool Charge()
     {
         mMp+=1;
+        return true;
     }
 
-    virtual public void Hit()
+    virtual public bool Hit()
     {
         if (mMp>=1){
             mMp -= 1;
             mTarget.Damage(1);
+            return true;
         }
+        return false;
     }
 
-    virtual public void Defense(){
-
+    virtual public bool Defense(){
+        return true;
     }
 
     virtual public void Damage (int dDam){
