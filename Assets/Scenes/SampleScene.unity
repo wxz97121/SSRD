@@ -1985,6 +1985,10 @@ MonoBehaviour:
   UIHpNum: {fileID: 1072248962}
   UIMpNum: {fileID: 1622754056}
   mTarget: {fileID: 0}
+  Shield: 0
+  mChargeList: 
+  lastAction: 0
+  chargeVfx: {fileID: 0}
   enemyList: []
 --- !u!95 &1979303376
 Animator:

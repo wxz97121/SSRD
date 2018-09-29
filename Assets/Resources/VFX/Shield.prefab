@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212751789643173530}
   - component: {fileID: 114246708448417554}
   m_Layer: 0
-  m_Name: ShieldFX
+  m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,6 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aniTime: 0.2
+  type: 0
 --- !u!212 &212751789643173530
 SpriteRenderer:
   m_ObjectHideFlags: 1
