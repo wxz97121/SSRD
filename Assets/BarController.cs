@@ -16,6 +16,7 @@ public enum beatType
 }
 
 public class BarController : MonoBehaviour {
+    static BarController _instance;
 
     public GameObject mBar;
     public float mBarLength;
@@ -30,9 +31,22 @@ public class BarController : MonoBehaviour {
     public int mBpm = 120;
 
     public bool mBeatLock = false;
-    public Character player;
 
     public CommentController commentController = null;
+
+    public int EnemyCountdown = -1;
+    private void Awake()
+    {
+        _instance = this;
+    }
+
+    public static BarController Instance
+    {
+        get
+        {
+            return _instance;
+        }
+    }
 
     // Use this for initialization
     void Start () {
@@ -64,14 +78,26 @@ public class BarController : MonoBehaviour {
         if ((int)songPosInBeats > mBeatCurrent)
         {
             BeatEnd();
+            EnemyUpdate();
             mBeatCurrent++;
+            BeatStart();
         }
 
         float mBarPercent = songPosInBeats - ((int)songPosInBeats);
 
         mJudge[0].transform.localPosition = new Vector3(mBarLength * (mBarPercent), 0, 0);
         mJudge[1].transform.localPosition = new Vector3(mBarLength * (-mBarPercent), 0, 0);
-        for (int i = 0; i < 4; i++)
+
+        if (mBeatLock){
+            mJudge[0].transform.GetChild(0).GetComponent<Image>().color = new Color(1f, 1f, 1f, 0);
+            mJudge[1].transform.GetChild(0).GetComponent<Image>().color = new Color(1f, 1f, 1f, 0);
+        }
+        else {
+            mJudge[0].transform.GetChild(0).GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.75f + 0.25f * mBarPercent);
+            mJudge[1].transform.GetChild(0).GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.75f + 0.25f * mBarPercent);
+        }
+
+        for (int i = 1; i < 4; i++)
         {
             mJudge[0].transform.GetChild(i).GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.75f - 0.25f * i + 0.25f * mBarPercent);
             mJudge[1].transform.GetChild(i).GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.75f - 0.25f * i + 0.25f * mBarPercent);
@@ -85,6 +111,10 @@ public class BarController : MonoBehaviour {
             return;
         }
 
+        if (Player.Instance.enemyList.Count<=0){
+            return;
+        }
+
         commentController.CallCommentUpdate(BeatComment());
 
         switch (type){
@@ -94,15 +124,18 @@ public class BarController : MonoBehaviour {
                 break;
             case actionType.Charge:
                 {
+                    Player.Instance.Charge();
                 }
                 break;
             case actionType.Hit:
                 {
-                    player.Hit();
+                    if (BeatComment() < 2) Player.Instance.Hit();
+                    else if (BeatComment() == 3) Player.Instance.HitFail();
                 }
                 break;
             case actionType.Defense:
                 {
+                    Player.Instance.Defense();
                 }
                 break;
         }
@@ -129,10 +162,10 @@ public class BarController : MonoBehaviour {
         float songPosInBeats = songPosition / secPerBeat;
         float mBarPercent = songPosInBeats - ((int)songPosInBeats);
 
-        if (mBarPercent<0.5f) {
+        if (mBarPercent>=0.8f) {
             return 0;
         }
-        else if (mBarPercent <0.8f){
+        else if (mBarPercent>=0.5f){
             return 1;
         }
         else {
@@ -141,6 +174,15 @@ public class BarController : MonoBehaviour {
     }
 
     public void BeatEnd (){
+        if (EnemyCountdown>=0){
+            //commentController.CallCommentUpdate(2);
+            return;
+        }
+
+        foreach (GameObject inst in Player.Instance.enemyList){
+            inst.GetComponent<AI>().Action();
+        }
+
         if (!mBeatLock){
             commentController.CallCommentUpdate(2);
         }
@@ -176,6 +218,30 @@ public class BarController : MonoBehaviour {
     }
 
     public void BeatStart (){
+        Player.Instance.Initialize();
+        foreach (GameObject inst in Player.Instance.enemyList)
+        {
+            inst.GetComponent<AI>().Initialize();
+        }
+    }
+
+    public void EnemyUpdate (){
+        if (EnemyCountdown > 0){
+            Debug.Log("Enemy Reborn: "+EnemyCountdown);
+            EnemyCountdown--;
+        }
+        else if (EnemyCountdown == 0){
+            BattleController.Instance.AddEnemy();
+            EnemyCountdown--;
+        }
+        else{
+            if (Player.Instance.enemyList.Count <= 0)
+            {
+                Debug.Log("No Enemy");
+                EnemyCountdown = 4;
+            }
+        }
 
     }
+
 }

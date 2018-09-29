@@ -3,16 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : Character {
-    private BarController barController;
+    static Player _instance;
+
     private Animator animator;
-	// Use this for initialization
-	override protected void Start () {
-        base.Start();
-        barController = GameObject.Find("JudgeBar").GetComponent<BarController>();
-        animator = GetComponent<Animator>();
-        if (barController!=null){
-            //... 
+
+    public List<GameObject> enemyList = new List<GameObject>();
+
+    private void Awake()
+    {
+        _instance = this;
+    }
+
+    public static Player Instance
+    {
+        get
+        {
+            return _instance;
         }
+    }
+
+    // Use this for initialization
+    override protected void Start () {
+        base.Start();
+        animator = GetComponent<Animator>();
+
 	}
 
     // Update is called once per frame
@@ -25,21 +39,26 @@ public class Player : Character {
         base.UpdateInput();
 
         if (Input.GetKeyDown(KeyCode.Z)){
-            barController.ShowAction(actionType.Charge);
+            BarController.Instance.ShowAction(actionType.Charge);
         }
         else if (Input.GetKeyDown(KeyCode.X))
         {
-            barController.ShowAction(actionType.Hit);
+            BarController.Instance.ShowAction(actionType.Hit);
         }
         else if (Input.GetKeyDown(KeyCode.C))
         {
-            barController.ShowAction(actionType.Defense);
+            BarController.Instance.ShowAction(actionType.Defense);
         }
     }
-
+    
     override public void Hit()
     {
         base.Hit();
         animator.Play("player_slash",0);
+    }
+
+    override public void HitFail (){
+        base.HitFail();
+        animator.Play("player_fail", 0);
     }
 }
