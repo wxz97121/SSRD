@@ -10,16 +10,9 @@ public enum actionType {
     Defense = 3
 }
 
-public enum beatPhase {
-    Wait = 0,
-    During = 1,
-}
-
 public enum beatType
 {
-    Pre = 0,
-    Battle = 1,
-    Result = 2
+    Normal = 0
 }
 
 public class BarController : MonoBehaviour {
@@ -28,21 +21,18 @@ public class BarController : MonoBehaviour {
     public float mBarLength;
     [HideInInspector] public float songDspTime;
     [HideInInspector] public float secPerBeat;
-    public GameObject mJudge;
-    public float mJudgeDir = 1.0f;
+    public GameObject[] mJudge;
 
-    public GameObject mBeatAction;
-    public actionType mBeatActionCurrent;
-    public Sprite[] mBeatActionIcons;
     public int mBeatCurrent;
-    public beatPhase mBeatPhaseCurrent = beatPhase.Wait;
-    public beatType mBeatTypeCurrent = beatType.Result;
+    private List<GameObject> mBeatList = new List<GameObject>();
 
     public AudioSource mSong;
     public int mBpm = 120;
 
     public bool mBeatLock = false;
     public Character player;
+
+    public CommentController commentController = null;
 
     // Use this for initialization
     void Start () {
@@ -51,20 +41,8 @@ public class BarController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        float songPosition = (float)(AudioSettings.dspTime - songDspTime);
-        float songPosInBeats = songPosition / secPerBeat;
-        if (NumDiscretize(songPosInBeats / 4.0f - ((int)songPosInBeats / 4), 1f / 8f) > 6f/8f)
-        {
-            BeatEnd();
-        }
-        if ((int)songPosInBeats >= mBeatCurrent + 4)
-        {
-            mBeatCurrent += 4;
-            BeatStart();
-        }
-        
-        float mBarPercent = songPosInBeats / 4.0f - ((int)songPosInBeats / 4);
-        mJudge.transform.localPosition = new Vector3(mBarLength * (mBarPercent - 0.5f) * mJudgeDir, -16f, 0);
+        BeatUpdate();
+
     }
 
     private void BpmCalc (){
@@ -76,42 +54,55 @@ public class BarController : MonoBehaviour {
         mBeatCurrent = 0;
         mSong.Play();
         BeatStart();
+
+        commentController = GameObject.Find("Comment").GetComponent<CommentController>();
+    }
+
+    private void BeatUpdate (){
+        float songPosition = (float)(AudioSettings.dspTime - songDspTime);
+        float songPosInBeats = songPosition / secPerBeat;
+        if ((int)songPosInBeats > mBeatCurrent)
+        {
+            BeatEnd();
+            mBeatCurrent++;
+        }
+
+        float mBarPercent = songPosInBeats - ((int)songPosInBeats);
+
+        mJudge[0].transform.localPosition = new Vector3(mBarLength * (mBarPercent), 0, 0);
+        mJudge[1].transform.localPosition = new Vector3(mBarLength * (-mBarPercent), 0, 0);
+        for (int i = 0; i < 4; i++)
+        {
+            mJudge[0].transform.GetChild(i).GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.75f - 0.25f * i + 0.25f * mBarPercent);
+            mJudge[1].transform.GetChild(i).GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.75f - 0.25f * i + 0.25f * mBarPercent);
+        }
+        return;
     }
 
     public void ShowAction(actionType type){
-        if (mBeatLock){
-            return;
-        }
-        if (mBeatTypeCurrent != beatType.Battle){
+        if (mBeatLock)
+        {
             return;
         }
 
-        mBeatActionCurrent = type;
-
-        float songPosition = (float)(AudioSettings.dspTime - songDspTime);
-        float songPosInBeats = songPosition / secPerBeat;
-        float mBarPercent = NumDiscretize(songPosInBeats / 4.0f - ((int)songPosInBeats / 4), 1f / 8f);
-        mBeatAction.transform.localPosition = new Vector3(mBarLength * (mBarPercent - 0.5f) * mJudgeDir, 30f, 0);
+        commentController.CallCommentUpdate(BeatComment());
 
         switch (type){
             case actionType.None :
                 {
-                    mBeatAction.GetComponent<Image>().sprite = mBeatActionIcons[0];
                 }
                 break;
             case actionType.Charge:
                 {
-                    mBeatAction.GetComponent<Image>().sprite = mBeatActionIcons[1];
                 }
                 break;
             case actionType.Hit:
                 {
-                    mBeatAction.GetComponent<Image>().sprite = mBeatActionIcons[2];
+                    player.Hit();
                 }
                 break;
             case actionType.Defense:
                 {
-                    mBeatAction.GetComponent<Image>().sprite = mBeatActionIcons[3];
                 }
                 break;
         }
@@ -133,20 +124,34 @@ public class BarController : MonoBehaviour {
 
     }
 
-    public void BeatEnd (){
-        if (mBeatPhaseCurrent == beatPhase.During)
-        {
-            if (mBeatTypeCurrent == beatType.Battle)
-            {
-                mBeatLock = true;
-                ActionEffect();
-            }
-            mBeatPhaseCurrent = beatPhase.Wait;
+    private int BeatComment (){
+        float songPosition = (float)(AudioSettings.dspTime - songDspTime);
+        float songPosInBeats = songPosition / secPerBeat;
+        float mBarPercent = songPosInBeats - ((int)songPosInBeats);
+
+        if (mBarPercent<0.5f) {
+            return 0;
+        }
+        else if (mBarPercent <0.8f){
+            return 1;
+        }
+        else {
+            return 3;
         }
     }
 
+    public void BeatEnd (){
+        if (!mBeatLock){
+            commentController.CallCommentUpdate(2);
+        }
+        else {
+            mBeatLock = false;
+        }
+       
+    }
+
     public void ActionEffect (){
-        switch (mBeatActionCurrent)
+        /*switch (mBeatActionCurrent)
         {
             case actionType.None:
                 {
@@ -167,30 +172,10 @@ public class BarController : MonoBehaviour {
                     //player.Defense();
                 }
                 break;
-        }
+        }*/
     }
 
     public void BeatStart (){
-        if (mBeatPhaseCurrent == beatPhase.Wait){
-            if (mBeatTypeCurrent == beatType.Battle){
-                mBeatTypeCurrent = beatType.Result;
-                mBar.SetActive(false);
-                mJudge.SetActive(false);
-
-                mBeatLock = false;
-                mBeatPhaseCurrent = beatPhase.During;
-            }
-            else {
-                mBeatTypeCurrent = beatType.Battle;
-                mBar.SetActive(true);
-                mJudge.SetActive(true);
-
-                mBeatAction.GetComponent<Image>().sprite = mBeatActionIcons[0];
-                mBeatActionCurrent = actionType.None;
-                mBeatPhaseCurrent = beatPhase.During;
-            }
-
-        }
 
     }
 }

@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Player : Character {
     private BarController barController;
+    private Animator animator;
 	// Use this for initialization
 	override protected void Start () {
         base.Start();
-        barController = GameObject.Find("YoumuBar").GetComponent<BarController>();
-        mTarget = GameObject.Find("Pachuli").GetComponent<AI>();
+        barController = GameObject.Find("JudgeBar").GetComponent<BarController>();
+        animator = GetComponent<Animator>();
         if (barController!=null){
             //... 
         }
@@ -34,5 +35,11 @@ public class Player : Character {
         {
             barController.ShowAction(actionType.Defense);
         }
+    }
+
+    override public void Hit()
+    {
+        base.Hit();
+        animator.Play("player_slash",0);
     }
 }

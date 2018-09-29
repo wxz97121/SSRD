@@ -31,14 +31,9 @@ public class Character : MonoBehaviour {
         return true;
     }
 
-    virtual public bool Hit()
+    virtual public void Hit()
     {
-        if (mMp>=1){
-            mMp -= 1;
-            mTarget.Damage(1);
-            return true;
-        }
-        return false;
+        mTarget.Damage(1);
     }
 
     virtual public bool Defense(){
