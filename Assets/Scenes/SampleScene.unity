@@ -427,11 +427,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UICanvas: {fileID: 0}
-  enemyPrefab: {fileID: 1545710258773296, guid: 44fe322e31bce45868af647278081c48,
-    type: 2}
   enemyUIPrefab: {fileID: 1434406641984920, guid: 0935530c90c8d407f8dea9f7d9175231,
     type: 2}
   resultLock: 0
+  enemyNum: 2
+  enemyIndex: 0
 --- !u!4 &517360203
 Transform:
   m_ObjectHideFlags: 0

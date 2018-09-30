@@ -9,10 +9,11 @@ public class BattleController : MonoBehaviour {
 
     public Transform UICanvas;
 
-    public GameObject enemyPrefab;
     public GameObject enemyUIPrefab;
     public bool resultLock = false;
 
+    public int enemyNum = 0;
+    public int enemyIndex = 0;
     private void Awake()
     {
         _instance = this;
@@ -35,7 +36,8 @@ public class BattleController : MonoBehaviour {
     }
 
     public void AddEnemy (){
-        GameObject instEnemy = Instantiate(enemyPrefab, new Vector3(5, 0, 0), Quaternion.identity);
+        GameObject instEnemy = Instantiate((GameObject)Resources.Load("Prefab/Enemy/"+enemyIndex.ToString(),typeof(GameObject)), new Vector3(5, 0, 0), Quaternion.identity);
+        enemyIndex = (enemyIndex + 1) % enemyNum;
         GameObject instEnemyUI = Instantiate(enemyUIPrefab, UICanvas);
         instEnemyUI.transform.localPosition += new Vector3(Screen.width / 4, Screen.height / 4, 0);
         instEnemy.GetComponent<AI>().UIHpNum = instEnemyUI.transform.Find("HpNum").GetComponent<TextMeshProUGUI>();
