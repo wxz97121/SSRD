@@ -1,11 +1,7 @@
 fileFormatVersion: 2
-guid: 9b7b43aa5ff284c40994960fac16b407
+guid: b735d41ecb10c4e369cd50e5115e7c02
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: "spr_prepare\u526F\u672C_0"
-    21300002: "spr_prepare\u526F\u672C_1"
-    21300004: spr_prepare_0
-    21300006: spr_prepare_1
+  fileIDToRecycleName: {}
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -47,8 +43,8 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 1
-  spritePivot: {x: 0, y: 1}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -86,51 +82,11 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: spr_prepare_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 78
-        height: 43
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 89f88f31802774a00badc55035fb5470
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spr_prepare_1
-      rect:
-        serializedVersion: 2
-        x: 78
-        y: 1
-        width: 78
-        height: 42
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3d8ad80502e9b4c6f920d521f3b4935c
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 232e5691ff95f489cbf3c34fd99acd55
+    spriteID: b1b7ab866c1244214b9c14b6df035258
     vertices: []
     indices: 
     edges: []

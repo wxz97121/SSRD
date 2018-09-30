@@ -54,6 +54,7 @@ public class Player : Character {
     override public bool Hit()
     {
         animator.Play("player_slash",0);
+        SoundController.Instance.PlayAudioEffect("SNARE");
         return base.Hit();
     }
 
@@ -66,6 +67,8 @@ public class Player : Character {
     {
         base.Defense();
         animator.Play("player_defense", 0);
+        SoundController.Instance.PlayAudioEffect("HIHAT");
+
     }
 
     override public void Damage(int dDamage)

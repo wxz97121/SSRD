@@ -41,7 +41,7 @@ public class AI : Character {
     }
 
     public void Action (){
-        Debug.Log("AI:action");
+        Debug.Log("AI:action"+ actionID);
         if (actionID>=0){
             //Debug.Log(name + ": " + actionSequence[actionID]);
             switch (actionSequence[actionID])
