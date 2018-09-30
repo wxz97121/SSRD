@@ -151,7 +151,9 @@ public class BarController : MonoBehaviour {
                 break;
             case actionType.Defense:
                 {
-                    Player.Instance.Defense();
+                    if (BeatComment() < 2) Player.Instance.Defense();
+                    else if (BeatComment() == 3) Player.Instance.HitFail();
+
                     BeatDone();
                 }
                 break;

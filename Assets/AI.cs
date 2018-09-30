@@ -61,9 +61,9 @@ public class AI : Character {
                 //attack
                 case 2:
                     {
-                        if (Hit()){
+                        Hit();
                             StartCoroutine("AttackState");
-                        }
+                       
                     }
                     break;
             }

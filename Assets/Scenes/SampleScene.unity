@@ -431,7 +431,7 @@ MonoBehaviour:
     type: 2}
   resultLock: 0
   enemyNum: 2
-  enemyIndex: 1
+  enemyIndex: 0
 --- !u!4 &517360203
 Transform:
   m_ObjectHideFlags: 0
