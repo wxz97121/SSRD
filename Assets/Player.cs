@@ -51,14 +51,26 @@ public class Player : Character {
         }
     }
     
-    override public void Hit()
+    override public bool Hit()
     {
-        base.Hit();
         animator.Play("player_slash",0);
+        return base.Hit();
     }
 
     override public void HitFail (){
         base.HitFail();
         animator.Play("player_fail", 0);
+    }
+
+    override public void Defense()
+    {
+        base.Defense();
+        animator.Play("player_defense", 0);
+    }
+
+    override public void Damage(int dDamage)
+    {
+        base.Damage(dDamage);
+        animator.Play("player_damaged", 0);
     }
 }

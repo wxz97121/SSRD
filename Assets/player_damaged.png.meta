@@ -1,9 +1,8 @@
 fileFormatVersion: 2
-guid: 802ea0e24d73c4b188f808634aafd28e
+guid: 9688266c714b94fce9b00311ab0f3d15
 TextureImporter:
   fileIDToRecycleName:
-    21300000: player_defend_0
-    21300002: player_defend_1
+    21300000: player_damaged_0
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -22,7 +21,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
@@ -97,7 +96,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player_defend_0
+      name: player_damaged_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,27 +110,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e88fedf81d44548ee8c430e2cab93a61
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: player_defend_1
-      rect:
-        serializedVersion: 2
-        x: 63
-        y: 0
-        width: 63
-        height: 41
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: eebb1b359abb74891b0930be74431e25
+      spriteID: 3a6eca34b59704d1cb87bbde70031950
       vertices: []
       indices: 
       edges: []
@@ -139,7 +118,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5db00ce22f324427f889d2cc7d1d3df6
+    spriteID: e521a7844d7e24c0aa82a8f6bec83f37
     vertices: []
     indices: 
     edges: []

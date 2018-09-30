@@ -18,6 +18,8 @@ public class Character : MonoBehaviour {
 
     public actionType lastAction = actionType.None;
 
+    public bool getHit = false;
+
     public GameObject chargeVfx;
     // Use this for initialization
     virtual protected void Start () {
@@ -45,6 +47,7 @@ public class Character : MonoBehaviour {
         Debug.Log(mTarget);
         lastAction = actionType.None;
         Shield = 0;
+        getHit = false;
     }
     virtual public bool Charge()
     {
@@ -58,7 +61,7 @@ public class Character : MonoBehaviour {
         return true;
     }
 
-    virtual public void Hit()
+    virtual public bool Hit()
     {
         if (mChargeList.Count>0){
             if (mTarget != null)
@@ -80,16 +83,21 @@ public class Character : MonoBehaviour {
                 if (cTarget.Shield > 0)
                 {
                     Instantiate(Resources.Load("VFX/Shield"), cTarget.transform.position, Quaternion.identity);
+                    return false;
                 }
                 else
                 {
+                    Instantiate(Resources.Load("VFX/Slash"), cTarget.transform.position, Quaternion.identity);
                     cTarget.Damage(1);
+                    return true;
                 }
 
             }
         }
 
         lastAction = actionType.Hit;
+
+        return true;
     }
     virtual public void HitFail()
     {
@@ -110,6 +118,7 @@ public class Character : MonoBehaviour {
     }
 
     virtual public void Damage (int dDamage){
+        getHit = true;
         if (Hp>dDamage){
             Hp -= dDamage;
             ChargeBreak(0);

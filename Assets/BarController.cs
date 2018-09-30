@@ -31,7 +31,7 @@ public class BarController : MonoBehaviour {
     public int mBpm = 120;
 
     public bool mBeatLock = false;
-
+    public bool mEndLock = false;
     public CommentController commentController = null;
 
     public int EnemyCountdown = -1;
@@ -117,6 +117,8 @@ public class BarController : MonoBehaviour {
 
         commentController.CallCommentUpdate(BeatComment());
 
+
+
         switch (type){
             case actionType.None :
                 {
@@ -124,23 +126,39 @@ public class BarController : MonoBehaviour {
                 break;
             case actionType.Charge:
                 {
-                    Player.Instance.Charge();
+                    BeatDone();
+                    if (Player.Instance.getHit)
+                    {
+
+                    }
+                    else {
+                        Player.Instance.Charge();
+                    }
                 }
                 break;
             case actionType.Hit:
                 {
-                    if (BeatComment() < 2) Player.Instance.Hit();
-                    else if (BeatComment() == 3) Player.Instance.HitFail();
+                    BeatDone();
+                    if (Player.Instance.getHit){
+                        //Player.Instance.HitFail();
+                    }
+                    else{
+                        if (BeatComment() < 2) Player.Instance.Hit();
+                        else if (BeatComment() == 3) Player.Instance.HitFail();
+                    }
+
                 }
                 break;
             case actionType.Defense:
                 {
                     Player.Instance.Defense();
+                    BeatDone();
                 }
                 break;
         }
 
-        mBeatLock = true;
+
+
     }
 
     public float NumDiscretize (float origin, float interval){
@@ -172,24 +190,30 @@ public class BarController : MonoBehaviour {
             return 3;
         }
     }
+    public void BeatDone (){
+        foreach (GameObject inst in Player.Instance.enemyList)
+        {
+            inst.GetComponent<AI>().Action();
+        }
+        mBeatLock = true;
 
+    }
     public void BeatEnd (){
         if (EnemyCountdown>=0){
             //commentController.CallCommentUpdate(2);
             return;
         }
 
-        foreach (GameObject inst in Player.Instance.enemyList){
-            inst.GetComponent<AI>().Action();
-        }
-
         if (!mBeatLock){
             commentController.CallCommentUpdate(2);
+            foreach (GameObject inst in Player.Instance.enemyList)
+            {
+                inst.GetComponent<AI>().Action();
+            }
         }
         else {
             mBeatLock = false;
         }
-       
     }
 
     public void ActionEffect (){

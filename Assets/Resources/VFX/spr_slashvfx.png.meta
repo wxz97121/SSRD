@@ -1,9 +1,13 @@
 fileFormatVersion: 2
-guid: 802ea0e24d73c4b188f808634aafd28e
+guid: 02bf0bd1bae9740729d0ce544d320608
 TextureImporter:
   fileIDToRecycleName:
-    21300000: player_defend_0
-    21300002: player_defend_1
+    21300000: spr_slashvfx_0
+    21300002: spr_slashvfx_1
+    21300004: spr_slashvfx_2
+    21300006: spr_slashvfx_3
+    21300008: spr_slashvfx_4
+    21300010: spr_slashvfx_5
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -97,13 +101,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player_defend_0
+      name: spr_slashvfx_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 63
-        height: 41
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,19 +115,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e88fedf81d44548ee8c430e2cab93a61
+      spriteID: 5f840223ba8c34d4c893b9d19fdabd81
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_defend_1
+      name: spr_slashvfx_1
       rect:
         serializedVersion: 2
-        x: 63
+        x: 64
         y: 0
-        width: 63
-        height: 41
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,7 +135,87 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eebb1b359abb74891b0930be74431e25
+      spriteID: a2b7442115a64407b8eb37f9132bc9d0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_slashvfx_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65d53e53ea77f4e4991a18246a80026a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_slashvfx_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66570503a81e54ca2a3c850fa88c51af
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_slashvfx_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcd17fbc348954756b38947b946a4e2b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_slashvfx_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56ed0b8af91734a009da68d544e1d7a3
       vertices: []
       indices: 
       edges: []
@@ -139,7 +223,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5db00ce22f324427f889d2cc7d1d3df6
+    spriteID: 9b61a8ae2ec224503bdb5d3333db5e83
     vertices: []
     indices: 
     edges: []
