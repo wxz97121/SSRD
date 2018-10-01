@@ -52,10 +52,10 @@ public class AI : Character {
                         StartCoroutine("IdleState");
                     }
                     break;
-                //prepare
+                //ready
                 case 1:
                     {
-                        StartCoroutine("PrepareState");
+                        StartCoroutine("ReadyState");
                     }
                     break;
                 //attack
@@ -86,10 +86,10 @@ public class AI : Character {
         yield return 0;
 
     }
-    IEnumerator PrepareState()
+    IEnumerator ReadyState()
     {
         float dTime = 0f;
-        spriteRenderer.sprite = (Sprite)Resources.Load("Animation/" + enemyID.ToString() + "/spr_prepare", typeof(Sprite));
+        spriteRenderer.sprite = (Sprite)Resources.Load("Animation/" + enemyID.ToString() + "/spr_ready", typeof(Sprite));
 
         if (isDashable){
             yield return new WaitForSeconds(BarController.Instance.secPerBeat * 0.25f);

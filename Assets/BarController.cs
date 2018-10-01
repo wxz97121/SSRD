@@ -35,6 +35,10 @@ public class BarController : MonoBehaviour {
     public CommentController commentController = null;
 
     public int EnemyCountdown = -1;
+
+    public float songPosOffset = 0.5f;
+
+
     private void Awake()
     {
         _instance = this;
@@ -65,7 +69,7 @@ public class BarController : MonoBehaviour {
     private void BarReset (){
         BpmCalc();
         songDspTime = (float)AudioSettings.dspTime;
-        mBeatCurrent = 0;
+        mBeatCurrent = 1;
         mSong.Play();
         BeatStart();
 
@@ -73,9 +77,9 @@ public class BarController : MonoBehaviour {
     }
 
     private void BeatUpdate (){
-        float songPosition = (float)(AudioSettings.dspTime - songDspTime);
+        float songPosition = (float)(AudioSettings.dspTime - songDspTime) + songPosOffset;
         float songPosInBeats = songPosition / secPerBeat;
-        if ((int)songPosInBeats > mBeatCurrent)
+        if (songPosInBeats - mBeatCurrent > 0.5f)
         {
             BeatEnd();
             EnemyUpdate();
@@ -88,7 +92,7 @@ public class BarController : MonoBehaviour {
         mJudge[0].transform.localPosition = new Vector3(mBarLength * (mBarPercent), 0, 0);
         mJudge[1].transform.localPosition = new Vector3(mBarLength * (-mBarPercent), 0, 0);
 
-        if (mBeatLock){
+        if (mBeatLock && mBarPercent>0.5f){
             mJudge[0].transform.GetChild(0).GetComponent<Image>().color = new Color(1f, 1f, 1f, 0);
             mJudge[1].transform.GetChild(0).GetComponent<Image>().color = new Color(1f, 1f, 1f, 0);
         }
@@ -178,20 +182,21 @@ public class BarController : MonoBehaviour {
     }
 
     private int BeatComment (){
-        float songPosition = (float)(AudioSettings.dspTime - songDspTime);
+        float songPosition = (float)(AudioSettings.dspTime - songDspTime) + songPosOffset;
         float songPosInBeats = songPosition / secPerBeat;
-        float mBarPercent = songPosInBeats - ((int)songPosInBeats);
+        float mBarPercent = Mathf.Abs(songPosInBeats - mBeatCurrent);
 
-        if (mBarPercent>=0.8f) {
+        if (mBarPercent<=0.1f) {
             return 0;
         }
-        else if (mBarPercent>=0.5f){
+        else if (mBarPercent<=0.25f){
             return 1;
         }
         else {
             return 3;
         }
     }
+
     public void BeatDone (){
         foreach (GameObject inst in Player.Instance.enemyList)
         {
