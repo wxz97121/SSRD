@@ -68,7 +68,7 @@ MonoBehaviour:
   actionSequence: 000000000100000002000000
   enemyID: 3
   spriteRenderer: {fileID: 0}
-  originPosition: {x: 5, y: 0, z: 0}
+  originPosition: {x: 2, y: 0, z: 0}
   isDashable: 0
 --- !u!212 &212621486600058496
 SpriteRenderer:
