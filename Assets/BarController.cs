@@ -122,7 +122,6 @@ public class BarController : MonoBehaviour {
         commentController.CallCommentUpdate(BeatComment());
 
 
-
         switch (type){
             case actionType.None :
                 {
@@ -147,16 +146,26 @@ public class BarController : MonoBehaviour {
                         //Player.Instance.HitFail();
                     }
                     else{
-                        if (BeatComment() < 2) Player.Instance.Hit();
-                        else if (BeatComment() == 3) Player.Instance.HitFail();
+                        if (BeatComment() < 2) {
+                            Player.Instance.Hit();
+                            Player.Instance.AddMp(2 - BeatComment());
+                        }
+                        else if (BeatComment() == 3) {
+                            Player.Instance.HitFail();
+                        }
                     }
 
                 }
                 break;
             case actionType.Defense:
                 {
-                    if (BeatComment() < 2) Player.Instance.Defense();
-                    else if (BeatComment() == 3) Player.Instance.HitFail();
+                    if (BeatComment() < 2) {
+                        Player.Instance.Defense();
+                        Player.Instance.AddMp(2 - BeatComment());
+                    }
+                    else if (BeatComment() == 3) {
+                        Player.Instance.HitFail();
+                    }
 
                     BeatDone();
                 }

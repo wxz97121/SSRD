@@ -50,7 +50,12 @@ public class Player : Character {
             BarController.Instance.ShowAction(actionType.Defense);
         }
     }
-    
+
+    override public void AddMp(int dMp)
+    {
+        base.AddMp(dMp);
+    }
+
     override public bool Hit()
     {
         animator.Play("player_slash",0);

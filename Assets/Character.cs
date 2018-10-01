@@ -60,7 +60,15 @@ public class Character : MonoBehaviour {
         lastAction = actionType.Charge;
         return true;
     }
-
+    virtual public void AddMp(int dMp)
+    {
+        if (Mp+dMp<=maxMp){
+            Mp = maxMp;
+        }
+        else {
+            Mp += dMp;
+        }
+    }
     virtual public bool Hit()
     {
         if (mChargeList.Count>0){
