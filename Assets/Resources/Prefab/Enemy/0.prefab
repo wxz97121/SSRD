@@ -52,8 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ff1e1c0d2bff4e3fafe4032f224279e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 1000
-  Hp: 1000
+  maxHp: 5
+  Hp: 5
   maxMp: 5
   Mp: 0
   UIHpNum: {fileID: 0}
@@ -65,11 +65,11 @@ MonoBehaviour:
   getHit: 0
   chargeVfx: {fileID: 0}
   actionID: 0
-  actionSequence: 00000000000000000100000002000000
+  actionSequence: 00000000
   enemyID: 0
   spriteRenderer: {fileID: 0}
   originPosition: {x: 5, y: 0, z: 0}
-  isDashable: 1
+  isDashable: 0
 --- !u!212 &212621486600058496
 SpriteRenderer:
   m_ObjectHideFlags: 1

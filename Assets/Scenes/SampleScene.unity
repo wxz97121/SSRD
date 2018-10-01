@@ -430,7 +430,7 @@ MonoBehaviour:
   enemyUIPrefab: {fileID: 1434406641984920, guid: 0935530c90c8d407f8dea9f7d9175231,
     type: 2}
   resultLock: 0
-  enemyNum: 2
+  enemyNum: 5
   enemyIndex: 0
 --- !u!4 &517360203
 Transform:
@@ -1201,6 +1201,7 @@ MonoBehaviour:
   mEndLock: 0
   commentController: {fileID: 0}
   EnemyCountdown: -1
+  songPosOffset: 0.5
 --- !u!1 &1283751840
 GameObject:
   m_ObjectHideFlags: 0
