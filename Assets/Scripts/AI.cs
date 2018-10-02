@@ -84,7 +84,7 @@ public class AI : Character {
         }
 
 
-        actionID = (actionID + 1) % actionSequence.Length;
+    //    actionID = (actionID + 1) % actionSequence.Length;
     }
 
     override public void Damage(int dDamage)

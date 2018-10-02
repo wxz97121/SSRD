@@ -42,6 +42,8 @@ public class BarController : MonoBehaviour {
 
     //拍锁(这一拍按过就不能按了)
     public bool mBeatLock = false;
+    //中间锁(用在beatCenter里，防止动画重复播放)
+    public bool mCenterLock = false;
     //结束锁(当前没用，之前是为了区分拍子完结的两种状态：自然完结和玩家敲击完结)
     public bool mEndLock = false;
     //评价控制(评价控制还没改成全局控制)
@@ -97,6 +99,15 @@ public class BarController : MonoBehaviour {
         float songPosition = (float)(AudioSettings.dspTime - songDspTime) + songPosOffset;
         //计算出当前在哪一拍
         float songPosInBeats = songPosition / secPerBeat;
+
+        //拍子正中位置，播放所有正常跟节奏的动画，包括敌人的READY，IDLE动画。
+        if (songPosInBeats - mBeatCurrent > 0f)
+        {
+            //完成这一拍,刷新敌人(如果有敌人死了就算倒计时),下一拍开始
+            BeatCenter();
+;
+        }
+
         //如果超出范围(0.5是表示以节拍中心向后的时间范围)
         if (songPosInBeats - mBeatCurrent > 0.5f)
         {
@@ -232,12 +243,54 @@ public class BarController : MonoBehaviour {
             return 3;
         }
     }
+
     //节拍结算(和下面的节拍结束差不多，但是它是由玩家主动操作调用的，下面是回合结束自然调用的)
+    public void BeatCenter()
+    {
+        if (!mCenterLock)
+        {
+
+            Debug.Log("now is the center");
+            foreach (GameObject inst in Player.Instance.enemyList)
+            {
+                Debug.Log("actionid="+ inst.GetComponent<AI>().actionID);
+                if (inst.GetComponent<AI>().actionID !=-1)
+                {
+                    if (inst.GetComponent<AI>().actionSequence[inst.GetComponent<AI>().actionID] != 2)
+                    {
+                        inst.GetComponent<AI>().Action();
+                    }
+                }
+                else
+                {
+                    inst.GetComponent<AI>().Action();
+
+                }
+            }
+        }
+        mCenterLock = true;
+
+    }
+
+    //节拍结算(和下面的节拍结束差不多，但是它是由玩家主动操作调用的，下面是回合结束自然调用的)
+    //这里只有攻击动画
     public void BeatDone (){
         foreach (GameObject inst in Player.Instance.enemyList)
         {
-            inst.GetComponent<AI>().Action();
+            if (inst.GetComponent<AI>().actionID != -1)
+            {
+                if (inst.GetComponent<AI>().actionSequence[inst.GetComponent<AI>().actionID] == 2)
+                {
+                    inst.GetComponent<AI>().Action();
+                }
+                else
+                {
+                    inst.GetComponent<AI>().Action();
+
+                }
+            }
         }
+
         mBeatLock = true;
     }
     //节拍结束
@@ -251,11 +304,33 @@ public class BarController : MonoBehaviour {
             commentController.CallCommentUpdate(2);
             foreach (GameObject inst in Player.Instance.enemyList)
             {
-                inst.GetComponent<AI>().Action();
+                if (inst.GetComponent<AI>().actionID != -1)
+                {
+                    if (inst.GetComponent<AI>().actionSequence[inst.GetComponent<AI>().actionID] == 2)
+                    {
+                        inst.GetComponent<AI>().Action();
+                    }
+                }
+                else
+                {
+                    inst.GetComponent<AI>().Action();
+
+                }
             }
         }
         else {
             mBeatLock = false;
+        }
+        updateEnemyAction();
+        mCenterLock = false;
+    }
+
+    //集中更新AI的ActionID
+    public void updateEnemyAction()
+    {
+        foreach (GameObject inst in Player.Instance.enemyList)
+        {
+            inst.GetComponent<AI>().actionID = (inst.GetComponent<AI>().actionID + 1) % inst.GetComponent<AI>().actionSequence.Length;
         }
     }
     //先不用

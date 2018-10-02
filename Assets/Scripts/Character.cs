@@ -66,7 +66,7 @@ public class Character : MonoBehaviour {
         if (mTarget == null){
             ChargeBreak(0);
         }
-        Debug.Log(mTarget);
+        //Debug.Log(mTarget);
         lastAction = actionType.None;
         Shield = 0;
         getHit = false;
