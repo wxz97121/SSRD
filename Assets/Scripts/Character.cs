@@ -9,6 +9,24 @@ public class Character : MonoBehaviour {
     public int Hp = 3;
     public int maxMp = 5;
     public int Mp = 0;
+    //基础攻击力
+    public int ATK = 2;
+    //当前攻击力
+    public int currentATK = 1;
+    //基础防御力
+    public int DEF = 0;
+    //当前防御力
+    public int currentDEF = 0;
+
+    //装备列表
+    public List<Equipment> equipmentList;
+    //当前装备着的武器
+    public Equipment currentWeapon;
+    //当前装备着的护甲
+    public Equipment currentArmor;
+    //当前装备着的卷轴
+    public Equipment currentScroll;
+
     public TextMeshProUGUI UIHpNum;
     public TextMeshProUGUI UIMpNum;
     //当前攻击的目标
@@ -39,6 +57,7 @@ public class Character : MonoBehaviour {
 
     }
     //每次行动之前的初始化:判断蓄力是否断，清空护盾和被击
+    //
     virtual public void Initialize ()
     {
         if (lastAction == actionType.None){
@@ -51,6 +70,9 @@ public class Character : MonoBehaviour {
         lastAction = actionType.None;
         Shield = 0;
         getHit = false;
+
+
+
     }
     //蓄力(目前只会在蓄力列表加一个简单的标识)
     virtual public bool Charge()
@@ -107,7 +129,7 @@ public class Character : MonoBehaviour {
                 else
                 {
                     Instantiate(Resources.Load("VFX/Slash"), cTarget.transform.position, Quaternion.identity);
-                    cTarget.Damage(1);
+                    cTarget.Damage(CalcDmg(getCurrentATK(),cTarget.getCurrentDEF()));
                     return true;
                 }
 
@@ -154,4 +176,34 @@ public class Character : MonoBehaviour {
         mChargeList.Clear();
     }
 
+    //计算当前攻击力
+    public int getCurrentATK()
+    {
+        int mATK=ATK;
+        foreach (Equipment e in equipmentList)
+        {
+            mATK += e.ATK;
+        }
+        return mATK;
+    }
+
+    //计算当前防御力
+    public int getCurrentDEF()
+    {
+        int mDEF = DEF;
+        foreach (Equipment e in equipmentList)
+        {
+            mDEF += e.DEF;
+        }
+        return mDEF;
+    }
+
+
+    //简单的伤害计算
+    public int CalcDmg(int dATK,int dDEF)
+    {
+        int DMG;
+        DMG = ((dATK - dDEF) > 1) ? (dATK - dDEF) : 1;
+        return DMG;
+    }
 }

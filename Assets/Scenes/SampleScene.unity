@@ -2120,6 +2120,18 @@ MonoBehaviour:
   Hp: 3
   maxMp: 5
   Mp: 0
+  ATK: 1
+  currentATK: 1
+  DEF: 1
+  currentDEF: 0
+  equipmentList:
+  - {fileID: 114314749759457354, guid: 2207f0fa0c9a6394395f1a0715c775fe, type: 2}
+  - {fileID: 114180536259402678, guid: 7d1ff5a312ae399408203da90b682fda, type: 2}
+  currentWeapon: {fileID: 114314749759457354, guid: 2207f0fa0c9a6394395f1a0715c775fe,
+    type: 2}
+  currentArmor: {fileID: 114180536259402678, guid: 7d1ff5a312ae399408203da90b682fda,
+    type: 2}
+  currentScroll: {fileID: 0}
   UIHpNum: {fileID: 1072248962}
   UIMpNum: {fileID: 1622754056}
   mTarget: {fileID: 0}

@@ -56,6 +56,14 @@ MonoBehaviour:
   Hp: 5
   maxMp: 5
   Mp: 0
+  ATK: 1
+  currentATK: 1
+  DEF: 0
+  currentDEF: 0
+  equipmentList: []
+  currentWeapon: {fileID: 0}
+  currentArmor: {fileID: 0}
+  currentScroll: {fileID: 0}
   UIHpNum: {fileID: 0}
   UIMpNum: {fileID: 0}
   mTarget: {fileID: 0}
