@@ -66,13 +66,15 @@ public class Player : Character {
     override public void HitFail (){
         base.HitFail();
         animator.Play("player_fail", 0);
+        SoundController.Instance.PlayAudioEffect("ROUND");
+
     }
 
     override public void Defense()
     {
         base.Defense();
         animator.Play("player_defense", 0);
-        SoundController.Instance.PlayAudioEffect("HIHAT");
+        SoundController.Instance.PlayAudioEffect("TOM");
 
     }
 
@@ -80,5 +82,7 @@ public class Player : Character {
     {
         base.Damage(dDamage);
         animator.Play("player_damaged", 0);
+        SoundController.Instance.PlayAudioEffect("HIHAT");
+
     }
 }

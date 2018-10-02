@@ -26,7 +26,7 @@ public class SoundController : MonoBehaviour {
 
         //本地加载 
         _soundDictionary = new Dictionary<string, AudioClip>();
-        AudioClip[] audioArray = Resources.LoadAll<AudioClip>("SE");
+        AudioClip[] audioArray = Resources.LoadAll<AudioClip>("Audio/SE");
         audioSources = GetComponents<AudioSource>();
         audioSourceEffect = audioSources[0];
 
