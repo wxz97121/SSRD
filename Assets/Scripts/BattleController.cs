@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+//战斗总控制
 public class BattleController : MonoBehaviour {
 
     static BattleController _instance;
-
+    //ui控制
     public Transform UICanvas;
 
+    //敌人的ui模板
     public GameObject enemyUIPrefab;
+    //没用
     public bool resultLock = false;
 
+    //简易的敌人生成系统
+    //敌人总数
     public int enemyNum = 0;
+    //当前敌人序号
     public int enemyIndex = 0;
     private void Awake()
     {
@@ -35,6 +40,7 @@ public class BattleController : MonoBehaviour {
 	void Update () {
     }
 
+    //增加一个新敌人，配置位置和ui等
     public void AddEnemy (){
         GameObject instEnemy = Instantiate((GameObject)Resources.Load("Prefab/Enemy/"+enemyIndex.ToString(),typeof(GameObject)), new Vector3(5, 0, 0), Quaternion.identity);
         enemyIndex = (enemyIndex + 1) % enemyNum;

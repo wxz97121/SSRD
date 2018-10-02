@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//评价系统(暂时用)
 public class CommentController : MonoBehaviour {
 
     public float aniTime = 0.2f;

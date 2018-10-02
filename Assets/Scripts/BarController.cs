@@ -3,39 +3,54 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//行动类别
 public enum actionType {
     None = 0,
     Charge = 1,
     Hit = 2,
     Defense = 3
 }
-
+//拍子类别，目前没用留作拓展
 public enum beatType
 {
     Normal = 0
 }
-
+//节拍总控制
 public class BarController : MonoBehaviour {
     static BarController _instance;
-
+    //节拍条
     public GameObject mBar;
+    //节拍条长度
     public float mBarLength;
+
+    //歌曲开始时间(用来处理当前节奏)
     [HideInInspector] public float songDspTime;
+    //每一拍长度
     [HideInInspector] public float secPerBeat;
+    //判定音符(目前有两个，分别从左右向中间靠近)
     public GameObject[] mJudge;
 
+    //当前拍
     public int mBeatCurrent;
+    //拍列表(当前没用)
     private List<GameObject> mBeatList = new List<GameObject>();
 
+    //BGM源
     public AudioSource mSong;
+    //BPM
     public int mBpm = 120;
 
+    //拍锁(这一拍按过就不能按了)
     public bool mBeatLock = false;
+    //结束锁(当前没用，之前是为了区分拍子完结的两种状态：自然完结和玩家敲击完结)
     public bool mEndLock = false;
+    //评价控制(评价控制还没改成全局控制)
     public CommentController commentController = null;
 
+    //敌人复活倒计时(暂时用的，四拍以后招新敌人)
     public int EnemyCountdown = -1;
 
+    //校正(校准因为视觉产生的节拍误差)
     public float songPosOffset = 0.5f;
 
 
@@ -62,10 +77,11 @@ public class BarController : MonoBehaviour {
         BeatUpdate();
 
     }
-
+    //计算bpm
     private void BpmCalc (){
         secPerBeat = 60f / mBpm;
     }
+    //重置节拍条(重新计算bpm,归零，播放歌曲，开始游戏等)
     private void BarReset (){
         BpmCalc();
         songDspTime = (float)AudioSettings.dspTime;
@@ -75,12 +91,16 @@ public class BarController : MonoBehaviour {
 
         commentController = GameObject.Find("Comment").GetComponent<CommentController>();
     }
-
+    //更新节拍
     private void BeatUpdate (){
+        //获得当前歌曲位置
         float songPosition = (float)(AudioSettings.dspTime - songDspTime) + songPosOffset;
+        //计算出当前在哪一拍
         float songPosInBeats = songPosition / secPerBeat;
+        //如果超出范围(0.5是表示以节拍中心向后的时间范围)
         if (songPosInBeats - mBeatCurrent > 0.5f)
         {
+            //完成这一拍,刷新敌人(如果有敌人死了就算倒计时),下一拍开始
             BeatEnd();
             EnemyUpdate();
             mBeatCurrent++;
@@ -89,8 +109,12 @@ public class BarController : MonoBehaviour {
 
         float mBarPercent = songPosInBeats - ((int)songPosInBeats);
 
+        //调整判定音符的位置
+
         mJudge[0].transform.localPosition = new Vector3(mBarLength * (mBarPercent), 0, 0);
         mJudge[1].transform.localPosition = new Vector3(mBarLength * (-mBarPercent), 0, 0);
+
+        //调整判定音符的透明度(最靠近的两个在后半拍要隐形,造成连续的视觉效果)
 
         if (mBeatLock && mBarPercent>0.5f){
             mJudge[0].transform.GetChild(0).GetComponent<Image>().color = new Color(1f, 1f, 1f, 0);
@@ -108,19 +132,19 @@ public class BarController : MonoBehaviour {
         }
         return;
     }
-
+    //每一拍的控制
     public void ShowAction(actionType type){
+        //如果已经按过就停止
         if (mBeatLock)
         {
             return;
         }
-
+        //如果没敌人了就先不管
         if (Player.Instance.enemyList.Count<=0){
             return;
         }
-
+        //判定评价
         commentController.CallCommentUpdate(BeatComment());
-
 
         switch (type){
             case actionType.None :
@@ -141,6 +165,7 @@ public class BarController : MonoBehaviour {
                 break;
             case actionType.Hit:
                 {
+                    //如果出玩家攻击，就先结算敌人行动再处理玩家行动(敌人攻击会打断玩家)
                     BeatDone();
                     if (Player.Instance.getHit){
                         //Player.Instance.HitFail();
@@ -159,6 +184,7 @@ public class BarController : MonoBehaviour {
                 break;
             case actionType.Defense:
                 {
+                    //如果出玩家防守，就先结算玩家行动再处理敌人行动(玩家加完盾，敌人攻击就会失败)
                     if (BeatComment() < 2) {
                         Player.Instance.Defense();
                         Player.Instance.AddMp(2 - BeatComment());
@@ -176,6 +202,7 @@ public class BarController : MonoBehaviour {
 
     }
 
+    //暂时没用，不用管这个
     public float NumDiscretize (float origin, float interval){
         float num = 0f;
         while (num < origin){
@@ -189,7 +216,7 @@ public class BarController : MonoBehaviour {
         }
 
     }
-
+    //计算当前拍子的位置，影响判定
     private int BeatComment (){
         float songPosition = (float)(AudioSettings.dspTime - songDspTime) + songPosOffset;
         float songPosInBeats = songPosition / secPerBeat;
@@ -205,15 +232,15 @@ public class BarController : MonoBehaviour {
             return 3;
         }
     }
-
+    //节拍结算(和下面的节拍结束差不多，但是它是由玩家主动操作调用的，下面是回合结束自然调用的)
     public void BeatDone (){
         foreach (GameObject inst in Player.Instance.enemyList)
         {
             inst.GetComponent<AI>().Action();
         }
         mBeatLock = true;
-
     }
+    //节拍结束
     public void BeatEnd (){
         if (EnemyCountdown>=0){
             //commentController.CallCommentUpdate(2);
@@ -231,7 +258,7 @@ public class BarController : MonoBehaviour {
             mBeatLock = false;
         }
     }
-
+    //先不用
     public void ActionEffect (){
         /*switch (mBeatActionCurrent)
         {

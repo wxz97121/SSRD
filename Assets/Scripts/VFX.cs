@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+//特效控制：0-淡出，1-静态，2-帧动画
 public class VFX : MonoBehaviour {
     public float aniTime = 0.2f;
     public int type = 0;
