@@ -57,7 +57,6 @@ public class Character : MonoBehaviour {
 
     }
     //每次行动之前的初始化:判断蓄力是否断，清空护盾和被击
-    //
     virtual public void Initialize ()
     {
         if (lastAction == actionType.None){

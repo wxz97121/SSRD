@@ -1,11 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+
 //玩家，角色派生类
 public class Player : Character {
     static Player _instance;
 
     private Animator animator;
+
+    //魂点数 魂等级
+    public int soulPoint = 0;
+    public int soulLevel = 0;
+    //魂到达多少升级
+    public int soulMaxPoint = 10;
+    //魂的UI元素
+    public Image soulPointProgress;
+    public Image soulLevelLetter;
+
+
+
 
     public List<GameObject> enemyList = new List<GameObject>();
 
@@ -32,6 +47,8 @@ public class Player : Character {
     // Update is called once per frame
     override protected void Update () {
         base.Update();
+        updateSoulUI();
+
 	}
     //控制玩家的输入
     protected override void UpdateInput()
@@ -84,5 +101,49 @@ public class Player : Character {
         animator.Play("player_damaged", 0);
         SoundController.Instance.PlayAudioEffect("HIHAT");
 
+    }
+
+    public void addSoulPoint(int dSoulPoint){
+        soulPoint += dSoulPoint;
+        if (soulPoint >= soulMaxPoint)
+        {
+            if(soulLevel>=2){
+                soulPoint = soulMaxPoint;
+            }else{
+                soulLevel++;
+                soulPoint = 0;
+            }
+        }
+    }
+
+
+
+    public void decreaseSoulLevel(){
+        if(soulLevel>0){
+            soulLevel--;
+        }
+        soulPoint = 0;
+    }
+
+    public void updateSoulUI(){
+        soulPointProgress.fillAmount =((float)soulPoint / (float)soulMaxPoint);
+        switch(soulLevel){
+            case 0:
+                soulLevelLetter.color = Color.black;
+                soulPointProgress.color = Color.black;
+
+                break;
+            case 1:
+                soulLevelLetter.color = Color.yellow;
+                soulPointProgress.color = Color.yellow;
+
+
+                break;
+            case 2:
+                soulLevelLetter.color = Color.red;
+                soulPointProgress.color = Color.red;
+
+                break;
+        }
     }
 }

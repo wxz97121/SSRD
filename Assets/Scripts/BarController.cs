@@ -185,9 +185,11 @@ public class BarController : MonoBehaviour {
                         if (BeatComment() < 2) {
                             Player.Instance.Hit();
                             Player.Instance.AddMp(2 - BeatComment());
+                            Player.Instance.addSoulPoint(2 - BeatComment());
                         }
                         else if (BeatComment() == 3) {
                             Player.Instance.HitFail();
+                            Player.Instance.decreaseSoulLevel();
                         }
                     }
 
@@ -199,9 +201,13 @@ public class BarController : MonoBehaviour {
                     if (BeatComment() < 2) {
                         Player.Instance.Defense();
                         Player.Instance.AddMp(2 - BeatComment());
+                        Player.Instance.addSoulPoint(2 - BeatComment());
+
                     }
                     else if (BeatComment() == 3) {
                         Player.Instance.HitFail();
+                        Player.Instance.decreaseSoulLevel();
+
                     }
 
                     BeatDone();
