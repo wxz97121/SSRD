@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 //玩家，角色派生类
@@ -19,6 +20,9 @@ public class Player : Character {
     public Image soulPointProgress;
     public Image soulLevelLetter;
 
+    //携带金钱数
+    public int money=10;
+    public TextMeshProUGUI UIMoneyNum;
 
 
 
@@ -48,8 +52,9 @@ public class Player : Character {
     override protected void Update () {
         base.Update();
         updateSoulUI();
+        UIMoneyNum.SetText(money.ToString());
 
-	}
+    }
     //控制玩家的输入
     protected override void UpdateInput()
     {

@@ -192,6 +192,7 @@ public class BarController : MonoBehaviour {
                             Player.Instance.decreaseSoulLevel();
                         }
                     }
+                    BeatDone();
 
                 }
                 break;
@@ -289,11 +290,7 @@ public class BarController : MonoBehaviour {
                 {
                     inst.GetComponent<AI>().Action();
                 }
-                else
-                {
-                    inst.GetComponent<AI>().Action();
-
-                }
+                
             }
         }
 
@@ -316,11 +313,6 @@ public class BarController : MonoBehaviour {
                     {
                         inst.GetComponent<AI>().Action();
                     }
-                }
-                else
-                {
-                    inst.GetComponent<AI>().Action();
-
                 }
             }
         }

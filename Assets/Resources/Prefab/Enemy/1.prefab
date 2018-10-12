@@ -77,6 +77,7 @@ MonoBehaviour:
   enemyID: 1
   spriteRenderer: {fileID: 0}
   originPosition: {x: 5, y: 0, z: 0}
+  lootMoney: 2
   isDashable: 1
 --- !u!212 &212621486600058496
 SpriteRenderer:

@@ -56,6 +56,14 @@ MonoBehaviour:
   Hp: 10
   maxMp: 5
   Mp: 0
+  ATK: 2
+  currentATK: 1
+  DEF: 0
+  currentDEF: 0
+  equipmentList: []
+  currentWeapon: {fileID: 0}
+  currentArmor: {fileID: 0}
+  currentScroll: {fileID: 0}
   UIHpNum: {fileID: 0}
   UIMpNum: {fileID: 0}
   mTarget: {fileID: 0}
@@ -69,6 +77,7 @@ MonoBehaviour:
   enemyID: 2
   spriteRenderer: {fileID: 0}
   originPosition: {x: 3, y: 0, z: 0}
+  lootMoney: 3
   isDashable: 0
 --- !u!212 &212621486600058496
 SpriteRenderer:

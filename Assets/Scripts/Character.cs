@@ -155,7 +155,6 @@ public class Character : MonoBehaviour {
     }
     //死亡
     virtual public void Die (){
-
     }
     //受到伤害(以后名字要改下)
     virtual public void Damage (int dDamage){

@@ -17,6 +17,10 @@ public class AI : Character {
     //敌人的初始位置(基本不用动，多人可能有用)
     public Vector3 originPosition = new Vector3(5,0,0);
 
+    //死亡后掉落金钱数
+    public int lootMoney = 1;
+
+
     //是否会冲(仅影响动画效果)
     public bool isDashable = true;
     // Use this for initialization
@@ -43,9 +47,12 @@ public class AI : Character {
     }
     //敌人死亡的时候从玩家的目标列表中去除，然后销毁模型和ui
     override public void Die (){
+        gameObject.AddComponent<VFX>();
+        VFX vfx = gameObject.GetComponent<VFX>();
         Player.Instance.enemyList.Remove(gameObject);
         Destroy(UIHpNum.transform.parent.gameObject);
-        Destroy(gameObject);
+        vfx.StartCoroutine("FadeOut");
+        Player.Instance.money += lootMoney;
     }
 
     protected override void UpdateInput()
@@ -128,4 +135,6 @@ public class AI : Character {
         spriteRenderer.sprite = (Sprite)Resources.Load("Animation/" + enemyID.ToString() + "/spr_attack", typeof(Sprite));
         yield return 0;
     }
+
+
 }
