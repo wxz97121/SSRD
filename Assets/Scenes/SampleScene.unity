@@ -1444,7 +1444,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -180}
+  m_AnchoredPosition: {x: -258, y: -179}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1214958172
@@ -1462,13 +1462,13 @@ MonoBehaviour:
   mBarLength: 96
   songDspTime: 0
   secPerBeat: 0
-  mJudge:
-  - {fileID: 1283751840}
-  - {fileID: 2068475766}
-  nextNoteIndex: 0
-  beatsShownInAdvance: 4
-  mCycleCount: 0
+  nextNoteIndex_main: 0
+  nextNoteIndex_energy: 0
+  beatsShownInAdvance: 2
+  mCycleCount_main: 0
+  mCycleCount_energy: 0
   mBeatCurrent: 0
+  mBeatCurrent_energy: 0
   mSong: {fileID: 1398494077}
   mBpm: 60
   mBeatLock: 0
