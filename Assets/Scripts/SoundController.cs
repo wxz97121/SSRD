@@ -44,8 +44,9 @@ public class SoundController : MonoBehaviour {
     {
         if (_soundDictionary.ContainsKey(audioEffectName))
         {
-            audioSourceEffect.clip = _soundDictionary[audioEffectName];
-            audioSourceEffect.Play();
+            //audioSourceEffect.clip = _soundDictionary[audioEffectName];
+            //audioSourceEffect.Play();
+            audioSourceEffect.PlayOneShot(_soundDictionary[audioEffectName],1f);
         }
     }
 }

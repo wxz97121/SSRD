@@ -8,7 +8,9 @@ public enum actionType {
     None = 0,
     Charge = 1,
     Hit = 2,
-    Defense = 3
+    Defense = 3,
+    Collect = 4
+
 }
 //拍子类别，目前没用留作拓展
 public enum beatType
@@ -76,13 +78,21 @@ public class BarController : MonoBehaviour {
     //结束锁(当前没用，之前是为了区分拍子完结的两种状态：自然完结和玩家敲击完结)
     public bool mEndLock = false;
     //评价控制(评价控制还没改成全局控制)
+
+    //拍锁(这一拍按过就不能按了)
+    public bool mBeatLock_energy = false;
+    //中间锁(用在beatCenter里，防止动画重复播放)
+    public bool mCenterLock_energy = false;
+    //结束锁(当前没用，之前是为了区分拍子完结的两种状态：自然完结和玩家敲击完结)
+    public bool mEndLock_energy = false;
+    //评价控制(评价控制还没改成全局控制)
     public CommentController commentController = null;
 
     //敌人复活倒计时(暂时用的，四拍以后招新敌人)
     public int EnemyCountdown = -1;
 
     //校正(校准因为视觉产生的节拍误差)
-    public float songPosOffset = 0.5f;
+    public float songPosOffset = 0f;
 
 
     private void Awake()
@@ -187,6 +197,7 @@ public class BarController : MonoBehaviour {
         }
 
 
+        //判定音符是否到位，触发相应函数
         if (mRunningNoteList_main.Count > 0) {
         //拍子正中位置，播放所有正常跟节奏的动画，包括敌人的READY，IDLE动画。
             if (songPosInBeats - mRunningNoteList_main[0].beat > 0f)
@@ -207,10 +218,21 @@ public class BarController : MonoBehaviour {
             }
         }
 
+        if (mRunningNoteList_energy.Count > 0)
+        {
+
+            //如果超出范围(0.2是表示以节拍中心向后的时间范围)
+            if (songPosInBeats - mRunningNoteList_energy[0].beat > 0.2f)
+            {
+                //完成这一拍,刷新敌人(如果有敌人死了就算倒计时),下一拍开始
+               BeatEnd_energy();
+            }
+        }
+
 
         //调整判定音符的位置
         //主轨道
-        foreach(Note temp in mRunningNoteList_main)
+        foreach (Note temp in mRunningNoteList_main)
         {
             temp.note.transform.localPosition = Vector2.Lerp(
             noteSpawnPos_main,
@@ -250,8 +272,9 @@ public class BarController : MonoBehaviour {
 
 
     }
-    //每一拍的控制
-    public void ShowAction(actionType type){
+    //每一拍的控制-主轨道
+    public void ShowAction_main(actionType type){
+        Debug.Log("action");
         //如果已经按过就停止
         if (mBeatLock)
         {
@@ -262,7 +285,7 @@ public class BarController : MonoBehaviour {
             return;
         }
         //判定评价
-        commentController.CallCommentUpdate(BeatComment());
+        commentController.CallCommentUpdate(BeatComment(mRunningNoteList_main));
 
         switch (type){
             case actionType.None :
@@ -284,35 +307,33 @@ public class BarController : MonoBehaviour {
             case actionType.Hit:
                 {
                     //如果出玩家攻击，就先结算敌人行动再处理玩家行动(敌人攻击会打断玩家)
-                    BeatDone_EnemyAct();
+                    //BeatDone_EnemyAct();
                     if (Player.Instance.getHit){
                         //Player.Instance.HitFail();
                     }
                     else{
-                        if (BeatComment() < 2) {
+                        if (BeatComment(mRunningNoteList_main) < 2) {
                             Player.Instance.Hit();
-                            Player.Instance.AddMp(2 - BeatComment());
-                            Player.Instance.addSoulPoint(2 - BeatComment());
+                            Player.Instance.addSoulPoint(2 - BeatComment(mRunningNoteList_main));
                         }
-                        else if (BeatComment() == 3) {
+                        else if (BeatComment(mRunningNoteList_main) == 3) {
                             bad(0);
 
                         }
                     }
-                    //BeatDone_EnemyAct();
+                    BeatDone_EnemyAct();
 
                 }
                 break;
             case actionType.Defense:
                 {
                     //如果出玩家防守，就先结算玩家行动再处理敌人行动(玩家加完盾，敌人攻击就会失败)
-                    if (BeatComment() < 2) {
+                    if (BeatComment(mRunningNoteList_main) < 2) {
                         Player.Instance.Defense();
-                        Player.Instance.AddMp(2 - BeatComment());
-                        Player.Instance.addSoulPoint(2 - BeatComment());
+                        Player.Instance.addSoulPoint(2 - BeatComment(mRunningNoteList_main));
 
                     }
-                    else if (BeatComment() == 3) {
+                    else if (BeatComment(mRunningNoteList_main) == 3) {
                         bad(0);
                     }
 
@@ -324,30 +345,56 @@ public class BarController : MonoBehaviour {
     
 
     }
+    public void ShowAction_energy(actionType type)
+    {
+        Debug.Log("ENERGY");
+        //如果已经按过就停止
+        if (mBeatLock_energy)
+        {
+            return;
+        }
 
-    //暂时没用，不用管这个
-    public float NumDiscretize (float origin, float interval){
-        float num = 0f;
-        while (num < origin){
-            num += interval;
+
+        //如果没敌人了就先不管
+        if (Player.Instance.enemyList.Count <= 0)
+        {
+            return;
         }
-        if (num - origin < interval / 2){
-            return num;
+        switch (type)
+        {
+
+            case actionType.Collect:
+                {
+                    if (BeatComment(mRunningNoteList_energy) < 2)
+                    {
+                        Player.Instance.AddMp(1);
+
+                    }
+                    else if (BeatComment(mRunningNoteList_energy) == 3)
+                    {
+                        bad(1);
+                    }
+                    mBeatLock_energy = true;
+                }
+                break;
+            
         }
-        else {
-            return (num - interval);
-        }
+
+
 
     }
+
     //计算当前拍子的位置，影响判定
-    private int BeatComment (){
-        if (mRunningNoteList_main.Count==0)
+    //0为main
+    //1为energy
+    private int BeatComment (List<Note> notelist){
+        if (notelist.Count==0)
         {
             return 3;
         }
         float songPosition = (float)(AudioSettings.dspTime - songDspTime) + songPosOffset;
         float songPosInBeats = songPosition / secPerBeat;
-        float mBarPercent = Mathf.Abs(songPosInBeats - mRunningNoteList_main[0].beat);
+        float mBarPercent = Mathf.Abs(songPosInBeats - notelist[0].beat);
 
         if (mBarPercent<=0.1f) {
             return 0;
@@ -434,6 +481,16 @@ public class BarController : MonoBehaviour {
         mCenterLock = false;
     }
 
+    public void BeatEnd_energy()
+    {
+        
+        mBeatLock_energy = false;
+
+        Destroy(mRunningNoteList_energy[0].note.gameObject);
+        mRunningNoteList_energy.RemoveAt(0);
+    }
+
+
     //集中更新AI的ActionID
     public void updateEnemyAction()
     {
@@ -476,11 +533,21 @@ public class BarController : MonoBehaviour {
     //1为Energy
     public void bad(int type)
     {
+        switch(type){
 
+        case 0:
         Player.Instance.HitFail();
         Player.Instance.decreaseSoulLevel();
         mRunningNoteList_main[0].note.transform.localScale = Vector3.zero;
+            break;
+        case 1:
+            Player.Instance.decreaseSoulLevel();
+            mRunningNoteList_energy[0].note.transform.localScale = Vector3.zero;
+                Debug.Log("bad");
+            break;
+        }
+
     }
-         
+
 
 }

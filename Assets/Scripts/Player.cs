@@ -60,16 +60,17 @@ public class Player : Character {
     {
         base.UpdateInput();
 
-        if (Input.GetKeyDown(KeyCode.Z)){
-            BarController.Instance.ShowAction(actionType.Charge);
-        }
-        else if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.M))
         {
-            BarController.Instance.ShowAction(actionType.Hit);
+            BarController.Instance.ShowAction_energy(actionType.Collect);
         }
-        else if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.X))
         {
-            BarController.Instance.ShowAction(actionType.Defense);
+            BarController.Instance.ShowAction_main(actionType.Hit);
+        }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            BarController.Instance.ShowAction_main(actionType.Charge);
         }
     }
 
