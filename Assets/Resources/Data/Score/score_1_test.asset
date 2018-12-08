@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d63375c8e6b9b43ccb471af30f7eced5, type: 3}
   m_Name: score_1_test
   m_EditorClassIdentifier: 
-  bgmusic: {fileID: 8300000, guid: e1c4a3b4a62be44e6a5f6729f631b831, type: 3}
+  bgmusic: {fileID: 8300000, guid: 50633d625b23344c3aaa0dfba57a3771, type: 3}
   prelude:
   - notes:
     - type: 1

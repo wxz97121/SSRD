@@ -120,7 +120,7 @@ public class BarController : MonoBehaviour {
             Note temp = new Note();
             temp.beat = (float)(i * 2 + 0.5);
             temp.note = (GameObject)Resources.Load("Prefabs/Note");
-            temp.type = Note.noteType.action;
+            temp.type = Note.NoteType.action;
             score_main.notes.Add(temp);
         }
 
@@ -130,7 +130,7 @@ public class BarController : MonoBehaviour {
             Note temp = new Note();
             temp.beat = (float)(i*0.5);
             temp.note = (GameObject)Resources.Load("Prefabs/Note");
-            temp.type = Note.noteType.action;
+            temp.type = Note.NoteType.action;
             score_energy.notes.Add(temp);
         }
 

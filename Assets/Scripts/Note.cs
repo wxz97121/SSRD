@@ -7,16 +7,18 @@ public class Note{
     /*音符类型
      1-能量
      2-大能量
+     9-蓄力    
      10-动作
      */
-    public enum noteType
+    public enum NoteType
     {
         energy = 1,
-        bigenergy = 2,
+        energy_double = 2,
+        charge = 9,
         action = 10,
     }
 
-    public noteType type;
+    public NoteType type;
     [System.NonSerialized] public GameObject note;
 
     //节拍位置

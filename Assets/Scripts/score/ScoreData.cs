@@ -6,6 +6,6 @@ using UnityEngine;
 public class ScoreData : ScriptableObject {
     public AudioClip bgmusic;
     public List<OneBarScore> prelude;
-    public List<OneBarScore> main;
+    public List<OneBarScore> mainlude;
 
 }
