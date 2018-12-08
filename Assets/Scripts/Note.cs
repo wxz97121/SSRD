@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[System.Serializable]
 public class Note{
 
     /*音符类型
@@ -17,7 +17,7 @@ public class Note{
     }
 
     public noteType type;
-    public GameObject note;
+    [System.NonSerialized] public GameObject note;
 
     //节拍位置
     public float beat;

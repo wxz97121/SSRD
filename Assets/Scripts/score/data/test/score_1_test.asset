@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63375c8e6b9b43ccb471af30f7eced5, type: 3}
+  m_Name: score_1_test
+  m_EditorClassIdentifier: 
+  bgmusic: {fileID: 8300000, guid: e1c4a3b4a62be44e6a5f6729f631b831, type: 3}
+  prelude:
+  - notes:
+    - type: 1
+      beat: 0
+    - type: 1
+      beat: 1
+    - type: 1
+      beat: 2
+    - type: 1
+      beat: 3
+    beatsThisBar: 4
+  main:
+  - notes:
+    - type: 1
+      beat: 0
+    - type: 1
+      beat: 1
+    - type: 1
+      beat: 2
+    - type: 1
+      beat: 3
+    - type: 10
+      beat: 2
+    beatsThisBar: 4

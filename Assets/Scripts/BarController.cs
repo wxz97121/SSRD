@@ -17,8 +17,11 @@ public enum beatType
 {
     Normal = 0
 }
+
 //节拍总控制
 public class BarController : MonoBehaviour {
+
+    //单例
     static BarController _instance;
     //节拍条
     public GameObject mBar;
@@ -48,10 +51,9 @@ public class BarController : MonoBehaviour {
     public Score score_energy = new Score();
     //音符计数
     public int nextNoteIndex_energy = 0;
+
+
     //提前展示多少拍
-
-
-
     public float beatsShownInAdvance = 4f;
     //记录当前是第几个循环
     public float mCycleCount_main = 0f;
@@ -65,7 +67,6 @@ public class BarController : MonoBehaviour {
     public int mBeatCurrent_energy;
     //拍列表
     private List<Note> mRunningNoteList_energy = new List<Note>();
-
     //BGM源
     public AudioSource mSong;
     //BPM
@@ -94,7 +95,7 @@ public class BarController : MonoBehaviour {
     //校正(校准因为视觉产生的节拍误差)
     public float songPosOffset = 0f;
 
-
+    
     private void Awake()
     {
         _instance = this;
@@ -107,6 +108,7 @@ public class BarController : MonoBehaviour {
             return _instance;
         }
     }
+
 
     // Use this for initialization
     void Start () {
@@ -140,11 +142,14 @@ public class BarController : MonoBehaviour {
         BeatUpdate();
 
     }
+
     //计算bpm
     private void BpmCalc (){
         secPerBeat = 60f / mBpm;
     }
-    //重置节拍条(重新计算bpm,归零，播放歌曲，开始游戏等)
+
+
+    // 重置节拍条(重新计算bpm,归零，播放歌曲，开始游戏等)
     private void BarReset (){
         BpmCalc();
 
@@ -157,6 +162,7 @@ public class BarController : MonoBehaviour {
 
         commentController = GameObject.Find("Comment").GetComponent<CommentController>();
     }
+
     //更新节拍
     private void BeatUpdate() {
         //获得当前歌曲位置
@@ -272,6 +278,7 @@ public class BarController : MonoBehaviour {
 
 
     }
+
     //每一拍的控制-主轨道
     public void ShowAction_main(actionType type){
         Debug.Log("action");
@@ -483,7 +490,7 @@ public class BarController : MonoBehaviour {
 
     public void BeatEnd_energy()
     {
-        
+        //清除已经过去的NOTE
         mBeatLock_energy = false;
 
         Destroy(mRunningNoteList_energy[0].note.gameObject);
