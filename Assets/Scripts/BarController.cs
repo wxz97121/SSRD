@@ -281,7 +281,7 @@ public class BarController : MonoBehaviour {
 
     //每一拍的控制-主轨道
     public void ShowAction_main(actionType type){
-        Debug.Log("action");
+        Debug.Log("action LOCK:"+ mBeatLock.ToString());
         //如果已经按过就停止
         if (mBeatLock)
         {
@@ -304,7 +304,6 @@ public class BarController : MonoBehaviour {
                     BeatDone_EnemyAct();
                     if (Player.Instance.getHit)
                     {
-
                     }
                     else {
                         Player.Instance.Charge();
@@ -329,6 +328,8 @@ public class BarController : MonoBehaviour {
                         }
                     }
                     BeatDone_EnemyAct();
+
+                    mBeatLock = true;
 
                 }
                 break;
@@ -457,7 +458,7 @@ public class BarController : MonoBehaviour {
             }
         }
 
-        mBeatLock = true;
+
     }
     //节拍结束
     public void BeatEnd (){
@@ -486,6 +487,8 @@ public class BarController : MonoBehaviour {
         Destroy(mRunningNoteList_main[0].note.gameObject);
         mRunningNoteList_main.RemoveAt(0);
         mCenterLock = false;
+
+        Player.Instance.OnTurnEnd();
     }
 
     public void BeatEnd_energy()

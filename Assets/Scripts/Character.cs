@@ -80,7 +80,7 @@ public class Character : MonoBehaviour {
             chargeVfx = (GameObject)Instantiate(Resources.Load("VFX/Charge"), transform.position + new Vector3(-1.2f, 0.5f, 0), Quaternion.identity);
         }
 
-        mChargeList.Add(1);
+        mChargeList.Add(BarController.Instance.nextNoteIndex_main);
 
         lastAction = actionType.Charge;
         return true;
@@ -172,6 +172,12 @@ public class Character : MonoBehaviour {
     virtual public void ChargeBreak (int type){
         Destroy(chargeVfx.gameObject);
         mChargeList.Clear();
+    }
+
+    //每个小节结束自动调用
+    public virtual void OnTurnEnd()
+    {
+        ChargeBreak(0);
     }
 
     //计算当前攻击力
