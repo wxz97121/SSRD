@@ -156,9 +156,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed2f92b6d59d45249b6a6e89cc7b607, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  length: 0
+  beatsThisBar: 0
   pin: {fileID: 1236903005911274}
   bg: {fileID: 114160732141691870}
+  startPosGO: {fileID: 1394292357313156}
+  onebeatspaceGO: {fileID: 1390979939136242}
   linelist: []
   noteList_main: []
   noteList_energy: []
@@ -247,10 +249,10 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 17.95, y: -1.25}
-  m_SizeDelta: {x: 507.11, y: 52.49}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 289.45, y: -37.81}
+  m_SizeDelta: {x: 507.11, y: 52.490005}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224498706405002818
 RectTransform:

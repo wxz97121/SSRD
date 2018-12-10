@@ -13,6 +13,14 @@ public class UIBarController : MonoBehaviour {
     //区域内当前小节序号
     public int barIndex;
 
+    public GameObject barPos0GO;
+    public GameObject barPos1GO;
+    public GameObject barPos2GO;
+
+    public Vector3 barPos0;
+    public Vector3 barPos1;
+    public Vector3 barPos2;
+
 
     // Use this for initialization
     void Start () {
@@ -36,18 +44,28 @@ public class UIBarController : MonoBehaviour {
         barIndex = 0;
         SoundController.Instance.PlayBgMusic(score.bgmusic);
 
+        //获取位置信息
+        barPos0 = barPos0GO.transform.localPosition;
+        barPos1 = barPos1GO.transform.localPosition;
+        barPos2 = barPos2GO.transform.localPosition;
+
         //连加三个新小节
         currentBarList.Add(InitBarByScore(pieceIndex, barIndex));
+        currentBarList[0].transform.localPosition = barPos0;
         NextBar();
-        Debug.Log("uibar controller start complete!");
+        Debug.Log("uibar 0 complete!");
 
         currentBarList.Add(InitBarByScore(pieceIndex, barIndex));
+        currentBarList[1].transform.localPosition = barPos1;
         NextBar();
-        Debug.Log("uibar controller start complete!");
+        Debug.Log("uibar 1 complete!");
 
         currentBarList.Add(InitBarByScore(pieceIndex, barIndex));
+        currentBarList[2].transform.localPosition = barPos2;
+        currentBarList[2].GetComponent<UIBar>().SetAlpha(0f);
+
         NextBar();
-        Debug.Log("uibar controller start complete!");
+        Debug.Log("uibar 2 complete!");
 
 
     }
@@ -55,7 +73,7 @@ public class UIBarController : MonoBehaviour {
     #region 读取一个新的BAR InitBarByScore(int pieceIndex,int barIndex)
     public GameObject InitBarByScore(int pieceIndex,int barIndex)
     {
-        GameObject instBar = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar", typeof(GameObject)), this.transform);
+        GameObject instBar = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar", typeof(GameObject)), transform);
 
 
         //判断当前所在的段落，读取单小节乐谱
@@ -70,13 +88,10 @@ public class UIBarController : MonoBehaviour {
             {
                 instBar.GetComponent<UIBar>().noteList_energy.Add(note);
             }
-            else
-            {
-                instBar.GetComponent<UIBar>().noteList_main.Add(note);
-
-            }
+           
         }
-        instBar.GetComponent<UIBar>().length = _barScore.beatsThisBar;
+        instBar.GetComponent<UIBar>().beatsThisBar = _barScore.beatsThisBar;
+        instBar.GetComponent<UIBar>().Init();
         return instBar;
     }
     #endregion

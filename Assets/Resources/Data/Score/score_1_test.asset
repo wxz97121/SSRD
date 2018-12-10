@@ -23,7 +23,7 @@ MonoBehaviour:
     - type: 1
       beat: 3
     beatsThisBar: 4
-  main:
+  mainlude:
   - notes:
     - type: 1
       beat: 0
@@ -33,6 +33,4 @@ MonoBehaviour:
       beat: 2
     - type: 1
       beat: 3
-    - type: 10
-      beat: 2
     beatsThisBar: 4
