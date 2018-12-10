@@ -5,7 +5,7 @@ using UnityEngine;
 public class UIBarController : MonoBehaviour {
 
     //小节列表
-    public List<UIBar> currentBarList;
+    public List<GameObject> currentBarList;
     //谱子
     public OneSongScore score;
     //当前播放段落序号
@@ -17,14 +17,15 @@ public class UIBarController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         Debug.Log("uibar controller start!");
-        currentBarList = new List<UIBar>();
+        currentBarList = new List<GameObject>();
         score =ReadScoreData("score_1_test");
 
         InitBarArea();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 
@@ -38,18 +39,24 @@ public class UIBarController : MonoBehaviour {
         //连加三个新小节
         currentBarList.Add(InitBarByScore(pieceIndex, barIndex));
         NextBar();
+        Debug.Log("uibar controller start complete!");
+
         currentBarList.Add(InitBarByScore(pieceIndex, barIndex));
         NextBar();
+        Debug.Log("uibar controller start complete!");
+
         currentBarList.Add(InitBarByScore(pieceIndex, barIndex));
         NextBar();
+        Debug.Log("uibar controller start complete!");
 
 
     }
 
     #region 读取一个新的BAR InitBarByScore(int pieceIndex,int barIndex)
-    public UIBar InitBarByScore(int pieceIndex,int barIndex)
+    public GameObject InitBarByScore(int pieceIndex,int barIndex)
     {
-        UIBar _uIBar=new UIBar();
+        GameObject instBar = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar", typeof(GameObject)), this.transform);
+
 
         //判断当前所在的段落，读取单小节乐谱
 
@@ -61,16 +68,16 @@ public class UIBarController : MonoBehaviour {
         {
             if ((int)note.type<=8)
             {
-                _uIBar.noteList_energy.Add(note);
+                instBar.GetComponent<UIBar>().noteList_energy.Add(note);
             }
             else
             {
-                _uIBar.noteList_main.Add(note);
+                instBar.GetComponent<UIBar>().noteList_main.Add(note);
 
             }
         }
-        _uIBar.length = _barScore.beatsThisBar;
-        return _uIBar;
+        instBar.GetComponent<UIBar>().length = _barScore.beatsThisBar;
+        return instBar;
     }
     #endregion
 
