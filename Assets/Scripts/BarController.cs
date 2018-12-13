@@ -41,7 +41,6 @@ public class BarController : MonoBehaviour {
     public Score score_main = new Score();
     //音符计数
     public int nextNoteIndex_main = 0;
-    //提前展示多少拍
 
     //开始位置
     private Vector3 noteSpawnPos_energy = new Vector3(600, 60, 0);

@@ -56,6 +56,7 @@ public class SoundController : MonoBehaviour {
     public void PlayBgMusic(AudioClip audioClip)
     {
         audioSourceBgMusic.clip = audioClip;
-        audioSourceBgMusic.PlayScheduled(0);
+        audioSourceBgMusic.Play();
+        //audioSourceBgMusic.PlayScheduled(0);
     }
 }

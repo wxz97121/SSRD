@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class UIBar : MonoBehaviour {
 
+    //开始拍
+    public float startBeat;
+    //本小节拍子数
     public float beatsThisBar;
     //指针
     public GameObject pin;
@@ -50,7 +53,7 @@ public class UIBar : MonoBehaviour {
         for (int i=0; i<_linecount;i++)
         {
             GameObject line = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Line", typeof(GameObject)), transform);
-            line.transform.localPosition = startPos + oneBeatSpace * (i + 1);
+            line.transform.localPosition = startPos + oneBeatSpace * (i);
             //第三拍变红提示
             if (i == 2) { line.GetComponent<Image>().color = Color.red; }
             linelist.Add(line);
@@ -63,7 +66,7 @@ public class UIBar : MonoBehaviour {
         foreach (Note note in noteList_energy)
         {
             note.note = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Note", typeof(GameObject)), transform);
-            note.note.transform.localPosition = startPos + (oneBeatSpace * (1f + note.beat));
+            note.note.transform.localPosition = startPos + (oneBeatSpace * ( note.beat));
 
         }
 
@@ -79,6 +82,11 @@ public class UIBar : MonoBehaviour {
         foreach(GameObject line in linelist)
         {
             line.GetComponent<Image>().color = new Color(line.GetComponent<Image>().color.r, line.GetComponent<Image>().color.g, line.GetComponent<Image>().color.b, alpha);
+        }
+
+        foreach (Note n in noteList_energy)
+        {
+            n.note.GetComponent<Image>().color = new Color(n.note.GetComponent<Image>().color.r, n.note.GetComponent<Image>().color.g, n.note.GetComponent<Image>().color.b, alpha);
         }
     }
 }

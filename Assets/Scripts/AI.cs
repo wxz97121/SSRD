@@ -62,7 +62,7 @@ public class AI : Character {
 
     //序列帧处理，每一拍处理当前的怪兽序列
     public void Action (){
-        Debug.Log("AI:action"+ actionID);
+//        Debug.Log("AI:action"+ actionID);
         if (actionID>=0){
             //Debug.Log(name + ": " + actionSequence[actionID]);
             switch (actionSequence[actionID])
