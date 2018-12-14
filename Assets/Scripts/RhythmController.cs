@@ -53,6 +53,7 @@ public class RhythmController : MonoBehaviour {
         //获取歌曲开始播放的时间点
         songStartTime = (float)AudioSettings.dspTime;
 
+
         SoundController.Instance.PlayBgMusic(LevelData.Instance.score.bgmusic);
 
     }

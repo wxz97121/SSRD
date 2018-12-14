@@ -119,6 +119,7 @@ public class UIBarController : MonoBehaviour {
     //小节整体上移
     public void BarMoving()
     {
+        //Debug.Log(RhythmController.Instance.songPosInBeats);
         //post
         float a1 = Mathf.Lerp(
         1,
