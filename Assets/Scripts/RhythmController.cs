@@ -67,7 +67,7 @@ public class RhythmController : MonoBehaviour {
         songPos = (float)(AudioSettings.dspTime - songStartTime) + songPosOffset;
         //计算出当前在哪一拍
         songPosInBeats = songPos / secPerBeat;
-        Debug.Log("distime="+ AudioSettings.dspTime+ "    startTime=" + songStartTime+ "    songPos=" +songPos+   "beats ="+songPosInBeats);
+//        Debug.Log("distime="+ AudioSettings.dspTime+ "    startTime=" + songStartTime+ "    songPos=" +songPos+   "beats ="+songPosInBeats);
 
 
 

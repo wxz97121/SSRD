@@ -63,7 +63,7 @@ public class LevelData : MonoBehaviour {
                     //_note.note = new GameObject();
                     beat = data.mainlude[i].notes[j].beat
                 });
-                Debug.Log("added mainlude note ");
+//                Debug.Log("added mainlude note ");
             }
             _score.mainlude.Add(_onebarscore);
 

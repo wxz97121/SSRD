@@ -46,6 +46,26 @@ public class UIBar : MonoBehaviour {
         InitNotes();
     }
 
+
+    //将音符收进两个轨道
+    public void ReadScore(List<Note> notes)
+    {
+        foreach (Note note in notes)
+        {
+            if ((int)note.type <= 8)
+            {
+
+                noteList_energy.Add(new Note
+                {
+                    type = note.type,
+                    beat = note.beat
+                }
+                );
+            }
+
+        }
+    }
+
     //画节拍线
     public void InitLines()
     {
@@ -89,5 +109,16 @@ public class UIBar : MonoBehaviour {
         {
             n.note.GetComponent<Image>().color = new Color(n.note.GetComponent<Image>().color.r, n.note.GetComponent<Image>().color.g, n.note.GetComponent<Image>().color.b, alpha);
         }
+    }
+
+    //重置
+    public void Empty()
+    {
+        for(int i=0; i < noteList_energy.Count; i++)
+        {
+            Destroy(noteList_energy[0].note);
+            noteList_energy.RemoveAt(0);
+        }
+       
     }
 }
