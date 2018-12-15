@@ -106,7 +106,13 @@ public class UIBarController : MonoBehaviour {
         {
             if ((int)note.type <= 8)
             {
-                instBar.GetComponent<UIBar>().noteList_energy.Add(note);
+
+                instBar.GetComponent<UIBar>().noteList_energy.Add(new Note
+                {
+                    type = note.type,
+                    beat = note.beat
+                }
+                );
             }
 
         }

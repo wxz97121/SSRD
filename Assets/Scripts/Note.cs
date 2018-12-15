@@ -18,8 +18,7 @@ public class Note{
         action = 10,
     }
 
-    public NoteType type;
-    [System.NonSerialized] public GameObject note;
+    public NoteType type;public GameObject note;
 
     //节拍位置
     public float beat;
