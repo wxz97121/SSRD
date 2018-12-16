@@ -109,13 +109,19 @@ public class UIBar : MonoBehaviour {
         );
     }
 
+    public void SetPinAlpha(float a)
+    {
+        Color tempcolor = pin.GetComponent<Image>().color;
+        pin.GetComponent<Image>().color = new Color(tempcolor.r,tempcolor.g,tempcolor.b,a);
+    }
+
 
     //设置显示透明度
     public void SetAlpha(float alpha)
     {
 
         bg.color = new Color(bg.color.r, bg.color.g, bg.color.b, alpha);
-        pin.GetComponent<Image>().color = new Color(pin.GetComponent<Image>().color.r, pin.GetComponent<Image>().color.g, pin.GetComponent<Image>().color.b, alpha);
+        //SetPinAlpha(alpha);
         foreach(GameObject line in linelist)
         {
             line.GetComponent<Image>().color = new Color(line.GetComponent<Image>().color.r, line.GetComponent<Image>().color.g, line.GetComponent<Image>().color.b, alpha);

@@ -50,8 +50,9 @@ public class UIBarController : MonoBehaviour {
     void Update() {
         barPosInBeats = RhythmController.Instance.songPosInBeats - playingBar.GetComponent<UIBar>().startBeat;
         BarMoving();
-        BarSwitch();
         playingBar.GetComponent<UIBar>().PinMoving(barPosInBeats);
+
+        BarSwitch();
     }
 
     //初始化
@@ -190,22 +191,37 @@ public class UIBarController : MonoBehaviour {
     {
         if (playingBar.GetComponent<UIBar>().beatsThisBar< barPosInBeats)
         {
-           // Debug.Log("switch!!!");
-          //  Debug.Log("beatsthisbar="+ playingBar.GetComponent<UIBar>().beatsThisBar);
-          //  Debug.Log("barPosInBeats" + barPosInBeats);
-           
-             //轮转换位
+            // Debug.Log("switch!!!");
+            //  Debug.Log("beatsthisbar="+ playingBar.GetComponent<UIBar>().beatsThisBar);
+            //  Debug.Log("barPosInBeats" + barPosInBeats);
 
+            //指针处理
+            playingBar.GetComponent<UIBar>().PinMoving(0);
+            playingBar.GetComponent<UIBar>().SetPinAlpha(0);
+
+
+            //轮转换位
             GameObject temp = postBar;
             postBar = playingBar;
             playingBar = preBar;
             preBar = temp;
+
+
+
 
             //读取下一小节
             preBar.GetComponent<UIBar>().Empty();
             InitBarByScore(pieceIndex, barIndex, preBar.GetComponent<UIBar>());
             preBar.transform.localPosition = barPos3;
             preBar.GetComponent<UIBar>().SetAlpha(0);
+
+            //处理指针
+            postBar.GetComponent<UIBar>().SetPinAlpha(0);
+            preBar.GetComponent<UIBar>().SetPinAlpha(0);
+            playingBar.GetComponent<UIBar>().PinMoving(0);
+            playingBar.GetComponent<UIBar>().SetPinAlpha(255);
+
+
         }
 
     }
