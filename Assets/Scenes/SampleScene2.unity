@@ -2808,6 +2808,9 @@ MonoBehaviour:
   currentBarList: []
   pieceIndex: 0
   barIndex: 0
+  occupiedBeats: 0
+  finishedBeats: 0
+  barPosInBeats: 0
   barPos0GO: {fileID: 398654089}
   barPos1GO: {fileID: 2014594161}
   barPos2GO: {fileID: 8427395}

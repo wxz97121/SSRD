@@ -93,6 +93,22 @@ public class UIBar : MonoBehaviour {
 
     }
 
+    //指针移动
+    public void PinMoving(float barposinbeat)
+    {
+        Debug.Log("pinmove");
+        Debug.Log("barpos="+ barposinbeat);
+        Debug.Log("beatsThisBar=" + beatsThisBar);
+
+        pin.transform.localPosition = Vector2.Lerp
+        (
+            startPos,
+            startPos+beatsThisBar* oneBeatSpace,
+            barposinbeat/beatsThisBar
+
+        );
+    }
+
 
     //设置显示透明度
     public void SetAlpha(float alpha)
@@ -114,11 +130,13 @@ public class UIBar : MonoBehaviour {
     //重置
     public void Empty()
     {
-        for(int i=0; i < noteList_energy.Count; i++)
+        int tempcount = noteList_energy.Count;
+        for(int i=0; i < tempcount; i++)
         {
             Destroy(noteList_energy[0].note);
             noteList_energy.RemoveAt(0);
         }
+        pin.transform.localPosition = startPos;
        
     }
 }
