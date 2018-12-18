@@ -59,6 +59,35 @@ public class RhythmController : MonoBehaviour {
     }
     #endregion
 
+    #region 计算输入判定
+    public static int InputComment(List<Note> notes)
+    {
+        //0:cool
+        //1:good
+        //2:bad
+
+        if (notes.Count == 0)
+        {
+            return 3;
+        }
+
+
+        float mBarPercent = Mathf.Abs(RhythmController.Instance.songPosInBeats - notes[0].beat);
+
+        if (mBarPercent <= 0.1f)
+        {
+            return 0;
+        }
+        else if (mBarPercent <= 0.25f)
+        {
+            return 1;
+        }
+        else
+        {
+            return 2;
+        }
+    }
+    #endregion
 
     //更新节拍
     private void BeatUpdate()
@@ -68,10 +97,6 @@ public class RhythmController : MonoBehaviour {
         //计算出当前在哪一拍
         songPosInBeats = songPos / secPerBeat;
 //        Debug.Log("distime="+ AudioSettings.dspTime+ "    startTime=" + songStartTime+ "    songPos=" +songPos+   "beats ="+songPosInBeats);
-
-
-
-
 
 
     }
@@ -85,4 +110,6 @@ public class RhythmController : MonoBehaviour {
 	void Update () {
         BeatUpdate();
 	}
+
+
 }

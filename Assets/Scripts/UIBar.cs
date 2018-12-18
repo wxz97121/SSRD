@@ -70,14 +70,15 @@ public class UIBar : MonoBehaviour {
     public void InitLines()
     {
         int _linecount = (int)(beatsThisBar);
-        for (int i=0; i<_linecount;i++)
+        for (int i=0; i<=_linecount;i++)
         {
             GameObject line = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Line", typeof(GameObject)), transform);
-            line.transform.localPosition = startPos + oneBeatSpace * (i);
+            line.transform.localPosition = startPos + (oneBeatSpace * i);
             //第三拍变红提示
             if (i == 2) { line.GetComponent<Image>().color = Color.red; }
             linelist.Add(line);
         }
+
     }
 
     //画原有音符
@@ -96,9 +97,8 @@ public class UIBar : MonoBehaviour {
     //指针移动
     public void PinMoving(float barposinbeat)
     {
-        Debug.Log("pinmove");
-        Debug.Log("barpos="+ barposinbeat);
-        Debug.Log("beatsThisBar=" + beatsThisBar);
+       // Debug.Log("barpos="+ barposinbeat);
+       // Debug.Log("beatsThisBar=" + beatsThisBar);
 
         pin.transform.localPosition = Vector2.Lerp
         (

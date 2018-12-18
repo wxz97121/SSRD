@@ -35,10 +35,12 @@ public class UIBarController : MonoBehaviour {
     [HideInInspector] public GameObject playingBar;
     [HideInInspector] public GameObject preBar;
 
-
+    public List<Note> currentEnergyNotes;
     // Use this for initialization
     void Start() {
         Debug.Log("uibar controller start!");
+
+        currentEnergyNotes = new List<Note>();
         currentBarList = new List<GameObject>();
         score = LevelData.Instance.score;
 
@@ -51,7 +53,6 @@ public class UIBarController : MonoBehaviour {
         barPosInBeats = RhythmController.Instance.songPosInBeats - playingBar.GetComponent<UIBar>().startBeat;
         BarMoving();
         playingBar.GetComponent<UIBar>().PinMoving(barPosInBeats);
-
         BarSwitch();
     }
 
@@ -83,6 +84,7 @@ public class UIBarController : MonoBehaviour {
         currentBarList.Add(CreateBarByScore(pieceIndex, barIndex));
         currentBarList[1].transform.localPosition = barPos2;
         playingBar = currentBarList[1];
+        currentEnergyNotes.AddRange(playingBar.GetComponent<UIBar>().noteList_energy);
         NextBar();
 
         Debug.Log("uibar 1 complete!");
@@ -91,6 +93,7 @@ public class UIBarController : MonoBehaviour {
         currentBarList[2].transform.localPosition = barPos3;
         currentBarList[2].GetComponent<UIBar>().SetAlpha(0f);
         preBar = currentBarList[2];
+        currentEnergyNotes.AddRange(preBar.GetComponent<UIBar>().noteList_energy);
 
         NextBar();
         Debug.Log("uibar 2 complete!");
