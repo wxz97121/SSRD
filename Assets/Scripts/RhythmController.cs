@@ -140,5 +140,7 @@ public class RhythmController : MonoBehaviour {
         BeatUpdate();
 	}
 
+    //TODO：针对音符的输入判定，主要是收集能量和QTE
 
+    //TODO:针对关键节拍的输入判定，主要是蓄力和发招
 }
