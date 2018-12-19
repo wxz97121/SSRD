@@ -14,6 +14,10 @@ public class RhythmController : MonoBehaviour {
     //歌曲当前到第几拍
     [HideInInspector] public float songPosInBeats;
 
+    //判定阈值 一个比一个大
+    public float commetCoolTime;
+    public float commetGoodTime;
+    public float commetMissTime;
 
     //BPM
     public int mBpm = 70;
@@ -96,10 +100,35 @@ public class RhythmController : MonoBehaviour {
         songPos = (float)(AudioSettings.dspTime - songStartTime) + songPosOffset;
         //计算出当前在哪一拍
         songPosInBeats = songPos / secPerBeat;
-//        Debug.Log("distime="+ AudioSettings.dspTime+ "    startTime=" + songStartTime+ "    songPos=" +songPos+   "beats ="+songPosInBeats);
+        //        Debug.Log("distime="+ AudioSettings.dspTime+ "    startTime=" + songStartTime+ "    songPos=" +songPos+   "beats ="+songPosInBeats);
 
+
+        //todo:增加各种情况的处理，去掉已经滤掉的音符
+
+        //判定是否播放第N拍，并告知各种物体POGO起来！
+        //第三拍要特殊处理
+        if (UIBarController.Instance.currentEnergyNotes.Count > 0)
+        {
+            ////拍子正中位置
+            //if (songPosInBeats - mRunningNoteList_main[0].beat > 0f)
+            //{
+            //    //完成这一拍,刷新敌人(如果有敌人死了就算倒计时),下一拍开始
+            //    BeatCenter();
+
+            //}
+
+            ////如果超出范围(0.5是表示以节拍中心向后的时间范围)
+            //if (songPosInBeats - mRunningNoteList_main[0].beat > 0.5f)
+            //{
+            //    //完成这一拍,刷新敌人(如果有敌人死了就算倒计时),下一拍开始
+            //    BeatEnd();
+            //    EnemyUpdate();
+            //    BeatStart();
+            //}
+        }
 
     }
+
     // Use this for initialization
     void Start () {
         //调试用 暂时放这

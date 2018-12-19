@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class UIBar : MonoBehaviour {
 
+    public Text testtext;
+    public bool active;
     //开始拍
     public float startBeat;
     //本小节拍子数
@@ -97,16 +99,55 @@ public class UIBar : MonoBehaviour {
     //指针移动
     public void PinMoving(float barposinbeat)
     {
-       // Debug.Log("barpos="+ barposinbeat);
-       // Debug.Log("beatsThisBar=" + beatsThisBar);
+        // Debug.Log("barpos="+ barposinbeat);
+        // Debug.Log("beatsThisBar=" + beatsThisBar);
+        if (!active)
+        {
+            return;
+        }
+        testtext.text = "barposinbeat" + barposinbeat.ToString("F2")+"/"+ (beatsThisBar + (2 * RhythmController.Instance.commetMissTime));
 
+        //处理位置
         pin.transform.localPosition = Vector2.Lerp
         (
-            startPos,
-            startPos+beatsThisBar* oneBeatSpace,
-            barposinbeat/beatsThisBar
-
+            startPos- (oneBeatSpace *RhythmController.Instance.commetMissTime),
+            startPos+ (oneBeatSpace *(beatsThisBar+RhythmController.Instance.commetMissTime)),
+            (barposinbeat+ RhythmController.Instance.commetMissTime) / (beatsThisBar+ (2 * RhythmController.Instance.commetMissTime))
+            
         );
+
+
+        //处理透明度 两头渐隐
+        if (barposinbeat<-RhythmController.Instance.commetMissTime)
+        {
+            SetPinAlpha(0);
+
+        }
+        else if(barposinbeat<0)
+        {
+            float a = Mathf.Lerp(
+            0,
+            1,
+            -barposinbeat / RhythmController.Instance.commetMissTime
+            );
+            SetPinAlpha(a);
+        }else if(barposinbeat> beatsThisBar)
+        {
+            Debug.Log("barposinbeat" + barposinbeat);
+            float a = Mathf.Lerp(
+            1,
+            0,
+            (barposinbeat-beatsThisBar) / RhythmController.Instance.commetMissTime
+            );
+            SetPinAlpha(a);
+        }
+        else
+        {
+            Debug.Log("barposinbeat else" + barposinbeat);
+
+            SetPinAlpha(1);
+
+        }
     }
 
     public void SetPinAlpha(float a)

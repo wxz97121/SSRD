@@ -19,7 +19,10 @@ public class UIBarController : MonoBehaviour {
     public float finishedBeats;
 
     //播放到当前小节的节拍数
+    public float postBarPosInBeats;
     public float barPosInBeats;
+
+    public float preBarPosInBeats;
 
     public GameObject barPos0GO;
     public GameObject barPos1GO;
@@ -36,6 +39,23 @@ public class UIBarController : MonoBehaviour {
     [HideInInspector] public GameObject preBar;
 
     public List<Note> currentEnergyNotes;
+
+
+    #region 单例
+    static UIBarController _instance;
+    private void Awake()
+    {
+        _instance = this;
+    }
+    public static UIBarController Instance
+    {
+        get
+        {
+            return _instance;
+        }
+    }
+    #endregion
+
     // Use this for initialization
     void Start() {
         Debug.Log("uibar controller start!");
@@ -50,13 +70,16 @@ public class UIBarController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        barPosInBeats = RhythmController.Instance.songPosInBeats - playingBar.GetComponent<UIBar>().startBeat;
+        //todo:PIN 之前的一小节要多走一些，之后的一小节要提前走一些
+
+        BarPinMoving();
+
         BarMoving();
-        playingBar.GetComponent<UIBar>().PinMoving(barPosInBeats);
+
         BarSwitch();
     }
 
-    //初始化
+    #region 初始化
     public void InitBarArea()
     {
         pieceIndex = 0;
@@ -75,14 +98,16 @@ public class UIBarController : MonoBehaviour {
         //连加三个新小节
         currentBarList.Add(CreateBarByScore(pieceIndex, barIndex));
         currentBarList[0].transform.localPosition = barPos1;
-        //currentBarList[0].GetComponent<UIBar>().SetAlpha(0f);
+
         postBar = currentBarList[0];
         postBar.GetComponent<UIBar>().Empty();
+        postBar.GetComponent<UIBar>().active = false;
         occupiedBeats = 0;
         Debug.Log("uibar 0 complete!");
 
         currentBarList.Add(CreateBarByScore(pieceIndex, barIndex));
         currentBarList[1].transform.localPosition = barPos2;
+
         playingBar = currentBarList[1];
         currentEnergyNotes.AddRange(playingBar.GetComponent<UIBar>().noteList_energy);
         NextBar();
@@ -91,7 +116,7 @@ public class UIBarController : MonoBehaviour {
 
         currentBarList.Add(CreateBarByScore(pieceIndex, barIndex));
         currentBarList[2].transform.localPosition = barPos3;
-        currentBarList[2].GetComponent<UIBar>().SetAlpha(0f);
+        currentBarList[2].GetComponent<UIBar>().SetAlpha(0);
         preBar = currentBarList[2];
         currentEnergyNotes.AddRange(preBar.GetComponent<UIBar>().noteList_energy);
 
@@ -100,6 +125,7 @@ public class UIBarController : MonoBehaviour {
 
 
     }
+    #endregion
 
     #region 新建一个UIBAR CreateBarByScore(int pieceIndex,int barIndex)
     public GameObject CreateBarByScore(int pieceIndex, int barIndex)
@@ -116,10 +142,11 @@ public class UIBarController : MonoBehaviour {
         instBar.GetComponent<UIBar>().ReadScore(_barScore.notes);
         instBar.GetComponent<UIBar>().beatsThisBar = _barScore.beatsThisBar;
         instBar.GetComponent<UIBar>().Init();
+        instBar.GetComponent<UIBar>().SetPinAlpha(0);
+        instBar.GetComponent<UIBar>().active=true;
+
         instBar.GetComponent<UIBar>().startBeat = occupiedBeats;
-        Debug.Log("startbeat=" + instBar.GetComponent<UIBar>().startBeat);
         occupiedBeats += instBar.GetComponent<UIBar>().beatsThisBar;
-        Debug.Log("occupiedBeats=" + occupiedBeats);
 
         return instBar;
     }
@@ -143,6 +170,9 @@ public class UIBarController : MonoBehaviour {
         occupiedBeats += uiBar.beatsThisBar;
         Debug.Log("occupiedBeats=" + occupiedBeats);
         uiBar.Init();
+        uiBar.GetComponent<UIBar>().SetPinAlpha(0);
+        uiBar.GetComponent<UIBar>().active=true;
+
     }
     #endregion
 
@@ -199,8 +229,8 @@ public class UIBarController : MonoBehaviour {
             //  Debug.Log("barPosInBeats" + barPosInBeats);
 
             //指针处理
-            playingBar.GetComponent<UIBar>().PinMoving(0);
-            playingBar.GetComponent<UIBar>().SetPinAlpha(0);
+           //playingBar.GetComponent<UIBar>().PinMoving(0);
+            //playingBar.GetComponent<UIBar>().SetPinAlpha(0);
 
 
             //轮转换位
@@ -219,10 +249,10 @@ public class UIBarController : MonoBehaviour {
             preBar.GetComponent<UIBar>().SetAlpha(0);
 
             //处理指针
-            postBar.GetComponent<UIBar>().SetPinAlpha(0);
-            preBar.GetComponent<UIBar>().SetPinAlpha(0);
-            playingBar.GetComponent<UIBar>().PinMoving(0);
-            playingBar.GetComponent<UIBar>().SetPinAlpha(255);
+            //postBar.GetComponent<UIBar>().SetPinAlpha(0);
+            //preBar.GetComponent<UIBar>().SetPinAlpha(0);
+            //playingBar.GetComponent<UIBar>().PinMoving(0);
+            //playingBar.GetComponent<UIBar>().SetPinAlpha(255);
 
 
         }
@@ -230,10 +260,18 @@ public class UIBarController : MonoBehaviour {
     }
     #endregion
 
-    //指针移动
-    public void PinMoving()
-    {
 
+    //指针移动
+    public void BarPinMoving()
+    {
+        postBarPosInBeats = RhythmController.Instance.songPosInBeats - postBar.GetComponent<UIBar>().startBeat;
+        postBar.GetComponent<UIBar>().PinMoving(postBarPosInBeats);
+
+        barPosInBeats = RhythmController.Instance.songPosInBeats - playingBar.GetComponent<UIBar>().startBeat;
+        playingBar.GetComponent<UIBar>().PinMoving(barPosInBeats);
+
+        preBarPosInBeats = RhythmController.Instance.songPosInBeats - preBar.GetComponent<UIBar>().startBeat;
+        preBar.GetComponent<UIBar>().PinMoving(preBarPosInBeats);
     }
 
     //移除NOTE
