@@ -117,7 +117,7 @@ public class BarController : MonoBehaviour {
         for (int i = 0; i < 4; i++)
         {
             Note temp = new Note();
-            temp.beat = (float)(i * 2 + 0.5);
+            temp.beatInBar = (float)(i * 2 + 0.5);
             temp.note = (GameObject)Resources.Load("Prefabs/Note");
             temp.type = Note.NoteType.action;
             score_main.notes.Add(temp);
@@ -127,7 +127,7 @@ public class BarController : MonoBehaviour {
         for (int i = 0; i < 16; i++)
         {
             Note temp = new Note();
-            temp.beat = (float)(i*0.5);
+            temp.beatInBar = (float)(i*0.5);
             temp.note = (GameObject)Resources.Load("Prefabs/Note");
             temp.type = Note.NoteType.action;
             score_energy.notes.Add(temp);
@@ -170,10 +170,10 @@ public class BarController : MonoBehaviour {
         float songPosInBeats = songPosition / secPerBeat;
 
         //生成音符_主轨道
-        if (nextNoteIndex_main < score_main.notes.Count && ((score_main.notes[nextNoteIndex_main].beat + mCycleCount_main * score_main.notesPerCycle) < songPosInBeats + beatsShownInAdvance)) {
+        if (nextNoteIndex_main < score_main.notes.Count && ((score_main.notes[nextNoteIndex_main].beatInBar + mCycleCount_main * score_main.notesPerCycle) < songPosInBeats + beatsShownInAdvance)) {
 
             Note tempnote = new Note();
-            tempnote.beat = score_main.notes[nextNoteIndex_main].beat + mCycleCount_main * score_main.notesPerCycle;
+            tempnote.beatInBar = score_main.notes[nextNoteIndex_main].beatInBar + mCycleCount_main * score_main.notesPerCycle;
             tempnote.type = score_main.notes[nextNoteIndex_main].type;
             tempnote.note = (GameObject)Instantiate(Resources.Load("Prefab/Note"), this.transform.position + noteSpawnPos_main, Quaternion.identity, this.transform);
             nextNoteIndex_main++;
@@ -185,11 +185,11 @@ public class BarController : MonoBehaviour {
             mCycleCount_main++;
         }
         //生成音符_能量轨道
-        if (nextNoteIndex_energy < score_energy.notes.Count && ((score_energy.notes[nextNoteIndex_energy].beat + mCycleCount_energy * score_energy.notesPerCycle) < songPosInBeats + beatsShownInAdvance))
+        if (nextNoteIndex_energy < score_energy.notes.Count && ((score_energy.notes[nextNoteIndex_energy].beatInBar + mCycleCount_energy * score_energy.notesPerCycle) < songPosInBeats + beatsShownInAdvance))
         {
 
             Note tempnote = new Note();
-            tempnote.beat = score_energy.notes[nextNoteIndex_energy].beat + mCycleCount_energy * score_energy.notesPerCycle;
+            tempnote.beatInBar = score_energy.notes[nextNoteIndex_energy].beatInBar + mCycleCount_energy * score_energy.notesPerCycle;
             tempnote.type = score_energy.notes[nextNoteIndex_energy].type;
             tempnote.note = (GameObject)Instantiate(Resources.Load("Prefab/Note"), this.transform.position + noteSpawnPos_energy, Quaternion.identity, this.transform);
             nextNoteIndex_energy++;
@@ -205,7 +205,7 @@ public class BarController : MonoBehaviour {
         //判定音符是否到位，触发相应函数
         if (mRunningNoteList_main.Count > 0) {
         //拍子正中位置，播放所有正常跟节奏的动画，包括敌人的READY，IDLE动画。
-            if (songPosInBeats - mRunningNoteList_main[0].beat > 0f)
+            if (songPosInBeats - mRunningNoteList_main[0].beatInBar > 0f)
             {
                 //完成这一拍,刷新敌人(如果有敌人死了就算倒计时),下一拍开始
                 BeatCenter();
@@ -213,7 +213,7 @@ public class BarController : MonoBehaviour {
             }
 
             //如果超出范围(0.5是表示以节拍中心向后的时间范围)
-            if (songPosInBeats - mRunningNoteList_main[0].beat > 0.5f)
+            if (songPosInBeats - mRunningNoteList_main[0].beatInBar > 0.5f)
             {
                 //完成这一拍,刷新敌人(如果有敌人死了就算倒计时),下一拍开始
                 BeatEnd();
@@ -227,7 +227,7 @@ public class BarController : MonoBehaviour {
         {
 
             //如果超出范围(0.2是表示以节拍中心向后的时间范围)
-            if (songPosInBeats - mRunningNoteList_energy[0].beat > 0.2f)
+            if (songPosInBeats - mRunningNoteList_energy[0].beatInBar > 0.2f)
             {
                 //完成这一拍,刷新敌人(如果有敌人死了就算倒计时),下一拍开始
                BeatEnd_energy();
@@ -242,15 +242,15 @@ public class BarController : MonoBehaviour {
             temp.note.transform.localPosition = Vector2.Lerp(
             noteSpawnPos_main,
             noteEndPos_main,
-            (beatsShownInAdvance - (temp.beat - songPosInBeats)) / beatsShownInAdvance
+            (beatsShownInAdvance - (temp.beatInBar - songPosInBeats)) / beatsShownInAdvance
         );
 
             //跳转透明度
-            temp.note.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.25f+(beatsShownInAdvance - (temp.beat - songPosInBeats)) / beatsShownInAdvance);
+            temp.note.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.25f+(beatsShownInAdvance - (temp.beatInBar - songPosInBeats)) / beatsShownInAdvance);
 
 
             //隐藏已经到达中间的音符
-            if ((beatsShownInAdvance - (temp.beat - songPosInBeats)) / beatsShownInAdvance >= 1)
+            if ((beatsShownInAdvance - (temp.beatInBar - songPosInBeats)) / beatsShownInAdvance >= 1)
             {
                 temp.note.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0);
             }
@@ -261,15 +261,15 @@ public class BarController : MonoBehaviour {
             temp.note.transform.localPosition = Vector2.Lerp(
             noteSpawnPos_energy,
             noteEndPos_energy,
-            (beatsShownInAdvance - (temp.beat - songPosInBeats)) / beatsShownInAdvance
+            (beatsShownInAdvance - (temp.beatInBar - songPosInBeats)) / beatsShownInAdvance
         );
 
             //跳转透明度
-            temp.note.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.25f + (beatsShownInAdvance - (temp.beat - songPosInBeats)) / beatsShownInAdvance);
+            temp.note.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.25f + (beatsShownInAdvance - (temp.beatInBar - songPosInBeats)) / beatsShownInAdvance);
 
 
             //隐藏已经到达中间的音符
-            if ((beatsShownInAdvance - (temp.beat - songPosInBeats)) / beatsShownInAdvance >= 1)
+            if ((beatsShownInAdvance - (temp.beatInBar - songPosInBeats)) / beatsShownInAdvance >= 1)
             {
                 temp.note.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0);
             }
@@ -401,7 +401,7 @@ public class BarController : MonoBehaviour {
         }
         float songPosition = (float)(AudioSettings.dspTime - songDspTime) + songPosOffset;
         float songPosInBeats = songPosition / secPerBeat;
-        float mBarPercent = Mathf.Abs(songPosInBeats - notelist[0].beat);
+        float mBarPercent = Mathf.Abs(songPosInBeats - notelist[0].beatInBar);
 
         if (mBarPercent<=0.1f) {
             return 0;

@@ -39,6 +39,8 @@ public class VFX : MonoBehaviour {
         Destroy(gameObject);
     }
 
+
+
     IEnumerator FrameAnimation()
     {
         int fCount = 0;
@@ -46,6 +48,19 @@ public class VFX : MonoBehaviour {
         {
             GetComponent<SpriteRenderer>().sprite = frames[fCount++];
             yield return new WaitForSeconds(Time.deltaTime * 2f);
+        }
+        Destroy(gameObject);
+    }
+
+    IEnumerator UINoteFadeOut()
+    {
+        float timeCount = 0f;
+        while (timeCount < aniTime)
+        {
+            yield return new WaitForSeconds(Time.deltaTime);
+            timeCount += Time.deltaTime;
+            GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f - timeCount * timeCount * 25f);
+            transform.localScale *= 1 + timeCount;
         }
         Destroy(gameObject);
     }

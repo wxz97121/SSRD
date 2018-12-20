@@ -60,7 +60,7 @@ public class LevelData : MonoBehaviour {
                 _onebarscore.notes.Add(new Note
                 {
                     type = data.mainlude[i].notes[j].type,
-                    beat = data.mainlude[i].notes[j].beat
+                    beatInBar = data.mainlude[i].notes[j].beatInBar
                 });
 //                Debug.Log("added mainlude note ");
             }
@@ -83,7 +83,7 @@ public class LevelData : MonoBehaviour {
                 {
                     type = data.prelude[i].notes[j].type,
                     //_note.note = data.mainlude[j].notes[j].note;
-                    beat = data.prelude[i].notes[j].beat
+                    beatInBar = data.prelude[i].notes[j].beatInBar
                 });
             }
             _score.prelude.Add(_onebarscore);

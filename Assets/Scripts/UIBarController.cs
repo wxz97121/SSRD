@@ -70,7 +70,6 @@ public class UIBarController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        //todo:PIN 之前的一小节要多走一些，之后的一小节要提前走一些
 
         BarPinMoving();
 
@@ -148,6 +147,7 @@ public class UIBarController : MonoBehaviour {
         instBar.GetComponent<UIBar>().startBeat = occupiedBeats;
         occupiedBeats += instBar.GetComponent<UIBar>().beatsThisBar;
 
+
         return instBar;
     }
     #endregion
@@ -166,12 +166,14 @@ public class UIBarController : MonoBehaviour {
         uiBar.beatsThisBar = _barScore.beatsThisBar;
 
         uiBar.startBeat = occupiedBeats;
-        Debug.Log("startbeat=" + uiBar.startBeat);
+//        Debug.Log("startbeat=" + uiBar.startBeat);
         occupiedBeats += uiBar.beatsThisBar;
-        Debug.Log("occupiedBeats=" + occupiedBeats);
+ //       Debug.Log("occupiedBeats=" + occupiedBeats);
         uiBar.Init();
         uiBar.GetComponent<UIBar>().SetPinAlpha(0);
         uiBar.GetComponent<UIBar>().active=true;
+
+        currentEnergyNotes.AddRange(uiBar.GetComponent<UIBar>().noteList_energy);
 
     }
     #endregion
@@ -229,16 +231,16 @@ public class UIBarController : MonoBehaviour {
             //  Debug.Log("barPosInBeats" + barPosInBeats);
 
             //指针处理
-           //playingBar.GetComponent<UIBar>().PinMoving(0);
+            //playingBar.GetComponent<UIBar>().PinMoving(0);
             //playingBar.GetComponent<UIBar>().SetPinAlpha(0);
 
-
+            finishedBeats += postBar.GetComponent<UIBar>().beatsThisBar;
+            Debug.Log("finished:"+ finishedBeats);
             //轮转换位
             GameObject temp = postBar;
             postBar = playingBar;
             playingBar = preBar;
             preBar = temp;
-
 
 
 

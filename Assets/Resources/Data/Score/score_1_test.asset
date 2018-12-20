@@ -4,7 +4,8 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -15,22 +16,46 @@ MonoBehaviour:
   prelude:
   - notes:
     - type: 1
-      beat: 0
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 0
+      beatInSong: 0
     - type: 1
-      beat: 1
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 1
+      beatInSong: 0
     - type: 1
-      beat: 2
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 2
+      beatInSong: 0
     - type: 1
-      beat: 3
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 3
+      beatInSong: 0
     beatsThisBar: 4
   mainlude:
   - notes:
     - type: 1
-      beat: 0
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 0
+      beatInSong: 0
     - type: 1
-      beat: 1
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 1
+      beatInSong: 0
     - type: 1
-      beat: 2
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 2
+      beatInSong: 0
     - type: 1
-      beat: 3
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 3
+      beatInSong: 0
     beatsThisBar: 4

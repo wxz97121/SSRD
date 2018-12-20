@@ -60,7 +60,8 @@ public class UIBar : MonoBehaviour {
                 noteList_energy.Add(new Note
                 {
                     type = note.type,
-                    beat = note.beat
+                    beatInBar = note.beatInBar,
+                    beatInSong = note.beatInBar + UIBarController.Instance.occupiedBeats
                 }
                 );
             }
@@ -90,7 +91,7 @@ public class UIBar : MonoBehaviour {
         {
             GameObject _note= Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Note", typeof(GameObject)), transform);
             note.note = _note;
-            note.note.transform.localPosition = startPos + (oneBeatSpace * ( note.beat));
+            note.note.transform.localPosition = startPos + (oneBeatSpace * ( note.beatInBar));
 
         }
 
@@ -105,20 +106,20 @@ public class UIBar : MonoBehaviour {
         {
             return;
         }
-        testtext.text = "barposinbeat" + barposinbeat.ToString("F2")+"/"+ (beatsThisBar + (2 * RhythmController.Instance.commetMissTime));
+        testtext.text = "barposinbeat" + barposinbeat.ToString("F2")+"/"+ (beatsThisBar + (2 * RhythmController.Instance.commentMissTime));
 
         //处理位置
         pin.transform.localPosition = Vector2.Lerp
         (
-            startPos- (oneBeatSpace *RhythmController.Instance.commetMissTime),
-            startPos+ (oneBeatSpace *(beatsThisBar+RhythmController.Instance.commetMissTime)),
-            (barposinbeat+ RhythmController.Instance.commetMissTime) / (beatsThisBar+ (2 * RhythmController.Instance.commetMissTime))
+            startPos- (oneBeatSpace *RhythmController.Instance.commentMissTime),
+            startPos+ (oneBeatSpace *(beatsThisBar+RhythmController.Instance.commentMissTime)),
+            (barposinbeat+ RhythmController.Instance.commentMissTime) / (beatsThisBar+ (2 * RhythmController.Instance.commentMissTime))
             
         );
 
 
         //处理透明度 两头渐隐
-        if (barposinbeat<-RhythmController.Instance.commetMissTime)
+        if (barposinbeat<-RhythmController.Instance.commentMissTime)
         {
             SetPinAlpha(0);
 
@@ -126,24 +127,22 @@ public class UIBar : MonoBehaviour {
         else if(barposinbeat<0)
         {
             float a = Mathf.Lerp(
-            0,
             1,
-            -barposinbeat / RhythmController.Instance.commetMissTime
+            0,
+            -barposinbeat / RhythmController.Instance.commentMissTime
             );
             SetPinAlpha(a);
         }else if(barposinbeat> beatsThisBar)
         {
-            Debug.Log("barposinbeat" + barposinbeat);
             float a = Mathf.Lerp(
             1,
             0,
-            (barposinbeat-beatsThisBar) / RhythmController.Instance.commetMissTime
+            (barposinbeat-beatsThisBar) / RhythmController.Instance.commentMissTime
             );
             SetPinAlpha(a);
         }
         else
         {
-            Debug.Log("barposinbeat else" + barposinbeat);
 
             SetPinAlpha(1);
 
@@ -170,7 +169,10 @@ public class UIBar : MonoBehaviour {
 
         foreach (Note n in noteList_energy)
         {
-            n.note.GetComponent<Image>().color = new Color(n.note.GetComponent<Image>().color.r, n.note.GetComponent<Image>().color.g, n.note.GetComponent<Image>().color.b, alpha);
+            if(n.note)
+            {
+                n.note.GetComponent<Image>().color = new Color(n.note.GetComponent<Image>().color.r, n.note.GetComponent<Image>().color.g, n.note.GetComponent<Image>().color.b, alpha);
+            }
         }
     }
 
@@ -178,10 +180,16 @@ public class UIBar : MonoBehaviour {
     public void Empty()
     {
         int tempcount = noteList_energy.Count;
-        for(int i=0; i < tempcount; i++)
+        for (int i = 0; i < tempcount; i++)
         {
             Destroy(noteList_energy[0].note);
             noteList_energy.RemoveAt(0);
+        }
+        int tempcountline = linelist.Count;
+        for (int i = 0; i < tempcountline; i++)
+        {
+            Destroy(linelist[0].gameObject);
+            linelist.RemoveAt(0);
         }
         pin.transform.localPosition = startPos;
        

@@ -44,7 +44,17 @@ public class DuelController : MonoBehaviour {
         {
             case actionType.Collect:
                 {
-                    Debug.Log("1");
+                    //Debug.Log("1");
+
+                    if (RhythmController.InputComment(UIBarController.Instance.currentEnergyNotes)<2)
+                    {
+                        Player.Instance.AddMp(1);
+                        UIBarController.Instance.currentEnergyNotes[0].note.GetComponent<VFX>().StartCoroutine("UINoteFadeOut");
+                        UIBarController.Instance.currentEnergyNotes.RemoveAt(0);
+
+                        Debug.Log("2");
+
+                    }
 
                 }
                 break;

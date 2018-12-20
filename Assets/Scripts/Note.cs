@@ -23,5 +23,7 @@ public class Note{
     //副note，用于显示两个小节公用的音符，蓄力专用
     public GameObject subnote;
     //节拍位置
-    public float beat;
+    public float beatInBar;
+    public float beatInSong;
+
 }
