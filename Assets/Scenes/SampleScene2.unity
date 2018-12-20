@@ -778,9 +778,9 @@ MonoBehaviour:
   secPerBeat: 0.85714287
   songPos: 0
   songPosInBeats: 0
-  commetCoolTime: 0
-  commetGoodTime: 0
-  commetMissTime: 0.3
+  commentCoolTime: 0.1
+  commentGoodTime: 0.2
+  commentMissTime: 0.3
   mBpm: 140
   songPosOffset: 0
 --- !u!4 &321452813
