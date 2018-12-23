@@ -16,6 +16,9 @@ public class Note{
         energy_double = 2,//能量+2
         charge = 9,//蓄力 能量-1
         action = 10,//行动 能量-1
+
+        inputBassdrum=21,//输入，底鼓
+        inputSnare=22,//输入，军鼓
     }
 
     public NoteType type;

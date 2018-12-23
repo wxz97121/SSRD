@@ -217,7 +217,7 @@ public class BarController : MonoBehaviour {
             {
                 //完成这一拍,刷新敌人(如果有敌人死了就算倒计时),下一拍开始
                 BeatEnd();
-                EnemyUpdate();
+               // EnemyUpdate();
                 mBeatCurrent++;
                 BeatStart();
             }

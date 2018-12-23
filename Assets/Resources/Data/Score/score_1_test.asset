@@ -59,3 +59,30 @@ MonoBehaviour:
       beatInBar: 3
       beatInSong: 0
     beatsThisBar: 4
+  - notes:
+    - type: 1
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 0
+      beatInSong: 0
+    - type: 1
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 1
+      beatInSong: 0
+    - type: 1
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 2
+      beatInSong: 0
+    - type: 1
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 3
+      beatInSong: 0
+    - type: 1
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 3.5
+      beatInSong: 0
+    beatsThisBar: 4

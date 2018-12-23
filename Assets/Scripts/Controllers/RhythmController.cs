@@ -107,21 +107,19 @@ public class RhythmController : MonoBehaviour {
 
         //判定是否播放第N拍，并告知各种物体POGO起来！
         //第三拍要特殊处理
+       // Debug.Log("barPosInBeats:  " + UIBarController.Instance.barPosInBeats + ",beatIndex=  " + beatIndex);
+
         if (beatIndex == 2)
         {
             if (UIBarController.Instance.barPosInBeats >= beatIndex+commentGoodTime)
             {
-                //Debug.Log("forte beating");
                 OnBeat(beatIndex);
 
                 beatIndex++;
 
             }
-        }
-        else if (UIBarController.Instance.barPosInBeats>=beatIndex)
+        }else if (UIBarController.Instance.barPosInBeats>=beatIndex)
         {
-            //Debug.Log("normal beating");
-
             OnBeat(beatIndex);
             beatIndex++;
             if (beatIndex> UIBarController.Instance.playingBar.GetComponent<UIBar>().beatsThisBar-1)
@@ -171,11 +169,14 @@ public class RhythmController : MonoBehaviour {
     #region 普通节拍触发事件OnNormalBeat
     public void OnBeat(int beatNum)
     {
-        //这里超卡！！！！！
-          Debug.Log("beating, beat = " + beatNum);
-
-                //everybody beat!
-       
+        //everybody beat!
+        if (beatNum == 2)
+        {
+            DuelController.Instance.EnemyRespawn();
+        }
     }
     #endregion
+
+
+
 }

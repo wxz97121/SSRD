@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//统一控制局内战斗
+//统一控制局内
 public class SuperController : MonoBehaviour {
+    public bool mEndLock_energy = false;
+    //评价控制(评价控制还没改成全局控制)
+    public CommentController commentController = null;
+
 
     #region 单例
     static SuperController _instance;
@@ -22,11 +26,12 @@ public class SuperController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        commentController = GameObject.Find("Comment").GetComponent<CommentController>();
+
+    }
+
+    // Update is called once per frame
+    void Update () {
         UpdateInput();
 	}
 

@@ -109,7 +109,6 @@ public class UIBarController : MonoBehaviour {
 
         playingBar = currentBarList[1];
         currentEnergyNotes.AddRange(playingBar.GetComponent<UIBar>().noteList_energy);
-        NextBar();
 
         Debug.Log("uibar 1 complete!");
 
@@ -174,7 +173,6 @@ public class UIBarController : MonoBehaviour {
         uiBar.GetComponent<UIBar>().active=true;
 
         currentEnergyNotes.AddRange(uiBar.GetComponent<UIBar>().noteList_energy);
-
     }
     #endregion
 
@@ -242,7 +240,7 @@ public class UIBarController : MonoBehaviour {
             playingBar = preBar;
             preBar = temp;
 
-
+            NextBar();
 
             //读取下一小节
             preBar.GetComponent<UIBar>().Empty();
@@ -296,23 +294,13 @@ public class UIBarController : MonoBehaviour {
                 pieceIndex++;
                 barIndex = 0;
             }
-            else
-            {
-                barIndex++;
-            }
-        }
-        //已经进行至main
-        else
-        {
-            if (barIndex >= score.prelude.Count)
+
+        }else if (barIndex >= score.mainlude.Count)
             {
                 barIndex = 0;
             }
-            else
-            {
-                barIndex++;
-            }
-        }
+
+
     }
     #endregion
 }

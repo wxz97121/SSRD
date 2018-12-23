@@ -91,7 +91,7 @@ public class UIBar : MonoBehaviour {
         {
             GameObject _note= Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Note", typeof(GameObject)), transform);
             note.note = _note;
-            note.note.transform.localPosition = startPos + (oneBeatSpace * ( note.beatInBar));
+            note.note.transform.localPosition = startPos + (oneBeatSpace * ( note.beatInBar))+new Vector3(0,10,0);
 
         }
 
