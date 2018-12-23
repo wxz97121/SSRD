@@ -779,9 +779,9 @@ MonoBehaviour:
   songPos: 0
   songPosInBeats: 0
   commentCoolTime: 0.1
-  commentGoodTime: 0.2
-  commentMissTime: 0.3
+  commentGoodTime: 0.3
   mBpm: 140
+  beatIndex: 0
   songPosOffset: 0
 --- !u!4 &321452813
 Transform:
@@ -2616,6 +2616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b7f9a1a5b23546c791706376e35bf1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnemyCountdown: -1
 --- !u!4 &1397160932
 Transform:
   m_ObjectHideFlags: 0
