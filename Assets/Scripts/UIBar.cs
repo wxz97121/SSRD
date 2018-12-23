@@ -106,20 +106,20 @@ public class UIBar : MonoBehaviour {
         {
             return;
         }
-        testtext.text = "barposinbeat" + barposinbeat.ToString("F2")+"/"+ (beatsThisBar + (2 * RhythmController.Instance.commentMissTime));
+        testtext.text = "barposinbeat" + barposinbeat.ToString("F2")+"/"+ (beatsThisBar + (2 * RhythmController.Instance.commentGoodTime));
 
         //处理位置
         pin.transform.localPosition = Vector2.Lerp
         (
-            startPos- (oneBeatSpace *RhythmController.Instance.commentMissTime),
-            startPos+ (oneBeatSpace *(beatsThisBar+RhythmController.Instance.commentMissTime)),
-            (barposinbeat+ RhythmController.Instance.commentMissTime) / (beatsThisBar+ (2 * RhythmController.Instance.commentMissTime))
+            startPos- (oneBeatSpace *RhythmController.Instance.commentGoodTime),
+            startPos+ (oneBeatSpace *(beatsThisBar+RhythmController.Instance.commentGoodTime)),
+            (barposinbeat+ RhythmController.Instance.commentGoodTime) / (beatsThisBar+ (2 * RhythmController.Instance.commentGoodTime))
             
         );
 
 
         //处理透明度 两头渐隐
-        if (barposinbeat<-RhythmController.Instance.commentMissTime)
+        if (barposinbeat<-RhythmController.Instance.commentGoodTime)
         {
             SetPinAlpha(0);
 
@@ -129,7 +129,7 @@ public class UIBar : MonoBehaviour {
             float a = Mathf.Lerp(
             1,
             0,
-            -barposinbeat / RhythmController.Instance.commentMissTime
+            -barposinbeat / RhythmController.Instance.commentGoodTime
             );
             SetPinAlpha(a);
         }else if(barposinbeat> beatsThisBar)
@@ -137,7 +137,7 @@ public class UIBar : MonoBehaviour {
             float a = Mathf.Lerp(
             1,
             0,
-            (barposinbeat-beatsThisBar) / RhythmController.Instance.commentMissTime
+            (barposinbeat-beatsThisBar) / RhythmController.Instance.commentGoodTime
             );
             SetPinAlpha(a);
         }

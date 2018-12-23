@@ -17,10 +17,12 @@ public class RhythmController : MonoBehaviour {
     //判定阈值 一个比一个大
     public float commentCoolTime;
     public float commentGoodTime;
-    public float commentMissTime;
 
     //BPM
     public int mBpm = 70;
+
+    //拍子锁
+    public int beatIndex = 0;
 
     //校正(校准因为视觉产生的节拍误差)
     public float songPosOffset = 0f;
@@ -103,23 +105,38 @@ public class RhythmController : MonoBehaviour {
         songPosInBeats = songPos / secPerBeat;
         //        Debug.Log("distime="+ AudioSettings.dspTime+ "    startTime=" + songStartTime+ "    songPos=" +songPos+   "beats ="+songPosInBeats);
 
-
-        //todo:增加各种情况的处理，去掉已经滤掉的音符
-
         //判定是否播放第N拍，并告知各种物体POGO起来！
         //第三拍要特殊处理
+        if (beatIndex == 2)
+        {
+            if (UIBarController.Instance.barPosInBeats >= beatIndex+commentGoodTime)
+            {
+                //Debug.Log("forte beating");
+                OnBeat(beatIndex);
+
+                beatIndex++;
+
+            }
+        }
+        else if (UIBarController.Instance.barPosInBeats>=beatIndex)
+        {
+            //Debug.Log("normal beating");
+
+            OnBeat(beatIndex);
+            beatIndex++;
+            if (beatIndex> UIBarController.Instance.playingBar.GetComponent<UIBar>().beatsThisBar-1)
+            {
+                beatIndex = 0;
+            }
+        }
+
+
+
+        //滤掉已经过期的能量音符
         if (UIBarController.Instance.currentEnergyNotes.Count > 0)
         {
-            //音符正中位置
-            //if (songPosInBeats - mRunningNoteList_main[0].beat > 0f)
-            //{
-            //    //完成这一拍,刷新敌人(如果有敌人死了就算倒计时),下一拍开始
-            //    BeatCenter();
 
-            //}
-
-            //如果超出范围
-            if (songPosInBeats - UIBarController.Instance.currentEnergyNotes[0].beatInSong> commentMissTime)
+            if (songPosInBeats - UIBarController.Instance.currentEnergyNotes[0].beatInSong> commentGoodTime)
             {
                 //Debug.Log("songPosInBeat:" + songPosInBeats + "note[0].beat:" + UIBarController.Instance.currentEnergyNotes[0].beatInSong);
                 //Debug.Log("delete a note");
@@ -150,4 +167,15 @@ public class RhythmController : MonoBehaviour {
 
 
     //TODO:针对关键节拍的输入判定，主要是蓄力和发招
+
+    #region 普通节拍触发事件OnNormalBeat
+    public void OnBeat(int beatNum)
+    {
+        //这里超卡！！！！！
+          Debug.Log("beating, beat = " + beatNum);
+
+                //everybody beat!
+       
+    }
+    #endregion
 }

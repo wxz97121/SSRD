@@ -386,9 +386,6 @@ public class BarController : MonoBehaviour {
                 break;
             
         }
-
-
-
     }
 
     //计算当前拍子的位置，影响判定

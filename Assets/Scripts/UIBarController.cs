@@ -235,7 +235,7 @@ public class UIBarController : MonoBehaviour {
             //playingBar.GetComponent<UIBar>().SetPinAlpha(0);
 
             finishedBeats += postBar.GetComponent<UIBar>().beatsThisBar;
-            Debug.Log("finished:"+ finishedBeats);
+//            Debug.Log("finished:"+ finishedBeats);
             //轮转换位
             GameObject temp = postBar;
             postBar = playingBar;

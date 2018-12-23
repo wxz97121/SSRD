@@ -6,6 +6,11 @@ using UnityEngine;
 public class DuelController : MonoBehaviour {
 
 
+    //敌人复活倒计时(暂时用的，四拍以后招新敌人)
+    public int EnemyCountdown = -1;
+
+
+
     #region 单例
     static DuelController _instance;
     private void Awake()
@@ -69,5 +74,29 @@ public class DuelController : MonoBehaviour {
             default:
                 break;
         }
+    }
+
+
+    public void EnemyRespawn()
+    {
+        if (EnemyCountdown > 0)
+        {
+            Debug.Log("Enemy Reborn: " + EnemyCountdown);
+            EnemyCountdown--;
+        }
+        else if (EnemyCountdown == 0)
+        {
+            BattleController.Instance.AddEnemy();
+            EnemyCountdown--;
+        }
+        else
+        {
+            if (Player.Instance.enemyList.Count <= 0)
+            {
+                Debug.Log("No Enemy");
+                EnemyCountdown = 4;
+            }
+        }
+
     }
 }
