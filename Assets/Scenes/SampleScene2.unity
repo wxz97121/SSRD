@@ -778,6 +778,7 @@ MonoBehaviour:
   secPerBeat: 0.85714287
   songPos: 0
   songPosInBeats: 0
+  isCurBarCleaned: 0
   commentCoolTime: 0.1
   commentGoodTime: 0.3
   mBpm: 140
@@ -1153,6 +1154,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &611087721
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 611087723}
+  - component: {fileID: 611087722}
+  m_Layer: 0
+  m_Name: InputSequence
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &611087722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611087721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f050dcc1d79f45f29cfdaf4bf8f0791, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurInputSequence: []
+--- !u!4 &611087723
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611087721}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 318.03168, y: 355.50528, z: 10.120918}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &622438293
 PrefabInstance:
@@ -2906,7 +2951,7 @@ MonoBehaviour:
   occupiedBeats: 0
   finishedBeats: 0
   postBarPosInBeats: 0
-  barPosInBeats: 0
+  playingBarPosInBeats: 0
   preBarPosInBeats: 0
   barPos0GO: {fileID: 398654089}
   barPos1GO: {fileID: 2014594161}

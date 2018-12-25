@@ -27,6 +27,10 @@ public class Character : MonoBehaviour {
     //当前装备着的卷轴
     public Equipment currentScroll;
 
+    //当前的技能列表
+    public List<Skill> skills =new List<Skill>();
+
+
     public TextMeshProUGUI UIHpNum;
     public TextMeshProUGUI UIMpNum;
     //当前攻击的目标

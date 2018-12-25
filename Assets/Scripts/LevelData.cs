@@ -5,14 +5,16 @@ using UnityEngine;
 public class LevelData : MonoBehaviour {
     //谱子
     public OneSongScore score;
+    //临时技能
+    public Skill TestSkill;
 
     #region 单例
     static LevelData _instance;
     private void Awake()
     {
         _instance = this;
-
         ReadDatas();
+
     }
     public static LevelData Instance
     {
@@ -23,10 +25,48 @@ public class LevelData : MonoBehaviour {
     }
     #endregion
 
+    private void Start()
+    {
+        Player.Instance.skills = new List<Skill>();
+        Player.Instance.skills.Add(TestSkill);
+
+        InputSequenceController.Instance.skills = Player.Instance.skills;
+    }
 
     // Use this for initialization
     void ReadDatas() {
         score = ReadScoreData("score_1_test");
+
+        TestSkill = new Skill
+        {
+            name = "testSkill",
+            inputSequence = new List<Note>(),
+
+        };
+
+        TestSkill.inputSequence.Add(
+            new Note
+            {
+                type = Note.NoteType.inputBassdrum,
+                beatInBar = 0,
+            }
+            );
+        TestSkill.inputSequence.Add(
+    new Note
+    {
+        type = Note.NoteType.inputBassdrum,
+        beatInBar = 1,
+    }
+    );
+        TestSkill.inputSequence.Add(
+    new Note
+    {
+        type = Note.NoteType.inputSnare,
+        beatInBar = 2,
+    }
+    );
+
+
 
     }
 

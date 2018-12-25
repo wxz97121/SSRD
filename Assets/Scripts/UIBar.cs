@@ -89,7 +89,7 @@ public class UIBar : MonoBehaviour {
     {
         foreach (Note note in noteList_energy)
         {
-            GameObject _note= Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Note", typeof(GameObject)), transform);
+            GameObject _note= Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Note_Energy", typeof(GameObject)), transform);
             note.note = _note;
             note.note.transform.localPosition = startPos + (oneBeatSpace * ( note.beatInBar))+new Vector3(0,10,0);
 
@@ -106,20 +106,20 @@ public class UIBar : MonoBehaviour {
         {
             return;
         }
-        testtext.text = "barposinbeat" + barposinbeat.ToString("F2")+"/"+ (beatsThisBar + (2 * RhythmController.Instance.commentGoodTime));
+        testtext.text = "barposinbeat" + barposinbeat.ToString("F2")+"/"+ (beatsThisBar);
 
         //处理位置
         pin.transform.localPosition = Vector2.Lerp
         (
-            startPos- (oneBeatSpace *RhythmController.Instance.commentGoodTime),
-            startPos+ (oneBeatSpace *(beatsThisBar+RhythmController.Instance.commentGoodTime)),
-            (barposinbeat+ RhythmController.Instance.commentGoodTime) / (beatsThisBar+ (2 * RhythmController.Instance.commentGoodTime))
+            startPos- (oneBeatSpace),
+            startPos+ (oneBeatSpace *(beatsThisBar+0.3f)),
+            (barposinbeat+ 1) / (beatsThisBar+ 1.3f)
             
         );
 
 
         //处理透明度 两头渐隐
-        if (barposinbeat<-RhythmController.Instance.commentGoodTime)
+        if (barposinbeat<-1)
         {
             SetPinAlpha(0);
 
@@ -129,7 +129,7 @@ public class UIBar : MonoBehaviour {
             float a = Mathf.Lerp(
             1,
             0,
-            -barposinbeat / RhythmController.Instance.commentGoodTime
+            -barposinbeat / 1
             );
             SetPinAlpha(a);
         }else if(barposinbeat> beatsThisBar)
@@ -137,7 +137,7 @@ public class UIBar : MonoBehaviour {
             float a = Mathf.Lerp(
             1,
             0,
-            (barposinbeat-beatsThisBar) / RhythmController.Instance.commentGoodTime
+            (barposinbeat-beatsThisBar) / 0.3f
             );
             SetPinAlpha(a);
         }

@@ -42,6 +42,16 @@ public class SuperController : MonoBehaviour {
         {
             DuelController.Instance.ShowAction(actionType.Collect);
         }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Debug.Log("INPUT Z");
+            InputSequenceController.Instance.CalcSkillInput(Note.NoteType.inputBassdrum);
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            InputSequenceController.Instance.CalcSkillInput(Note.NoteType.inputSnare);
+        }
+
 
 
     }

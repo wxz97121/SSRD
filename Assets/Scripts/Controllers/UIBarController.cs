@@ -20,7 +20,7 @@ public class UIBarController : MonoBehaviour {
 
     //播放到当前小节的节拍数
     public float postBarPosInBeats;
-    public float barPosInBeats;
+    public float playingBarPosInBeats;
 
     public float preBarPosInBeats;
 
@@ -70,12 +70,17 @@ public class UIBarController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        postBarPosInBeats = RhythmController.Instance.songPosInBeats - postBar.GetComponent<UIBar>().startBeat;
+
+        playingBarPosInBeats = RhythmController.Instance.songPosInBeats - playingBar.GetComponent<UIBar>().startBeat;
+
+        preBarPosInBeats = RhythmController.Instance.songPosInBeats - preBar.GetComponent<UIBar>().startBeat;
+        BarSwitch();
 
         BarPinMoving();
 
         BarMoving();
 
-        BarSwitch();
     }
 
     #region 初始化
@@ -85,7 +90,7 @@ public class UIBarController : MonoBehaviour {
         barIndex = 0;
         occupiedBeats = 0;
         finishedBeats = 0;
-        barPosInBeats =0;
+        playingBarPosInBeats =0;
         //SoundController.Instance.PlayBgMusic(score.bgmusic);
 
         //获取位置信息
@@ -184,14 +189,14 @@ public class UIBarController : MonoBehaviour {
         float a1 = Mathf.Lerp(
         1,
         0,
-        barPosInBeats / playingBar.GetComponent<UIBar>().beatsThisBar
+        playingBarPosInBeats / playingBar.GetComponent<UIBar>().beatsThisBar
         );
         postBar.GetComponent<UIBar>().SetAlpha(a1);
 
         postBar.transform.localPosition = Vector2.Lerp(
         barPos1,
         barPos0,
-        barPosInBeats / playingBar.GetComponent<UIBar>().beatsThisBar
+        playingBarPosInBeats / playingBar.GetComponent<UIBar>().beatsThisBar
         );
 
         //playing
@@ -199,21 +204,21 @@ public class UIBarController : MonoBehaviour {
         playingBar.transform.localPosition = Vector2.Lerp(
         barPos2,
         barPos1,
-        barPosInBeats / playingBar.GetComponent<UIBar>().beatsThisBar
+        playingBarPosInBeats / playingBar.GetComponent<UIBar>().beatsThisBar
         );
 
         //pre
         float a2 = Mathf.Lerp(
         0,
         1,
-        barPosInBeats / playingBar.GetComponent<UIBar>().beatsThisBar
+        playingBarPosInBeats / playingBar.GetComponent<UIBar>().beatsThisBar
         );
         preBar.GetComponent<UIBar>().SetAlpha(a2);
 
         preBar.transform.localPosition = Vector2.Lerp(
         barPos3,
         barPos2,
-        barPosInBeats / playingBar.GetComponent<UIBar>().beatsThisBar
+        playingBarPosInBeats / playingBar.GetComponent<UIBar>().beatsThisBar
         );
     }
     #endregion
@@ -222,15 +227,9 @@ public class UIBarController : MonoBehaviour {
     #region 小节轮转换位BAR SWITCH
     public void BarSwitch()
     {
-        if (playingBar.GetComponent<UIBar>().beatsThisBar< barPosInBeats)
+        if (playingBar.GetComponent<UIBar>().beatsThisBar< playingBarPosInBeats)
         {
-            // Debug.Log("switch!!!");
-            //  Debug.Log("beatsthisbar="+ playingBar.GetComponent<UIBar>().beatsThisBar);
-            //  Debug.Log("barPosInBeats" + barPosInBeats);
-
-            //指针处理
-            //playingBar.GetComponent<UIBar>().PinMoving(0);
-            //playingBar.GetComponent<UIBar>().SetPinAlpha(0);
+            RhythmController.Instance.NewBarInit();
 
             finishedBeats += postBar.GetComponent<UIBar>().beatsThisBar;
 //            Debug.Log("finished:"+ finishedBeats);
@@ -267,8 +266,8 @@ public class UIBarController : MonoBehaviour {
         postBarPosInBeats = RhythmController.Instance.songPosInBeats - postBar.GetComponent<UIBar>().startBeat;
         postBar.GetComponent<UIBar>().PinMoving(postBarPosInBeats);
 
-        barPosInBeats = RhythmController.Instance.songPosInBeats - playingBar.GetComponent<UIBar>().startBeat;
-        playingBar.GetComponent<UIBar>().PinMoving(barPosInBeats);
+        playingBarPosInBeats = RhythmController.Instance.songPosInBeats - playingBar.GetComponent<UIBar>().startBeat;
+        playingBar.GetComponent<UIBar>().PinMoving(playingBarPosInBeats);
 
         preBarPosInBeats = RhythmController.Instance.songPosInBeats - preBar.GetComponent<UIBar>().startBeat;
         preBar.GetComponent<UIBar>().PinMoving(preBarPosInBeats);

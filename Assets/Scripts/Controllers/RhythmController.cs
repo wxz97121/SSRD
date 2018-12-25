@@ -14,6 +14,9 @@ public class RhythmController : MonoBehaviour {
     //歌曲当前到第几拍
     [HideInInspector] public float songPosInBeats;
 
+    //当前小节的输入队列是否已经清除过队列
+    public bool isCurBarCleaned=false;
+
     //判定阈值 一个比一个大
     public float commentCoolTime;
     public float commentGoodTime;
@@ -111,14 +114,14 @@ public class RhythmController : MonoBehaviour {
 
         if (beatIndex == 2)
         {
-            if (UIBarController.Instance.barPosInBeats >= beatIndex+commentGoodTime)
+            if (UIBarController.Instance.playingBarPosInBeats >= beatIndex+commentGoodTime)
             {
                 OnBeat(beatIndex);
 
                 beatIndex++;
 
             }
-        }else if (UIBarController.Instance.barPosInBeats>=beatIndex)
+        }else if (UIBarController.Instance.playingBarPosInBeats>=beatIndex)
         {
             OnBeat(beatIndex);
             beatIndex++;
@@ -139,6 +142,21 @@ public class RhythmController : MonoBehaviour {
                 //Debug.Log("songPosInBeat:" + songPosInBeats + "note[0].beat:" + UIBarController.Instance.currentEnergyNotes[0].beatInSong);
                 //Debug.Log("delete a note");
                 UIBarController.Instance.currentEnergyNotes.RemoveAt(0);
+            }
+        }
+
+
+
+        //清除已经过期的蓄力音符，
+
+
+        if (songPosInBeats - UIBarController.Instance.finishedBeats - 2 > commentGoodTime)
+        {
+            if (isCurBarCleaned == false)
+            {
+                InputSequenceController.Instance.CleanInputSequence();
+
+
             }
         }
 
@@ -170,7 +188,7 @@ public class RhythmController : MonoBehaviour {
     public void OnBeat(int beatNum)
     {
         //everybody beat!
-        if (beatNum == 2)
+        if (beatNum == 0)
         {
             DuelController.Instance.EnemyRespawn();
         }
@@ -178,5 +196,9 @@ public class RhythmController : MonoBehaviour {
     #endregion
 
 
-
+    public void NewBarInit()
+    {
+        //小节开始
+        isCurBarCleaned = false;
+    }
 }
