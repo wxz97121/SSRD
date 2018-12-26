@@ -84,6 +84,11 @@ public class InputSequenceController : MonoBehaviour
     {
         foreach (Skill skill in skills)
         {
+            if (CurInputSequence.Count >= skill.inputSequence.Count)
+            {
+                continue;
+            }
+//            Debug.Log("CurInputSequence.Count"+ CurInputSequence.Count);
             if((judgeBeat>=skill.inputSequence[CurInputSequence.Count].beatInBar-RhythmController.Instance.commentGoodTime)&&(judgeBeat <= skill.inputSequence[CurInputSequence.Count].beatInBar + RhythmController.Instance.commentGoodTime)){
                 if (inputType == skill.inputSequence[CurInputSequence.Count].type)
                 {

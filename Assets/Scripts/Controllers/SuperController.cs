@@ -49,6 +49,8 @@ public class SuperController : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
+            Debug.Log("INPUT Z");
+
             InputSequenceController.Instance.CalcSkillInput(Note.NoteType.inputSnare);
         }
 

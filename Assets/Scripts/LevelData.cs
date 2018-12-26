@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelData : MonoBehaviour {
+public class LevelData : MonoBehaviour
+{
     //谱子
     public OneSongScore score;
     //临时技能
-    public Skill TestSkill;
+    public List<Skill> playerSkills;
 
     #region 单例
     static LevelData _instance;
@@ -28,81 +29,70 @@ public class LevelData : MonoBehaviour {
     private void Start()
     {
         Player.Instance.skills = new List<Skill>();
-        Player.Instance.skills.Add(TestSkill);
 
+        Player.Instance.skills = playerSkills;
         InputSequenceController.Instance.skills = Player.Instance.skills;
     }
 
     // Use this for initialization
-    void ReadDatas() {
+    void ReadDatas()
+    {
         score = ReadScoreData("score_1_test");
 
-        TestSkill = new Skill
+        playerSkills = new List<Skill>
         {
-            name = "testSkill",
-            inputSequence = new List<Note>(),
+            ReadSkillData("testSkill_ZZX_SUPERATTACK"),
+            ReadSkillData("testSkill_0ZX_DEFEND"),
+            ReadSkillData("testSkill_00X_ATTACK"),
+            ReadSkillData("testSkill_0Z0ZZX_ULTI"),
+
+
 
         };
 
-        TestSkill.inputSequence.Add(
-            new Note
-            {
-                type = Note.NoteType.inputBassdrum,
-                beatInBar = 0,
-            }
-            );
-        TestSkill.inputSequence.Add(
-    new Note
-    {
-        type = Note.NoteType.inputBassdrum,
-        beatInBar = 1,
-    }
-    );
-        TestSkill.inputSequence.Add(
-    new Note
-    {
-        type = Note.NoteType.inputSnare,
-        beatInBar = 2,
-    }
-    );
+
+
 
 
 
     }
 
     // Update is called once per frame
-    void Update () {
-		
-	}
+    void Update()
+    {
+
+    }
 
     #region 写入score ReadScoreData(string scorename)
     public OneSongScore ReadScoreData(string scorename)
     {
         Debug.Log("start reading score");
 
-        OneSongScore _score = new OneSongScore();
-        _score.mainlude = new List<OneBarScore>();
-        _score.prelude = new List<OneBarScore>();
+        OneSongScore _score = new OneSongScore
+        {
+            mainlude = new List<OneBarScore>(),
+            prelude = new List<OneBarScore>()
+        };
 
         ScoreData data = Resources.Load("Data/Score/" + scorename) as ScoreData;
 
 
         //_score.mainlude = data.mainlude;
-        for(int i = 0; i < data.mainlude.Count; i++)
+        for (int i = 0; i < data.mainlude.Count; i++)
         {
             OneBarScore _onebarscore = new OneBarScore
             {
                 beatsThisBar = data.mainlude[i].beatsThisBar,
-                notes=new List<Note>()
+                notes = new List<Note>()
             };
-            for (int j = 0; j < data.mainlude[i].notes.Count;j++)
+            for (int j = 0; j < data.mainlude[i].notes.Count; j++)
             {
                 _onebarscore.notes.Add(new Note
                 {
                     type = data.mainlude[i].notes[j].type,
                     beatInBar = data.mainlude[i].notes[j].beatInBar
                 });
-//                Debug.Log("added mainlude note ");
+                //                Debug.Log("added mainlude note ");
             }
             _score.mainlude.Add(_onebarscore);
 
@@ -134,5 +124,36 @@ public class LevelData : MonoBehaviour {
 
         return _score;
     }
+    #endregion
+
+
+
+    #region 读取skill 
+    public Skill ReadSkillData(string skillname)
+    {
+        SkillData data = Resources.Load("Data/Skill/" + skillname) as SkillData;
+
+        Skill _skill = new Skill()
+        {
+            name = data._name,
+            inputSequence = new List<Note>(),
+            effects = new List<Effect>(),
+
+        };
+
+        for (int i = 0; i < data.inputSequence.Count; i++)
+        {
+            _skill.inputSequence.Add(new Note
+            {
+                type = data.inputSequence[i].type,
+                beatInBar = data.inputSequence[i].beatInBar
+            }
+            );
+        }
+
+
+        return _skill;
+    }
+
     #endregion
 }
