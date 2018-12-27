@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: DEFEND
   inputSequence:
-  - type: 22
+  - type: 21
     note: {fileID: 0}
     subnote: {fileID: 0}
     beatInBar: 1

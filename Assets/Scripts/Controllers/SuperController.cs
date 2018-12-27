@@ -7,14 +7,10 @@ public class SuperController : MonoBehaviour {
     public bool mEndLock_energy = false;
     //评价控制(评价控制还没改成全局控制)
     public CommentController commentController = null;
+    public UISkillTipBarController skillTipBarController = null;
 
 
-    #region 单例
     static SuperController _instance;
-    private void Awake()
-    {
-        _instance = this;
-    }
     public static SuperController Instance
     {
         get
@@ -22,11 +18,29 @@ public class SuperController : MonoBehaviour {
             return _instance;
         }
     }
-    #endregion
+    private void Awake()
+    {
+        _instance = this;
+
+
+
+
+    }
+
 
     // Use this for initialization
     void Start () {
         commentController = GameObject.Find("Comment").GetComponent<CommentController>();
+        skillTipBarController = GameObject.Find("SkillTipArea").GetComponent<UISkillTipBarController>();
+
+
+        LevelData.Instance.ReadScoreDatas();
+
+        LevelData.Instance.ReadSkillDatas();
+
+        RhythmController.Instance.Reset();
+
+        skillTipBarController.InitSkillTipBarArea();
 
     }
 

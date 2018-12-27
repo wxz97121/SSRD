@@ -14,7 +14,6 @@ public class LevelData : MonoBehaviour
     private void Awake()
     {
         _instance = this;
-        ReadDatas();
 
     }
     public static LevelData Instance
@@ -26,17 +25,18 @@ public class LevelData : MonoBehaviour
     }
     #endregion
 
-    private void Start()
+    public void ReadSkillDatas()
     {
         Player.Instance.skills = new List<Skill>();
 
         Player.Instance.skills = playerSkills;
         InputSequenceController.Instance.skills = Player.Instance.skills;
         InputSequenceController.Instance.availableSkills = InputSequenceController.Instance.skills;
+        
     }
 
     // Use this for initialization
-    void ReadDatas()
+   public void ReadScoreDatas()
     {
         score = ReadScoreData("score_1_test");
 

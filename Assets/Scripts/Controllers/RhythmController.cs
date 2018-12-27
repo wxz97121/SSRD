@@ -176,7 +176,7 @@ public class RhythmController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         //调试用 暂时放这
-        Reset();
+      //  Reset();
 	}
 	
 	// Update is called once per frame
