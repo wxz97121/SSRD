@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf25b2aeb1e6b4c3a8f5b1efea2d3300, type: 3}
   m_Name: testSkill_0Z0ZZX_ULTI
   m_EditorClassIdentifier: 
-  _name: 
+  _name: "\u4EBA\u9B3C \u672A\u6765\u6C38\u52AB\u65A9"
   inputSequence:
   - type: 21
     note: {fileID: 0}

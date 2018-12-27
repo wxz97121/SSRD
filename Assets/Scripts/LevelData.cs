@@ -32,6 +32,7 @@ public class LevelData : MonoBehaviour
 
         Player.Instance.skills = playerSkills;
         InputSequenceController.Instance.skills = Player.Instance.skills;
+        InputSequenceController.Instance.availableSkills = InputSequenceController.Instance.skills;
     }
 
     // Use this for initialization

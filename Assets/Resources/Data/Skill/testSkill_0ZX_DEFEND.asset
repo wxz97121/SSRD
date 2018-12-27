@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf25b2aeb1e6b4c3a8f5b1efea2d3300, type: 3}
   m_Name: testSkill_0ZX_DEFEND
   m_EditorClassIdentifier: 
-  _name: 
+  _name: DEFEND
   inputSequence:
-  - type: 21
+  - type: 22
     note: {fileID: 0}
     subnote: {fileID: 0}
     beatInBar: 1

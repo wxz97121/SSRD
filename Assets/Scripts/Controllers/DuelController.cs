@@ -60,10 +60,10 @@ public class DuelController : MonoBehaviour {
                         UIBarController.Instance.currentEnergyNotes[0].note.GetComponent<VFX>().StartCoroutine("UINoteFadeOut");
                         UIBarController.Instance.currentEnergyNotes.RemoveAt(0);
 
-                        Debug.Log("2");
+                 //      Debug.Log("2");
 
                     }
-
+                    //
                 }
                 break;
             case actionType.None:

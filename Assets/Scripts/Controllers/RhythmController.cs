@@ -16,6 +16,9 @@ public class RhythmController : MonoBehaviour {
 
     //当前小节的输入队列是否已经清除过队列
     public bool isCurBarCleaned=false;
+    //当前小节进入最后一拍，且已清理之前输入的的锁
+    public bool isCurBarAtFinalBeat=false;
+
 
     //判定阈值 一个比一个大
     public float commentCoolTime;
@@ -147,17 +150,18 @@ public class RhythmController : MonoBehaviour {
 
 
 
-        //清除已经过期的蓄力音符，
+        //第三拍之后 清除已经过期的输入音符，
 
 
         if (songPosInBeats - UIBarController.Instance.finishedBeats - 2 > commentGoodTime)
         {
-            if (isCurBarCleaned == false)
+            if (isCurBarCleaned == false&&isCurBarAtFinalBeat==false)
             {
                 InputSequenceController.Instance.CleanInputSequence();
-
+                isCurBarAtFinalBeat = true;
 
             }
+            isCurBarCleaned = false;
         }
 
     }
@@ -195,10 +199,10 @@ public class RhythmController : MonoBehaviour {
     }
     #endregion
 
-
+    //交换小节时触发
     public void NewBarInit()
     {
         //小节开始
-        isCurBarCleaned = false;
+        isCurBarAtFinalBeat = false;
     }
 }

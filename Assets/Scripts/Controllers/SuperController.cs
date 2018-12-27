@@ -44,12 +44,12 @@ public class SuperController : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            Debug.Log("INPUT Z");
+//            Debug.Log("INPUT Z");
             InputSequenceController.Instance.CalcSkillInput(Note.NoteType.inputBassdrum);
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-            Debug.Log("INPUT Z");
+ //           Debug.Log("INPUT X");
 
             InputSequenceController.Instance.CalcSkillInput(Note.NoteType.inputSnare);
         }
