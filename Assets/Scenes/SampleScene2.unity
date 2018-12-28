@@ -973,6 +973,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songStartTime: 8517.056
   secPerBeat: 0.85714287
+  songPlayedTimes: 0
   songPos: 0
   songPosInBeats: 0
   isCurBarCleaned: 0

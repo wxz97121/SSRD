@@ -130,12 +130,13 @@ public class InputSequenceController : MonoBehaviour
             if (inputType == Note.NoteType.inputBassdrum)
             {
                 note.note = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Note_Bassdrum", typeof(GameObject)), bar.transform);
+                SoundController.Instance.PlayAudioEffect("KICK");
 
             }
             else
             {
                 note.note = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Note_Snare", typeof(GameObject)), bar.transform);
-//                Debug.Log("add snare note");
+                SoundController.Instance.PlayAudioEffect("SNARE");
             }
             note.note.transform.localPosition = bar.GetComponent<UIBar>().startPos + (bar.GetComponent<UIBar>().oneBeatSpace * beat) + new Vector3(0, -10, 0);
             CurInputSequence.Add(note);

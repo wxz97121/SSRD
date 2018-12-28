@@ -38,9 +38,10 @@ public class SuperController : MonoBehaviour {
 
         LevelData.Instance.ReadSkillDatas();
 
-        RhythmController.Instance.Reset();
 
         skillTipBarController.InitSkillTipBarArea();
+        RhythmController.Instance.Reset();
+
 
     }
 

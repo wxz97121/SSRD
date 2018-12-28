@@ -69,7 +69,7 @@ public class UIBarController : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
+    private void FixedUpdate() {
         postBarPosInBeats = RhythmController.Instance.songPosInBeats - postBar.GetComponent<UIBar>().startBeat;
 
         playingBarPosInBeats = RhythmController.Instance.songPosInBeats - playingBar.GetComponent<UIBar>().startBeat;

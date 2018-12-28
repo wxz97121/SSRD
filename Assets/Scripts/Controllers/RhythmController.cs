@@ -9,6 +9,10 @@ public class RhythmController : MonoBehaviour {
     //每一拍长度
     [HideInInspector] public float secPerBeat;
 
+    //歌曲已重复遍数
+    [HideInInspector] public int songPlayedTimes=0;
+
+
     //歌曲当前时间
     [HideInInspector] public float songPos;
     //歌曲当前到第几拍
@@ -61,10 +65,12 @@ public class RhythmController : MonoBehaviour {
     public void Reset()
     {
         BpmCalc();
-
         //获取歌曲开始播放的时间点
         songStartTime = (float)AudioSettings.dspTime;
+        Debug.Log("secPerBeat" + secPerBeat);
+        Debug.Log("song length" + LevelData.Instance.score.bgmusic.length);
 
+        Debug.Log("song beats==="+LevelData.Instance.score.bgmusic.length / secPerBeat);
 
         SoundController.Instance.PlayBgMusic(LevelData.Instance.score.bgmusic);
 
@@ -178,11 +184,23 @@ public class RhythmController : MonoBehaviour {
         //调试用 暂时放这
       //  Reset();
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void FixedUpdate()
+    {
         BeatUpdate();
-	}
+        if (songPos > 32 * secPerBeat * (1 + songPlayedTimes))
+        {
+            Debug.Log("replay");
+            SoundController.Instance.PlayBgMusic(LevelData.Instance.score.bgmusic);
+            songPlayedTimes++;
+        }
+    }
+
+
+    // Update is called once per frame
+    void Update () {
+
+    }
 
 
 

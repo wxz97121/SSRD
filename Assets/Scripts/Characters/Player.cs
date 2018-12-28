@@ -82,7 +82,6 @@ public class Player : Character {
     override public bool Hit()
     {
         animator.Play("player_slash",0);
-        SoundController.Instance.PlayAudioEffect("SNARE");
         return base.Hit();
     }
 
@@ -105,7 +104,6 @@ public class Player : Character {
     {
         base.Damage(dDamage);
         animator.Play("player_damaged", 0);
-        SoundController.Instance.PlayAudioEffect("HIHAT");
 
     }
 

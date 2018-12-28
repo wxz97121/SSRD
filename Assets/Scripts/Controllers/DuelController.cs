@@ -57,6 +57,8 @@ public class DuelController : MonoBehaviour {
                     if (RhythmController.InputComment(UIBarController.Instance.currentEnergyNotes)<2)
                     {
                         Player.Instance.AddMp(1);
+                        SoundController.Instance.PlayAudioEffect("HIHAT");
+
                         UIBarController.Instance.currentEnergyNotes[0].note.GetComponent<VFX>().StartCoroutine("UINoteFadeOut");
                         UIBarController.Instance.currentEnergyNotes.RemoveAt(0);
 
