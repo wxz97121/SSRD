@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RhythmController : MonoBehaviour {
+public class RhythmController : MonoBehaviour
+{
 
     //歌曲开始时间(用来处理当前节奏)
     [HideInInspector] public float songStartTime;
@@ -10,7 +11,7 @@ public class RhythmController : MonoBehaviour {
     [HideInInspector] public float secPerBeat;
 
     //歌曲已重复遍数
-    [HideInInspector] public int songPlayedTimes=0;
+    [HideInInspector] public int songPlayedTimes = 0;
 
 
     //歌曲当前时间
@@ -19,9 +20,9 @@ public class RhythmController : MonoBehaviour {
     [HideInInspector] public float songPosInBeats;
 
     //当前小节的输入队列是否已经清除过队列
-    public bool isCurBarCleaned=false;
+    public bool isCurBarCleaned = false;
     //当前小节进入最后一拍，且已清理之前输入的的锁
-    public bool isCurBarAtFinalBeat=false;
+    public bool isCurBarAtFinalBeat = false;
 
 
     //判定阈值 一个比一个大
@@ -70,7 +71,7 @@ public class RhythmController : MonoBehaviour {
         Debug.Log("secPerBeat" + secPerBeat);
         Debug.Log("song length" + LevelData.Instance.score.bgmusic.length);
 
-        Debug.Log("song beats==="+LevelData.Instance.score.bgmusic.length / secPerBeat);
+        Debug.Log("song beats===" + LevelData.Instance.score.bgmusic.length / secPerBeat);
 
         SoundController.Instance.PlayBgMusic(LevelData.Instance.score.bgmusic);
 
@@ -119,22 +120,31 @@ public class RhythmController : MonoBehaviour {
 
         //判定是否播放第N拍，并告知各种物体POGO起来！
         //第三拍要特殊处理
-       // Debug.Log("barPosInBeats:  " + UIBarController.Instance.barPosInBeats + ",beatIndex=  " + beatIndex);
-
+        // Debug.Log("barPosInBeats:  " + UIBarController.Instance.barPosInBeats + ",beatIndex=  " + beatIndex);
+        print(UIBarController.Instance.playingBarPosInBeats);
         if (beatIndex == 2)
         {
-            if (UIBarController.Instance.playingBarPosInBeats >= beatIndex+commentGoodTime)
+
+            if (UIBarController.Instance.playingBarPosInBeats >= beatIndex + commentGoodTime)
             {
+                print("on beat" + beatIndex.ToString());
+
                 OnBeat(beatIndex);
 
                 beatIndex++;
 
             }
-        }else if (UIBarController.Instance.playingBarPosInBeats>=beatIndex)
+        }
+        else if (UIBarController.Instance.playingBarPosInBeats >= beatIndex)
         {
+            if (UIBarController.Instance.playingBarPosInBeats > 3 && beatIndex < 3)
+            {
+                return;
+            }
+            print("on beat" + beatIndex.ToString());
             OnBeat(beatIndex);
             beatIndex++;
-            if (beatIndex> UIBarController.Instance.playingBar.GetComponent<UIBar>().beatsThisBar-1)
+            if (beatIndex > UIBarController.Instance.playingBar.GetComponent<UIBar>().beatsThisBar - 1)
             {
                 beatIndex = 0;
             }
@@ -146,7 +156,7 @@ public class RhythmController : MonoBehaviour {
         if (UIBarController.Instance.currentEnergyNotes.Count > 0)
         {
 
-            if (songPosInBeats - UIBarController.Instance.currentEnergyNotes[0].beatInSong> commentGoodTime)
+            if (songPosInBeats - UIBarController.Instance.currentEnergyNotes[0].beatInSong > commentGoodTime)
             {
                 //Debug.Log("songPosInBeat:" + songPosInBeats + "note[0].beat:" + UIBarController.Instance.currentEnergyNotes[0].beatInSong);
                 //Debug.Log("delete a note");
@@ -161,7 +171,7 @@ public class RhythmController : MonoBehaviour {
 
         if (songPosInBeats - UIBarController.Instance.finishedBeats - 2 > commentGoodTime)
         {
-            if (isCurBarCleaned == false&&isCurBarAtFinalBeat==false)
+            if (isCurBarCleaned == false && isCurBarAtFinalBeat == false)
             {
                 InputSequenceController.Instance.CleanInputSequence();
                 isCurBarAtFinalBeat = true;
@@ -180,10 +190,11 @@ public class RhythmController : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         //调试用 暂时放这
-      //  Reset();
-	}
+        //  Reset();
+    }
 
     private void FixedUpdate()
     {
@@ -198,7 +209,8 @@ public class RhythmController : MonoBehaviour {
 
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
 
     }
 
@@ -214,6 +226,16 @@ public class RhythmController : MonoBehaviour {
         {
             DuelController.Instance.EnemyRespawn();
         }
+
+        if (beatNum == 3)
+        {
+            AI nowAI = null;
+            if (Player.Instance.mTarget)
+                nowAI = (Player.Instance.mTarget.GetComponent<AI>()) as AI;
+            if (nowAI) nowAI.action();
+        }
+
+
     }
     #endregion
 

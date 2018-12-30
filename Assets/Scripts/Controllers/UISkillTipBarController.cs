@@ -51,7 +51,7 @@ void Update()
 
         instSkillTip.GetComponent<UISkillTipBar>().ReadScoreFromSkill(skill.inputSequence);
         instSkillTip.GetComponent<UISkillTipBar>().beatsThisBar = 4;
-        instSkillTip.GetComponent<UISkillTipBar>().testtext.text = skill.name;
+        instSkillTip.GetComponent<UISkillTipBar>().testtext.text = skill.m_name;
 
         instSkillTip.GetComponent<UISkillTipBar>().Init();
 

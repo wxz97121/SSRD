@@ -1,13 +1,68 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Skill
+public class Skill 
 {
-    public string name;
-
+    public string m_name;
+    private string EffectStr;
     //输入方式
     public List<Note> inputSequence;
+    public void EffectFunction(Character m_Char)
+    {
 
-    public List<Effect> effects;
+        var EffectStrSplit = EffectStr.Split(',');
+        //用开头三个大写字母表示功能，后面参数用下划线分割
+        //例如 ATK_3 表示暗黑破坏神3
+        //例如 HEL_5 表示HTML5
+        //例如 BUF_3_4 表示 3号 Buff 持续4回合
+        //若干个这样的字符串，用逗号分开，表示一个技能的效果
+        foreach (var s in EffectStrSplit)
+        {
+            var InstancedEff = s.Split('_');
+            switch(InstancedEff[0])
+            {
+                case ("ATK"):
+                    ATK(int.Parse(InstancedEff[1]), m_Char);
+                    break;
+                case ("ANI"):
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    public Skill(string DataDir)
+    {
+        DataDir = "Data/Skill/" + DataDir;
+        SkillData data = Resources.Load(DataDir) as SkillData;
+        if (!data)
+        {
+            Debug.Log("这个路径没有SkillData！！");
+            Debug.Break();
+        }
+        m_name = data._name;
+        inputSequence = new List<Note>();
+        EffectStr = data.Effect;
+        for (int i = 0; i < data.inputSequence.Count; i++)
+        {
+            inputSequence.Add(new Note
+            {
+                type = data.inputSequence[i].type,
+                beatInBar = data.inputSequence[i].beatInBar
+            }
+            );
+        }
+
+    }
+    //public UnityEvent EffectEvent;
+    //public List<Effect> effects;
+
+    private void ATK(int dDamage, Character Char)
+    {
+        Char.Hit(dDamage);
+        Debug.Log("ATK "+ dDamage);
+    }
 }

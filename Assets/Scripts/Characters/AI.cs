@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //敌人AI，角色派生类
-public class AI : Character {
-
+public class AI : Character
+{
+    public AIData data;
     //敌人当前的动作序号(在序列的哪一拍)
     public int actionID = 0;
     //敌人的动作序列(控制每一拍的动作)
     public int[] actionSequence;
+
 
     //敌人编号(目前控制外观模型)
     public int enemyID = 0;
     //改样子的，不用动
     public SpriteRenderer spriteRenderer = null;
     //敌人的初始位置(基本不用动，多人可能有用)
-    public Vector3 originPosition = new Vector3(5,0,0);
+    public Vector3 originPosition = new Vector3(5, 0, 0);
 
     //死亡后掉落金钱数
     public int lootMoney = 1;
@@ -28,8 +30,11 @@ public class AI : Character {
     {
         //默认初始化
         base.Start();
+        foreach (var s in data.actionSequence)
+            skills.Add(new Skill(s));
+
         //初始化动作序号,下一拍到0
-        actionID = -1;
+        actionID = 0;
         //初始化敌人目标，默认是玩家
         mTarget = GameObject.Find("Player");
         //不用管
@@ -46,7 +51,8 @@ public class AI : Character {
         base.Update();
     }
     //敌人死亡的时候从玩家的目标列表中去除，然后销毁模型和ui
-    override public void Die (){
+    override public void Die()
+    {
         gameObject.AddComponent<VFX>();
         VFX vfx = gameObject.GetComponent<VFX>();
         Player.Instance.enemyList.Remove(gameObject);
@@ -55,15 +61,17 @@ public class AI : Character {
         Player.Instance.money += lootMoney;
     }
 
-    protected override void UpdateInput()
-    {
-        base.UpdateInput();
-    }
+    //protected override void UpdateInput()
+    //{
+    //    base.UpdateInput();
+    //}
 
     //序列帧处理，每一拍处理当前的怪兽序列
-    public void Action (){
-//        Debug.Log("AI:action"+ actionID);
-        if (actionID>=0){
+    public void Action()
+    {
+        //        Debug.Log("AI:action"+ actionID);
+        if (actionID >= 0)
+        {
             //Debug.Log(name + ": " + actionSequence[actionID]);
             switch (actionSequence[actionID])
             {
@@ -82,23 +90,39 @@ public class AI : Character {
                 //attack
                 case 2:
                     {
-                        Hit();
+                        //                   Hit();
                         StartCoroutine("AttackState");
-                       
+
                     }
                     break;
             }
         }
 
 
-    //    actionID = (actionID + 1) % actionSequence.Length;
+        //    actionID = (actionID + 1) % actionSequence.Length;
     }
 
     override public void Damage(int dDamage)
     {
         base.Damage(dDamage);
-        StartCoroutine("DamagedState");
+        if (Hp > 0)
+            StartCoroutine("DamagedState");
     }
+
+
+
+
+    public void action()
+    {
+        print("AI ACTION");
+        skills[actionID].EffectFunction(this);
+        actionID = (actionID + 1) % skills.Count;
+    }
+
+
+
+
+
 
     //下面是几个状态，只影响动画
     IEnumerator IdleState()
@@ -113,7 +137,8 @@ public class AI : Character {
         float dTime = 0f;
         spriteRenderer.sprite = (Sprite)Resources.Load("Animation/" + enemyID.ToString() + "/spr_ready", typeof(Sprite));
 
-        if (isDashable){
+        if (isDashable)
+        {
             yield return new WaitForSeconds(BarController.Instance.secPerBeat * 0.25f);
             spriteRenderer.sprite = (Sprite)Resources.Load("Animation/" + enemyID.ToString() + "/spr_dash", typeof(Sprite));
             while (dTime < (BarController.Instance.secPerBeat * 0.75f))
@@ -123,15 +148,17 @@ public class AI : Character {
                 yield return new WaitForSeconds(Time.deltaTime);
             }
         }
-        else {
+        else
+        {
             yield return 0;
         }
     }
     IEnumerator DamagedState()
     {
-        yield return new WaitForSeconds(BarController.Instance.secPerBeat * 0.25f);
+        yield return new WaitForSeconds(RhythmController.Instance.secPerBeat * 0.25f);
     }
-    IEnumerator AttackState(){
+    IEnumerator AttackState()
+    {
         spriteRenderer.sprite = (Sprite)Resources.Load("Animation/" + enemyID.ToString() + "/spr_attack", typeof(Sprite));
         yield return 0;
     }

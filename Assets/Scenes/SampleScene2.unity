@@ -3961,19 +3961,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f79a54de5c2d4109bdd5d06bd54904a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 3
-  Hp: 3
+  maxHp: 20
+  Hp: 20
   maxMp: 5
   Mp: 0
-  ATK: 1
-  currentATK: 1
+  ATK: 0
+  currentATK: 0
   DEF: 1
   currentDEF: 0
   equipmentList:
   - {fileID: 114314749759457354, guid: 2207f0fa0c9a6394395f1a0715c775fe, type: 3}
   - {fileID: 114180536259402678, guid: 7d1ff5a312ae399408203da90b682fda, type: 3}
-  currentWeapon: {fileID: 114314749759457354, guid: 2207f0fa0c9a6394395f1a0715c775fe,
-    type: 3}
+  currentWeapon: {fileID: 0}
   currentArmor: {fileID: 114180536259402678, guid: 7d1ff5a312ae399408203da90b682fda,
     type: 3}
   currentScroll: {fileID: 0}

@@ -4,7 +4,8 @@ using UnityEngine;
 using TMPro;
 
 //角色基类，控制玩家和敌人的全部属性和行动
-public class Character : MonoBehaviour {
+public class Character : MonoBehaviour
+{
     public int maxHp = 3;
     public int Hp = 3;
     public int maxMp = 5;
@@ -28,7 +29,7 @@ public class Character : MonoBehaviour {
     public Equipment currentScroll;
 
     //当前的技能列表
-    public List<Skill> skills =new List<Skill>();
+    public List<Skill> skills = new List<Skill>();
 
 
     public TextMeshProUGUI UIHpNum;
@@ -46,27 +47,32 @@ public class Character : MonoBehaviour {
     //蓄力动画
     public GameObject chargeVfx;
     // Use this for initialization
-    virtual protected void Start () {
+    virtual protected void Start()
+    {
 
     }
-	
-	// Update is called once per frame
-	virtual protected void Update () {
+
+    // Update is called once per frame
+    virtual protected void Update()
+    {
         UIHpNum.SetText(Hp.ToString());
         UIMpNum.SetText(Mp.ToString());
         UpdateInput();
     }
 
-    virtual protected void UpdateInput (){
+    virtual protected void UpdateInput()
+    {
 
     }
     //每次行动之前的初始化:判断蓄力是否断，清空护盾和被击
-    virtual public void Initialize ()
+    virtual public void Initialize()
     {
-        if (lastAction == actionType.None){
+        if (lastAction == actionType.None)
+        {
             ChargeBreak(0);
         }
-        if (mTarget == null){
+        if (mTarget == null)
+        {
             ChargeBreak(0);
         }
         //Debug.Log(mTarget);
@@ -80,7 +86,8 @@ public class Character : MonoBehaviour {
     //蓄力(目前只会在蓄力列表加一个简单的标识)
     virtual public bool Charge()
     {
-        if (mChargeList.Count==0){
+        if (mChargeList.Count == 0)
+        {
             chargeVfx = (GameObject)Instantiate(Resources.Load("VFX/Charge"), transform.position + new Vector3(-1.2f, 0.5f, 0), Quaternion.identity);
         }
 
@@ -92,33 +99,39 @@ public class Character : MonoBehaviour {
     //加灵力
     virtual public void AddMp(int dMp)
     {
-        if (Mp+dMp<=maxMp){
+        if (Mp + dMp <= maxMp)
+        {
             Mp = maxMp;
         }
-        else {
+        else
+        {
             Mp += dMp;
         }
     }
     //攻击
-    virtual public bool Hit()
+    virtual public bool Hit(int dDamage)
     {
         //判断是否是蓄力招
-        if (mChargeList.Count>0){
+        if (mChargeList.Count > 0)
+        {
             //判断目标
             if (mTarget != null)
             {
                 Character cTarget = mTarget.GetComponent<Character>();
                 //判断招数(判断顺序应该和判断目标换一下)
-                if (mChargeList.Count == 1){
+                if (mChargeList.Count == 1)
+                {
                     Hp = maxHp;
                 }
-                else {
+                else
+                {
                     cTarget.Damage(999);
                 }
                 ChargeBreak(1);
             }
         }
-        else {
+        else
+        {
             //普通攻击目标
             if (mTarget != null)
             {
@@ -132,7 +145,7 @@ public class Character : MonoBehaviour {
                 else
                 {
                     Instantiate(Resources.Load("VFX/Slash"), cTarget.transform.position, Quaternion.identity);
-                    cTarget.Damage(CalcDmg(getCurrentATK(),cTarget.getCurrentDEF()));
+                    cTarget.Damage(CalcDmg(getCurrentATK(), cTarget.getCurrentDEF(), dDamage));
                     return true;
                 }
 
@@ -149,7 +162,8 @@ public class Character : MonoBehaviour {
 
     }
     //防御
-    virtual public void Defense(){
+    virtual public void Defense()
+    {
         if (mChargeList.Count > 0)
         {
             ChargeBreak(0);
@@ -158,22 +172,27 @@ public class Character : MonoBehaviour {
         lastAction = actionType.Defense;
     }
     //死亡
-    virtual public void Die (){
+    virtual public void Die()
+    {
     }
     //受到伤害(以后名字要改下)
-    virtual public void Damage (int dDamage){
+    virtual public void Damage(int dDamage)
+    {
         getHit = true;
-        if (Hp>dDamage){
+        if (Hp > dDamage)
+        {
             Hp -= dDamage;
             ChargeBreak(0);
         }
-        else {
+        else
+        {
             Die();
         }
     }
     //判断蓄力断裂：一种是被打断，一种是使用了招数
     //type:0-fail,1-success 
-    virtual public void ChargeBreak (int type){
+    virtual public void ChargeBreak(int type)
+    {
         Destroy(chargeVfx.gameObject);
         mChargeList.Clear();
     }
@@ -187,11 +206,13 @@ public class Character : MonoBehaviour {
     //计算当前攻击力
     public int getCurrentATK()
     {
-        int mATK=ATK;
-        foreach (Equipment e in equipmentList)
-        {
-            mATK += e.ATK;
-        }
+        int mATK = ATK;
+        if (currentWeapon)
+            mATK += currentWeapon.ATK;
+        if (currentArmor)
+            mATK += currentArmor.ATK;
+        if (currentScroll)
+            mATK += currentScroll.ATK;
         return mATK;
     }
 
@@ -199,19 +220,22 @@ public class Character : MonoBehaviour {
     public int getCurrentDEF()
     {
         int mDEF = DEF;
-        foreach (Equipment e in equipmentList)
-        {
-            mDEF += e.DEF;
-        }
+        if (currentWeapon)
+            mDEF += currentWeapon.DEF;
+        if (currentArmor)
+            mDEF += currentArmor.DEF;
+        if (currentScroll)
+            mDEF += currentScroll.DEF;
         return mDEF;
     }
 
 
     //简单的伤害计算
-    public int CalcDmg(int dATK,int dDEF)
+    public int CalcDmg(int dATK, int dDEF, int dDamage)
     {
+        //print("NOW ATK " + dATK.ToString() + " " + " NOW DEF " + dDEF.ToString() + " DMG " + dDamage.ToString());
         int DMG;
-        DMG = ((dATK - dDEF) > 1) ? (dATK - dDEF) : 1;
+        DMG = ((dATK + dDamage - dDEF) > 1) ? (dATK + dDamage - dDEF) : 1;
         return DMG;
     }
 }

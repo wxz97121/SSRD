@@ -79,10 +79,10 @@ public class Player : Character {
         base.AddMp(dMp);
     }
     //玩家具体的控制
-    override public bool Hit()
+    override public bool Hit(int dDamage)
     {
         animator.Play("player_slash",0);
-        return base.Hit();
+        return base.Hit( dDamage);
     }
 
     override public void HitFail (){

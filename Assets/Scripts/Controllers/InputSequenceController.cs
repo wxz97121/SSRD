@@ -156,7 +156,8 @@ public class InputSequenceController : MonoBehaviour
         foreach (Skill skill in availableSkills)
             if (skill.inputSequence.Count == CurInputSequence.Count)
             {
-                Debug.Log("cast:" + skill.name);
+                Debug.Log("cast:" + skill.m_name);
+                skill.EffectFunction(Player.Instance);
                 ClnInpSeqWhenCastSkill();
                 RhythmController.Instance.isCurBarCleaned = true;
 

@@ -42,13 +42,10 @@ public class LevelData : MonoBehaviour
 
         playerSkills = new List<Skill>
         {
-            ReadSkillData("testSkill_ZZX_SUPERATTACK"),
-            ReadSkillData("testSkill_0ZX_DEFEND"),
-            ReadSkillData("testSkill_00X_ATTACK"),
-            ReadSkillData("testSkill_0Z0ZZX_ULTI"),
-
-
-
+            new Skill("testSkill_ZZX_SUPERATTACK"),
+            new Skill("testSkill_0ZX_DEFEND"),
+            new Skill("testSkill_00X_ATTACK"),
+            new Skill("testSkill_0Z0ZZX_ULTI")
         };
 
 
@@ -129,32 +126,33 @@ public class LevelData : MonoBehaviour
 
 
 
-    #region 读取skill 
-    public Skill ReadSkillData(string skillname)
-    {
-        SkillData data = Resources.Load("Data/Skill/" + skillname) as SkillData;
+    #region 旧的读取skill，弃用 
+    //public Skill ReadSkillData(string skillname)
+    //{
+    //    SkillData data = Resources.Load("Data/Skill/" + skillname) as SkillData;
 
-        Skill _skill = new Skill()
-        {
-            name = data._name,
-            inputSequence = new List<Note>(),
-            effects = new List<Effect>(),
+    //    Skill _skill = new Skill()
+    //    {
+    //        name = data._name,
+    //        inputSequence = new List<Note>(),
+    //        EffectEvent = data.EffectEvent
+    //        //effects = new List<Effect>(),
 
-        };
+    //    };
 
-        for (int i = 0; i < data.inputSequence.Count; i++)
-        {
-            _skill.inputSequence.Add(new Note
-            {
-                type = data.inputSequence[i].type,
-                beatInBar = data.inputSequence[i].beatInBar
-            }
-            );
-        }
+    //    for (int i = 0; i < data.inputSequence.Count; i++)
+    //    {
+    //        _skill.inputSequence.Add(new Note
+    //        {
+    //            type = data.inputSequence[i].type,
+    //            beatInBar = data.inputSequence[i].beatInBar
+    //        }
+    //        );
+    //    }
 
 
-        return _skill;
-    }
+    //    return _skill;
+    //}
 
     #endregion
 }

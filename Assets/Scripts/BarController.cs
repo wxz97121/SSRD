@@ -318,7 +318,7 @@ public class BarController : MonoBehaviour {
                     }
                     else{
                         if (BeatComment(mRunningNoteList_main) < 2) {
-                            Player.Instance.Hit();
+                        //    Player.Instance.Hit();
                             Player.Instance.addSoulPoint(2 - BeatComment(mRunningNoteList_main));
                         }
                         else if (BeatComment(mRunningNoteList_main) == 3) {
