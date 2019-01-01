@@ -52,7 +52,7 @@ public class UISkillTipBarController : MonoBehaviour
         instSkillTip.GetComponent<UISkillTipBar>().ReadScoreFromSkill(skill.inputSequence);
         instSkillTip.GetComponent<UISkillTipBar>().beatsThisBar = 4;
         instSkillTip.GetComponent<UISkillTipBar>().testtext.text = skill.m_name;
-        instSkillTip.GetComponent<UISkillTipBar>().costtext.text = skill.cost.ToString();
+        instSkillTip.GetComponent<UISkillTipBar>().costtext.text = "COST:"+skill.cost.ToString();
         instSkillTip.GetComponent<UISkillTipBar>().Init();
 
         return instSkillTip;
@@ -61,6 +61,12 @@ public class UISkillTipBarController : MonoBehaviour
     public void AddRightOInBar(string name,int index)
     {
         transform.Find(name).GetComponent<UISkillTipBar>().AddRightO(index);
+    }
+
+    public void RemoveRightO(string skillname)
+    {
+        transform.Find(skillname).GetComponent<UISkillTipBar>().RemoveRightO();
+
     }
 
     public void RemoveAllRightO()

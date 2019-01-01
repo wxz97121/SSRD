@@ -29,6 +29,9 @@ public class Skill
                     break;
                 case ("ANI"):
                     break;
+                case ("HEL"):
+                    HEL(int.Parse(InstancedEff[1]), m_Char);
+                    break;
                 default:
                     break;
             }
@@ -65,6 +68,11 @@ public class Skill
     private void ATK(int dDamage, Character Char)
     {
         Char.Hit(dDamage);
-//        Debug.Log("ATK "+ dDamage);
+        //        Debug.Log("ATK "+ dDamage);
+    }
+
+    private void HEL(int dHeal, Character Char)
+    {
+        Char.Heal(dHeal);
     }
 }

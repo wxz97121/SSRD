@@ -91,8 +91,8 @@ public class RhythmController : MonoBehaviour
             return 3;
         }
 
-        Debug.Log("songPosInBeats:"+ RhythmController.Instance.songPosInBeats);
-        Debug.Log("beatInSong:" + notes[0].beatInSong);
+        //Debug.Log("songPosInBeats:"+ RhythmController.Instance.songPosInBeats);
+        //Debug.Log("beatInSong:" + notes[0].beatInSong);
         float inputError = Mathf.Abs(RhythmController.Instance.songPosInBeats - notes[0].beatInSong);
 
         if (inputError <= RhythmController.Instance.commentCoolTime)
@@ -139,7 +139,7 @@ public class RhythmController : MonoBehaviour
         {
             if (UIBarController.Instance.playingBarPosInBeats > 3 && beatIndex < 3)
             {
-                Debug.Log("去掉错位情况");
+//                Debug.Log("去掉错位情况");
             }
             else
             {
@@ -163,7 +163,7 @@ public class RhythmController : MonoBehaviour
             if (songPosInBeats - UIBarController.Instance.currentEnergyNotes[0].beatInSong > commentGoodTime)
             {
                 //Debug.Log("songPosInBeat:" + songPosInBeats + "note[0].beat:" + UIBarController.Instance.currentEnergyNotes[0].beatInSong);
-                Debug.Log("delete a energy note:"+ UIBarController.Instance.currentEnergyNotes[0].beatInSong);
+//                Debug.Log("delete a energy note:"+ UIBarController.Instance.currentEnergyNotes[0].beatInSong);
                 UIBarController.Instance.currentEnergyNotes.RemoveAt(0);
             }
         }

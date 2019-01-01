@@ -49,11 +49,11 @@ public class DuelController : MonoBehaviour {
         {
             case actionType.Collect:
                 {
-                    Debug.Log("------------------------");
+                    //Debug.Log("------------------------");
 
-                    Debug.Log("START TRYING COLLECT");
-                    Debug.Log("currentEnergyNotes.Count:" + UIBarController.Instance.currentEnergyNotes.Count);
-                    Debug.Log("comment value:" + RhythmController.InputComment(UIBarController.Instance.currentEnergyNotes));
+                    //Debug.Log("START TRYING COLLECT");
+                    //Debug.Log("currentEnergyNotes.Count:" + UIBarController.Instance.currentEnergyNotes.Count);
+                    //Debug.Log("comment value:" + RhythmController.InputComment(UIBarController.Instance.currentEnergyNotes));
 
                     if (RhythmController.InputComment(UIBarController.Instance.currentEnergyNotes)<2)
                     {

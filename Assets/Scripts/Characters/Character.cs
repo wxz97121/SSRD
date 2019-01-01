@@ -111,27 +111,6 @@ public class Character : MonoBehaviour
     //攻击
     virtual public bool Hit(int dDamage)
     {
-        //判断是否是蓄力招
-        if (mChargeList.Count > 0)
-        {
-            //判断目标
-            if (mTarget != null)
-            {
-                Character cTarget = mTarget.GetComponent<Character>();
-                //判断招数(判断顺序应该和判断目标换一下)
-                if (mChargeList.Count == 1)
-                {
-                    Hp = maxHp;
-                }
-                else
-                {
-                    cTarget.Damage(999);
-                }
-                ChargeBreak(1);
-            }
-        }
-        else
-        {
             //普通攻击目标
             if (mTarget != null)
             {
@@ -150,10 +129,8 @@ public class Character : MonoBehaviour
                 }
 
             }
-        }
 
         lastAction = actionType.Hit;
-
         return true;
     }
     //攻击失败
@@ -161,6 +138,16 @@ public class Character : MonoBehaviour
     {
 
     }
+
+    virtual public void Heal(int dHeal)
+    {
+        Hp = Hp + dHeal;
+        if (Hp>maxHp)
+        {
+            Hp = maxHp;
+        }
+    }
+
     //防御
     virtual public void Defense()
     {

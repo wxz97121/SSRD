@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class InputSequenceController : MonoBehaviour
@@ -37,33 +36,33 @@ public class InputSequenceController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void CalcSkillInput(Note.NoteType inputType)
     {
-//        Debug.Log("UIBarController.Instance.playingBarPosInBeats!" + UIBarController.Instance.playingBarPosInBeats);
-//        Debug.Log("RhythmController.Instance.commentGoodTime!" + RhythmController.Instance.commentGoodTime);
+        //        Debug.Log("UIBarController.Instance.playingBarPosInBeats!" + UIBarController.Instance.playingBarPosInBeats);
+        //        Debug.Log("RhythmController.Instance.commentGoodTime!" + RhythmController.Instance.commentGoodTime);
 
 
 
 
 
         //第三拍之后,要记入下一小节
-        if ((UIBarController.Instance.playingBarPosInBeats > RhythmController.Instance.commentGoodTime + 2) )
+        if ((UIBarController.Instance.playingBarPosInBeats > RhythmController.Instance.commentGoodTime + 2))
         {
 
             judgeBeat = UIBarController.Instance.preBarPosInBeats;
-//           Debug.Log("early beat!!!");
+            //           Debug.Log("early beat!!!");
             InsertInputNote(inputType, judgeBeat, UIBarController.Instance.preBar);
         }
 
         //第三拍之前
-        if ((UIBarController.Instance.playingBarPosInBeats < 2-RhythmController.Instance.commentGoodTime))
+        if ((UIBarController.Instance.playingBarPosInBeats < 2 - RhythmController.Instance.commentGoodTime))
         {
 
             judgeBeat = UIBarController.Instance.playingBarPosInBeats;
-       //     Debug.Log("normal beat!!!");
+            //     Debug.Log("normal beat!!!");
             InsertInputNote(inputType, judgeBeat, UIBarController.Instance.playingBar);
 
         }
@@ -75,20 +74,19 @@ public class InputSequenceController : MonoBehaviour
         {
 
             judgeBeat = UIBarController.Instance.playingBarPosInBeats;
-//            Debug.Log("third beat!!!");
+            //            Debug.Log("third beat!!!");
             InsertInputNote(inputType, judgeBeat, UIBarController.Instance.playingBar);
 
-            //todo 结算本小节的技能
         }
     }
 
     #region Insert Input Note 根据输入把新的NOTE增加进招式序列
-    public void InsertInputNote(Note.NoteType inputType,float beat,GameObject bar)
+    public void InsertInputNote(Note.NoteType inputType, float beat, GameObject bar)
     {
-//        Debug.Log("-----------------------");
-  //      Debug.Log("inputtype:"+inputType);
-    //    Debug.Log("beat:" + beat);
-      //  Debug.Log("availableSkills.Count" + availableSkills.Count);
+        //        Debug.Log("-----------------------");
+        //      Debug.Log("inputtype:"+inputType);
+        //    Debug.Log("beat:" + beat);
+        //  Debug.Log("availableSkills.Count" + availableSkills.Count);
 
         //Debug.Log("CurInputSequence.Count"+ CurInputSequence.Count);
 
@@ -100,30 +98,31 @@ public class InputSequenceController : MonoBehaviour
             return;
         }
         List<Skill> tempskills = new List<Skill>();
-        bool inputsucces = false;
+        bool inputsuccess = false;
         foreach (Skill skill in availableSkills)
         {
             if (CurInputSequence.Count < skill.inputSequence.Count)
             {
 
-    //            Debug.Log("skill.inputSequence.Count" + skill.inputSequence.Count);
+                //Debug.Log("skill.inputSequence.Count" + skill.inputSequence.Count);
 
-                if ((beat >= skill.inputSequence[CurInputSequence.Count].beatInBar - RhythmController.Instance.commentGoodTime) && (judgeBeat <= skill.inputSequence[CurInputSequence.Count].beatInBar + RhythmController.Instance.commentGoodTime)&& inputType == skill.inputSequence[CurInputSequence.Count].type)
+                if ((beat >= skill.inputSequence[CurInputSequence.Count].beatInBar - RhythmController.Instance.commentGoodTime) && (judgeBeat <= skill.inputSequence[CurInputSequence.Count].beatInBar + RhythmController.Instance.commentGoodTime) && inputType == skill.inputSequence[CurInputSequence.Count].type)
                 {
-                    inputsucces = true;
-//                    Debug.Log("判定成功！！");
+                    inputsuccess = true;
+                    //Debug.Log("判定成功！！");
                     tempskills.Add(skill);
                     SuperController.Instance.skillTipBarController.AddRightOInBar(skill.m_name, CurInputSequence.Count);
-             //       .AddRightO(CurInputSequence.Count);
-                    
-
+                }
+                else
+                {
+                    SuperController.Instance.skillTipBarController.RemoveRightO(skill.m_name);
                 }
             }
         }
 
 
         CurInputSequence.Add(bar.GetComponent<UIBar>().AddInputNote(inputType, beat));
-        if (!inputsucces)
+        if (!inputsuccess)
         {
 
             Bad();
@@ -139,7 +138,7 @@ public class InputSequenceController : MonoBehaviour
             if (skill.inputSequence.Count == CurInputSequence.Count)
             {
                 //搓招正确但是能量不足
-                if (Player.Instance.Mp<skill.cost)
+                if (Player.Instance.Mp < skill.cost)
                 {
                     Debug.Log("能量不足");
                     Bad();
@@ -186,7 +185,7 @@ public class InputSequenceController : MonoBehaviour
     #region CleanInputSequence 清除输入记录
     public void CleanInputSequence()
     {
-//        Debug.Log("clean input sequence");
+        //        Debug.Log("clean input sequence");
         if (Instance.CurInputSequence.Count > 0)
         {
             int tempcount = Instance.CurInputSequence.Count;

@@ -27,9 +27,10 @@ public class LevelData : MonoBehaviour
     {
         List<Skill> playerSkills = new List<Skill>
         {
-            new Skill("testSkill_ZZX_SUPERATTACK"),
-            new Skill("testSkill_0ZX_DEFEND"),
             new Skill("testSkill_00X_ATTACK"),
+            new Skill("testSkill_0ZX_DEFEND"),
+            new Skill("testSkill_ZZX_SUPERATTACK"),
+            new Skill("testSkill_0Z0ZX_HEAL"),
             new Skill("testSkill_0Z0ZZX_ULTI")
         };
         Player.Instance.skills = new List<Skill>();
