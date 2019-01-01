@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: testSkill_0ZX_DEFEND
   m_EditorClassIdentifier: 
   _name: DEFEND
+  cost: 4
   inputSequence:
   - type: 21
     note: {fileID: 0}
@@ -24,30 +25,4 @@ MonoBehaviour:
     subnote: {fileID: 0}
     beatInBar: 2
     beatInSong: 0
-  EffectEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+  Effect: 

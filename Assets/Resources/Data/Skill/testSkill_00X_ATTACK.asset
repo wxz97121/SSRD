@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: testSkill_00X_ATTACK
   m_EditorClassIdentifier: 
   _name: ATTACK
+  cost: 4
   inputSequence:
   - type: 22
     note: {fileID: 0}

@@ -7,20 +7,21 @@ public class Skill
 {
     public string m_name;
     private string EffectStr;
+    public int cost;
     //输入方式
     public List<Note> inputSequence;
     public void EffectFunction(Character m_Char)
     {
 
-        var EffectStrSplit = EffectStr.Split(',');
+        string[] EffectStrSplit = EffectStr.Split(',');
         //用开头三个大写字母表示功能，后面参数用下划线分割
         //例如 ATK_3 表示暗黑破坏神3
         //例如 HEL_5 表示HTML5
         //例如 BUF_3_4 表示 3号 Buff 持续4回合
         //若干个这样的字符串，用逗号分开，表示一个技能的效果
-        foreach (var s in EffectStrSplit)
+        foreach (string s in EffectStrSplit)
         {
-            var InstancedEff = s.Split('_');
+            string[] InstancedEff = s.Split('_');
             switch(InstancedEff[0])
             {
                 case ("ATK"):
@@ -46,6 +47,7 @@ public class Skill
         m_name = data._name;
         inputSequence = new List<Note>();
         EffectStr = data.Effect;
+        cost = data.cost;
         for (int i = 0; i < data.inputSequence.Count; i++)
         {
             inputSequence.Add(new Note

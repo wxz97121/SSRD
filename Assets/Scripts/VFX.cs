@@ -52,6 +52,25 @@ public class VFX : MonoBehaviour {
         Destroy(gameObject);
     }
 
+    IEnumerator NoteInputBad()
+    {
+        Instantiate((GameObject)Resources.Load("VFX/BadX", typeof(GameObject)), transform);
+        float timeCount = 0f;
+        Vector3 originPos = transform.localPosition;
+        
+        while (timeCount < aniTime)
+        {
+            yield return new WaitForSeconds(Time.deltaTime);
+            System.Random rng = new System.Random();
+            Vector3 glitch =new Vector3(rng.Next(-5, 5), rng.Next(-5, 5), rng.Next(-5, 5));
+            transform.localPosition = originPos + glitch;
+            timeCount += Time.deltaTime;
+            
+        }
+        Destroy(gameObject);
+    }
+
+
     IEnumerator UINoteFadeOut()
     {
         float timeCount = 0f;

@@ -119,35 +119,15 @@ public class InputSequenceController : MonoBehaviour
             }
         }
 
-        if (inputsucces)
-        {
-            //创建音符
-            Note note = new Note
-            {
-                type = inputType,
-                beatInBar = beat,
-            };
-            if (inputType == Note.NoteType.inputBassdrum)
-            {
-                note.note = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Note_Bassdrum", typeof(GameObject)), bar.transform);
-                SoundController.Instance.PlayAudioEffect("KICK");
 
-            }
-            else
-            {
-                note.note = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Note_Snare", typeof(GameObject)), bar.transform);
-                SoundController.Instance.PlayAudioEffect("SNARE");
-            }
-            note.note.transform.localPosition = bar.GetComponent<UIBar>().startPos + (bar.GetComponent<UIBar>().oneBeatSpace * beat) + new Vector3(0, -10, 0);
-            CurInputSequence.Add(note);
-            bar.GetComponent<UIBar>().noteList_main.Add(note);
-            //            Debug.Log("add note");
-        }
-        else
+        CurInputSequence.Add(bar.GetComponent<UIBar>().AddInputNote(inputType, beat));
+        if (!inputsucces)
         {
-            CleanInputSequence();
+
+            Bad();
             Debug.Log("bad");
         }
+
 
 
         availableSkills = tempskills;
@@ -162,6 +142,29 @@ public class InputSequenceController : MonoBehaviour
                 RhythmController.Instance.isCurBarCleaned = true;
 
             }
+    }
+    #endregion
+
+    #region BAD 后处理音符
+    public void Bad()
+    {
+        SoundController.Instance.PlayAudioEffect("ROUND");
+        if (Instance.CurInputSequence.Count > 0)
+        {
+            int tempcount = Instance.CurInputSequence.Count;
+            for (int i = 0; i < tempcount; i++)
+            {
+                Instance.CurInputSequence[0].note.GetComponent<VFX>().StartCoroutine("NoteInputBad");
+                Instance.CurInputSequence.RemoveAt(0);
+            }
+            int tempcountinbar = UIBarController.Instance.playingBar.GetComponent<UIBar>().noteList_main.Count;
+            for (int i = 0; i < tempcountinbar; i++)
+            {
+                UIBarController.Instance.playingBar.GetComponent<UIBar>().noteList_main.RemoveAt(0);
+            }
+        }
+        availableSkills = skills;
+        RhythmController.Instance.isCurBarCleaned = true;
     }
     #endregion
 

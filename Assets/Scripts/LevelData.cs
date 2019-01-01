@@ -6,8 +6,6 @@ public class LevelData : MonoBehaviour
 {
     //谱子
     public OneSongScore score;
-    //临时技能
-    public List<Skill> playerSkills;
 
     #region 单例
     static LevelData _instance;
@@ -27,6 +25,13 @@ public class LevelData : MonoBehaviour
 
     public void ReadSkillDatas()
     {
+        List<Skill> playerSkills = new List<Skill>
+        {
+            new Skill("testSkill_ZZX_SUPERATTACK"),
+            new Skill("testSkill_0ZX_DEFEND"),
+            new Skill("testSkill_00X_ATTACK"),
+            new Skill("testSkill_0Z0ZZX_ULTI")
+        };
         Player.Instance.skills = new List<Skill>();
 
         Player.Instance.skills = playerSkills;
@@ -39,17 +44,6 @@ public class LevelData : MonoBehaviour
    public void ReadScoreDatas()
     {
         score = ReadScoreData("score_1_test");
-
-        playerSkills = new List<Skill>
-        {
-            new Skill("testSkill_ZZX_SUPERATTACK"),
-            new Skill("testSkill_0ZX_DEFEND"),
-            new Skill("testSkill_00X_ATTACK"),
-            new Skill("testSkill_0Z0ZZX_ULTI")
-        };
-
-
-
 
 
 

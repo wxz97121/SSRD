@@ -194,4 +194,29 @@ public class UIBar : MonoBehaviour {
         pin.transform.localPosition = startPos;
        
     }
+
+
+    //创建已输入音符
+    public Note AddInputNote(Note.NoteType inputType,float beat)
+    {
+        Note note = new Note
+        {
+            type = inputType,
+            beatInBar = beat,
+        };
+        if (inputType == Note.NoteType.inputBassdrum)
+        {
+            note.note = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Note_Bassdrum", typeof(GameObject)), transform);
+            SoundController.Instance.PlayAudioEffect("KICK");
+
+        }
+        else
+        {
+            note.note = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Note_Snare", typeof(GameObject)), transform);
+            SoundController.Instance.PlayAudioEffect("SNARE");
+        }
+        note.note.transform.localPosition = startPos + (oneBeatSpace * beat) + new Vector3(0, -10, 0);
+        noteList_main.Add(note);
+        return note;
+    }
 }

@@ -120,8 +120,7 @@ public class RhythmController : MonoBehaviour
 
         //判定是否播放第N拍，并告知各种物体POGO起来！
         //第三拍要特殊处理
-        // Debug.Log("barPosInBeats:  " + UIBarController.Instance.barPosInBeats + ",beatIndex=  " + beatIndex);
-        print(UIBarController.Instance.playingBarPosInBeats);
+        // Debug.Log("barPosInBeats:  " + UIBarController.Instance.barPosInBeats + ",beatIndex=  " + beatIndex);//        print(UIBarController.Instance.playingBarPosInBeats);
         if (beatIndex == 2)
         {
 

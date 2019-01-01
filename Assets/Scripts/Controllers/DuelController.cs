@@ -68,14 +68,7 @@ public class DuelController : MonoBehaviour {
                     //
                 }
                 break;
-            case actionType.None:
-                break;
-            case actionType.Charge:
-                break;
-            case actionType.Hit:
-                break;
-            case actionType.Defense:
-                break;
+            
             default:
                 break;
         }
@@ -84,24 +77,9 @@ public class DuelController : MonoBehaviour {
 
     public void EnemyRespawn()
     {
-        if (EnemyCountdown > 0)
-        {
-            Debug.Log("Enemy Reborn: " + EnemyCountdown);
-            EnemyCountdown--;
-        }
-        else if (EnemyCountdown == 0)
-        {
+
+        if(Player.Instance.enemyList.Count==0)
             BattleController.Instance.AddEnemy();
-            EnemyCountdown--;
-        }
-        else
-        {
-            if (Player.Instance.enemyList.Count <= 0)
-            {
-                Debug.Log("No Enemy");
-                EnemyCountdown = 4;
-            }
-        }
 
     }
 

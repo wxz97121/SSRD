@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: testSkill_0Z0ZZX_ULTI
   m_EditorClassIdentifier: 
   _name: "\u4EBA\u9B3C \u672A\u6765\u6C38\u52AB\u65A9"
+  cost: 20
   inputSequence:
   - type: 21
     note: {fileID: 0}
@@ -39,4 +40,4 @@ MonoBehaviour:
     subnote: {fileID: 0}
     beatInBar: 2
     beatInSong: 0
-  effects: []
+  Effect: 

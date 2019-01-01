@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class UISkillTipBar : MonoBehaviour {
 
     public Text testtext;
+    public Text costtext;
+
     public bool active;
     //开始拍
     public float startBeat;
@@ -49,7 +51,7 @@ public class UISkillTipBar : MonoBehaviour {
     }
 
 
-    //将音符收进两个轨道
+    //将音符收进轨道
     public void ReadScoreFromSkill(List<Note> notes)
     {
         foreach (Note note in notes)
@@ -72,7 +74,7 @@ public class UISkillTipBar : MonoBehaviour {
     public void InitLines()
     {
         int _linecount = (int)(beatsThisBar);
-        for (int i=0; i<=_linecount;i++)
+        for (int i=0; i<=2;i++)
         {
             GameObject line = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Line", typeof(GameObject)), transform);
             line.transform.localPosition = startPos + (oneBeatSpace * i);

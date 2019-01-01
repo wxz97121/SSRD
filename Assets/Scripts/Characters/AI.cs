@@ -114,7 +114,6 @@ public class AI : Character
 
     public void action()
     {
-        print("AI ACTION");
         skills[actionID].EffectFunction(this);
         actionID = (actionID + 1) % skills.Count;
     }

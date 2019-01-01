@@ -8,6 +8,7 @@ using UnityEngine.Events;
 public class SkillData : ScriptableObject
 {
     public string _name;
+    public int cost;
     public List<Note> inputSequence;
     //public UnityEvent EffectEvent;
     public string Effect;

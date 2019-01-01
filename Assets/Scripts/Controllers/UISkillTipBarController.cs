@@ -19,10 +19,10 @@ public class UISkillTipBarController : MonoBehaviour
     {
     }
 
-// Update is called once per frame
-void Update()
+    // Update is called once per frame
+    void Update()
     {
-        
+
     }
 
     public void InitSkillTipBarArea()
@@ -32,13 +32,13 @@ void Update()
         Debug.Log("InitSkillTipBarArea");
         //获取位置信息
         barPos0 = barPos0GO.transform.localPosition;
-        oneBarSpace = barPos1GO.transform.localPosition- barPos0;
+        oneBarSpace = barPos1GO.transform.localPosition - barPos0;
 
-        for (int i=0;i<Player.Instance.skills.Count;i++)
+        for (int i = 0; i < Player.Instance.skills.Count; i++)
         {
             currentBarList.Add(CreateSkillTipBar(Player.Instance.skills[i]));
             currentBarList[i].transform.localPosition = barPos0 + (oneBarSpace * i);
-            currentBarList[i].transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+            currentBarList[i].transform.localScale = new Vector3(1f, 1f, 1f);
         }
     }
 
@@ -52,7 +52,7 @@ void Update()
         instSkillTip.GetComponent<UISkillTipBar>().ReadScoreFromSkill(skill.inputSequence);
         instSkillTip.GetComponent<UISkillTipBar>().beatsThisBar = 4;
         instSkillTip.GetComponent<UISkillTipBar>().testtext.text = skill.m_name;
-
+        instSkillTip.GetComponent<UISkillTipBar>().costtext.text = skill.cost.ToString();
         instSkillTip.GetComponent<UISkillTipBar>().Init();
 
         return instSkillTip;

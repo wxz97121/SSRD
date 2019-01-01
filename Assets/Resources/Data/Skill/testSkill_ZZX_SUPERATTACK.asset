@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: testSkill_ZZX_SUPERATTACK
   m_EditorClassIdentifier: 
   _name: HEAVY ATTACK
+  cost: 8
   inputSequence:
   - type: 21
     note: {fileID: 0}
