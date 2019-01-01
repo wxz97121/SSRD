@@ -3964,7 +3964,7 @@ MonoBehaviour:
   maxHp: 20
   Hp: 20
   maxMp: 5
-  Mp: 0
+  Mp: 20
   ATK: 0
   currentATK: 0
   DEF: 1
