@@ -48,7 +48,7 @@ public class UISkillTipBarController : MonoBehaviour
         Debug.Log("CreateSkillTipBar");
 
         GameObject instSkillTip = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_SkillTipBar", typeof(GameObject)), transform);
-
+        instSkillTip.name = skill.m_name;
         instSkillTip.GetComponent<UISkillTipBar>().ReadScoreFromSkill(skill.inputSequence);
         instSkillTip.GetComponent<UISkillTipBar>().beatsThisBar = 4;
         instSkillTip.GetComponent<UISkillTipBar>().testtext.text = skill.m_name;
@@ -56,5 +56,26 @@ public class UISkillTipBarController : MonoBehaviour
         instSkillTip.GetComponent<UISkillTipBar>().Init();
 
         return instSkillTip;
+    }
+
+    public void AddRightOInBar(string name,int index)
+    {
+        transform.Find(name).GetComponent<UISkillTipBar>().AddRightO(index);
+    }
+
+    public void RemoveAllRightO()
+    {
+        foreach(var bar in currentBarList)
+        {
+            bar.GetComponent<UISkillTipBar>().RemoveRightO();
+        }
+    }
+
+    public void RemoveAllRightOWhenSuccess()
+    {
+        foreach (var bar in currentBarList)
+        {
+            bar.GetComponent<UISkillTipBar>().RemoveRightOWhenSuccess();
+        }
     }
 }

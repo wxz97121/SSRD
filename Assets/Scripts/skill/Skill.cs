@@ -65,6 +65,6 @@ public class Skill
     private void ATK(int dDamage, Character Char)
     {
         Char.Hit(dDamage);
-        Debug.Log("ATK "+ dDamage);
+//        Debug.Log("ATK "+ dDamage);
     }
 }

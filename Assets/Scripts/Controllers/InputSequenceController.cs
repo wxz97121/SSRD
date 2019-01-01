@@ -96,7 +96,7 @@ public class InputSequenceController : MonoBehaviour
 
         if (RhythmController.Instance.isCurBarCleaned == true)
         {
-            Debug.Log("bad");
+            Debug.Log("已经BAD(当前不可输入）");
             return;
         }
         List<Skill> tempskills = new List<Skill>();
@@ -113,6 +113,8 @@ public class InputSequenceController : MonoBehaviour
                     inputsucces = true;
 //                    Debug.Log("判定成功！！");
                     tempskills.Add(skill);
+                    SuperController.Instance.skillTipBarController.AddRightOInBar(skill.m_name, CurInputSequence.Count);
+             //       .AddRightO(CurInputSequence.Count);
                     
 
                 }
@@ -136,10 +138,21 @@ public class InputSequenceController : MonoBehaviour
         foreach (Skill skill in availableSkills)
             if (skill.inputSequence.Count == CurInputSequence.Count)
             {
-                Debug.Log("cast:" + skill.m_name);
-                skill.EffectFunction(Player.Instance);
-                ClnInpSeqWhenCastSkill();
-                RhythmController.Instance.isCurBarCleaned = true;
+                //搓招正确但是能量不足
+                if (Player.Instance.Mp<skill.cost)
+                {
+                    Debug.Log("能量不足");
+                    Bad();
+                }
+                else
+                {
+                    Player.Instance.Mp -= skill.cost;
+                    Debug.Log("cast:" + skill.m_name);
+                    skill.EffectFunction(Player.Instance);
+                    ClnInpSeqWhenCastSkill();
+                    RhythmController.Instance.isCurBarCleaned = true;
+                }
+
 
             }
     }
@@ -164,6 +177,7 @@ public class InputSequenceController : MonoBehaviour
             }
         }
         availableSkills = skills;
+        SuperController.Instance.skillTipBarController.RemoveAllRightO();
         RhythmController.Instance.isCurBarCleaned = true;
     }
     #endregion
@@ -189,6 +203,8 @@ public class InputSequenceController : MonoBehaviour
             }
         }
         availableSkills = skills;
+        SuperController.Instance.skillTipBarController.RemoveAllRightO();
+
         RhythmController.Instance.isCurBarCleaned = true;
     }
     #endregion
@@ -202,7 +218,7 @@ public class InputSequenceController : MonoBehaviour
             int tempcount = Instance.CurInputSequence.Count;
             for (int i = 0; i < tempcount; i++)
             {
-                Instance.CurInputSequence[0].note.GetComponent<VFX>().StartCoroutine("UINoteFadeOut");
+                Instance.CurInputSequence[0].note.GetComponent<VFX>().StartCoroutine("FadeOutLarger");
                 Instance.CurInputSequence.RemoveAt(0);
             }
             int tempcountinbar = UIBarController.Instance.playingBar.GetComponent<UIBar>().noteList_main.Count;
@@ -212,6 +228,7 @@ public class InputSequenceController : MonoBehaviour
             }
         }
         availableSkills = skills;
+        SuperController.Instance.skillTipBarController.RemoveAllRightOWhenSuccess();
         RhythmController.Instance.isCurBarCleaned = true;
     }
     #endregion

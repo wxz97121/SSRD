@@ -71,7 +71,7 @@ public class VFX : MonoBehaviour {
     }
 
 
-    IEnumerator UINoteFadeOut()
+    IEnumerator FadeOutLarger()
     {
         float timeCount = 0f;
         while (timeCount < aniTime)
@@ -82,5 +82,21 @@ public class VFX : MonoBehaviour {
             transform.localScale *= 1 + timeCount;
         }
         Destroy(gameObject);
+    }
+
+    IEnumerator SkillTipNoteRight()
+    {
+    //    Instantiate((GameObject)Resources.Load("VFX/RightO", typeof(GameObject)), transform);
+        float timeCount = 0f;
+    //    Vector3 originPos = transform.localPosition;
+
+        while (timeCount < aniTime)
+        {
+            yield return new WaitForSeconds(Time.deltaTime);
+
+           //
+            timeCount += Time.deltaTime;
+
+        }
     }
 }

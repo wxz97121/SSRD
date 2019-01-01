@@ -55,6 +55,8 @@ public class SuperController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.M))
         {
+            Debug.Log("INPUT M");
+
             DuelController.Instance.ShowAction(actionType.Collect);
         }
         if (Input.GetKeyDown(KeyCode.Z))

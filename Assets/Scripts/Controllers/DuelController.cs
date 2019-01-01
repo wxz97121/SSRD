@@ -42,24 +42,25 @@ public class DuelController : MonoBehaviour {
 
     public void ShowAction(actionType actionType)
     {
-        //如果没敌人了就先不管
-        if (Player.Instance.enemyList.Count <= 0)
-        {
-            return;
-        }
+
+
 
         switch (actionType)
         {
             case actionType.Collect:
                 {
-                    //Debug.Log("1");
+                    Debug.Log("------------------------");
+
+                    Debug.Log("START TRYING COLLECT");
+                    Debug.Log("currentEnergyNotes.Count:" + UIBarController.Instance.currentEnergyNotes.Count);
+                    Debug.Log("comment value:" + RhythmController.InputComment(UIBarController.Instance.currentEnergyNotes));
 
                     if (RhythmController.InputComment(UIBarController.Instance.currentEnergyNotes)<2)
                     {
                         Player.Instance.AddMp(1);
                         SoundController.Instance.PlayAudioEffect("HIHAT");
 
-                        UIBarController.Instance.currentEnergyNotes[0].note.GetComponent<VFX>().StartCoroutine("UINoteFadeOut");
+                        UIBarController.Instance.currentEnergyNotes[0].note.GetComponent<VFX>().StartCoroutine("FadeOutLarger");
                         UIBarController.Instance.currentEnergyNotes.RemoveAt(0);
 
                  //      Debug.Log("2");

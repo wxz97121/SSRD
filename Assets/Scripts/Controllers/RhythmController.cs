@@ -91,7 +91,8 @@ public class RhythmController : MonoBehaviour
             return 3;
         }
 
-
+        Debug.Log("songPosInBeats:"+ RhythmController.Instance.songPosInBeats);
+        Debug.Log("beatInSong:" + notes[0].beatInSong);
         float inputError = Mathf.Abs(RhythmController.Instance.songPosInBeats - notes[0].beatInSong);
 
         if (inputError <= RhythmController.Instance.commentCoolTime)
@@ -126,7 +127,7 @@ public class RhythmController : MonoBehaviour
 
             if (UIBarController.Instance.playingBarPosInBeats >= beatIndex + commentGoodTime)
             {
-                print("on beat" + beatIndex.ToString());
+//                print("on beat" + beatIndex.ToString());
 
                 OnBeat(beatIndex);
 
@@ -138,15 +139,19 @@ public class RhythmController : MonoBehaviour
         {
             if (UIBarController.Instance.playingBarPosInBeats > 3 && beatIndex < 3)
             {
-                return;
+                Debug.Log("去掉错位情况");
             }
-            print("on beat" + beatIndex.ToString());
-            OnBeat(beatIndex);
-            beatIndex++;
-            if (beatIndex > UIBarController.Instance.playingBar.GetComponent<UIBar>().beatsThisBar - 1)
+            else
             {
-                beatIndex = 0;
+                OnBeat(beatIndex);
+                beatIndex++;
+                if (beatIndex > UIBarController.Instance.playingBar.GetComponent<UIBar>().beatsThisBar - 1)
+                {
+                    beatIndex = 0;
+                }
             }
+            //            print("on beat" + beatIndex.ToString());
+
         }
 
 
@@ -158,7 +163,7 @@ public class RhythmController : MonoBehaviour
             if (songPosInBeats - UIBarController.Instance.currentEnergyNotes[0].beatInSong > commentGoodTime)
             {
                 //Debug.Log("songPosInBeat:" + songPosInBeats + "note[0].beat:" + UIBarController.Instance.currentEnergyNotes[0].beatInSong);
-                //Debug.Log("delete a note");
+                Debug.Log("delete a energy note:"+ UIBarController.Instance.currentEnergyNotes[0].beatInSong);
                 UIBarController.Instance.currentEnergyNotes.RemoveAt(0);
             }
         }

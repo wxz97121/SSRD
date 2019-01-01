@@ -205,4 +205,33 @@ public class UISkillTipBar : MonoBehaviour {
         pin.transform.localPosition = startPos;
        
     }
+
+    public void AddRightO(int index)
+    {
+       Instantiate((GameObject)Resources.Load("VFX/RightO", typeof(GameObject)), noteList_input[index].note.transform);
+
+    }
+
+    public void RemoveRightO()
+    {
+        foreach (var note in noteList_input)
+        {
+
+            if (note.note.transform.Find("RightO(Clone)") != null)
+                Destroy(note.note.transform.Find("RightO(Clone)").gameObject);
+        }
+    }
+
+    public void RemoveRightOWhenSuccess()
+    {
+        foreach (var note in noteList_input)
+        {
+
+            if (note.note.transform.Find("RightO(Clone)") != null)
+            {
+                note.note.transform.Find("RightO(Clone)").GetComponent<VFX>().StartCoroutine("FadeOutLarger");
+                note.note.transform.Find("RightO(Clone)").gameObject.name = "fadingRightO";
+            }
+        }
+    }
 }
