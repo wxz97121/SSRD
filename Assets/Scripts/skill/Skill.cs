@@ -32,6 +32,9 @@ public class Skill
                 case ("HEL"):
                     HEL(int.Parse(InstancedEff[1]), m_Char);
                     break;
+                case ("DEF"):
+                    DEF(m_Char);
+                    break;
                 default:
                     break;
             }
@@ -74,5 +77,20 @@ public class Skill
     private void HEL(int dHeal, Character Char)
     {
         Char.Heal(dHeal);
+    }
+
+    private void DEF(Character Char)
+    {
+        Debug.Log("DEF");
+        Buff_defend defend = new Buff_defend
+        {
+            m_name = "DEF",
+            remainBeats = 2,
+            character=Char,
+            activateTime= RhythmController.Instance.songPosInBeats
+    };
+        Char.buffs.Add(defend);
+        defend.BuffAdded();
+
     }
 }

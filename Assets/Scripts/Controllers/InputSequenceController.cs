@@ -146,7 +146,7 @@ public class InputSequenceController : MonoBehaviour
                 else
                 {
                     Player.Instance.Mp -= skill.cost;
-                    Debug.Log("cast:" + skill.m_name);
+//                    Debug.Log("cast:" + skill.m_name);
                     skill.EffectFunction(Player.Instance);
                     ClnInpSeqWhenCastSkill();
                     RhythmController.Instance.isCurBarCleaned = true;

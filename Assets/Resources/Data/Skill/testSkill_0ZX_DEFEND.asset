@@ -25,4 +25,4 @@ MonoBehaviour:
     subnote: {fileID: 0}
     beatInBar: 2
     beatInSong: 0
-  Effect: 
+  Effect: DEF

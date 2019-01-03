@@ -239,6 +239,9 @@ public class RhythmController : MonoBehaviour
             if (nowAI) nowAI.action();
         }
 
+        Player.Instance.BuffBeat(beatNum);
+        Player.Instance.mTarget.GetComponent<AI>().BuffBeat(beatNum);
+
 
     }
     #endregion

@@ -9,7 +9,7 @@ using TMPro;
 public class Player : Character {
     static Player _instance;
 
-    private Animator animator;
+    public Animator animator;
 
     //魂点数 魂等级
     public int soulPoint = 0;

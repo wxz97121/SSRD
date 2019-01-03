@@ -30,7 +30,8 @@ public class Character : MonoBehaviour
 
     //当前的技能列表
     public List<Skill> skills = new List<Skill>();
-
+    //当前BUFF列表
+    public List<Buff> buffs = new List<Buff>();
 
     public TextMeshProUGUI UIHpNum;
     public TextMeshProUGUI UIMpNum;
@@ -115,8 +116,8 @@ public class Character : MonoBehaviour
             if (mTarget != null)
             {
                 Character cTarget = mTarget.GetComponent<Character>();
-                //判断对方护盾
-                if (cTarget.Shield > 0)
+            //判断对方护盾
+             if (cTarget.buffs.Exists(x => x.m_name.Contains("DEF")))
                 {
                     Instantiate(Resources.Load("VFX/Shield"), cTarget.transform.position, Quaternion.identity);
                     return false;
@@ -224,5 +225,22 @@ public class Character : MonoBehaviour
         int DMG;
         DMG = ((dATK + dDamage - dDEF) > 1) ? (dATK + dDamage - dDEF) : 1;
         return DMG;
+    }
+
+    //触发BUFF效果
+    public void BuffBeat(int beatNum)
+    {
+        List<Buff> remainbuffs = new List<Buff>();
+        foreach(Buff b in buffs)
+        {
+            b.BuffBeat(beatNum);
+            if (b.remainBeats != 0)
+            {
+                remainbuffs.Add(b);
+            }
+        }
+        buffs = remainbuffs;
+        Debug.Log("buff count="+buffs.Count);
+
     }
 }
