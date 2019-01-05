@@ -62,7 +62,7 @@ public class UIBarController : MonoBehaviour {
 
         currentEnergyNotes = new List<Note>();
         currentBarList = new List<GameObject>();
-        score = LevelData.Instance.score;
+        score = SuperController.Instance.score;
 
         InitBarArea();
 

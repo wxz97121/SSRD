@@ -30,4 +30,4 @@ MonoBehaviour:
     subnote: {fileID: 0}
     beatInBar: 2
     beatInSong: 0
-  Effect: HEL_3
+  Effect: HEL_10

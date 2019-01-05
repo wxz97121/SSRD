@@ -11,6 +11,7 @@ public class AI : Character
     //敌人的动作序列(控制每一拍的动作)
     public int[] actionSequence;
 
+    public Animator animator;
 
     //敌人编号(目前控制外观模型)
     public int enemyID = 0;
@@ -23,13 +24,19 @@ public class AI : Character
     public int lootMoney = 1;
 
 
-    //是否会冲(仅影响动画效果)
-    public bool isDashable = true;
+
     // Use this for initialization
     override protected void Start()
     {
         //默认初始化
         base.Start();
+
+
+
+    }
+
+    public void Init()
+    {
         foreach (var s in data.actionSequence)
             skills.Add(new Skill(s));
 
@@ -39,6 +46,9 @@ public class AI : Character
         mTarget = GameObject.Find("Player");
         //不用管
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        animator = GetComponent<Animator>();
+
         //开始默认的待机状态
         StartCoroutine("IdleState");
         //初始化敌人模型位置
@@ -61,46 +71,43 @@ public class AI : Character
         Player.Instance.money += lootMoney;
     }
 
-    //protected override void UpdateInput()
+
+
+    ////序列帧处理，每一拍处理当前的怪兽序列
+    //public void Action()
     //{
-    //    base.UpdateInput();
-    //}
+        ////        Debug.Log("AI:action"+ actionID);
+        //if (actionID >= 0)
+        //{
+        //    //Debug.Log(name + ": " + actionSequence[actionID]);
+        //    switch (actionSequence[actionID])
+        //    {
+        //        //idle
+        //        case 0:
+        //            {
+        //                StartCoroutine("IdleState");
+        //            }
+        //            break;
+        //        //ready
+        //        case 1:
+        //            {
+        //                StartCoroutine("ReadyState");
+        //            }
+        //            break;
+        //        //attack
+        //        case 2:
+        //            {
+        //                //                   Hit();
+        //                StartCoroutine("AttackState");
 
-    //序列帧处理，每一拍处理当前的怪兽序列
-    public void Action()
-    {
-        //        Debug.Log("AI:action"+ actionID);
-        if (actionID >= 0)
-        {
-            //Debug.Log(name + ": " + actionSequence[actionID]);
-            switch (actionSequence[actionID])
-            {
-                //idle
-                case 0:
-                    {
-                        StartCoroutine("IdleState");
-                    }
-                    break;
-                //ready
-                case 1:
-                    {
-                        StartCoroutine("ReadyState");
-                    }
-                    break;
-                //attack
-                case 2:
-                    {
-                        //                   Hit();
-                        StartCoroutine("AttackState");
-
-                    }
-                    break;
-            }
-        }
+        //            }
+        //            break;
+        //    }
+        //}
 
 
         //    actionID = (actionID + 1) % actionSequence.Length;
-    }
+    //}
 
     override public void Damage(int dDamage)
     {
@@ -133,24 +140,24 @@ public class AI : Character
     }
     IEnumerator ReadyState()
     {
-        float dTime = 0f;
+        //float dTime = 0f;
         spriteRenderer.sprite = (Sprite)Resources.Load("Animation/" + enemyID.ToString() + "/spr_ready", typeof(Sprite));
 
-        if (isDashable)
-        {
-            yield return new WaitForSeconds(BarController.Instance.secPerBeat * 0.25f);
-            spriteRenderer.sprite = (Sprite)Resources.Load("Animation/" + enemyID.ToString() + "/spr_dash", typeof(Sprite));
-            while (dTime < (BarController.Instance.secPerBeat * 0.75f))
-            {
-                transform.position = originPosition + (mTarget.transform.position - originPosition) * dTime / (BarController.Instance.secPerBeat);
-                dTime += Time.deltaTime;
-                yield return new WaitForSeconds(Time.deltaTime);
-            }
-        }
-        else
-        {
+        //if (isDashable)
+        //{
+        //    yield return new WaitForSeconds(BarController.Instance.secPerBeat * 0.25f);
+        //    spriteRenderer.sprite = (Sprite)Resources.Load("Animation/" + enemyID.ToString() + "/spr_dash", typeof(Sprite));
+        //    while (dTime < (BarController.Instance.secPerBeat * 0.75f))
+        //    {
+        //        transform.position = originPosition + (mTarget.transform.position - originPosition) * dTime / (BarController.Instance.secPerBeat);
+        //        dTime += Time.deltaTime;
+        //        yield return new WaitForSeconds(Time.deltaTime);
+        //    }
+        //}
+        //else
+        //{
             yield return 0;
-        }
+        //}
     }
     IEnumerator DamagedState()
     {

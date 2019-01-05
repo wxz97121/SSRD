@@ -4,11 +4,14 @@ using UnityEngine;
 
 //统一控制局内
 public class SuperController : MonoBehaviour {
-    public bool mEndLock_energy = false;
+
+    public LevelData levelData;
     //评价控制(评价控制还没改成全局控制)
     public CommentController commentController = null;
     public UISkillTipBarController skillTipBarController = null;
-
+    //谱子
+    public OneSongScore score;
+    
 
     static SuperController _instance;
     public static SuperController Instance
@@ -24,7 +27,6 @@ public class SuperController : MonoBehaviour {
 
 
 
-
     }
 
 
@@ -34,9 +36,8 @@ public class SuperController : MonoBehaviour {
         skillTipBarController = GameObject.Find("SkillTipArea").GetComponent<UISkillTipBarController>();
 
 
-        LevelData.Instance.ReadScoreDatas();
-
-        LevelData.Instance.ReadSkillDatas();
+        ReadLevelDatas();
+        ReadSkillDatas();
 
 
         skillTipBarController.InitSkillTipBarArea();
@@ -57,7 +58,7 @@ public class SuperController : MonoBehaviour {
         {
             Debug.Log("INPUT M");
 
-            DuelController.Instance.ShowAction(actionType.Collect);
+            InputSequenceController.Instance.CollectEnergy();
         }
         if (Input.GetKeyDown(KeyCode.Z))
         {
@@ -70,8 +71,35 @@ public class SuperController : MonoBehaviour {
 
             InputSequenceController.Instance.CalcSkillInput(Note.NoteType.inputSnare);
         }
+    }
 
+    public void ReadSkillDatas()
+    {
+        List<Skill> playerSkills = new List<Skill>
+        {
+            new Skill("testSkill_00X_ATTACK"),
+            new Skill("testSkill_0ZX_DEFEND"),
+            new Skill("testSkill_ZZX_SUPERATTACK"),
+            new Skill("testSkill_0Z0ZX_HEAL"),
+            new Skill("testSkill_0Z0ZZX_ULTI")
+        };
+        Player.Instance.skills = new List<Skill>();
 
+        Player.Instance.skills = playerSkills;
+        InputSequenceController.Instance.skills = Player.Instance.skills;
+        InputSequenceController.Instance.availableSkills = InputSequenceController.Instance.skills;
 
     }
+
+    public void ReadLevelDatas()
+    {
+        levelData = Resources.Load("Data/Level/testLevel") as LevelData;
+
+        //Debug.Log("leveldata" + levelData.name);
+        //Debug.Log("scoredata" + levelData.scoreData.name);
+
+        score = OneSongScore.ReadScoreData(levelData.scoreData);
+
+    }
+
 }

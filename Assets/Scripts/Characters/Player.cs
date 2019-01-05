@@ -92,13 +92,7 @@ public class Player : Character {
 
     }
 
-    override public void Defense()
-    {
-        base.Defense();
-        animator.Play("player_defense", 0);
-        SoundController.Instance.PlayAudioEffect("TOM");
 
-    }
 
     override public void Damage(int dDamage)
     {

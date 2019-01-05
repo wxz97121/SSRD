@@ -68,12 +68,8 @@ public class RhythmController : MonoBehaviour
         BpmCalc();
         //获取歌曲开始播放的时间点
         songStartTime = (float)AudioSettings.dspTime;
-        Debug.Log("secPerBeat" + secPerBeat);
-        Debug.Log("song length" + LevelData.Instance.score.bgmusic.length);
 
-        Debug.Log("song beats===" + LevelData.Instance.score.bgmusic.length / secPerBeat);
-
-        SoundController.Instance.PlayBgMusic(LevelData.Instance.score.bgmusic);
+        SoundController.Instance.PlayBgMusic(SuperController.Instance.score.bgmusic);
 
     }
     #endregion
@@ -206,7 +202,7 @@ public class RhythmController : MonoBehaviour
         if (songPos > 32 * secPerBeat * (1 + songPlayedTimes))
         {
             Debug.Log("replay");
-            SoundController.Instance.PlayBgMusic(LevelData.Instance.score.bgmusic);
+            SoundController.Instance.PlayBgMusic(SuperController.Instance.score.bgmusic);
             songPlayedTimes++;
         }
     }
@@ -228,19 +224,22 @@ public class RhythmController : MonoBehaviour
         //everybody beat!
         if (beatNum == 0)
         {
-            DuelController.Instance.EnemyRespawn();
         }
 
         if (beatNum == 3)
         {
+            DuelController.Instance.EnemyRespawn();
+
             AI nowAI = null;
             if (Player.Instance.mTarget)
                 nowAI = (Player.Instance.mTarget.GetComponent<AI>()) as AI;
             if (nowAI) nowAI.action();
+
         }
 
         Player.Instance.BuffBeat(beatNum);
-        Player.Instance.mTarget.GetComponent<AI>().BuffBeat(beatNum);
+        if(Player.Instance.mTarget!=null)
+            Player.Instance.mTarget.GetComponent<AI>().BuffBeat(beatNum);
 
 
     }

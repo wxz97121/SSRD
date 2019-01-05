@@ -11,8 +11,7 @@ public class BattleController : MonoBehaviour {
 
     //敌人的ui模板
     public GameObject enemyUIPrefab;
-    //没用
-    public bool resultLock = false;
+
 
     //简易的敌人生成系统
     //敌人总数

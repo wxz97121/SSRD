@@ -39,6 +39,38 @@ public class InputSequenceController : MonoBehaviour
 
     }
 
+
+    //吃能量
+    public void CollectEnergy()
+    {
+
+
+
+
+        //Debug.Log("------------------------");
+
+        //Debug.Log("START TRYING COLLECT");
+        //Debug.Log("currentEnergyNotes.Count:" + UIBarController.Instance.currentEnergyNotes.Count);
+        //Debug.Log("comment value:" + RhythmController.InputComment(UIBarController.Instance.currentEnergyNotes));
+
+        if (RhythmController.InputComment(UIBarController.Instance.currentEnergyNotes) < 2)
+        {
+            Player.Instance.AddMp(1);
+            SoundController.Instance.PlayAudioEffect("HIHAT");
+
+            UIBarController.Instance.currentEnergyNotes[0].note.GetComponent<VFX>().StartCoroutine("FadeOutLarger");
+            UIBarController.Instance.currentEnergyNotes.RemoveAt(0);
+
+            //      Debug.Log("2");
+
+        }
+        //
+
+
+    }
+
+
+
     public void CalcSkillInput(Note.NoteType inputType)
     {
         //        Debug.Log("UIBarController.Instance.playingBarPosInBeats!" + UIBarController.Instance.playingBarPosInBeats);

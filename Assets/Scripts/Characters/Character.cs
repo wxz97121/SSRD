@@ -42,7 +42,7 @@ public class Character : MonoBehaviour
     //蓄力列表(控制蓄力时候输出序列)
     public List<int> mChargeList = new List<int>();
     //上一次行动(暂时用)
-    public actionType lastAction = actionType.None;
+//    public actionType lastAction = actionType.None;
     //这一拍有没有被击中
     public bool getHit = false;
     //蓄力动画
@@ -68,35 +68,14 @@ public class Character : MonoBehaviour
     //每次行动之前的初始化:判断蓄力是否断，清空护盾和被击
     virtual public void Initialize()
     {
-        if (lastAction == actionType.None)
-        {
-            ChargeBreak(0);
-        }
-        if (mTarget == null)
-        {
-            ChargeBreak(0);
-        }
-        //Debug.Log(mTarget);
-        lastAction = actionType.None;
-        Shield = 0;
+
+
         getHit = false;
 
 
 
     }
-    //蓄力(目前只会在蓄力列表加一个简单的标识)
-    virtual public bool Charge()
-    {
-        if (mChargeList.Count == 0)
-        {
-            chargeVfx = (GameObject)Instantiate(Resources.Load("VFX/Charge"), transform.position + new Vector3(-1.2f, 0.5f, 0), Quaternion.identity);
-        }
 
-        mChargeList.Add(BarController.Instance.nextNoteIndex_main);
-
-        lastAction = actionType.Charge;
-        return true;
-    }
     //加灵力
     virtual public void AddMp(int dMp)
     {
@@ -131,7 +110,7 @@ public class Character : MonoBehaviour
 
             }
 
-        lastAction = actionType.Hit;
+//        lastAction = actionType.Hit;
         return true;
     }
     //攻击失败
@@ -149,16 +128,6 @@ public class Character : MonoBehaviour
         }
     }
 
-    //防御
-    virtual public void Defense()
-    {
-        if (mChargeList.Count > 0)
-        {
-            ChargeBreak(0);
-        }
-        Shield += 1;
-        lastAction = actionType.Defense;
-    }
     //死亡
     virtual public void Die()
     {
@@ -240,7 +209,7 @@ public class Character : MonoBehaviour
             }
         }
         buffs = remainbuffs;
-        Debug.Log("buff count="+buffs.Count);
+//        Debug.Log("buff count="+buffs.Count);
 
     }
 }
