@@ -12,10 +12,9 @@ public class AI : Character
 
     //敌人当前的动作序号(在序列的哪一拍)
     public int actionID = 0;
-    //敌人的动作序列(控制每一拍的动作)
-    public int[] actionSequence;
+
     //当前的技能列表
-    public List<EnemySkill> skillSequence = new List<EnemySkill>();
+    public List<string> skillSequence = new List<string>();
     public Animator animator;
 
     //敌人编号(目前控制外观模型)
@@ -48,11 +47,12 @@ public class AI : Character
         {
             EnemySkill _skill = new EnemySkill("Data/AI/" + m_name + "/Skill/" + item.name);
             _skillDictionary.Add(_skill.m_name, _skill);
+            Debug.Log("ADD SKILL TO DIC:"+ _skill.m_name);
         }
 
         //读取技能顺序表
-        foreach (var s in data.actionSequence)
-            skillSequence.Add(new EnemySkill("Data/AI/" + m_name + "/Skill/"+s));
+        skillSequence = data.actionSequence;
+        Debug.Log("skillSequence:"+ skillSequence);
 
         //初始化动作序号,下一拍到0
         actionID = 0;
@@ -99,7 +99,9 @@ public class AI : Character
     public void Action()
     {
         Debug.Log("ACTION:" + actionID);
-        skillSequence[actionID].EffectFunction(this);
+        Debug.Log("SKILL NAME:" + skillSequence[actionID]);
+        _skillDictionary[skillSequence[actionID]].EffectFunction(this);
+
         actionID = (actionID + 1) % skillSequence.Count;
     }
 

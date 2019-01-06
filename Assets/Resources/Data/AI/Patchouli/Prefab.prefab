@@ -134,7 +134,7 @@ MonoBehaviour:
   m_name: 
   data: {fileID: 11400000, guid: 10102f3c4d1414a8c855f67f0724fa9f, type: 2}
   actionID: 0
-  actionSequence: 
+  skillSequence: []
   animator: {fileID: 0}
   enemyID: 0
   spriteRenderer: {fileID: 0}
