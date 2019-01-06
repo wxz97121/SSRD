@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 250233348db9d4d5295df9f54acde8e5, type: 3}
-  m_Name: testAI
+  m_Script: {fileID: 11500000, guid: f59a38594d31d499791efa1414a8881c, type: 3}
+  m_Name: ready1
   m_EditorClassIdentifier: 
-  actionSequence:
-  - testSkill_00X_ATTACK
-  - testSkill_ZZX_SUPERATTACK
+  _name: ready1
+  Effect: ANI_ready1

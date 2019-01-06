@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AI_Patchouli : AI
+public class AI_Slime : AI
 {
     //记录当前阶段
     public int phaseID = 0;
@@ -42,6 +42,8 @@ public class AI_Patchouli : AI
                 }
                 break;
             case 1:
+                Debug.Log("action ID:"+actionID);
+                Debug.Log("time:" + RhythmController.Instance.songPosInBeats);
                 _skillDictionary[skillSequence[actionID]].EffectFunction(this);
                 actionID++;
                 if (actionID >= skillSequence.Count)

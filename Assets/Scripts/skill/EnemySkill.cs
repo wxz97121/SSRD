@@ -46,7 +46,6 @@ public class EnemySkill
         if (!data)
         {
             Debug.Log(DataDir);
- //          Debug.Log("Data / AI / Deadman / Skill / idle");
             Debug.Log("这个路径没有EnemySkillData！！");
             Debug.Break();
         }

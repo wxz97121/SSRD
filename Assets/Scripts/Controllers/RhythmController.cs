@@ -117,22 +117,8 @@ public class RhythmController : MonoBehaviour
         //        Debug.Log("distime="+ AudioSettings.dspTime+ "    startTime=" + songStartTime+ "    songPos=" +songPos+   "beats ="+songPosInBeats);
 
         //判定是否播放第N拍，并告知各种物体POGO起来！
-        //第三拍要特殊处理
-        // Debug.Log("barPosInBeats:  " + UIBarController.Instance.barPosInBeats + ",beatIndex=  " + beatIndex);//        print(UIBarController.Instance.playingBarPosInBeats);
-        if (beatIndex == 2)
-        {
-
-            if (UIBarController.Instance.playingBarPosInBeats >= beatIndex + commentGoodTime)
-            {
-//                print("on beat" + beatIndex.ToString());
-
-                OnBeat(beatIndex);
-
-                beatIndex++;
-
-            }
-        }
-        else if (UIBarController.Instance.playingBarPosInBeats >= beatIndex)
+  
+        if (UIBarController.Instance.playingBarPosInBeats >= beatIndex)
         {
             if (UIBarController.Instance.playingBarPosInBeats > 3 && beatIndex < 3)
             {

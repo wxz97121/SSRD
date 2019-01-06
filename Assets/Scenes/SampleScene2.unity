@@ -897,6 +897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394d1ec669f6842a9ae40d3d58739dc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BGM: {fileID: 0}
   songStartTime: 8517.056
   secPerBeat: 0.85714287
   songPlayedTimes: 0

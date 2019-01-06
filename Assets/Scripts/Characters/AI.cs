@@ -52,7 +52,7 @@ public class AI : Character
 
         //读取技能顺序表
         skillSequence = data.actionSequence;
-        Debug.Log("skillSequence:"+ skillSequence);
+//        Debug.Log("skillSequence:"+ skillSequence);
 
         //初始化动作序号,下一拍到0
         actionID = 0;
