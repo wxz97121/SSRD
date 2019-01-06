@@ -10,7 +10,8 @@ public class Player : Character {
     static Player _instance;
 
     public Animator animator;
-
+    //当前的技能列表
+    public List<Skill> skills = new List<Skill>();
     //魂点数 魂等级
     public int soulPoint = 0;
     public int soulLevel = 0;
@@ -82,7 +83,7 @@ public class Player : Character {
     override public bool Hit(int dDamage)
     {
         animator.Play("player_slash",0);
-        return base.Hit( dDamage);
+        return base.Hit(dDamage);
     }
 
     override public void HitFail (){

@@ -8,7 +8,7 @@ public class EnemySkill
     public string m_name;
     private string EffectStr;
     //输入方式
-    public void EffectFunction(Character m_Char)
+    public void EffectFunction(AI m_Char)
     {
 
         string[] EffectStrSplit = EffectStr.Split(',');
@@ -26,6 +26,7 @@ public class EnemySkill
                     ATK(int.Parse(InstancedEff[1]), m_Char);
                     break;
                 case ("ANI"):
+                    ANI(InstancedEff[1], m_Char);
                     break;
                 case ("HEL"):
                     HEL(int.Parse(InstancedEff[1]), m_Char);
@@ -41,19 +42,19 @@ public class EnemySkill
 
     public EnemySkill(string DataDir)
     {
-        DataDir = "Data/EnemySkill/" + DataDir;
-        SkillData data = Resources.Load(DataDir) as SkillData;
+        EnemySkillData data = Resources.Load(DataDir) as EnemySkillData;
         if (!data)
         {
-            Debug.Log("这个路径没有SkillData！！");
+            Debug.Log(DataDir);
+ //          Debug.Log("Data / AI / Deadman / Skill / idle");
+            Debug.Log("这个路径没有EnemySkillData！！");
             Debug.Break();
         }
         m_name = data._name;
         EffectStr = data.Effect;
 
     }
-    //public UnityEvent EffectEvent;
-    //public List<Effect> effects;
+
 
     private void ATK(int dDamage, Character Char)
     {
@@ -78,6 +79,12 @@ public class EnemySkill
         };
         Char.buffs.Add(defend);
         defend.BuffAdded();
+    }
 
+    private void ANI(string aniname, AI Char)
+    {
+        Debug.Log(aniname);
+
+        Char.animator.Play(aniname, 0);
     }
 }

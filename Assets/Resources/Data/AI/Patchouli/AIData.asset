@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: AIData
   m_EditorClassIdentifier: 
   actionSequence:
-  - ANI_idle
-  - ATK_1
+  - idle
+  - idle
+  - idle
+  - idle
+  - ready1
+  - ready1
+  - ready1
+  - attack1

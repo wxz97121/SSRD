@@ -5,12 +5,17 @@ using UnityEngine;
 //敌人AI，角色派生类
 public class AI : Character
 {
+    public string m_name;
     public AIData data;
+
+    private Dictionary<string, EnemySkill> _skillDictionary;
+
     //敌人当前的动作序号(在序列的哪一拍)
     public int actionID = 0;
     //敌人的动作序列(控制每一拍的动作)
     public int[] actionSequence;
-
+    //当前的技能列表
+    public List<EnemySkill> skillSequence = new List<EnemySkill>();
     public Animator animator;
 
     //敌人编号(目前控制外观模型)
@@ -30,15 +35,24 @@ public class AI : Character
     {
         //默认初始化
         base.Start();
-
-
-
     }
 
     public void Init()
     {
+        _skillDictionary = new Dictionary<string, EnemySkill>();
+
+        EnemySkillData[] skillArray = Resources.LoadAll<EnemySkillData>("Data/AI/"+m_name+"/Skill");
+
+        //读取文件夹中的所有技能，存入字典
+        foreach (EnemySkillData item in skillArray)
+        {
+            EnemySkill _skill = new EnemySkill("Data/AI/" + m_name + "/Skill/" + item.name);
+            _skillDictionary.Add(_skill.m_name, _skill);
+        }
+
+        //读取技能顺序表
         foreach (var s in data.actionSequence)
-            skills.Add(new Skill(s));
+            skillSequence.Add(new EnemySkill("Data/AI/" + m_name + "/Skill/"+s));
 
         //初始化动作序号,下一拍到0
         actionID = 0;
@@ -49,8 +63,7 @@ public class AI : Character
 
         animator = GetComponent<Animator>();
 
-        //开始默认的待机状态
-        StartCoroutine("IdleState");
+
         //初始化敌人模型位置
         originPosition = transform.position;
     }
@@ -73,56 +86,21 @@ public class AI : Character
 
 
 
-    ////序列帧处理，每一拍处理当前的怪兽序列
-    //public void Action()
-    //{
-        ////        Debug.Log("AI:action"+ actionID);
-        //if (actionID >= 0)
-        //{
-        //    //Debug.Log(name + ": " + actionSequence[actionID]);
-        //    switch (actionSequence[actionID])
-        //    {
-        //        //idle
-        //        case 0:
-        //            {
-        //                StartCoroutine("IdleState");
-        //            }
-        //            break;
-        //        //ready
-        //        case 1:
-        //            {
-        //                StartCoroutine("ReadyState");
-        //            }
-        //            break;
-        //        //attack
-        //        case 2:
-        //            {
-        //                //                   Hit();
-        //                StartCoroutine("AttackState");
-
-        //            }
-        //            break;
-        //    }
-        //}
-
-
-        //    actionID = (actionID + 1) % actionSequence.Length;
-    //}
-
+   
     override public void Damage(int dDamage)
     {
         base.Damage(dDamage);
-        if (Hp > 0)
-            StartCoroutine("DamagedState");
+          //  StartCoroutine("DamagedState");
     }
 
 
 
 
-    public void action()
+    public void Action()
     {
-        skills[actionID].EffectFunction(this);
-        actionID = (actionID + 1) % skills.Count;
+        Debug.Log("ACTION:" + actionID);
+        skillSequence[actionID].EffectFunction(this);
+        actionID = (actionID + 1) % skillSequence.Count;
     }
 
 
@@ -130,44 +108,11 @@ public class AI : Character
 
 
 
-    //下面是几个状态，只影响动画
-    IEnumerator IdleState()
-    {
-        transform.position = originPosition;
-        spriteRenderer.sprite = (Sprite)Resources.Load("Animation/" + enemyID.ToString() + "/spr_idle", typeof(Sprite));
-        yield return 0;
 
-    }
-    IEnumerator ReadyState()
-    {
-        //float dTime = 0f;
-        spriteRenderer.sprite = (Sprite)Resources.Load("Animation/" + enemyID.ToString() + "/spr_ready", typeof(Sprite));
 
-        //if (isDashable)
-        //{
-        //    yield return new WaitForSeconds(BarController.Instance.secPerBeat * 0.25f);
-        //    spriteRenderer.sprite = (Sprite)Resources.Load("Animation/" + enemyID.ToString() + "/spr_dash", typeof(Sprite));
-        //    while (dTime < (BarController.Instance.secPerBeat * 0.75f))
-        //    {
-        //        transform.position = originPosition + (mTarget.transform.position - originPosition) * dTime / (BarController.Instance.secPerBeat);
-        //        dTime += Time.deltaTime;
-        //        yield return new WaitForSeconds(Time.deltaTime);
-        //    }
-        //}
-        //else
-        //{
-            yield return 0;
-        //}
-    }
-    IEnumerator DamagedState()
-    {
-        yield return new WaitForSeconds(RhythmController.Instance.secPerBeat * 0.25f);
-    }
-    IEnumerator AttackState()
-    {
-        spriteRenderer.sprite = (Sprite)Resources.Load("Animation/" + enemyID.ToString() + "/spr_attack", typeof(Sprite));
-        yield return 0;
-    }
+
+
+
 
 
 }

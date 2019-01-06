@@ -6,7 +6,7 @@ using TMPro;
 //战斗逻辑
 public class DuelController : MonoBehaviour {
 
-    public string[] enemyList;
+    public List<string> enemyList;
     //敌人总数
     public int enemyNum = 0;
     //当前敌人序号
@@ -76,7 +76,17 @@ public class DuelController : MonoBehaviour {
 
     public void AddEnemy()
     {
-       GameObject instEnemy = Instantiate((GameObject)Resources.Load("Prefab/Enemy/" + enemyIndex.ToString(), typeof(GameObject)), new Vector3(5, 0, 0), Quaternion.identity);
+        GameObject instEnemy = Instantiate((GameObject)Resources.Load("Data/AI/" + enemyList[enemyIndex] + "/Prefab", typeof(GameObject)), new Vector3(5, 0, 0), Quaternion.identity);
+        GameObject instEnemyUI = Instantiate(enemyUIPrefab, UICanvas);
+        instEnemyUI.transform.localPosition += new Vector3(Screen.width / 4, Screen.height / 4, 0);
+        instEnemy.GetComponent<AI>().UIHpNum = instEnemyUI.transform.Find("HpNum").GetComponent<TextMeshProUGUI>();
+        instEnemy.GetComponent<AI>().UIMpNum = instEnemyUI.transform.Find("MpNum").GetComponent<TextMeshProUGUI>();
+        instEnemy.GetComponent<AI>().m_name = enemyList[enemyIndex];
+        instEnemy.GetComponent<AI>().Init();
+
+        Player.Instance.enemyList.Add(instEnemy);
+        Player.Instance.mTarget = instEnemy;
+        enemyIndex = (enemyIndex + 1) % enemyList.Count;
 
     }
 

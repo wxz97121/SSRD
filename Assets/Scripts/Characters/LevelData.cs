@@ -8,5 +8,6 @@ using UnityEngine;
 public class LevelData : ScriptableObject
 {
     public ScoreData scoreData;
-    public string[] enemyList;
+    public List<string> enemyList;
+    public AudioClip BGM;
 }

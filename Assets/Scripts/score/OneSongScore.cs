@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class OneSongScore
 {
-    public AudioClip bgmusic;
     public List<OneBarScore> prelude;
     public List<OneBarScore> mainlude;
 
@@ -69,7 +68,6 @@ public class OneSongScore
 
         }
 
-        _score.bgmusic = data.bgmusic;
 
         return _score;
     }

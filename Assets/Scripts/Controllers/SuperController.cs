@@ -56,7 +56,7 @@ public class SuperController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.M))
         {
-            Debug.Log("INPUT M");
+//            Debug.Log("INPUT M");
 
             InputSequenceController.Instance.CollectEnergy();
         }
@@ -97,9 +97,9 @@ public class SuperController : MonoBehaviour {
 
         //Debug.Log("leveldata" + levelData.name);
         //Debug.Log("scoredata" + levelData.scoreData.name);
-
+        RhythmController.Instance.BGM = levelData.BGM;
         score = OneSongScore.ReadScoreData(levelData.scoreData);
-
+        DuelController.Instance.enemyList = levelData.enemyList;
     }
 
 }

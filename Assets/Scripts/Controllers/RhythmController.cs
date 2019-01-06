@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RhythmController : MonoBehaviour
 {
+    public AudioClip BGM;
 
     //歌曲开始时间(用来处理当前节奏)
     [HideInInspector] public float songStartTime;
@@ -69,7 +70,7 @@ public class RhythmController : MonoBehaviour
         //获取歌曲开始播放的时间点
         songStartTime = (float)AudioSettings.dspTime;
 
-        SoundController.Instance.PlayBgMusic(SuperController.Instance.score.bgmusic);
+        SoundController.Instance.PlayBgMusic(BGM);
 
     }
     #endregion
@@ -202,7 +203,7 @@ public class RhythmController : MonoBehaviour
         if (songPos > 32 * secPerBeat * (1 + songPlayedTimes))
         {
             Debug.Log("replay");
-            SoundController.Instance.PlayBgMusic(SuperController.Instance.score.bgmusic);
+            SoundController.Instance.PlayBgMusic(BGM);
             songPlayedTimes++;
         }
     }
@@ -233,7 +234,7 @@ public class RhythmController : MonoBehaviour
             AI nowAI = null;
             if (Player.Instance.mTarget)
                 nowAI = (Player.Instance.mTarget.GetComponent<AI>()) as AI;
-            if (nowAI) nowAI.action();
+            if (nowAI) nowAI.Action();
 
         }
 

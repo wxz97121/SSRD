@@ -28,8 +28,7 @@ public class Character : MonoBehaviour
     //当前装备着的卷轴
     public Equipment currentScroll;
 
-    //当前的技能列表
-    public List<Skill> skills = new List<Skill>();
+
     //当前BUFF列表
     public List<Buff> buffs = new List<Buff>();
 
@@ -139,26 +138,14 @@ public class Character : MonoBehaviour
         if (Hp > dDamage)
         {
             Hp -= dDamage;
-            ChargeBreak(0);
         }
         else
         {
             Die();
         }
     }
-    //判断蓄力断裂：一种是被打断，一种是使用了招数
-    //type:0-fail,1-success 
-    virtual public void ChargeBreak(int type)
-    {
-        Destroy(chargeVfx.gameObject);
-        mChargeList.Clear();
-    }
 
-    //每个小节结束自动调用
-    public virtual void OnTurnEnd()
-    {
-        ChargeBreak(0);
-    }
+
 
     //计算当前攻击力
     public int getCurrentATK()

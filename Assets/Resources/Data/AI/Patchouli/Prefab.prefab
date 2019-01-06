@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4165937445732966770}
   - component: {fileID: 8170297766778554118}
   m_Layer: 0
-  m_Name: ENM_Patchouli
+  m_Name: Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6538668489031249933}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.86, y: 0.22, z: 0}
   m_LocalScale: {x: 4.0860667, y: 4.151971, z: 4.39362}
   m_Children: []
   m_Father: {fileID: 0}
@@ -131,6 +131,7 @@ MonoBehaviour:
   mChargeList: 
   getHit: 0
   chargeVfx: {fileID: 0}
+  m_name: 
   data: {fileID: 11400000, guid: 10102f3c4d1414a8c855f67f0724fa9f, type: 2}
   actionID: 0
   actionSequence: 

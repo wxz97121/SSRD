@@ -43,10 +43,6 @@ public class InputSequenceController : MonoBehaviour
     //吃能量
     public void CollectEnergy()
     {
-
-
-
-
         //Debug.Log("------------------------");
 
         //Debug.Log("START TRYING COLLECT");
