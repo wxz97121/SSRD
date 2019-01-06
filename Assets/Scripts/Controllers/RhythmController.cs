@@ -214,13 +214,16 @@ public class RhythmController : MonoBehaviour
         //everybody beat!
         if (beatNum == 0)
         {
+
             if (nowAI) nowAI.Action();
 
         }
 
         if (beatNum == 1)
         {
+
             if (nowAI) nowAI.Action();
+
 
         }
 
@@ -232,6 +235,7 @@ public class RhythmController : MonoBehaviour
 
         if (beatNum == 3)
         {
+
             DuelController.Instance.EnemyRespawn();
 
 
@@ -243,7 +247,8 @@ public class RhythmController : MonoBehaviour
         if(Player.Instance.mTarget!=null)
             Player.Instance.mTarget.GetComponent<AI>().BuffBeat(beatNum);
 
-
+        if (Player.Instance.animator.GetCurrentAnimatorStateInfo(0).IsName("player_idle"))
+            Player.Instance.animator.Play("idlebeat", 0, 0);
     }
     #endregion
 

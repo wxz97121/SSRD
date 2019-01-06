@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6b70e2a4f42f242a5ad0969a5b00022f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d86a041fc619f4c7293e6c933ae1242e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -112,8 +112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd2d8c7f0eeb4845ae214eea7fd431c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 5
-  Hp: 5
+  maxHp: 10
+  Hp: 10
   maxMp: 5
   Mp: 0
   ATK: 2
@@ -140,3 +140,4 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   originPosition: {x: 5, y: 0, z: 0}
   lootMoney: 1
+  phaseID: 0

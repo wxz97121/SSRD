@@ -17,4 +17,5 @@ MonoBehaviour:
   - Deadman
   - Slime
   - Patchouli
+  - Wizard
   BGM: {fileID: 8300000, guid: 100dd0143e85c4868916921f05b39d03, type: 3}
