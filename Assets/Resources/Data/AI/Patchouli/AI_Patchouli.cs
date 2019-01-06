@@ -14,4 +14,12 @@ public class AI_Patchouli : AI
     {
         base.Start();
     }
+
+    public override void Action()
+    {
+        base.Action();
+        _skillDictionary[skillSequence[actionID]].EffectFunction(this);
+
+        actionID = (actionID + 1) % skillSequence.Count;
+    }
 }

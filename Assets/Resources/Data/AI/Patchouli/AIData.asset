@@ -14,10 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionSequence:
   - idle
-  - idle
-  - idle
-  - idle
-  - ready1
-  - ready1
   - ready1
   - attack1

@@ -8,7 +8,7 @@ public class AI : Character
     public string m_name;
     public AIData data;
 
-    private Dictionary<string, EnemySkill> _skillDictionary;
+    public Dictionary<string, EnemySkill> _skillDictionary;
 
     //敌人当前的动作序号(在序列的哪一拍)
     public int actionID = 0;
@@ -96,13 +96,9 @@ public class AI : Character
 
 
 
-    public void Action()
+    virtual public void Action()
     {
-        Debug.Log("ACTION:" + actionID);
-        Debug.Log("SKILL NAME:" + skillSequence[actionID]);
-        _skillDictionary[skillSequence[actionID]].EffectFunction(this);
 
-        actionID = (actionID + 1) % skillSequence.Count;
     }
 
 

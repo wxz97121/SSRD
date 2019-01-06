@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f59a38594d31d499791efa1414a8881c, type: 3}
   m_Name: ready1
   m_EditorClassIdentifier: 
-  _name: ready
+  _name: ready1
   Effect: ANI_ready1
