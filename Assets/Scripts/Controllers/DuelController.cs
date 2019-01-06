@@ -60,19 +60,7 @@ public class DuelController : MonoBehaviour {
 
     }
 
-    //public void AddEnemy()
-    //{
-    //    GameObject instEnemy = Instantiate((GameObject)Resources.Load("Prefab/Enemy/" + enemyIndex.ToString(), typeof(GameObject)), new Vector3(5, 0, 0), Quaternion.identity);
-    //    enemyIndex = (enemyIndex + 1) % enemyNum;
-    //    GameObject instEnemyUI = Instantiate(enemyUIPrefab, UICanvas);
-    //    instEnemyUI.transform.localPosition += new Vector3(Screen.width / 4, Screen.height / 4, 0);
-    //    instEnemy.GetComponent<AI>().UIHpNum = instEnemyUI.transform.Find("HpNum").GetComponent<TextMeshProUGUI>();
-    //    instEnemy.GetComponent<AI>().UIMpNum = instEnemyUI.transform.Find("MpNum").GetComponent<TextMeshProUGUI>();
-    //    instEnemy.GetComponent<AI>().Init();
 
-    //    Player.Instance.enemyList.Add(instEnemy);
-    //    Player.Instance.mTarget = instEnemy;
-    //}
 
     public void AddEnemy()
     {

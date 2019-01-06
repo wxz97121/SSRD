@@ -36,7 +36,7 @@ public class AI : Character
         base.Start();
     }
 
-    public void Init()
+    public virtual void Init()
     {
         _skillDictionary = new Dictionary<string, EnemySkill>();
 

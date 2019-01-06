@@ -83,7 +83,7 @@ public class EnemySkill
 
     private void ANI(string aniname, AI Char)
     {
-        Debug.Log(aniname);
+//        Debug.Log(aniname);
 
         Char.animator.Play(aniname, 0);
     }

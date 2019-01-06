@@ -222,18 +222,33 @@ public class RhythmController : MonoBehaviour
     #region 普通节拍触发事件OnNormalBeat
     public void OnBeat(int beatNum)
     {
+        AI nowAI = null;
+        if (Player.Instance.mTarget)
+            nowAI = (Player.Instance.mTarget.GetComponent<AI>()) as AI;
         //everybody beat!
         if (beatNum == 0)
         {
+            if (nowAI) nowAI.Action();
+
+        }
+
+        if (beatNum == 1)
+        {
+            if (nowAI) nowAI.Action();
+
+        }
+
+        if (beatNum == 2)
+        {
+            if (nowAI) nowAI.Action();
+
         }
 
         if (beatNum == 3)
         {
             DuelController.Instance.EnemyRespawn();
 
-            AI nowAI = null;
-            if (Player.Instance.mTarget)
-                nowAI = (Player.Instance.mTarget.GetComponent<AI>()) as AI;
+
             if (nowAI) nowAI.Action();
 
         }

@@ -21,7 +21,7 @@ public class Buff
         if (remainBeats > 0&&(RhythmController.Instance.songPosInBeats-activateTime>=1- RhythmController.Instance.commentGoodTime))
         {
             remainBeats--;
-            Debug.Log("BuffBeat,remainBeat="+ remainBeats);
+//            Debug.Log("BuffBeat,remainBeat="+ remainBeats);
         }
     }
 
