@@ -42,8 +42,8 @@ public class AI_Slime : AI
                 }
                 break;
             case 1:
-                Debug.Log("action ID:"+actionID);
-                Debug.Log("time:" + RhythmController.Instance.songPosInBeats);
+  //              Debug.Log("action ID:"+actionID);
+//                Debug.Log("time:" + RhythmController.Instance.songPosInBeats);
                 _skillDictionary[skillSequence[actionID]].EffectFunction(this);
                 actionID++;
                 if (actionID >= skillSequence.Count)

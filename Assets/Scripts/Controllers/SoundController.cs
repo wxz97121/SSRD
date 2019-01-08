@@ -56,11 +56,27 @@ public class SoundController : MonoBehaviour {
         }
     }
 
+
     //播放音乐
     public void PlayBgMusic(AudioClip audioClip)
     {
         audioSourceBgMusic.clip = audioClip;
+        audioSourceBgMusic.loop = true;
+        audioSourceBgMusic.Stop();
+
         audioSourceBgMusic.Play();
+        //audioSourceBgMusic.PlayScheduled(0);
+    }
+    //播放音乐
+    public void SetBGMTime(float time)
+    {
+        Debug.Log("secPerBeat=" + RhythmController.Instance.secPerBeat);
+        if (time < 0)
+            time = 0;
+        time = time % (RhythmController.Instance.secPerBeat*128);
+        audioSourceBgMusic.time=time;
+        Debug.Log("CHECK BGM TIME=" + time);
+        //audioSourceBgMusic.Play();
         //audioSourceBgMusic.PlayScheduled(0);
     }
 }

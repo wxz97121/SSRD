@@ -185,13 +185,10 @@ public class RhythmController : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         BeatUpdate();
-        if (songPos > 32 * secPerBeat * (1 + songPlayedTimes))
-        {
-            Debug.Log("replay");
-            SoundController.Instance.PlayBgMusic(BGM);
-            songPlayedTimes++;
-        }
+      //  ReplayBGM();
+
     }
 
 
@@ -203,11 +200,12 @@ public class RhythmController : MonoBehaviour
 
 
 
-    //TODO:针对关键节拍的输入判定，主要是蓄力和发招
 
     #region 普通节拍触发事件OnNormalBeat
     public void OnBeat(int beatNum)
     {
+        CheckBGM();
+
         AI nowAI = null;
         if (Player.Instance.mTarget)
             nowAI = (Player.Instance.mTarget.GetComponent<AI>()) as AI;
@@ -257,5 +255,20 @@ public class RhythmController : MonoBehaviour
     {
         //小节开始
         isCurBarAtFinalBeat = false;
+    }
+
+    //校对BGM
+    public void CheckBGM()
+    {
+        SoundController.Instance.SetBGMTime((float)(AudioSettings.dspTime - songStartTime));
+    }
+    public void ReplayBGM()
+    {
+        if ((float)(AudioSettings.dspTime - songStartTime) > 128 * secPerBeat * (1 + songPlayedTimes))
+        {
+            Debug.Log("replay");
+            songPlayedTimes++;
+            SoundController.Instance.PlayBgMusic(BGM);
+        }
     }
 }

@@ -47,7 +47,7 @@ public class AI : Character
         {
             EnemySkill _skill = new EnemySkill("Data/AI/" + m_name + "/Skill/" + item.name);
             _skillDictionary.Add(_skill.m_name, _skill);
-            Debug.Log("ADD SKILL TO DIC:"+ _skill.m_name);
+//            Debug.Log("ADD SKILL TO DIC:"+ _skill.m_name);
         }
 
         //读取技能顺序表
