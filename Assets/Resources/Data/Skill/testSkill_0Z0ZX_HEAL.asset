@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: testSkill_0Z0ZX_HEAL
   m_EditorClassIdentifier: 
   _name: HEAL
-  cost: 4
+  cost: 16
   inputSequence:
   - type: 21
     note: {fileID: 0}
