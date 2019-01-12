@@ -7,6 +7,8 @@ public class Buff_defend : Buff
     public override void BuffAdded()
     {
         base.BuffAdded();
+
+        //TODO :把播动画挪走！
         Player.Instance.animator.Play("player_defense", 0);
 
     }

@@ -11,7 +11,9 @@ public class SuperController : MonoBehaviour {
     public UISkillTipBarController skillTipBarController = null;
     //谱子
     public OneSongScore score;
-    
+
+    //TODO:大流程控制！
+    public int levelState;
 
     static SuperController _instance;
     public static SuperController Instance
@@ -24,9 +26,6 @@ public class SuperController : MonoBehaviour {
     private void Awake()
     {
         _instance = this;
-
-
-
     }
 
 
