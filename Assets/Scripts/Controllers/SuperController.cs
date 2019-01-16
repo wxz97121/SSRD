@@ -1,7 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+public enum GameState
+{
+    Wait,
+    Start,
+    End,
+    Pause
+}
 //统一控制局内
 public class SuperController : MonoBehaviour {
 
@@ -9,11 +16,15 @@ public class SuperController : MonoBehaviour {
     //评价控制(评价控制还没改成全局控制)
     public CommentController commentController = null;
     public UISkillTipBarController skillTipBarController = null;
+    public UIBarController uiBarController = null;
     //谱子
     public OneSongScore score;
 
     //TODO:大流程控制！
-    public int levelState;
+    public GameState state;
+    //主菜单UI
+    public Transform mainMenu;
+
 
     static SuperController _instance;
     public static SuperController Instance
@@ -33,16 +44,13 @@ public class SuperController : MonoBehaviour {
     void Start () {
         commentController = GameObject.Find("Comment").GetComponent<CommentController>();
         skillTipBarController = GameObject.Find("SkillTipArea").GetComponent<UISkillTipBarController>();
+        uiBarController = GameObject.Find("BarArea").GetComponent<UIBarController>();
 
 
         ReadLevelDatas();
         ReadSkillDatas();
 
-
-        skillTipBarController.InitSkillTipBarArea();
-        RhythmController.Instance.Reset();
-
-
+        state = GameState.Wait;
     }
 
     // Update is called once per frame
@@ -52,6 +60,10 @@ public class SuperController : MonoBehaviour {
 
     protected void UpdateInput()
     {
+        if (SuperController.Instance.state != GameState.Start)
+        {
+            return;
+        }
 
         if (Input.GetKeyDown(KeyCode.M))
         {
@@ -70,6 +82,39 @@ public class SuperController : MonoBehaviour {
 
             InputSequenceController.Instance.CalcSkillInput(Note.NoteType.inputSnare);
         }
+
+    }
+
+    public void NewGame()
+    {
+        mainMenu.gameObject.SetActive(false);
+        skillTipBarController.InitSkillTipBarArea();
+        RhythmController.Instance.Reset();
+        uiBarController.InitController();
+
+        state = GameState.Start;
+
+        Player.Instance.Reset();
+    }
+
+    public void GameOver()
+    {
+        //Debug.Log("Game Over");
+        state = GameState.End;
+        DuelController.Instance.ClearEnemy();
+        uiBarController.ClearBarArea();
+
+        StartCoroutine("GameOverUI");
+        
+    }
+
+    IEnumerator GameOverUI()
+    {
+        yield return new WaitForSeconds(2.0f);
+
+        mainMenu.gameObject.SetActive(true);
+        mainMenu.Find("Title").GetComponent<Text>().text = "你挂了";
+        mainMenu.Find("Button").Find("Text").GetComponent<Text>().text = "再来!";
     }
 
     public void ReadSkillDatas()

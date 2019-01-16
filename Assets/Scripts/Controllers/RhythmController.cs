@@ -185,8 +185,13 @@ public class RhythmController : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+        if (SuperController.Instance.state != GameState.Start)
+        {
+            return;
+        }
         BeatUpdate();
+
+
       //  ReplayBGM();
 
     }

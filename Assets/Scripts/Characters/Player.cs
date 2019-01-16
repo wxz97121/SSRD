@@ -41,7 +41,11 @@ public class Player : Character {
             return _instance;
         }
     }
-
+    public void Reset()
+    {
+        Hp = maxHp;
+        Mp = maxMp;
+    }
     // Use this for initialization
     override protected void Start () {
         base.Start();
@@ -100,6 +104,11 @@ public class Player : Character {
         base.Damage(dDamage);
         animator.Play("player_damaged", 0);
 
+    }
+
+    override public void Die()
+    {
+        SuperController.Instance.GameOver();
     }
 
     public void addSoulPoint(int dSoulPoint){

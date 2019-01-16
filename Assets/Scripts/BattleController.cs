@@ -32,7 +32,7 @@ public class BattleController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         UICanvas = GameObject.Find("Canvas").transform;
-        AddEnemy();
+        //AddEnemy();
 	}
 	
 	// Update is called once per frame
@@ -49,6 +49,12 @@ public class BattleController : MonoBehaviour {
         instEnemy.GetComponent<AI>().UIMpNum = instEnemyUI.transform.Find("MpNum").GetComponent<TextMeshProUGUI>();
         Player.Instance.enemyList.Add(instEnemy);
         Player.Instance.mTarget = instEnemy;
+    }
+
+    //开始一个新战斗
+    public void NewBattle()
+    {
+        AddEnemy();
     }
 
 }

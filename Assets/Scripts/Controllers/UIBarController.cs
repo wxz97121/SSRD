@@ -60,16 +60,25 @@ public class UIBarController : MonoBehaviour {
     void Start() {
         Debug.Log("uibar controller start!");
 
+
+
+    }
+    //控制器初始化
+    public void InitController()
+    {
         currentEnergyNotes = new List<Note>();
         currentBarList = new List<GameObject>();
         score = SuperController.Instance.score;
 
         InitBarArea();
-
     }
-
     // Update is called once per frame
     private void FixedUpdate() {
+        if (SuperController.Instance.state != GameState.Start)
+        {
+            return;
+        }
+
         postBarPosInBeats = RhythmController.Instance.songPosInBeats - postBar.GetComponent<UIBar>().startBeat;
 
         playingBarPosInBeats = RhythmController.Instance.songPosInBeats - playingBar.GetComponent<UIBar>().startBeat;
@@ -84,6 +93,13 @@ public class UIBarController : MonoBehaviour {
     }
 
     #region 初始化
+    public void ClearBarArea()
+    {
+        Destroy(postBar);
+        Destroy(playingBar);
+        Destroy(preBar);
+        currentBarList = new List<GameObject>();
+    }
     public void InitBarArea()
     {
         pieceIndex = 0;
