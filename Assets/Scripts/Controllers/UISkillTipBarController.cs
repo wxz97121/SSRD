@@ -26,6 +26,12 @@ public class UISkillTipBarController : MonoBehaviour
     }
     public void ClearSkillTipArea()
     {
+        for (int i=0;i<currentBarList.Count;i++)
+        {
+            Destroy(currentBarList[i]);
+
+        }
+        currentBarList.Clear();
         //transform.Find("field").
     }
     public void InitSkillTipBarArea()
@@ -50,7 +56,7 @@ public class UISkillTipBarController : MonoBehaviour
 
         Debug.Log("CreateSkillTipBar");
 
-        GameObject instSkillTip = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_SkillTipBar", typeof(GameObject)), transform.Find("field"));
+        GameObject instSkillTip = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_SkillTipBar", typeof(GameObject)), this.transform);
         instSkillTip.name = skill.m_name;
         instSkillTip.GetComponent<UISkillTipBar>().ReadScoreFromSkill(skill.inputSequence);
         instSkillTip.GetComponent<UISkillTipBar>().beatsThisBar = 4;

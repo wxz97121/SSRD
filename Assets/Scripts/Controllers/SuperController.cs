@@ -103,7 +103,7 @@ public class SuperController : MonoBehaviour {
         state = GameState.End;
         DuelController.Instance.ClearEnemy();
         uiBarController.ClearBarArea();
-
+        skillTipBarController.ClearSkillTipArea();
         StartCoroutine("GameOverUI");
         
     }
