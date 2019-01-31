@@ -206,14 +206,19 @@ public class UIBar : MonoBehaviour {
         };
         if (inputType == Note.NoteType.inputBassdrum)
         {
-            note.note = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Note_Bassdrum", typeof(GameObject)), transform);
             SoundController.Instance.PlayAudioEffect("KICK");
+            //SoundController.Instance.PlayOneShot("event:/instruments/bassdrum");
+
+            note.note = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Note_Bassdrum", typeof(GameObject)), transform);
 
         }
         else
         {
-            note.note = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Note_Snare", typeof(GameObject)), transform);
+
+            //SoundController.Instance.PlayOneShot("event:/instruments/snare");
             SoundController.Instance.PlayAudioEffect("SNARE");
+
+            note.note = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Note_Snare", typeof(GameObject)), transform);
         }
         note.note.transform.localPosition = startPos + (oneBeatSpace * beat) + new Vector3(0, -10, 0);
         noteList_main.Add(note);

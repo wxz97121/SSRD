@@ -63,14 +63,20 @@ public class RhythmController : MonoBehaviour
     #endregion
 
 
+
     #region 重置节拍条(重新计算bpm,归零，播放歌曲，开始游戏等)
-    public void Reset()
+    IEnumerator Reset()
     {
+        yield return new WaitForSeconds(2.0f);
+
         BpmCalc();
         //获取歌曲开始播放的时间点
-        songStartTime = (float)AudioSettings.dspTime;
+        //songStartTime = (float)AudioSettings.dspTime;
 
-        SoundController.Instance.PlayBgMusic(BGM);
+        //SoundController.Instance.PlayBgMusic(BGM);
+        songStartTime = (float)(SoundController.Instance.dsptime);
+
+        SoundController.Instance.testplay();
 
     }
     #endregion
@@ -110,8 +116,11 @@ public class RhythmController : MonoBehaviour
     //更新节拍
     private void BeatUpdate()
     {
+
+
+        //        UnityEngine.Debug.Log("dsptime="+dsptime);
         //获得当前歌曲位置
-        songPos = (float)(AudioSettings.dspTime - songStartTime) + songPosOffset;
+        songPos = SoundController.Instance.CalcDSPtime() - songStartTime + songPosOffset;
         //计算出当前在哪一拍
         songPosInBeats = songPos / secPerBeat;
         //        Debug.Log("distime="+ AudioSettings.dspTime+ "    startTime=" + songStartTime+ "    songPos=" +songPos+   "beats ="+songPosInBeats);
@@ -265,7 +274,8 @@ public class RhythmController : MonoBehaviour
     //校对BGM
     public void CheckBGM()
     {
-        SoundController.Instance.SetBGMTime((float)(AudioSettings.dspTime - songStartTime));
+        //SoundController.Instance.snare.setTimelinePosition((int)(songPos*1000));
+        //SoundController.Instance.SetBGMTime((float)(AudioSettings.dspTime - songStartTime));
     }
     public void ReplayBGM()
     {
@@ -273,7 +283,9 @@ public class RhythmController : MonoBehaviour
         {
             Debug.Log("replay");
             songPlayedTimes++;
-            SoundController.Instance.PlayBgMusic(BGM);
+            // SoundController.Instance.PlayBgMusic(BGM);
+            SoundController.Instance.testplay();
+
         }
     }
 }

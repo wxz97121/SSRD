@@ -65,6 +65,32 @@ public class SuperController : MonoBehaviour {
             return;
         }
 
+        //测试专用键
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            SoundController.Instance.testplay();
+
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            SoundController.Instance.snare;
+
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            SoundController.Instance.PlayAudioEffect("SNARE");
+            SoundController.Instance.PlayOneShot("event:/instruments/snare1");
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            SoundController.Instance.PlayAudioEffect("SNARE");
+            SoundController.Instance.PlayOneShot("event:/instruments/snare2");
+
+        }
+
+
         if (Input.GetKeyDown(KeyCode.M))
         {
 //            Debug.Log("INPUT M");
@@ -89,7 +115,7 @@ public class SuperController : MonoBehaviour {
     {
         mainMenu.gameObject.SetActive(false);
         skillTipBarController.InitSkillTipBarArea();
-        RhythmController.Instance.Reset();
+        RhythmController.Instance.StartCoroutine("Reset");
         uiBarController.InitController();
 
         state = GameState.Start;

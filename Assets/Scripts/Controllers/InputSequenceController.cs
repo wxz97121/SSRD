@@ -154,7 +154,6 @@ public class InputSequenceController : MonoBehaviour
         {
 
             Bad();
-            Debug.Log("bad");
         }
 
 
