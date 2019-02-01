@@ -53,9 +53,7 @@ public class UISkillTipBarController : MonoBehaviour
 
     public GameObject CreateSkillTipBar(Skill skill)
     {
-
-        Debug.Log("CreateSkillTipBar");
-
+    
         GameObject instSkillTip = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_SkillTipBar", typeof(GameObject)), this.transform);
         instSkillTip.name = skill.m_name;
         instSkillTip.GetComponent<UISkillTipBar>().ReadScoreFromSkill(skill.inputSequence);
@@ -67,11 +65,13 @@ public class UISkillTipBarController : MonoBehaviour
         return instSkillTip;
     }
 
+    //输入正确的绿色圆圈
     public void AddRightOInBar(string name,int index)
     {
         transform.Find(name).GetComponent<UISkillTipBar>().AddRightO(index);
     }
 
+    //输入错误 移除
     public void RemoveRightO(string skillname)
     {
         transform.Find(skillname).GetComponent<UISkillTipBar>().RemoveRightO();
@@ -86,6 +86,7 @@ public class UISkillTipBarController : MonoBehaviour
         }
     }
 
+    //发招完成的情况下移除所有绿圈
     public void RemoveAllRightOWhenSuccess()
     {
         foreach (var bar in currentBarList)

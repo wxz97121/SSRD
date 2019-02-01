@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreData: {fileID: 11400000, guid: 0440950d86df8420794bb8b7ae20d8c9, type: 2}
   enemyList:
-  - Deadman
+  - Wizard
   - Slime
   - Patchouli
   - Wizard
-  BGM: {fileID: 8300000, guid: 100dd0143e85c4868916921f05b39d03, type: 3}
+  - Wizard
+  BGMPath: event:/music/testlevel

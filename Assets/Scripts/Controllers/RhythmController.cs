@@ -67,16 +67,15 @@ public class RhythmController : MonoBehaviour
     #region 重置节拍条(重新计算bpm,归零，播放歌曲，开始游戏等)
     IEnumerator Reset()
     {
+        //此处有个坑，FMODInstance必须创建完成才能获取channelgroup
+        SoundController.Instance.FMODMusicChange(SuperController.Instance.levelData.BGMPath);
+
         yield return new WaitForSeconds(2.0f);
 
         BpmCalc();
-        //获取歌曲开始播放的时间点
-        //songStartTime = (float)AudioSettings.dspTime;
-
-        //SoundController.Instance.PlayBgMusic(BGM);
+ 
         songStartTime = (float)(SoundController.Instance.dsptime);
-
-        SoundController.Instance.testplay();
+        SoundController.Instance.FMODMusicPlay();
 
     }
     #endregion
@@ -284,8 +283,6 @@ public class RhythmController : MonoBehaviour
             Debug.Log("replay");
             songPlayedTimes++;
             // SoundController.Instance.PlayBgMusic(BGM);
-            SoundController.Instance.testplay();
-
         }
     }
 }

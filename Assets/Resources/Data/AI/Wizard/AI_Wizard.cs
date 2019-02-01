@@ -6,6 +6,7 @@ public class AI_Wizard : AI
 {
     //记录当前阶段
     public int phaseID = 0;
+    private int InnerActionID = 0;
     private int firstloopIndex;
     private int secondloopIndex;
 
@@ -43,19 +44,30 @@ public class AI_Wizard : AI
                     phaseID = 1;
                     actionID = firstloopIndex +1;
                 }
+                InnerActionID = actionID;
                 break;
             case 1:
-                Debug.Log("action ID:" + actionID);
-                Debug.Log("time:" + RhythmController.Instance.songPosInBeats);
+                if (Hp <= 15)
+                {
+                    _skillDictionary[skillSequence[0]].EffectFunction(this);
+                    actionID++;
+                    if ((actionID - firstloopIndex) % 4 == 1)
+                    {
+                        phaseID = 2;
+                        actionID = secondloopIndex + 1;
+                    }
+                    break;
+                }
+
+
+
                 _skillDictionary[skillSequence[actionID]].EffectFunction(this);
                 actionID++;
                 if (actionID >= secondloopIndex)
                     actionID = firstloopIndex + 1;
-                if (Hp <= 15)
-                {
-                    phaseID = 2;
-                    actionID = secondloopIndex + 1;
-                }
+
+                InnerActionID = actionID;
+
                 break;
             case 2:
                 Debug.Log("action ID:" + actionID);
@@ -64,8 +76,12 @@ public class AI_Wizard : AI
                 actionID++;
                 if (actionID >= skillSequence.Count)
                     actionID = secondloopIndex + 1;
+
+                InnerActionID = actionID;
+
                 break;
         }
+
 
 
     }

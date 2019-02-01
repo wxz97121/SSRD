@@ -46,7 +46,7 @@ public class UISkillTipBar : MonoBehaviour {
     //初始化小节块
     public void Init()
     {
-        InitLines();
+       InitLines();
         InitNotes();
     }
 
@@ -73,7 +73,7 @@ public class UISkillTipBar : MonoBehaviour {
     //画节拍线
     public void InitLines()
     {
-//        int _linecount = (int)(beatsThisBar);
+        //        int _linecount = (int)(beatsThisBar);
         for (int i=0; i<=2;i++)
         {
             GameObject line = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Line", typeof(GameObject)), transform);
@@ -91,18 +91,19 @@ public class UISkillTipBar : MonoBehaviour {
     {
         foreach (Note note in noteList_input)
         {
-            GameObject _note = new GameObject();
+          //  GameObject _note = new GameObject();
             if (note.type == Note.NoteType.inputBassdrum)
             {
-                _note = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Note_Bassdrum", typeof(GameObject)), transform);
+                GameObject _note = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Note_Bassdrum", typeof(GameObject)), transform);
+                note.note = _note;
 
             }
             else
             {
-                 _note = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Note_Snare", typeof(GameObject)), transform);
+                GameObject _note = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Note_Snare", typeof(GameObject)), transform);
+                note.note = _note;
 
             }
-            note.note = _note;
             note.note.transform.localPosition = startPos + (oneBeatSpace * ( note.beatInBar))+new Vector3(0,0,0);
 
         }

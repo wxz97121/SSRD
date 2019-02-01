@@ -9,5 +9,5 @@ public class LevelData : ScriptableObject
 {
     public ScoreData scoreData;
     public List<string> enemyList;
-    public AudioClip BGM;
+    public string BGMPath;
 }

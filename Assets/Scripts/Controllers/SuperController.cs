@@ -66,29 +66,7 @@ public class SuperController : MonoBehaviour {
         }
 
         //测试专用键
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            SoundController.Instance.testplay();
 
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            SoundController.Instance.snare;
-
-        }
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            SoundController.Instance.PlayAudioEffect("SNARE");
-            SoundController.Instance.PlayOneShot("event:/instruments/snare1");
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            SoundController.Instance.PlayAudioEffect("SNARE");
-            SoundController.Instance.PlayOneShot("event:/instruments/snare2");
-
-        }
 
 
         if (Input.GetKeyDown(KeyCode.M))
@@ -116,7 +94,7 @@ public class SuperController : MonoBehaviour {
         mainMenu.gameObject.SetActive(false);
         skillTipBarController.InitSkillTipBarArea();
         RhythmController.Instance.StartCoroutine("Reset");
-        uiBarController.InitController();
+       uiBarController.InitController();
 
         state = GameState.Start;
 
@@ -167,7 +145,7 @@ public class SuperController : MonoBehaviour {
 
         //Debug.Log("leveldata" + levelData.name);
         //Debug.Log("scoredata" + levelData.scoreData.name);
-        RhythmController.Instance.BGM = levelData.BGM;
+//        RhythmController.Instance.BGM = levelData.BGM;
         score = OneSongScore.ReadScoreData(levelData.scoreData);
         DuelController.Instance.enemyList = levelData.enemyList;
     }

@@ -26,7 +26,7 @@ MonoBehaviour:
   - {fileID: 114414542623992796}
   StringsBanks:
   - {fileID: 114120392870038238}
-  stringsBankWriteTime: 636845417250000000
+  stringsBankWriteTime: 636846312290000000
   cacheVersion: 3
 --- !u!114 &114005629472684504
 MonoBehaviour:
@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: /Users/Ares/SSRD/FMOD/srd_sound/Build/Desktop/instrument.bank
-  lastModified: 636845417250000000
+  lastModified: 636846312290000000
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: FMOD/srd_sound/Build/Desktop/Master Bank.strings.bank
-  lastModified: 636845417250000000
+  lastModified: 636846312290000000
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -166,7 +166,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114107007881217780}
+  - {fileID: 114571210143716466}
   MinDistance: 0
   MaxDistance: 0
   Length: 64000
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: /Users/Ares/SSRD/FMOD/srd_sound/Build/Desktop/Master Bank.bank
-  lastModified: 636845417250000000
+  lastModified: 636846312290000000
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -409,6 +409,22 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 500
+--- !u!114 &114571210143716466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Parameter 1
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114582324811348504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,6 +480,22 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 976
+--- !u!114 &114728663554667404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Parameter 1
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114765925604855400
 MonoBehaviour:
   m_ObjectHideFlags: 0
