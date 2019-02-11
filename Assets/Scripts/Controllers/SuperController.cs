@@ -66,9 +66,50 @@ public class SuperController : MonoBehaviour {
         }
 
         //测试专用键
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            SoundController.Instance.FMODSetParameter("boss",1);
+            SoundController.Instance.FMODSetParameter("chorus", 0);
+            SoundController.Instance.FMODSetParameter("verse", 0);
+            SoundController.Instance.FMODSetParameter("breakdown", 0);
+            SoundController.Instance.FMODSetParameter("outro", 0);
+                    }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            SoundController.Instance.FMODSetParameter("boss", 0);
+            SoundController.Instance.FMODSetParameter("chorus", 1);
+            SoundController.Instance.FMODSetParameter("verse", 0);
+            SoundController.Instance.FMODSetParameter("breakdown", 0);
+            SoundController.Instance.FMODSetParameter("outro", 0);
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            SoundController.Instance.FMODSetParameter("boss", 0);
+            SoundController.Instance.FMODSetParameter("chorus", 0);
+            SoundController.Instance.FMODSetParameter("verse", 1);
+            SoundController.Instance.FMODSetParameter("breakdown", 0);
+            SoundController.Instance.FMODSetParameter("outro", 0);
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            SoundController.Instance.FMODSetParameter("boss", 0);
+            SoundController.Instance.FMODSetParameter("chorus", 0);
+            SoundController.Instance.FMODSetParameter("verse", 0);
+            SoundController.Instance.FMODSetParameter("breakdown", 1);
+            SoundController.Instance.FMODSetParameter("outro", 0);
+        }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            SoundController.Instance.FMODSetParameter("boss", 0);
+            SoundController.Instance.FMODSetParameter("chorus", 0);
+            SoundController.Instance.FMODSetParameter("verse", 0);
+            SoundController.Instance.FMODSetParameter("breakdown", 0);
+            SoundController.Instance.FMODSetParameter("outro", 1);
+        }
 
 
 
+        //战斗输入按键
         if (Input.GetKeyDown(KeyCode.M))
         {
 //            Debug.Log("INPUT M");

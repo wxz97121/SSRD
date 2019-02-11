@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="ParameterPreset" id="{634a1b95-2d5d-4984-a92f-2ba6db7f53e4}">
+        <property name="name">
+            <value>minibridge</value>
+        </property>
+        <relationship name="folder">
+            <destination>{cf649821-61a7-49f3-b46a-d736b87af810}</destination>
+        </relationship>
+        <relationship name="parameter">
+            <destination>{d9f89827-d38c-4818-90b4-475c963477cf}</destination>
+        </relationship>
+    </object>
+    <object class="GameParameter" id="{d9f89827-d38c-4818-90b4-475c963477cf}">
+        <property name="initialValue">
+            <value>0</value>
+        </property>
+    </object>
+</objects>

@@ -74,7 +74,7 @@ public class RhythmController : MonoBehaviour
 
         BpmCalc();
  
-        songStartTime = (float)(SoundController.Instance.dsptime);
+        songStartTime = (float)(SoundController.Instance.CalcDSPtime());
         SoundController.Instance.FMODMusicPlay();
 
     }

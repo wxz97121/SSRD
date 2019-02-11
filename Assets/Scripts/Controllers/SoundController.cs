@@ -19,13 +19,13 @@ public class SoundController : MonoBehaviour {
 
     public FMOD.Studio.EventInstance FMODmusic;
     public ChannelGroup channelGroup;
-    public ulong dsp;
-    public float dsptime;
-    public ulong dsp2;
+    private ulong dsp;
+    private float dsptime;
+    private ulong dsp2;
     FMOD.SPEAKERMODE sPEAKERMODE;
     int rawspeaker;
 
-    public int samplerate;
+    private int samplerate;
     public static SoundController Instance
     {
         get
@@ -135,15 +135,25 @@ public class SoundController : MonoBehaviour {
     public void FMODMusicChange(string path)
     {
         FMODmusic = FMODUnity.RuntimeManager.CreateInstance(path);
+        //TODO:GET PARAMETERS
     }
 
+
+    //播放FMOD音乐
     public void FMODMusicPlay()
     {
-        FMODmusic.start();
         FMODmusic.getChannelGroup(out channelGroup);
+
+        FMODmusic.start();
         channelGroup.getDSPClock(out dsp, out dsp2);
         UnityEngine.Debug.Log("dsp "+dsp);
         RhythmController.Instance.songPosOffset -= CalcDSPtime();
+    }
+
+    //修改FMOD参数
+    public void FMODSetParameter(string paraname,float value)
+    {
+        FMODmusic.setParameterValue(paraname, value);
     }
 
     public float CalcDSPtime()
