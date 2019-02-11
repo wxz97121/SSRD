@@ -107,7 +107,12 @@ public class SuperController : MonoBehaviour {
             SoundController.Instance.FMODSetParameter("outro", 1);
         }
 
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SoundController.Instance.FMODPlayOneShot("event:/instruments/snare");
+            SoundController.Instance.PlayAudioEffect("SNARE_01");
 
+        }
 
         //战斗输入按键
         if (Input.GetKeyDown(KeyCode.M))

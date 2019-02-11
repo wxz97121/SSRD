@@ -7,7 +7,8 @@ public class EnemySkill
 {
     public string m_name;
     private string EffectStr;
-    //输入方式
+
+    //发动技能
     public void EffectFunction(AI m_Char)
     {
 

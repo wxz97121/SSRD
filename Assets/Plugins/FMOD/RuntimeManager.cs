@@ -258,7 +258,7 @@ retry:
 
             result = lowlevelSystem.setOutput(outputType);
             CheckInitResult(result, "FMOD.System.setOutput");
-            result = lowlevelSystem.setOutput(FMOD.OUTPUTTYPE.COREAUDIO);
+            result = lowlevelSystem.setOutput(FMOD.OUTPUTTYPE.AUTODETECT);
             CheckInitResult(result, "FMOD.System.setOutput");
 
 

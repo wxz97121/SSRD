@@ -17,10 +17,8 @@ public class AI : Character
     public List<string> skillSequence = new List<string>();
     public Animator animator;
 
-    //敌人编号(目前控制外观模型)
-    public int enemyID = 0;
-    //改样子的，不用动
-    public SpriteRenderer spriteRenderer = null;
+
+
     //敌人的初始位置(基本不用动，多人可能有用)
     public Vector3 originPosition = new Vector3(5, 0, 0);
 
@@ -58,8 +56,7 @@ public class AI : Character
         actionID = 0;
         //初始化敌人目标，默认是玩家
         mTarget = GameObject.Find("Player");
-        //不用管
-        spriteRenderer = GetComponent<SpriteRenderer>();
+
 
         animator = GetComponent<Animator>();
 
@@ -90,7 +87,6 @@ public class AI : Character
     override public void Damage(int dDamage)
     {
         base.Damage(dDamage);
-          //  StartCoroutine("DamagedState");
     }
 
 

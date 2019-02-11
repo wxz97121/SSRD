@@ -1,8 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using FMOD;
 using FMODUnity;
+using System.Runtime.InteropServices;
+using UnityEngine.UI;
+
+using System;
+
 
 public class SoundController : MonoBehaviour {
     static SoundController _instance;
@@ -16,7 +20,7 @@ public class SoundController : MonoBehaviour {
     private AudioSource audioSourceEffect_Z;
     private AudioSource audioSourceBgMusic;
 
-
+    //fmod相关
     public FMOD.Studio.EventInstance FMODmusic;
     public ChannelGroup channelGroup;
     private ulong dsp;
@@ -26,6 +30,26 @@ public class SoundController : MonoBehaviour {
     int rawspeaker;
 
     private int samplerate;
+
+
+    //fmod callback相关
+
+    // Variables that are modified in the callback need to be part of a seperate class.
+    // This class needs to be 'blittable' otherwise it can't be pinned in memory.
+    [StructLayout(LayoutKind.Sequential)]
+    public class TimelineInfo
+    {
+        public int currentMusicBeat = 0;
+        public FMOD.StringWrapper lastMarker = new FMOD.StringWrapper();
+    }
+    public TimelineInfo timelineInfo;
+    GCHandle timelineHandle;
+
+    FMOD.Studio.EVENT_CALLBACK beatCallback;
+
+
+
+
     public static SoundController Instance
     {
         get
@@ -68,6 +92,20 @@ public class SoundController : MonoBehaviour {
 
 
         RuntimeManager.LowlevelSystem.getSoftwareFormat(out samplerate,out sPEAKERMODE,out rawspeaker);
+
+
+        //fmod callback相关
+        timelineInfo = new TimelineInfo();
+
+        // Explicitly create the delegate object and assign it to a member so it doesn't get freed
+        // by the garbage collected while it's being used
+        beatCallback = new FMOD.Studio.EVENT_CALLBACK(BeatEventCallback);
+
+
+        // Pin the class that will store the data modified during the callback
+        timelineHandle = GCHandle.Alloc(timelineInfo, GCHandleType.Pinned);
+        // Pass the object through the userdata of the instance
+       
     }
 
     //播放音效
@@ -135,7 +173,12 @@ public class SoundController : MonoBehaviour {
     public void FMODMusicChange(string path)
     {
         FMODmusic = FMODUnity.RuntimeManager.CreateInstance(path);
-        //TODO:GET PARAMETERS
+        FMODmusic.setUserData(GCHandle.ToIntPtr(timelineHandle));
+
+        FMODmusic.setCallback(beatCallback, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
+
+
+
     }
 
 
@@ -160,9 +203,60 @@ public class SoundController : MonoBehaviour {
     {
 
         channelGroup.getDSPClock(out dsp, out dsp2);
-//        UnityEngine.Debug.Log("dsp " + dsp);
-
+        //        UnityEngine.Debug.Log("dsp " + dsp);
         dsptime = (float)dsp / (float)samplerate;
         return dsptime;
+    }
+
+
+    [AOT.MonoPInvokeCallback(typeof(FMOD.Studio.EVENT_CALLBACK))]
+    static FMOD.RESULT BeatEventCallback(FMOD.Studio.EVENT_CALLBACK_TYPE type, FMOD.Studio.EventInstance instance, IntPtr parameterPtr)
+    {
+        // Retrieve the user data
+        IntPtr timelineInfoPtr;
+        FMOD.RESULT result = instance.getUserData(out timelineInfoPtr);
+        if (result != FMOD.RESULT.OK)
+        {
+            UnityEngine.Debug.LogError("Timeline Callback error: " + result);
+        }
+        else if (timelineInfoPtr != IntPtr.Zero)
+        {
+            // Get the object to store beat and marker details
+            GCHandle timelineHandle = GCHandle.FromIntPtr(timelineInfoPtr);
+            TimelineInfo timelineInfo = (TimelineInfo)timelineHandle.Target;
+
+            switch (type)
+            {
+                case FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT:
+                    {
+                        var parameter = (FMOD.Studio.TIMELINE_BEAT_PROPERTIES)Marshal.PtrToStructure(parameterPtr, typeof(FMOD.Studio.TIMELINE_BEAT_PROPERTIES));
+                        timelineInfo.currentMusicBeat = parameter.beat;
+                    }
+                    break;
+                case FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER:
+                    {
+                        var parameter = (FMOD.Studio.TIMELINE_MARKER_PROPERTIES)Marshal.PtrToStructure(parameterPtr, typeof(FMOD.Studio.TIMELINE_MARKER_PROPERTIES));
+                        timelineInfo.lastMarker = parameter.name;
+                    }
+                    break;
+            }
+        }
+        return FMOD.RESULT.OK;
+    }
+
+    void OnDestroy()
+    {
+        FMODmusic.setUserData(IntPtr.Zero);
+        FMODmusic.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        FMODmusic.release();
+        timelineHandle.Free();
+    }
+
+    //test
+    private void OnGUI()
+    {
+        //UnityEngine.Debug.Log("flag="+ (string)timelineInfo.lastMarker);
+        Text text = GameObject.Find("flag").GetComponent<Text>();
+        text.text = (string)timelineInfo.lastMarker+timelineInfo.currentMusicBeat;
     }
 }

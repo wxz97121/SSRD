@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RhythmController : MonoBehaviour
 {
-    public AudioClip BGM;
 
     //歌曲开始时间(用来处理当前节奏)
     [HideInInspector] public float songStartTime;
@@ -124,25 +123,31 @@ public class RhythmController : MonoBehaviour
         songPosInBeats = songPos / secPerBeat;
         //        Debug.Log("distime="+ AudioSettings.dspTime+ "    startTime=" + songStartTime+ "    songPos=" +songPos+   "beats ="+songPosInBeats);
 
-        //判定是否播放第N拍，并告知各种物体POGO起来！
-  
-        if (UIBarController.Instance.playingBarPosInBeats >= beatIndex)
-        {
-            if (UIBarController.Instance.playingBarPosInBeats > 3 && beatIndex < 3)
-            {
-//                Debug.Log("去掉错位情况");
-            }
-            else
-            {
-                OnBeat(beatIndex);
-                beatIndex++;
-                if (beatIndex > UIBarController.Instance.playingBar.GetComponent<UIBar>().beatsThisBar - 1)
-                {
-                    beatIndex = 0;
-                }
-            }
-            //            print("on beat" + beatIndex.ToString());
+        //判定是否播放第N拍，并告知各种物体POGO起来！为了同步FLAG，这里使用FMOD判
 
+        //        if (UIBarController.Instance.playingBarPosInBeats >= beatIndex)
+        //        {
+        //            if (UIBarController.Instance.playingBarPosInBeats > 3 && beatIndex < 3)
+        //            {
+        ////                Debug.Log("去掉错位情况");
+        //    }
+        //    else
+        //    {
+        //        OnBeat(beatIndex);
+        //        beatIndex++;
+        //        if (beatIndex > UIBarController.Instance.playingBar.GetComponent<UIBar>().beatsThisBar - 1)
+        //        {
+        //            beatIndex = 0;
+        //        }
+        //    }
+        //    //            print("on beat" + beatIndex.ToString());
+
+        //}
+
+        if (beatIndex != SoundController.Instance.timelineInfo.currentMusicBeat)
+        {
+            OnBeat(SoundController.Instance.timelineInfo.currentMusicBeat-1);
+            beatIndex = SoundController.Instance.timelineInfo.currentMusicBeat;
         }
 
 
@@ -270,19 +275,5 @@ public class RhythmController : MonoBehaviour
         isCurBarAtFinalBeat = false;
     }
 
-    //校对BGM
-    public void CheckBGM()
-    {
-        //SoundController.Instance.snare.setTimelinePosition((int)(songPos*1000));
-        //SoundController.Instance.SetBGMTime((float)(AudioSettings.dspTime - songStartTime));
-    }
-    public void ReplayBGM()
-    {
-        if ((float)(AudioSettings.dspTime - songStartTime) > 128 * secPerBeat * (1 + songPlayedTimes))
-        {
-            Debug.Log("replay");
-            songPlayedTimes++;
-            // SoundController.Instance.PlayBgMusic(BGM);
-        }
-    }
+
 }
