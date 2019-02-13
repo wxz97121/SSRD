@@ -20,7 +20,9 @@ public class SuperController : MonoBehaviour {
     //谱子
     public OneSongScore score;
 
-    //TODO:大流程控制！
+    //SRDTap
+    public SrdTap SRDTap;
+
     public GameState state;
     //主菜单UI
     public Transform mainMenu;
@@ -45,7 +47,7 @@ public class SuperController : MonoBehaviour {
         commentController = GameObject.Find("Comment").GetComponent<CommentController>();
         skillTipBarController = GameObject.Find("SkillTipArea").GetComponent<UISkillTipBarController>();
         uiBarController = GameObject.Find("BarArea").GetComponent<UIBarController>();
-
+        SRDTap = GameObject.Find("SrdTap").GetComponent<SrdTap>();
 
         ReadLevelDatas();
         ReadSkillDatas();
@@ -109,9 +111,9 @@ public class SuperController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            SoundController.Instance.FMODPlayOneShot("event:/instruments/snare");
-            SoundController.Instance.PlayAudioEffect("SNARE_01");
-
+            //  SoundController.Instance.FMODPlayOneShot("event:/instruments/snare");
+            //  SoundController.Instance.PlayAudioEffect("SNARE_01");
+            Debug.Log(SoundController.Instance.GetSpectrum().Length);
         }
 
         //战斗输入按键

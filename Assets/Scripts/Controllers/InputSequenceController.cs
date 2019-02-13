@@ -150,11 +150,17 @@ public class InputSequenceController : MonoBehaviour
 
 
         CurInputSequence.Add(bar.GetComponent<UIBar>().AddInputNote(inputType, beat));
+
+       
+
         if (!inputsuccess)
         {
 
             Bad();
+            return;
         }
+  
+
 
 
 
@@ -162,12 +168,15 @@ public class InputSequenceController : MonoBehaviour
 
         //如果完全输入，则发动招式
         foreach (Skill skill in availableSkills)
-            if (skill.inputSequence.Count == CurInputSequence.Count)
+        {
+
+        if (skill.inputSequence.Count == CurInputSequence.Count)
             {
                 //搓招正确但是能量不足
                 if (Player.Instance.Mp < skill.cost)
                 {
                     Debug.Log("能量不足");
+                    inputsuccess = false;
                     Bad();
                 }
                 else
@@ -181,6 +190,23 @@ public class InputSequenceController : MonoBehaviour
 
 
             }
+        }
+
+        if (inputsuccess)
+        {
+            //vfx
+            switch (inputType)
+            {
+                case Note.NoteType.inputBassdrum:
+                    SuperController.Instance.SRDTap.NewShape(10);
+                    break;
+                case Note.NoteType.inputSnare:
+                    SuperController.Instance.SRDTap.NewShape(1);
+                    break;
+
+            }
+        }
+
     }
     #endregion
 

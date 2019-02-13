@@ -21,6 +21,7 @@ public class SoundController : MonoBehaviour {
     private AudioSource audioSourceBgMusic;
 
     //fmod相关
+    public FMOD.RESULT Result;
     public FMOD.Studio.EventInstance FMODmusic;
     public ChannelGroup channelGroup;
     private ulong dsp;
@@ -31,6 +32,9 @@ public class SoundController : MonoBehaviour {
 
     private int samplerate;
 
+    private DSP fftDSP;
+
+    private DSP channelhead;
 
     //fmod callback相关
 
@@ -105,7 +109,10 @@ public class SoundController : MonoBehaviour {
         // Pin the class that will store the data modified during the callback
         timelineHandle = GCHandle.Alloc(timelineInfo, GCHandleType.Pinned);
         // Pass the object through the userdata of the instance
-       
+        //callback
+
+
+
     }
 
     //播放音效
@@ -141,27 +148,9 @@ public class SoundController : MonoBehaviour {
     }
 
 
-    //播放音乐
-    public void PlayBgMusic(AudioClip audioClip)
-    {
-        audioSourceBgMusic.clip = audioClip;
-        audioSourceBgMusic.loop = true;
-        audioSourceBgMusic.Stop();
 
-        audioSourceBgMusic.Play();
-        //audioSourceBgMusic.PlayScheduled(0);
-    }
-    //播放音乐
-    public void SetBGMTime(float time)
-    {
-//        Debug.Log("secPerBeat=" + RhythmController.Instance.secPerBeat);
-        if (time < 0)
-            time = 0;
-        time = time % (RhythmController.Instance.secPerBeat*128);
-        audioSourceBgMusic.time=time;
-        //audioSourceBgMusic.Play();
-        //audioSourceBgMusic.PlayScheduled(0);
-    }
+
+
 
     public void FMODPlayOneShot(string path)
     {
@@ -186,11 +175,18 @@ public class SoundController : MonoBehaviour {
     public void FMODMusicPlay()
     {
         FMODmusic.getChannelGroup(out channelGroup);
-
+        RuntimeManager.LowlevelSystem.createDSPByType(DSP_TYPE.FFT, out fftDSP);
+        channelGroup.addDSP(0, fftDSP);
+        channelGroup.getDSP(0, out channelhead);
+        channelhead.setMeteringEnabled(false, true);
         FMODmusic.start();
         channelGroup.getDSPClock(out dsp, out dsp2);
         UnityEngine.Debug.Log("dsp "+dsp);
+
+        //抵消播放瞬间产生的延迟
         RhythmController.Instance.songPosOffset -= CalcDSPtime();
+
+
     }
 
     //修改FMOD参数
@@ -242,6 +238,28 @@ public class SoundController : MonoBehaviour {
             }
         }
         return FMOD.RESULT.OK;
+    }
+
+    public float[] GetSpectrum()
+    {
+        IntPtr unmanagedData;
+        uint length;
+        fftDSP.getParameterData((int)FMOD.DSP_FFT.SPECTRUMDATA, out unmanagedData, out length);
+
+            FMOD.DSP_PARAMETER_FFT fftData = (FMOD.DSP_PARAMETER_FFT)Marshal.PtrToStructure(unmanagedData, typeof(FMOD.DSP_PARAMETER_FFT));
+            var spectrum = fftData.spectrum;
+            return spectrum[0];
+
+
+    }
+
+    public float GetVolume()
+    {
+        DSP_METERING_INFO outputmeter;
+        channelhead.getMeteringInfo(IntPtr.Zero, out outputmeter);
+        return outputmeter.rmslevel[0];
+
+
     }
 
     void OnDestroy()

@@ -222,7 +222,6 @@ public class RhythmController : MonoBehaviour
     #region 普通节拍触发事件OnNormalBeat
     public void OnBeat(int beatNum)
     {
-        CheckBGM();
 
         AI nowAI = null;
         if (Player.Instance.mTarget)
