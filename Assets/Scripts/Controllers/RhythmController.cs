@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.UI;
+
 public class RhythmController : MonoBehaviour
 {
 
@@ -10,8 +12,7 @@ public class RhythmController : MonoBehaviour
     //每一拍长度
     [HideInInspector] public float secPerBeat;
 
-    //歌曲已重复遍数
-    [HideInInspector] public int songPlayedTimes = 0;
+
 
 
     //歌曲当前时间
@@ -66,16 +67,19 @@ public class RhythmController : MonoBehaviour
     #region 重置节拍条(重新计算bpm,归零，播放歌曲，开始游戏等)
     IEnumerator Reset()
     {
+        SoundController.Instance.FMODmusic.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+
         //此处有个坑，FMODInstance必须创建完成才能获取channelgroup
         SoundController.Instance.FMODMusicChange(SuperController.Instance.levelData.BGMPath);
 
         yield return new WaitForSeconds(2.0f);
+        UIBarController.Instance.InitController();
 
         BpmCalc();
  
         songStartTime = (float)(SoundController.Instance.CalcDSPtime());
         SoundController.Instance.FMODMusicPlay();
-
+        Debug.Log("start time =" + songStartTime+"   fmod time ="+ SoundController.Instance.CalcDSPtime());
     }
     #endregion
 
@@ -274,5 +278,11 @@ public class RhythmController : MonoBehaviour
         isCurBarAtFinalBeat = false;
     }
 
-
+    //test
+    private void OnGUI()
+    {
+        //UnityEngine.Debug.Log("flag="+ (string)timelineInfo.lastMarker);
+        Text text = GameObject.Find("songposmonitor").GetComponent<Text>();
+        text.text =  "songposinBeats " + songPosInBeats;
+    }
 }

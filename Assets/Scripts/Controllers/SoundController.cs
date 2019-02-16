@@ -30,6 +30,9 @@ public class SoundController : MonoBehaviour {
     FMOD.SPEAKERMODE sPEAKERMODE;
     int rawspeaker;
 
+    //之前周期已经播放过的时长
+    private float playedtime = 0;
+
     private int samplerate;
 
     private DSP fftDSP;
@@ -149,7 +152,10 @@ public class SoundController : MonoBehaviour {
 
 
 
-
+    public void SetPlayedTime()
+    {
+       // playedtime = CalcDSPtime();
+    }
 
 
     public void FMODPlayOneShot(string path)
@@ -161,6 +167,7 @@ public class SoundController : MonoBehaviour {
 
     public void FMODMusicChange(string path)
     {
+        FMODmusic.release();
         FMODmusic = FMODUnity.RuntimeManager.CreateInstance(path);
         FMODmusic.setUserData(GCHandle.ToIntPtr(timelineHandle));
 
@@ -174,18 +181,20 @@ public class SoundController : MonoBehaviour {
     //播放FMOD音乐
     public void FMODMusicPlay()
     {
+
         FMODmusic.getChannelGroup(out channelGroup);
         RuntimeManager.LowlevelSystem.createDSPByType(DSP_TYPE.FFT, out fftDSP);
         channelGroup.addDSP(0, fftDSP);
         channelGroup.getDSP(0, out channelhead);
         channelhead.setMeteringEnabled(false, true);
+        playedtime = CalcDSPtime();
         FMODmusic.start();
         channelGroup.getDSPClock(out dsp, out dsp2);
         UnityEngine.Debug.Log("dsp "+dsp);
 
         //抵消播放瞬间产生的延迟
-        RhythmController.Instance.songPosOffset -= CalcDSPtime();
-
+        RhythmController.Instance.songPosOffset =  RhythmController.Instance.songStartTime- CalcDSPtime();
+        UnityEngine.Debug.Log("offset="+ RhythmController.Instance.songPosOffset);
 
     }
 
@@ -275,6 +284,6 @@ public class SoundController : MonoBehaviour {
     {
         //UnityEngine.Debug.Log("flag="+ (string)timelineInfo.lastMarker);
         Text text = GameObject.Find("flag").GetComponent<Text>();
-        text.text = (string)timelineInfo.lastMarker+timelineInfo.currentMusicBeat;
+        text.text = (string)timelineInfo.lastMarker+timelineInfo.currentMusicBeat+"  "+ CalcDSPtime();
     }
 }

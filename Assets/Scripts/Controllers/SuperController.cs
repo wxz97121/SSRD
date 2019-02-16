@@ -142,7 +142,6 @@ public class SuperController : MonoBehaviour {
         mainMenu.gameObject.SetActive(false);
         skillTipBarController.InitSkillTipBarArea();
         RhythmController.Instance.StartCoroutine("Reset");
-       uiBarController.InitController();
 
         state = GameState.Start;
 
@@ -152,10 +151,13 @@ public class SuperController : MonoBehaviour {
     public void GameOver()
     {
         //Debug.Log("Game Over");
+
         state = GameState.End;
         DuelController.Instance.ClearEnemy();
         uiBarController.ClearBarArea();
         skillTipBarController.ClearSkillTipArea();
+        //SoundController.Instance.SetPlayedTime();
+        SoundController.Instance.FMODmusic.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         StartCoroutine("GameOverUI");
         
     }

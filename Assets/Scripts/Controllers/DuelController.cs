@@ -64,7 +64,7 @@ public class DuelController : MonoBehaviour {
 
     public void AddEnemy()
     {
-        GameObject instEnemy = Instantiate((GameObject)Resources.Load("Data/AI/" + enemyList[enemyIndex] + "/Prefab", typeof(GameObject)), new Vector3(3, 0, 0), Quaternion.identity);
+        GameObject instEnemy = Instantiate((GameObject)Resources.Load("Data/AI/" + enemyList[enemyIndex] + "/Prefab", typeof(GameObject)), new Vector3(4, 0, 0), Quaternion.identity);
         GameObject instEnemyUI = Instantiate(enemyUIPrefab, UICanvas);
         instEnemyUI.transform.localPosition += new Vector3(Screen.width / 4, Screen.height / 4, 0);
         instEnemy.GetComponent<AI>().UIHpNum = instEnemyUI.transform.Find("HpNum").GetComponent<TextMeshProUGUI>();
@@ -79,7 +79,7 @@ public class DuelController : MonoBehaviour {
 
     public void AddEnemy(int id)
     {
-        GameObject instEnemy = Instantiate((GameObject)Resources.Load("Data/AI/" + enemyList[id] + "/Prefab", typeof(GameObject)), new Vector3(5, 0, 0), Quaternion.identity);
+        GameObject instEnemy = Instantiate((GameObject)Resources.Load("Data/AI/" + enemyList[id] + "/Prefab", typeof(GameObject)), new Vector3(4, 0, 0), Quaternion.identity);
         GameObject instEnemyUI = Instantiate(enemyUIPrefab, UICanvas);
         instEnemyUI.transform.localPosition += new Vector3(Screen.width / 4, Screen.height / 4, 0);
         instEnemy.GetComponent<AI>().UIHpNum = instEnemyUI.transform.Find("HpNum").GetComponent<TextMeshProUGUI>();

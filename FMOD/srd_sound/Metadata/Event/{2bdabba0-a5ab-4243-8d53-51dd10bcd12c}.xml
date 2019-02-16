@@ -910,7 +910,7 @@
             <value>4</value>
         </property>
         <property name="length">
-            <value>59.999999999999979</value>
+            <value>64</value>
         </property>
         <relationship name="timeline">
             <destination>{45e72f80-1e3a-4ecd-9810-1d86dcd584dd}</destination>
@@ -924,7 +924,7 @@
             <value>8</value>
         </property>
         <property name="length">
-            <value>55.999999999999979</value>
+            <value>60</value>
         </property>
         <property name="quantizationInterval">
             <value>8</value>
