@@ -6,6 +6,12 @@ using UnityEngine.UI;
 
 public class UIBar : MonoBehaviour {
 
+    public enum barType
+    {
+        inputBar=1,
+        QTEBar=2,
+    }
+    public barType type = barType.inputBar;
     public Text testtext;
     public bool active;
     //开始拍
@@ -28,6 +34,7 @@ public class UIBar : MonoBehaviour {
     public List<Note> noteList_main;
 
     public List<Note> noteList_energy;
+    public List<Note> noteList_QTE;
     private void Awake()
     {
     // 小节线
@@ -36,6 +43,8 @@ public class UIBar : MonoBehaviour {
     noteList_main = new List<Note>();
 
     noteList_energy = new List<Note>();
+    noteList_QTE = new List<Note>();
+
     startPos = startPosGO.transform.localPosition;
     oneBeatSpace = onebeatspaceGO.transform.localPosition-startPos;
     }
@@ -54,7 +63,21 @@ public class UIBar : MonoBehaviour {
     {
         foreach (Note note in notes)
         {
+            //能量音符
             if ((int)note.type <= 8)
+            {
+
+                noteList_energy.Add(new Note
+                {
+                    type = note.type,
+                    beatInBar = note.beatInBar,
+                    beatInSong = note.beatInBar + UIBarController.Instance.occupiedBeats
+                }
+                );
+            }
+
+            //QTE音符
+            if ((int)note.type >= 30&& (int)note.type<40)
             {
 
                 noteList_energy.Add(new Note
@@ -78,7 +101,7 @@ public class UIBar : MonoBehaviour {
             GameObject line = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Line", typeof(GameObject)), transform);
             line.transform.localPosition = startPos + (oneBeatSpace * i);
             //第三拍变红提示
-            if (i == 2) { line.GetComponent<Image>().color = Color.red; }
+            if (i == 2&&type==barType.inputBar) { line.GetComponent<Image>().color = Color.red; }
             linelist.Add(line);
         }
 
@@ -92,9 +115,32 @@ public class UIBar : MonoBehaviour {
             GameObject _note= Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Note_Energy", typeof(GameObject)), transform);
             note.note = _note;
             note.note.transform.localPosition = startPos + (oneBeatSpace * ( note.beatInBar))+new Vector3(0,10,0);
-
         }
 
+
+        //QTE音符
+        foreach (Note note in noteList_QTE)
+        {
+            string path;
+            switch (note.type)
+            {
+                case Note.NoteType.QTEHihat:
+                    path = "Prefab/UI/Bar/UI_Bar_QTE_Note_Energy";
+                    break;
+                case Note.NoteType.QTESnare:
+                    path = "Prefab/UI/Bar/UI_Bar_QTE_Note_Snare";
+                    break;
+                case Note.NoteType.QTEBassdrum:
+                    path= "Prefab/UI/Bar/UI_Bar_QTE_Note_Bassdrum";
+                    break;
+                default:
+                    path = "error path";
+                    break;
+            }
+            GameObject _note = Instantiate((GameObject)Resources.Load(path, typeof(GameObject)), transform);
+            note.note = _note;
+            note.note.transform.localPosition = startPos + (oneBeatSpace * (note.beatInBar)) + new Vector3(0, 10, 0);
+        }
     }
 
     //指针移动

@@ -136,8 +136,6 @@ MonoBehaviour:
   actionID: 0
   skillSequence: []
   animator: {fileID: 0}
-  enemyID: 0
-  spriteRenderer: {fileID: 0}
   originPosition: {x: 5, y: 0, z: 0}
   lootMoney: 1
   phaseID: 0

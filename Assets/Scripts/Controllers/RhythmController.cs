@@ -74,6 +74,7 @@ public class RhythmController : MonoBehaviour
 
         yield return new WaitForSeconds(2.0f);
         UIBarController.Instance.InitController();
+        SuperController.Instance.state = GameState.Start;
 
         BpmCalc();
  
@@ -129,24 +130,6 @@ public class RhythmController : MonoBehaviour
 
         //判定是否播放第N拍，并告知各种物体POGO起来！为了同步FLAG，这里使用FMOD判
 
-        //        if (UIBarController.Instance.playingBarPosInBeats >= beatIndex)
-        //        {
-        //            if (UIBarController.Instance.playingBarPosInBeats > 3 && beatIndex < 3)
-        //            {
-        ////                Debug.Log("去掉错位情况");
-        //    }
-        //    else
-        //    {
-        //        OnBeat(beatIndex);
-        //        beatIndex++;
-        //        if (beatIndex > UIBarController.Instance.playingBar.GetComponent<UIBar>().beatsThisBar - 1)
-        //        {
-        //            beatIndex = 0;
-        //        }
-        //    }
-        //    //            print("on beat" + beatIndex.ToString());
-
-        //}
 
         if (beatIndex != SoundController.Instance.timelineInfo.currentMusicBeat)
         {
@@ -155,33 +138,35 @@ public class RhythmController : MonoBehaviour
         }
 
 
-
-        //滤掉已经过期的能量音符
-        if (UIBarController.Instance.currentEnergyNotes.Count > 0)
+        if (SuperController.Instance.state == GameState.Start)
         {
-
-            if (songPosInBeats - UIBarController.Instance.currentEnergyNotes[0].beatInSong > commentGoodTime)
+            //滤掉已经过期的能量音符
+            if (UIBarController.Instance.currentEnergyNotes.Count > 0)
             {
-                //Debug.Log("songPosInBeat:" + songPosInBeats + "note[0].beat:" + UIBarController.Instance.currentEnergyNotes[0].beatInSong);
-//                Debug.Log("delete a energy note:"+ UIBarController.Instance.currentEnergyNotes[0].beatInSong);
-                UIBarController.Instance.currentEnergyNotes.RemoveAt(0);
+
+                if (songPosInBeats - UIBarController.Instance.currentEnergyNotes[0].beatInSong > commentGoodTime)
+                {
+                    //Debug.Log("songPosInBeat:" + songPosInBeats + "note[0].beat:" + UIBarController.Instance.currentEnergyNotes[0].beatInSong);
+                    //                Debug.Log("delete a energy note:"+ UIBarController.Instance.currentEnergyNotes[0].beatInSong);
+                    UIBarController.Instance.currentEnergyNotes.RemoveAt(0);
+                }
             }
-        }
 
 
 
-        //第三拍之后 清除已经过期的输入音符，
+            //第三拍之后 清除已经过期的输入音符，
 
 
-        if (songPosInBeats - UIBarController.Instance.finishedBeats - 2 > commentGoodTime)
-        {
-            if (isCurBarCleaned == false && isCurBarAtFinalBeat == false)
+            if (songPosInBeats - UIBarController.Instance.finishedBeats - 2 > commentGoodTime)
             {
-                InputSequenceController.Instance.CleanInputSequence();
-                isCurBarAtFinalBeat = true;
+                if (isCurBarCleaned == false && isCurBarAtFinalBeat == false)
+                {
+                    InputSequenceController.Instance.CleanInputSequence();
+                    isCurBarAtFinalBeat = true;
 
+                }
+                isCurBarCleaned = false;
             }
-            isCurBarCleaned = false;
         }
 
     }

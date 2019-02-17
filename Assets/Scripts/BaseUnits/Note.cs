@@ -19,14 +19,24 @@ public class Note{
 
         inputBassdrum=21,//输入，底鼓
         inputSnare=22,//输入，军鼓
+
+        QTEBassdrum=31,//qte,底鼓
+        QTESnare=32,//qte,军鼓
+        QTEHihat=33,//qte,踩镲
     }
 
     public NoteType type;
     public GameObject note;
-    //副note，用于显示两个小节公用的音符，蓄力专用
+    //TODO:副note，用于显示两个小节公用的音符，蓄力专用
     public GameObject subnote;
     //节拍位置
     public float beatInBar;
     public float beatInSong;
+
+
+    //qte专用 对应的技能
+    public string SuccessSkill;
+    public string BadSkill;
+    public string MissSkill;
 
 }

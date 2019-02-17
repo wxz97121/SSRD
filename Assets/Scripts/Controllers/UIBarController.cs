@@ -13,6 +13,9 @@ public class UIBarController : MonoBehaviour {
     //区域内当前小节序号
     public int barIndex;
 
+
+
+
     //已被读取小节占用的拍子数
     public float occupiedBeats;
     //已完成的小节的拍子数
@@ -263,11 +266,7 @@ public class UIBarController : MonoBehaviour {
             preBar.transform.localPosition = barPos3;
             preBar.GetComponent<UIBar>().SetAlpha(0);
 
-            //处理指针
-            //postBar.GetComponent<UIBar>().SetPinAlpha(0);
-            //preBar.GetComponent<UIBar>().SetPinAlpha(0);
-            //playingBar.GetComponent<UIBar>().PinMoving(0);
-            //playingBar.GetComponent<UIBar>().SetPinAlpha(255);
+
 
 
         }
@@ -302,7 +301,7 @@ public class UIBarController : MonoBehaviour {
     {
         barIndex++;
         //还在PRELUDE中的情况
-        if(pieceIndex==0)
+        if (pieceIndex == 0)
         {
             if (barIndex >= score.prelude.Count)
             {
@@ -310,11 +309,15 @@ public class UIBarController : MonoBehaviour {
                 barIndex = 0;
             }
 
-        }else if (barIndex >= score.mainlude.Count)
-            {
-                barIndex = 0;
-            }
+        }
+        else if (barIndex >= score.mainlude.Count)
+        {
+            barIndex = 0;
+        }
+        if (SuperController.Instance.state == GameState.QTE)
+        {
 
+        }
 
     }
     #endregion

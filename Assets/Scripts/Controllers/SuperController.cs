@@ -6,6 +6,7 @@ public enum GameState
 {
     Wait,
     Start,
+    QTE,
     End,
     Pause
 }
@@ -143,7 +144,6 @@ public class SuperController : MonoBehaviour {
         skillTipBarController.InitSkillTipBarArea();
         RhythmController.Instance.StartCoroutine("Reset");
 
-        state = GameState.Start;
 
         Player.Instance.Reset();
     }
