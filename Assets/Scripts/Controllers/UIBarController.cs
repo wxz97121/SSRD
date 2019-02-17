@@ -8,13 +8,14 @@ public class UIBarController : MonoBehaviour {
     public List<GameObject> currentBarList;
     //谱子
     public OneSongScore score;
+    public OneSongScore QTEscore;
+
     //当前播放段落序号
     public int pieceIndex;
     //区域内当前小节序号
     public int barIndex;
-    //QTE桥段的序号
-    public int QTEBarIndex;
 
+    public int QTEbarIndex;
 
 
     //已被读取小节占用的拍子数
@@ -78,8 +79,9 @@ public class UIBarController : MonoBehaviour {
     }
     // Update is called once per frame
     private void FixedUpdate() {
-        if (SuperController.Instance.state != GameState.Start)
+        if (SuperController.Instance.state != GameState.Start && SuperController.Instance.state != GameState.QTE)
         {
+            //Debug.Log("return");
             return;
         }
 
@@ -108,7 +110,7 @@ public class UIBarController : MonoBehaviour {
     {
         pieceIndex = 0;
         barIndex = 0;
-        QTEBarIndex = 0;
+        QTEbarIndex = -1;
         occupiedBeats = 0;
         finishedBeats = 0;
         playingBarPosInBeats =0;
@@ -157,14 +159,25 @@ public class UIBarController : MonoBehaviour {
         GameObject instBar = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar", typeof(GameObject)), transform);
 
 
-        //判断当前所在的段落，读取单小节乐谱
+        if (QTEbarIndex>=0)
+        {
+            instBar.GetComponent<UIBar>().type = UIBar.barType.QTEBar;
+            instBar.GetComponent<UIBar>().ReadScore(QTEscore.QTEscore[QTEbarIndex].notes);
+            instBar.GetComponent<UIBar>().beatsThisBar = QTEscore.QTEscore[QTEbarIndex].beatsThisBar;
+        }
+        if (QTEbarIndex<0)
+        {
+            instBar.GetComponent<UIBar>().type = UIBar.barType.inputBar;
 
-        OneBarScore _barScore = pieceIndex > 0 ? score.mainlude[barIndex] : score.prelude[barIndex];
+            //判断当前所在的段落，读取单小节乐谱
+
+            OneBarScore _barScore = pieceIndex > 0 ? score.mainlude[barIndex] : score.prelude[barIndex];
 
 
-        //将音符收进两个轨道
-        instBar.GetComponent<UIBar>().ReadScore(_barScore.notes);
-        instBar.GetComponent<UIBar>().beatsThisBar = _barScore.beatsThisBar;
+            //将音符收进两个轨道
+            instBar.GetComponent<UIBar>().ReadScore(_barScore.notes);
+            instBar.GetComponent<UIBar>().beatsThisBar = _barScore.beatsThisBar;
+        }
         instBar.GetComponent<UIBar>().Init();
         instBar.GetComponent<UIBar>().SetPinAlpha(0);
         instBar.GetComponent<UIBar>().active=true;
@@ -182,18 +195,30 @@ public class UIBarController : MonoBehaviour {
     {
 
 
-        //判断当前所在的段落，读取单小节乐谱
 
-        OneBarScore _barScore = pieceIndex > 0 ? score.mainlude[barIndex] : score.prelude[barIndex];
+        if (QTEbarIndex >= 0)
+        {
+            uiBar.type = UIBar.barType.QTEBar;
 
+            uiBar.ReadScore(QTEscore.QTEscore[QTEbarIndex].notes);
+            uiBar.beatsThisBar = QTEscore.QTEscore[QTEbarIndex].beatsThisBar;
+        }
+        if (QTEbarIndex < 0)
+        {
+            uiBar.type = UIBar.barType.inputBar;
 
-        uiBar.ReadScore(_barScore.notes);
-        uiBar.beatsThisBar = _barScore.beatsThisBar;
+            //判断当前所在的段落，读取单小节乐谱
+            OneBarScore _barScore = pieceIndex > 0 ? score.mainlude[barIndex] : score.prelude[barIndex];
+
+            uiBar.ReadScore(_barScore.notes);
+            uiBar.beatsThisBar = _barScore.beatsThisBar;
+        }
 
         uiBar.startBeat = occupiedBeats;
-//        Debug.Log("startbeat=" + uiBar.startBeat);
+        //        Debug.Log("startbeat=" + uiBar.startBeat);
         occupiedBeats += uiBar.beatsThisBar;
- //       Debug.Log("occupiedBeats=" + occupiedBeats);
+               Debug.Log("occupiedBeats=" + occupiedBeats);
+
         uiBar.Init();
         uiBar.GetComponent<UIBar>().SetPinAlpha(0);
         uiBar.GetComponent<UIBar>().active=true;
@@ -301,25 +326,36 @@ public class UIBarController : MonoBehaviour {
     #region 计算下一个小节的位置 NextBar（）
     private void NextBar()
     {
-        barIndex++;
-        //还在PRELUDE中的情况
-        if (pieceIndex == 0)
+        if(QTEbarIndex <0)
         {
-            if (barIndex >= score.prelude.Count)
+            barIndex++;
+            //还在PRELUDE中的情况
+            if (pieceIndex == 0)
             {
-                pieceIndex++;
+                if (barIndex >= score.prelude.Count)
+                {
+                    pieceIndex++;
+                    barIndex = 0;
+                }
+
+            }
+            else if (barIndex >= score.mainlude.Count)
+            {
                 barIndex = 0;
+            }
+        }
+        if (QTEbarIndex >= 0)
+        {
+            QTEbarIndex++;
+            if (QTEbarIndex >= QTEscore.QTEscore.Count)
+            {
+                QTEbarIndex = -1;
+                NextBar();
             }
 
         }
-        else if (barIndex >= score.mainlude.Count)
-        {
-            barIndex = 0;
-        }
-        if (SuperController.Instance.state == GameState.QTE)
-        {
 
-        }
+
 
     }
     #endregion
@@ -330,10 +366,14 @@ public class UIBarController : MonoBehaviour {
     {
         uIBar.type = UIBar.barType.QTEBar;
         uIBar.bg.color = Color.black;
+        //清除普通阶段的遗留音符
+        currentEnergyNotes.Clear();
+        InputSequenceController.Instance.CurInputSequence.Clear();
         uIBar.Empty();
         uIBar.InitLines();
         uIBar.ReadScore(notes);
         uIBar.InitNotes();
 
+        
     }
 }

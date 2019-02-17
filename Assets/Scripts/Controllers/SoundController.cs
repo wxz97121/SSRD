@@ -279,6 +279,11 @@ public class SoundController : MonoBehaviour {
         timelineHandle.Free();
     }
 
+    public string GetLastMarker()
+    {
+        return (string)timelineInfo.lastMarker;
+    }
+
     //test
     private void OnGUI()
     {

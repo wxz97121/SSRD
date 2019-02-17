@@ -53,6 +53,16 @@ public class UIBar : MonoBehaviour {
     //初始化小节块
     public void Init()
     {
+        if (type == barType.QTEBar)
+        {
+            bg.color = Color.black;
+        }
+        if (type == barType.inputBar)
+        {
+            //bg.color = Color.blue;
+            bg.color = new Color(190f/255f,220f/255f,1);
+        }
+        
         InitLines();
         InitNotes();
     }
@@ -61,10 +71,10 @@ public class UIBar : MonoBehaviour {
     //将音符收进两个轨道
     public void ReadScore(List<Note> notes)
     {
-        Debug.Log("start readscore in a bar:"+notes.Count);
+      // Debug.Log("start readscore in a bar:"+notes.Count);
         foreach (Note note in notes)
         {
-            Debug.Log("notetype="+note.type);
+//            Debug.Log("notetype="+note.type);
             //能量音符
             if ((int)note.type <= 8)
             {
@@ -97,6 +107,7 @@ public class UIBar : MonoBehaviour {
     //画节拍线
     public void InitLines()
     {
+//        Debug.Log("init lines");
         int _linecount = (int)(beatsThisBar);
         for (int i=0; i<=_linecount;i++)
         {
@@ -115,6 +126,8 @@ public class UIBar : MonoBehaviour {
     //画原有音符
     public void InitNotes()
     {
+//        Debug.Log("init notes");
+
         foreach (Note note in noteList_energy)
         {
             GameObject _note= Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Note_Energy", typeof(GameObject)), transform);
@@ -142,7 +155,7 @@ public class UIBar : MonoBehaviour {
                     path = "error path";
                     break;
             }
-            Debug.Log("init note path ="+path);
+//            Debug.Log("init note path ="+path);
             GameObject _note = Instantiate((GameObject)Resources.Load(path, typeof(GameObject)), transform);
             note.note = _note;
             note.note.transform.localPosition = startPos + (oneBeatSpace * (note.beatInBar)) + new Vector3(0, 10, 0);
@@ -226,6 +239,14 @@ public class UIBar : MonoBehaviour {
                 n.note.GetComponent<Image>().color = new Color(n.note.GetComponent<Image>().color.r, n.note.GetComponent<Image>().color.g, n.note.GetComponent<Image>().color.b, alpha);
             }
         }
+
+        foreach (Note n in noteList_QTE)
+        {
+            if (n.note)
+            {
+                n.note.GetComponent<Image>().color = new Color(n.note.GetComponent<Image>().color.r, n.note.GetComponent<Image>().color.g, n.note.GetComponent<Image>().color.b, alpha);
+            }
+        }
     }
 
     //重置
@@ -237,6 +258,14 @@ public class UIBar : MonoBehaviour {
             Destroy(noteList_energy[0].note);
             noteList_energy.RemoveAt(0);
         }
+
+        int tempcountqte = noteList_QTE.Count;
+        for (int i = 0; i < tempcountqte; i++)
+        {
+            Destroy(noteList_QTE[0].note);
+            noteList_QTE.RemoveAt(0);
+        }
+
         int tempcountline = linelist.Count;
         for (int i = 0; i < tempcountline; i++)
         {

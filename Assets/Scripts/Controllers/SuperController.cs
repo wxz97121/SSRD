@@ -63,7 +63,7 @@ public class SuperController : MonoBehaviour {
 
     protected void UpdateInput()
     {
-        if (SuperController.Instance.state != GameState.Start)
+        if (SuperController.Instance.state != GameState.Start&& SuperController.Instance.state != GameState.QTE)
         {
             return;
         }

@@ -202,7 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8820755, g: 0.9361164, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -271,6 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed2f92b6d59d45249b6a6e89cc7b607, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 1
   testtext: {fileID: 8922452931373987918}
   active: 0
   startBeat: 0
@@ -284,6 +285,7 @@ MonoBehaviour:
   linelist: []
   noteList_main: []
   noteList_energy: []
+  noteList_QTE: []
 --- !u!1 &687071515612883428
 GameObject:
   m_ObjectHideFlags: 0

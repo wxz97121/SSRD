@@ -97,8 +97,8 @@ public class RhythmController : MonoBehaviour
             return 3;
         }
 
-        //Debug.Log("songPosInBeats:"+ RhythmController.Instance.songPosInBeats);
-        //Debug.Log("beatInSong:" + notes[0].beatInSong);
+        Debug.Log("songPosInBeats:"+ RhythmController.Instance.songPosInBeats);
+        Debug.Log("beatInSong:" + notes[0].beatInSong);
         float inputError = Mathf.Abs(RhythmController.Instance.songPosInBeats - notes[0].beatInSong);
 
         if (inputError <= RhythmController.Instance.commentCoolTime)
@@ -138,8 +138,7 @@ public class RhythmController : MonoBehaviour
         }
 
 
-        if (SuperController.Instance.state == GameState.Start)
-        {
+ 
             //滤掉已经过期的能量音符
             if (UIBarController.Instance.currentEnergyNotes.Count > 0)
             {
@@ -167,7 +166,6 @@ public class RhythmController : MonoBehaviour
                 }
                 isCurBarCleaned = false;
             }
-        }
 
     }
 
@@ -187,7 +185,7 @@ public class RhythmController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (SuperController.Instance.state != GameState.Start)
+        if (SuperController.Instance.state != GameState.Start&&SuperController.Instance.state!=GameState.QTE)
         {
             return;
         }
@@ -268,6 +266,6 @@ public class RhythmController : MonoBehaviour
     {
         //UnityEngine.Debug.Log("flag="+ (string)timelineInfo.lastMarker);
         Text text = GameObject.Find("songposmonitor").GetComponent<Text>();
-        text.text =  "songposinBeats " + songPosInBeats;
+        text.text =  "energy notes count: " + UIBarController.Instance.currentEnergyNotes.Count;
     }
 }

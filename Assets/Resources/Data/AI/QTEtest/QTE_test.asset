@@ -15,8 +15,10 @@ MonoBehaviour:
   QTEscore:
   - notes: []
     beatsThisBar: 4
+  - notes: []
+    beatsThisBar: 4
   - notes:
-    - type: 31
+    - type: 32
       note: {fileID: 0}
       subnote: {fileID: 0}
       beatInBar: 0
@@ -27,7 +29,17 @@ MonoBehaviour:
     - type: 31
       note: {fileID: 0}
       subnote: {fileID: 0}
-      beatInBar: 0.75
+      beatInBar: 1
+      beatInSong: 0
+      SuccessSkill: 
+      BadSkill: 
+      MissSkill: 
+    beatsThisBar: 4
+  - notes:
+    - type: 32
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 0
       beatInSong: 0
       SuccessSkill: 
       BadSkill: 
@@ -35,15 +47,43 @@ MonoBehaviour:
     - type: 31
       note: {fileID: 0}
       subnote: {fileID: 0}
-      beatInBar: 1.5
+      beatInBar: 1
       beatInSong: 0
       SuccessSkill: 
       BadSkill: 
       MissSkill: 
+    beatsThisBar: 4
+  - notes:
     - type: 32
       note: {fileID: 0}
       subnote: {fileID: 0}
-      beatInBar: 2
+      beatInBar: 0
+      beatInSong: 0
+      SuccessSkill: 
+      BadSkill: 
+      MissSkill: 
+    - type: 31
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 1
+      beatInSong: 0
+      SuccessSkill: 
+      BadSkill: 
+      MissSkill: 
+    beatsThisBar: 4
+  - notes:
+    - type: 32
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 0
+      beatInSong: 0
+      SuccessSkill: 
+      BadSkill: 
+      MissSkill: 
+    - type: 31
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 1
       beatInSong: 0
       SuccessSkill: 
       BadSkill: 
@@ -62,6 +102,68 @@ MonoBehaviour:
       note: {fileID: 0}
       subnote: {fileID: 0}
       beatInBar: 0
+      beatInSong: 0
+      SuccessSkill: 
+      BadSkill: 
+      MissSkill: 
+    beatsThisBar: 4
+  - notes:
+    - type: 32
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 0
+      beatInSong: 0
+      SuccessSkill: 
+      BadSkill: 
+      MissSkill: 
+    - type: 31
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 0
+      beatInSong: 0
+      SuccessSkill: 
+      BadSkill: 
+      MissSkill: 
+    beatsThisBar: 4
+  - notes:
+    - type: 32
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 0
+      beatInSong: 0
+      SuccessSkill: 
+      BadSkill: 
+      MissSkill: 
+    - type: 31
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 0
+      beatInSong: 0
+      SuccessSkill: 
+      BadSkill: 
+      MissSkill: 
+    beatsThisBar: 4
+  - notes:
+    - type: 32
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 0
+      beatInSong: 0
+      SuccessSkill: 
+      BadSkill: 
+      MissSkill: 
+    - type: 31
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 1
+      beatInSong: 0
+      SuccessSkill: 
+      BadSkill: 
+      MissSkill: 
+    - type: 31
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 2
       beatInSong: 0
       SuccessSkill: 
       BadSkill: 
