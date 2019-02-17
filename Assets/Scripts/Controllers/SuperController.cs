@@ -120,20 +120,42 @@ public class SuperController : MonoBehaviour {
         //战斗输入按键
         if (Input.GetKeyDown(KeyCode.M))
         {
-//            Debug.Log("INPUT M");
-
-            InputSequenceController.Instance.CollectEnergy();
+            //            Debug.Log("INPUT M");
+            switch (state)
+            {
+                case GameState.Start:
+                    InputSequenceController.Instance.CollectEnergy();
+                    break;
+                case GameState.QTE:
+                    break;
+            }
         }
         if (Input.GetKeyDown(KeyCode.Z))
         {
-//            Debug.Log("INPUT Z");
-            InputSequenceController.Instance.CalcSkillInput(Note.NoteType.inputBassdrum);
+            //            Debug.Log("INPUT Z");
+            switch (state)
+            {
+                case GameState.Start:
+                    InputSequenceController.Instance.CalcSkillInput(Note.NoteType.inputBassdrum);
+                    break;
+                case GameState.QTE:
+                    InputSequenceController.Instance.QTEInput(Note.NoteType.QTEBassdrum);
+                    break;
+            }
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
- //           Debug.Log("INPUT X");
+            //           Debug.Log("INPUT X");
+            switch (state)
+            {
+                case GameState.Start:
+                    InputSequenceController.Instance.CalcSkillInput(Note.NoteType.inputSnare);
+                    break;
+                case GameState.QTE:
+                    InputSequenceController.Instance.QTEInput(Note.NoteType.QTESnare);
 
-            InputSequenceController.Instance.CalcSkillInput(Note.NoteType.inputSnare);
+                    break;
+            }
         }
 
     }

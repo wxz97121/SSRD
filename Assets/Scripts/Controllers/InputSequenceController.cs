@@ -9,6 +9,13 @@ public class InputSequenceController : MonoBehaviour
     public List<Skill> availableSkills;
     private float judgeBeat;
 
+    //输入错误的时间点，用于禁止再次输入
+    private float badtime=-10;
+    //输入错误后禁止的时长 拍子
+    public float badCDtimeInBeats=1;
+    //当前是否在错误后的CD中
+    public bool isInBadCD = false;
+
     //当前的输入序列
     public List<Note> CurInputSequence;
 
@@ -40,14 +47,14 @@ public class InputSequenceController : MonoBehaviour
     }
 
 
-    //吃能量
+    #region 吃能量
     public void CollectEnergy()
     {
-        Debug.Log("------------------------");
+        //Debug.Log("------------------------");
 
-        Debug.Log("START TRYING COLLECT");
-        Debug.Log("currentEnergyNotes.Count:" + UIBarController.Instance.currentEnergyNotes.Count);
-        Debug.Log("comment value:" + RhythmController.InputComment(UIBarController.Instance.currentEnergyNotes));
+        //Debug.Log("START TRYING COLLECT");
+        //Debug.Log("currentEnergyNotes.Count:" + UIBarController.Instance.currentEnergyNotes.Count);
+        //Debug.Log("comment value:" + RhythmController.InputComment(UIBarController.Instance.currentEnergyNotes));
 
         if (RhythmController.InputComment(UIBarController.Instance.currentEnergyNotes) < 2)
         {
@@ -64,7 +71,7 @@ public class InputSequenceController : MonoBehaviour
 
 
     }
-
+    #endregion
 
 
     public void CalcSkillInput(Note.NoteType inputType)
@@ -282,6 +289,32 @@ public class InputSequenceController : MonoBehaviour
         availableSkills = skills;
         SuperController.Instance.skillTipBarController.RemoveAllRightOWhenSuccess();
         RhythmController.Instance.isCurBarCleaned = true;
+    }
+    #endregion
+
+
+    #region QTE时的按键判定
+    public void QTEInput(Note.NoteType inputtype)
+    {
+
+        if (RhythmController.InputComment(UIBarController.Instance.currentQTENotes) < 2)
+        {
+            if (inputtype == UIBarController.Instance.currentQTENotes[0].type)
+            {
+                Debug.Log(UIBarController.Instance.currentQTENotes[0].SuccessSkill);
+                Player.Instance.enemyList[0].GetComponent<AI>().QTEAction(UIBarController.Instance.currentQTENotes[0].SuccessSkill);
+
+            }
+            else
+            {
+                Debug.Log(UIBarController.Instance.currentQTENotes[0].SuccessSkill);
+
+                Player.Instance.enemyList[0].GetComponent<AI>().QTEAction(UIBarController.Instance.currentQTENotes[0].BadSkill);
+
+            }
+            UIBarController.Instance.currentQTENotes[0].note.GetComponent<VFX>().StartCoroutine("FadeOutLarger");
+            UIBarController.Instance.currentQTENotes.RemoveAt(0);
+        }
     }
     #endregion
 }

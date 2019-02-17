@@ -107,15 +107,20 @@ public class OneSongScore
                 _onebarscore.notes.Add(new Note
                 {
                     type = data.QTEscore[i].notes[j].type,
-                    beatInBar = data.QTEscore[i].notes[j].beatInBar
+                    beatInBar = data.QTEscore[i].notes[j].beatInBar,
+                    SuccessSkill = data.QTEscore[i].notes[j].SuccessSkill,
+                    MissSkill = data.QTEscore[i].notes[j].MissSkill,
+                    BadSkill = data.QTEscore[i].notes[j].BadSkill
                 });
+                Debug.Log("success skill=" + _onebarscore.notes[0].SuccessSkill);
+
                 //                Debug.Log("added mainlude note ");
             }
             _score.QTEscore.Add(_onebarscore);
 
         }
 
-        Debug.Log("qte score bars:" + _score.QTEscore.Count);
+        Debug.Log("" + _score.QTEscore.Count);
 
         return _score;
     }

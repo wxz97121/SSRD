@@ -6,7 +6,6 @@ public class AI_QTEtest : AI
 {
     //记录当前阶段
     public int phaseID = 0;
-    private int InnerActionID = 0;
     private int QTEIndex;
 
     public QTEScoreData qTEScoreData;
@@ -15,6 +14,7 @@ public class AI_QTEtest : AI
     override protected void Update()
     {
         base.Update();
+
     }
 
     override protected void Start()
@@ -49,7 +49,7 @@ public class AI_QTEtest : AI
                 if (actionID >= QTEIndex)
                 {
                     //Debug.Log(SoundController.Instance.GetLastMarker());
-                    if (SoundController.Instance.GetLastMarker()=="minibridge"||SoundController.Instance.GetLastMarker()=="breakdown")
+                    if (SoundController.Instance.GetLastMarker() == "minibridge" || SoundController.Instance.GetLastMarker() == "breakdown")
                     {
                         UIBarController.Instance.TurnBarIntoQTE(UIBarController.Instance.playingBar.GetComponent<UIBar>(), qtescore.QTEscore[0].notes);
                         UIBarController.Instance.TurnBarIntoQTE(UIBarController.Instance.preBar.GetComponent<UIBar>(), qtescore.QTEscore[1].notes);
@@ -62,7 +62,7 @@ public class AI_QTEtest : AI
 
                         SoundController.Instance.FMODSetParameter("boss", 0);
                         SoundController.Instance.FMODSetParameter("chorus", 0);
-                        SoundController.Instance.FMODSetParameter("verse",1);
+                        SoundController.Instance.FMODSetParameter("verse", 1);
                         SoundController.Instance.FMODSetParameter("breakdown", 0);
                         SoundController.Instance.FMODSetParameter("outro", 0);
                     }
@@ -75,11 +75,20 @@ public class AI_QTEtest : AI
                 }
                 break;
             case 1:
-             
+                //                Debug.Log(UIBarController.Instance.QTEbarIndex);
+                if (UIBarController.Instance.QTEbarIndex < 0 && SoundController.Instance.timelineInfo.currentMusicBeat >= 4)
+                {
+                    //           Debug.Log("back to start");
+                    SuperController.Instance.state = GameState.Start;
+                }
                 break;
         }
+    }
 
-
+    public override void QTEAction(string actionname)
+    {
+        base.QTEAction(actionname);
+        _skillDictionary[actionname].EffectFunction(this);
 
     }
 }

@@ -44,6 +44,7 @@ public class UIBarController : MonoBehaviour {
     [HideInInspector] public GameObject preBar;
 
     public List<Note> currentEnergyNotes;
+    public List<Note> currentQTENotes;
 
 
     #region 单例
@@ -72,6 +73,7 @@ public class UIBarController : MonoBehaviour {
     public void InitController()
     {
         currentEnergyNotes = new List<Note>();
+        currentQTENotes=new List<Note>();
         currentBarList = new List<GameObject>();
         score = SuperController.Instance.score;
 
@@ -217,13 +219,15 @@ public class UIBarController : MonoBehaviour {
         uiBar.startBeat = occupiedBeats;
         //        Debug.Log("startbeat=" + uiBar.startBeat);
         occupiedBeats += uiBar.beatsThisBar;
-               Debug.Log("occupiedBeats=" + occupiedBeats);
+//    Debug.Log("occupiedBeats=" + occupiedBeats);
 
         uiBar.Init();
         uiBar.GetComponent<UIBar>().SetPinAlpha(0);
         uiBar.GetComponent<UIBar>().active=true;
 
         currentEnergyNotes.AddRange(uiBar.GetComponent<UIBar>().noteList_energy);
+        currentQTENotes.AddRange(uiBar.GetComponent<UIBar>().noteList_QTE);
+
     }
     #endregion
 

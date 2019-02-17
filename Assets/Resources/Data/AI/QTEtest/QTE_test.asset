@@ -23,17 +23,17 @@ MonoBehaviour:
       subnote: {fileID: 0}
       beatInBar: 0
       beatInSong: 0
-      SuccessSkill: 
-      BadSkill: 
-      MissSkill: 
+      SuccessSkill: QTEok
+      BadSkill: QTEbad
+      MissSkill: QTEmiss
     - type: 31
       note: {fileID: 0}
       subnote: {fileID: 0}
       beatInBar: 1
       beatInSong: 0
-      SuccessSkill: 
-      BadSkill: 
-      MissSkill: 
+      SuccessSkill: QTEok
+      BadSkill: QTEbad
+      MissSkill: QTEmiss
     beatsThisBar: 4
   - notes:
     - type: 32
@@ -41,17 +41,17 @@ MonoBehaviour:
       subnote: {fileID: 0}
       beatInBar: 0
       beatInSong: 0
-      SuccessSkill: 
-      BadSkill: 
-      MissSkill: 
+      SuccessSkill: QTEok
+      BadSkill: QTEbad
+      MissSkill: QTEmiss
     - type: 31
       note: {fileID: 0}
       subnote: {fileID: 0}
       beatInBar: 1
       beatInSong: 0
-      SuccessSkill: 
-      BadSkill: 
-      MissSkill: 
+      SuccessSkill: QTEok
+      BadSkill: QTEbad
+      MissSkill: QTEmiss
     beatsThisBar: 4
   - notes:
     - type: 32
@@ -59,17 +59,17 @@ MonoBehaviour:
       subnote: {fileID: 0}
       beatInBar: 0
       beatInSong: 0
-      SuccessSkill: 
-      BadSkill: 
-      MissSkill: 
+      SuccessSkill: QTEok
+      BadSkill: QTEbad
+      MissSkill: QTEmiss
     - type: 31
       note: {fileID: 0}
       subnote: {fileID: 0}
       beatInBar: 1
       beatInSong: 0
-      SuccessSkill: 
-      BadSkill: 
-      MissSkill: 
+      SuccessSkill: QTEok
+      BadSkill: QTEbad
+      MissSkill: QTEmiss
     beatsThisBar: 4
   - notes:
     - type: 32
@@ -77,17 +77,17 @@ MonoBehaviour:
       subnote: {fileID: 0}
       beatInBar: 0
       beatInSong: 0
-      SuccessSkill: 
-      BadSkill: 
-      MissSkill: 
+      SuccessSkill: QTEok
+      BadSkill: QTEbad
+      MissSkill: QTEmiss
     - type: 31
       note: {fileID: 0}
       subnote: {fileID: 0}
       beatInBar: 1
       beatInSong: 0
-      SuccessSkill: 
-      BadSkill: 
-      MissSkill: 
+      SuccessSkill: QTEok
+      BadSkill: QTEbad
+      MissSkill: QTEmiss
     beatsThisBar: 4
   - notes:
     - type: 32
@@ -95,77 +95,77 @@ MonoBehaviour:
       subnote: {fileID: 0}
       beatInBar: 0
       beatInSong: 0
-      SuccessSkill: 
-      BadSkill: 
-      MissSkill: 
-    - type: 31
-      note: {fileID: 0}
-      subnote: {fileID: 0}
-      beatInBar: 0
-      beatInSong: 0
-      SuccessSkill: 
-      BadSkill: 
-      MissSkill: 
-    beatsThisBar: 4
-  - notes:
-    - type: 32
-      note: {fileID: 0}
-      subnote: {fileID: 0}
-      beatInBar: 0
-      beatInSong: 0
-      SuccessSkill: 
-      BadSkill: 
-      MissSkill: 
-    - type: 31
-      note: {fileID: 0}
-      subnote: {fileID: 0}
-      beatInBar: 0
-      beatInSong: 0
-      SuccessSkill: 
-      BadSkill: 
-      MissSkill: 
-    beatsThisBar: 4
-  - notes:
-    - type: 32
-      note: {fileID: 0}
-      subnote: {fileID: 0}
-      beatInBar: 0
-      beatInSong: 0
-      SuccessSkill: 
-      BadSkill: 
-      MissSkill: 
-    - type: 31
-      note: {fileID: 0}
-      subnote: {fileID: 0}
-      beatInBar: 0
-      beatInSong: 0
-      SuccessSkill: 
-      BadSkill: 
-      MissSkill: 
-    beatsThisBar: 4
-  - notes:
-    - type: 32
-      note: {fileID: 0}
-      subnote: {fileID: 0}
-      beatInBar: 0
-      beatInSong: 0
-      SuccessSkill: 
-      BadSkill: 
-      MissSkill: 
-    - type: 31
-      note: {fileID: 0}
-      subnote: {fileID: 0}
-      beatInBar: 1
-      beatInSong: 0
-      SuccessSkill: 
-      BadSkill: 
-      MissSkill: 
+      SuccessSkill: QTEok
+      BadSkill: QTEbad
+      MissSkill: QTEmiss
     - type: 31
       note: {fileID: 0}
       subnote: {fileID: 0}
       beatInBar: 2
       beatInSong: 0
-      SuccessSkill: 
-      BadSkill: 
-      MissSkill: 
+      SuccessSkill: QTEok
+      BadSkill: QTEbad
+      MissSkill: QTEmiss
+    beatsThisBar: 4
+  - notes:
+    - type: 32
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 0
+      beatInSong: 0
+      SuccessSkill: QTEok
+      BadSkill: QTEbad
+      MissSkill: QTEmiss
+    - type: 31
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 2
+      beatInSong: 0
+      SuccessSkill: QTEok
+      BadSkill: QTEbad
+      MissSkill: QTEmiss
+    beatsThisBar: 4
+  - notes:
+    - type: 32
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 0
+      beatInSong: 0
+      SuccessSkill: QTEok
+      BadSkill: QTEbad
+      MissSkill: QTEmiss
+    - type: 31
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 2
+      beatInSong: 0
+      SuccessSkill: QTEok
+      BadSkill: QTEbad
+      MissSkill: QTEmiss
+    beatsThisBar: 4
+  - notes:
+    - type: 32
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 0
+      beatInSong: 0
+      SuccessSkill: QTEok
+      BadSkill: QTEbad
+      MissSkill: QTEmiss
+    - type: 31
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 1
+      beatInSong: 0
+      SuccessSkill: QTEok
+      BadSkill: QTEbad
+      MissSkill: QTEmiss
+    - type: 31
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 2
+      beatInSong: 0
+      SuccessSkill: QTEok
+      BadSkill: QTEbad
+      MissSkill: QTEmiss
     beatsThisBar: 4

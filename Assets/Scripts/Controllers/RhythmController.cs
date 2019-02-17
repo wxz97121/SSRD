@@ -151,12 +151,24 @@ public class RhythmController : MonoBehaviour
                 }
             }
 
+        //清除已经过期的QTE音符
+        if (UIBarController.Instance.currentQTENotes.Count > 0)
+        {
+
+            if (songPosInBeats - UIBarController.Instance.currentQTENotes[0].beatInSong > commentGoodTime)
+            {
+                //Debug.Log("songPosInBeat:" + songPosInBeats + "note[0].beat:" + UIBarController.Instance.currentEnergyNotes[0].beatInSong);
+                //                Debug.Log("delete a energy note:"+ UIBarController.Instance.currentEnergyNotes[0].beatInSong);
+                UIBarController.Instance.currentQTENotes.RemoveAt(0);
+            }
+        }
 
 
-            //第三拍之后 清除已经过期的输入音符，
+
+        //第三拍之后 清除已经过期的输入音符，
 
 
-            if (songPosInBeats - UIBarController.Instance.finishedBeats - 2 > commentGoodTime)
+        if (songPosInBeats - UIBarController.Instance.finishedBeats - 2 > commentGoodTime)
             {
                 if (isCurBarCleaned == false && isCurBarAtFinalBeat == false)
                 {
@@ -266,6 +278,6 @@ public class RhythmController : MonoBehaviour
     {
         //UnityEngine.Debug.Log("flag="+ (string)timelineInfo.lastMarker);
         Text text = GameObject.Find("songposmonitor").GetComponent<Text>();
-        text.text =  "energy notes count: " + UIBarController.Instance.currentEnergyNotes.Count;
+        text.text =  "QTE notes count: " + UIBarController.Instance.currentQTENotes.Count;
     }
 }

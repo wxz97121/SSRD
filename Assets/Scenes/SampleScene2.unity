@@ -1327,6 +1327,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f050dcc1d79f45f29cfdaf4bf8f0791, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  badCDtimeInBeats: 1
+  isInBadCD: 0
   CurInputSequence: []
 --- !u!4 &611087723
 Transform:
@@ -3605,6 +3607,7 @@ MonoBehaviour:
   playingBar: {fileID: 0}
   preBar: {fileID: 0}
   currentEnergyNotes: []
+  currentQTENotes: []
 --- !u!1 &1622754054
 GameObject:
   m_ObjectHideFlags: 0
