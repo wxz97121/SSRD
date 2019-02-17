@@ -194,7 +194,7 @@ public class SoundController : MonoBehaviour {
 
         //抵消播放瞬间产生的延迟
         RhythmController.Instance.songPosOffset =  RhythmController.Instance.songStartTime- CalcDSPtime();
-        UnityEngine.Debug.Log("offset="+ RhythmController.Instance.songPosOffset);
+//        UnityEngine.Debug.Log("offset="+ RhythmController.Instance.songPosOffset);
 
     }
 

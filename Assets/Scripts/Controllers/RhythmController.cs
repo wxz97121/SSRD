@@ -80,7 +80,7 @@ public class RhythmController : MonoBehaviour
  
         songStartTime = (float)(SoundController.Instance.CalcDSPtime());
         SoundController.Instance.FMODMusicPlay();
-        Debug.Log("start time =" + songStartTime+"   fmod time ="+ SoundController.Instance.CalcDSPtime());
+//        Debug.Log("start time =" + songStartTime+"   fmod time ="+ SoundController.Instance.CalcDSPtime());
     }
     #endregion
 

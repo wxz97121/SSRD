@@ -12,7 +12,8 @@ public class UIBarController : MonoBehaviour {
     public int pieceIndex;
     //区域内当前小节序号
     public int barIndex;
-
+    //QTE桥段的序号
+    public int QTEBarIndex;
 
 
 
@@ -107,6 +108,7 @@ public class UIBarController : MonoBehaviour {
     {
         pieceIndex = 0;
         barIndex = 0;
+        QTEBarIndex = 0;
         occupiedBeats = 0;
         finishedBeats = 0;
         playingBarPosInBeats =0;
@@ -321,4 +323,17 @@ public class UIBarController : MonoBehaviour {
 
     }
     #endregion
+
+
+    //普通BAR转换为QTEBAR，用于QTE触发
+    public void TurnBarIntoQTE(UIBar uIBar,List<Note> notes)
+    {
+        uIBar.type = UIBar.barType.QTEBar;
+        uIBar.bg.color = Color.black;
+        uIBar.Empty();
+        uIBar.InitLines();
+        uIBar.ReadScore(notes);
+        uIBar.InitNotes();
+
+    }
 }

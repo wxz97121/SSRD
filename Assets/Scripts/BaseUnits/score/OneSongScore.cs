@@ -79,7 +79,7 @@ public class OneSongScore
 
 
     #region 写入QTE SCORE ReadQTEScoreData(scorename)
-    public static OneSongScore ReadQTEScoreData(ScoreData data)
+    public static OneSongScore ReadQTEScoreData(QTEScoreData data)
     {
         if (!data)
         {
@@ -95,28 +95,27 @@ public class OneSongScore
 
 
 
-        //_score.mainlude = data.mainlude;
-        for (int i = 0; i < data.mainlude.Count; i++)
+        for (int i = 0; i < data.QTEscore.Count; i++)
         {
             OneBarScore _onebarscore = new OneBarScore
             {
-                beatsThisBar = data.mainlude[i].beatsThisBar,
+                beatsThisBar = data.QTEscore[i].beatsThisBar,
                 notes = new List<Note>()
             };
-            for (int j = 0; j < data.mainlude[i].notes.Count; j++)
+            for (int j = 0; j < data.QTEscore[i].notes.Count; j++)
             {
                 _onebarscore.notes.Add(new Note
                 {
-                    type = data.mainlude[i].notes[j].type,
-                    beatInBar = data.mainlude[i].notes[j].beatInBar
+                    type = data.QTEscore[i].notes[j].type,
+                    beatInBar = data.QTEscore[i].notes[j].beatInBar
                 });
                 //                Debug.Log("added mainlude note ");
             }
-            _score.mainlude.Add(_onebarscore);
+            _score.QTEscore.Add(_onebarscore);
 
         }
 
-
+        Debug.Log("qte score bars:" + _score.QTEscore.Count);
 
         return _score;
     }

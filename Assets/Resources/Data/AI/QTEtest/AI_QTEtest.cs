@@ -27,6 +27,7 @@ public class AI_QTEtest : AI
         base.Init();
 
         QTEIndex = skillSequence.FindIndex(a => a == "QTE");
+        qtescore = OneSongScore.ReadQTEScoreData(qTEScoreData);
 
     }
 
@@ -42,6 +43,7 @@ public class AI_QTEtest : AI
                 actionID++;
                 if (actionID >= QTEIndex)
                 {
+                    UIBarController.Instance.TurnBarIntoQTE(UIBarController.Instance.preBar.GetComponent<UIBar>(),qtescore.QTEscore[1].notes);
                     actionID =  0;
                     phaseID = 1;
                 }

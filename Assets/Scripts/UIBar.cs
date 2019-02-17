@@ -61,8 +61,10 @@ public class UIBar : MonoBehaviour {
     //将音符收进两个轨道
     public void ReadScore(List<Note> notes)
     {
+        Debug.Log("start readscore in a bar:"+notes.Count);
         foreach (Note note in notes)
         {
+            Debug.Log("notetype="+note.type);
             //能量音符
             if ((int)note.type <= 8)
             {
@@ -80,7 +82,7 @@ public class UIBar : MonoBehaviour {
             if ((int)note.type >= 30&& (int)note.type<40)
             {
 
-                noteList_energy.Add(new Note
+                noteList_QTE.Add(new Note
                 {
                     type = note.type,
                     beatInBar = note.beatInBar,
@@ -100,8 +102,11 @@ public class UIBar : MonoBehaviour {
         {
             GameObject line = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Line", typeof(GameObject)), transform);
             line.transform.localPosition = startPos + (oneBeatSpace * i);
+            line.GetComponent<Image>().color = Color.black;
             //第三拍变红提示
             if (i == 2&&type==barType.inputBar) { line.GetComponent<Image>().color = Color.red; }
+            //QTE变白
+            if (type == barType.QTEBar) { line.GetComponent<Image>().color = Color.white; }
             linelist.Add(line);
         }
 
@@ -137,6 +142,7 @@ public class UIBar : MonoBehaviour {
                     path = "error path";
                     break;
             }
+            Debug.Log("init note path ="+path);
             GameObject _note = Instantiate((GameObject)Resources.Load(path, typeof(GameObject)), transform);
             note.note = _note;
             note.note.transform.localPosition = startPos + (oneBeatSpace * (note.beatInBar)) + new Vector3(0, 10, 0);
