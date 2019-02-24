@@ -77,10 +77,10 @@ public class RhythmController : MonoBehaviour
         SuperController.Instance.state = GameState.Start;
 
         BpmCalc();
- 
+
         songStartTime = (float)(SoundController.Instance.CalcDSPtime());
         SoundController.Instance.FMODMusicPlay();
-//        Debug.Log("start time =" + songStartTime+"   fmod time ="+ SoundController.Instance.CalcDSPtime());
+        //        Debug.Log("start time =" + songStartTime+"   fmod time ="+ SoundController.Instance.CalcDSPtime());
     }
     #endregion
 
@@ -97,7 +97,7 @@ public class RhythmController : MonoBehaviour
             return 3;
         }
 
-        Debug.Log("songPosInBeats:"+ RhythmController.Instance.songPosInBeats);
+        Debug.Log("songPosInBeats:" + RhythmController.Instance.songPosInBeats);
         Debug.Log("beatInSong:" + notes[0].beatInSong);
         float inputError = Mathf.Abs(RhythmController.Instance.songPosInBeats - notes[0].beatInSong);
 
@@ -128,28 +128,28 @@ public class RhythmController : MonoBehaviour
         songPosInBeats = songPos / secPerBeat;
         //        Debug.Log("distime="+ AudioSettings.dspTime+ "    startTime=" + songStartTime+ "    songPos=" +songPos+   "beats ="+songPosInBeats);
 
+
         //判定是否播放第N拍，并告知各种物体POGO起来！为了同步FLAG，这里使用FMOD判
-
-
         if (beatIndex != SoundController.Instance.timelineInfo.currentMusicBeat)
         {
-            OnBeat(SoundController.Instance.timelineInfo.currentMusicBeat-1);
+            OnBeat(SoundController.Instance.timelineInfo.currentMusicBeat - 1);
             beatIndex = SoundController.Instance.timelineInfo.currentMusicBeat;
         }
 
 
- 
-            //滤掉已经过期的能量音符
-            if (UIBarController.Instance.currentEnergyNotes.Count > 0)
-            {
 
-                if (songPosInBeats - UIBarController.Instance.currentEnergyNotes[0].beatInSong > commentGoodTime)
-                {
-                    //Debug.Log("songPosInBeat:" + songPosInBeats + "note[0].beat:" + UIBarController.Instance.currentEnergyNotes[0].beatInSong);
-                    //                Debug.Log("delete a energy note:"+ UIBarController.Instance.currentEnergyNotes[0].beatInSong);
-                    UIBarController.Instance.currentEnergyNotes.RemoveAt(0);
-                }
+        //滤掉已经过期的能量音符
+        if (UIBarController.Instance.currentEnergyNotes.Count > 0)
+        {
+
+            if (songPosInBeats - UIBarController.Instance.currentEnergyNotes[0].beatInSong > commentGoodTime)
+            {
+                //Debug.Log("songPosInBeat:" + songPosInBeats + "note[0].beat:" + UIBarController.Instance.currentEnergyNotes[0].beatInSong);
+                //                Debug.Log("delete a energy note:"+ UIBarController.Instance.currentEnergyNotes[0].beatInSong);
+                UIBarController.Instance.currentEnergyNotes.RemoveAt(0);
             }
+        }
+
 
         //清除已经过期的QTE音符
         if (UIBarController.Instance.currentQTENotes.Count > 0)
@@ -157,8 +157,12 @@ public class RhythmController : MonoBehaviour
 
             if (songPosInBeats - UIBarController.Instance.currentQTENotes[0].beatInSong > commentGoodTime)
             {
+                Player.Instance.enemyList[0].GetComponent<AI>().QTEAction(UIBarController.Instance.currentQTENotes[0].MissSkill);
+
                 //Debug.Log("songPosInBeat:" + songPosInBeats + "note[0].beat:" + UIBarController.Instance.currentEnergyNotes[0].beatInSong);
                 //                Debug.Log("delete a energy note:"+ UIBarController.Instance.currentEnergyNotes[0].beatInSong);
+                UIBarController.Instance.currentQTENotes[0].note.GetComponent<VFX>().StartCoroutine("NoteInputBad");
+
                 UIBarController.Instance.currentQTENotes.RemoveAt(0);
             }
         }
@@ -169,15 +173,15 @@ public class RhythmController : MonoBehaviour
 
 
         if (songPosInBeats - UIBarController.Instance.finishedBeats - 2 > commentGoodTime)
+        {
+            if (isCurBarCleaned == false && isCurBarAtFinalBeat == false)
             {
-                if (isCurBarCleaned == false && isCurBarAtFinalBeat == false)
-                {
-                    InputSequenceController.Instance.CleanInputSequence();
-                    isCurBarAtFinalBeat = true;
+                InputSequenceController.Instance.CleanInputSequence();
+                isCurBarAtFinalBeat = true;
 
-                }
-                isCurBarCleaned = false;
             }
+            isCurBarCleaned = false;
+        }
 
     }
 
@@ -197,14 +201,14 @@ public class RhythmController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (SuperController.Instance.state != GameState.Start&&SuperController.Instance.state!=GameState.QTE)
+        if (SuperController.Instance.state != GameState.Start && SuperController.Instance.state != GameState.QTE)
         {
             return;
         }
         BeatUpdate();
 
 
-      //  ReplayBGM();
+        //  ReplayBGM();
 
     }
 
@@ -258,7 +262,7 @@ public class RhythmController : MonoBehaviour
         }
 
         Player.Instance.BuffBeat(beatNum);
-        if(Player.Instance.mTarget!=null)
+        if (Player.Instance.mTarget != null)
             Player.Instance.mTarget.GetComponent<AI>().BuffBeat(beatNum);
 
         if (Player.Instance.animator.GetCurrentAnimatorStateInfo(0).IsName("player_idle"))
@@ -278,6 +282,6 @@ public class RhythmController : MonoBehaviour
     {
         //UnityEngine.Debug.Log("flag="+ (string)timelineInfo.lastMarker);
         Text text = GameObject.Find("songposmonitor").GetComponent<Text>();
-        text.text =  "QTE notes count: " + UIBarController.Instance.currentQTENotes.Count;
+        text.text = "QTE notes count: " + UIBarController.Instance.currentQTENotes.Count;
     }
 }

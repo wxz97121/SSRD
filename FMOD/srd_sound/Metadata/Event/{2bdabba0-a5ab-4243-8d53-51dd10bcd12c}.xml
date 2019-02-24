@@ -859,7 +859,7 @@
             <value>60</value>
         </property>
         <property name="quantizationInterval">
-            <value>8</value>
+            <value>1</value>
         </property>
         <relationship name="triggerConditions">
             <destination>{7a731711-58eb-40ff-b21a-d5888599771b}</destination>
@@ -927,7 +927,7 @@
             <value>60</value>
         </property>
         <property name="quantizationInterval">
-            <value>8</value>
+            <value>1</value>
         </property>
         <relationship name="triggerConditions">
             <destination>{e6e84245-c1ed-4919-8433-b4583e64f69e}</destination>

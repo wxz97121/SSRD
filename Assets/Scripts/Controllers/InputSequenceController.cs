@@ -302,17 +302,19 @@ public class InputSequenceController : MonoBehaviour
             if (inputtype == UIBarController.Instance.currentQTENotes[0].type)
             {
                 Debug.Log(UIBarController.Instance.currentQTENotes[0].SuccessSkill);
+                UIBarController.Instance.currentQTENotes[0].note.GetComponent<VFX>().StartCoroutine("FadeOutLarger");
+
                 Player.Instance.enemyList[0].GetComponent<AI>().QTEAction(UIBarController.Instance.currentQTENotes[0].SuccessSkill);
 
             }
             else
             {
                 Debug.Log(UIBarController.Instance.currentQTENotes[0].SuccessSkill);
+                UIBarController.Instance.currentQTENotes[0].note.GetComponent<VFX>().StartCoroutine("NoteInputBad");
 
                 Player.Instance.enemyList[0].GetComponent<AI>().QTEAction(UIBarController.Instance.currentQTENotes[0].BadSkill);
 
             }
-            UIBarController.Instance.currentQTENotes[0].note.GetComponent<VFX>().StartCoroutine("FadeOutLarger");
             UIBarController.Instance.currentQTENotes.RemoveAt(0);
         }
     }

@@ -197,7 +197,7 @@ public class UIBarController : MonoBehaviour {
     {
 
 
-
+        //QTE BAR
         if (QTEbarIndex >= 0)
         {
             uiBar.type = UIBar.barType.QTEBar;
@@ -353,6 +353,7 @@ public class UIBarController : MonoBehaviour {
             QTEbarIndex++;
             if (QTEbarIndex >= QTEscore.QTEscore.Count)
             {
+                //QTE BAR全部读取完毕后，QTEbarIndex=-1
                 QTEbarIndex = -1;
                 NextBar();
             }
