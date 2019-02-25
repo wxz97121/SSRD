@@ -29,6 +29,9 @@ public class RhythmController : MonoBehaviour
     //判定阈值 一个比一个大
     public float commentCoolTime;
     public float commentGoodTime;
+    //输入错误锁定时间
+    public float badDelayTime;
+    public float badTime;
 
     //BPM
     public int mBpm = 70;
@@ -67,6 +70,7 @@ public class RhythmController : MonoBehaviour
     #region 重置节拍条(重新计算bpm,归零，播放歌曲，开始游戏等)
     IEnumerator Reset()
     {
+        badTime = -1;
         SoundController.Instance.FMODmusic.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
 
         //此处有个坑，FMODInstance必须创建完成才能获取channelgroup
@@ -97,8 +101,8 @@ public class RhythmController : MonoBehaviour
             return 3;
         }
 
-        Debug.Log("songPosInBeats:" + RhythmController.Instance.songPosInBeats);
-        Debug.Log("beatInSong:" + notes[0].beatInSong);
+  //      Debug.Log("songPosInBeats:" + RhythmController.Instance.songPosInBeats);
+//        Debug.Log("beatInSong:" + notes[0].beatInSong);
         float inputError = Mathf.Abs(RhythmController.Instance.songPosInBeats - notes[0].beatInSong);
 
         if (inputError <= RhythmController.Instance.commentCoolTime)
@@ -116,7 +120,7 @@ public class RhythmController : MonoBehaviour
     }
     #endregion
 
-    //更新节拍
+    #region 更新节拍
     private void BeatUpdate()
     {
 
@@ -183,10 +187,16 @@ public class RhythmController : MonoBehaviour
             isCurBarCleaned = false;
         }
 
+
+        //判断锁定是否结束
+        if (songPosInBeats-badDelayTime>badTime)
+        {
+            UnlockPin();
+        }
     }
 
 
-
+    #endregion
 
 
 
@@ -284,4 +294,27 @@ public class RhythmController : MonoBehaviour
         Text text = GameObject.Find("songposmonitor").GetComponent<Text>();
         text.text = "QTE notes count: " + UIBarController.Instance.currentQTENotes.Count;
     }
+
+
+    #region 错误导致的锁定输入
+    public void LockPin()
+    {
+        badTime = songPosInBeats;
+        UIBarController.Instance.preBar.GetComponent<UIBar>().pin.GetComponent<UIBarPin>().SetSprite(1);
+        UIBarController.Instance.postBar.GetComponent<UIBar>().pin.GetComponent<UIBarPin>().SetSprite(1);
+        UIBarController.Instance.playingBar.GetComponent<UIBar>().pin.GetComponent<UIBarPin>().SetSprite(1);
+
+
+    }
+    #endregion
+
+    #region 错误导致的锁定输入,自然解锁
+    public void UnlockPin()
+    {
+        badTime = -1;
+        UIBarController.Instance.preBar.GetComponent<UIBar>().pin.GetComponent<UIBarPin>().SetSprite(0);
+        UIBarController.Instance.postBar.GetComponent<UIBar>().pin.GetComponent<UIBarPin>().SetSprite(0);
+        UIBarController.Instance.playingBar.GetComponent<UIBar>().pin.GetComponent<UIBarPin>().SetSprite(0);
+    }
+    #endregion
 }

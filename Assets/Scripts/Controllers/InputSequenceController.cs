@@ -9,12 +9,8 @@ public class InputSequenceController : MonoBehaviour
     public List<Skill> availableSkills;
     private float judgeBeat;
 
-    //输入错误的时间点，用于禁止再次输入
-    private float badtime=-10;
-    //输入错误后禁止的时长 拍子
-    public float badCDtimeInBeats=1;
-    //当前是否在错误后的CD中
-    public bool isInBadCD = false;
+
+
 
     //当前的输入序列
     public List<Note> CurInputSequence;
@@ -55,6 +51,11 @@ public class InputSequenceController : MonoBehaviour
         //Debug.Log("START TRYING COLLECT");
         //Debug.Log("currentEnergyNotes.Count:" + UIBarController.Instance.currentEnergyNotes.Count);
         //Debug.Log("comment value:" + RhythmController.InputComment(UIBarController.Instance.currentEnergyNotes));
+        if (RhythmController.Instance.badTime >= 0)
+        {
+            return;
+        }
+
 
         if (RhythmController.InputComment(UIBarController.Instance.currentEnergyNotes) < 2)
         {
@@ -66,6 +67,10 @@ public class InputSequenceController : MonoBehaviour
 
             //      Debug.Log("2");
 
+        }
+        else
+        {
+            RhythmController.Instance.LockPin();
         }
         //
 
@@ -79,7 +84,11 @@ public class InputSequenceController : MonoBehaviour
         //        Debug.Log("UIBarController.Instance.playingBarPosInBeats!" + UIBarController.Instance.playingBarPosInBeats);
         //        Debug.Log("RhythmController.Instance.commentGoodTime!" + RhythmController.Instance.commentGoodTime);
 
-
+        //锁定状态直接RETURN
+        if (RhythmController.Instance.badTime >= 0)
+        {
+            return;
+        }
 
 
 
@@ -115,12 +124,12 @@ public class InputSequenceController : MonoBehaviour
         }
     }
 
+
+
     #region Insert Input Note 根据输入把新的NOTE增加进招式序列
     public void InsertInputNote(Note.NoteType inputType, float beat, GameObject bar)
     {
-        //        Debug.Log("-----------------------");
-        //      Debug.Log("inputtype:"+inputType);
-        //    Debug.Log("beat:" + beat);
+
         //  Debug.Log("availableSkills.Count" + availableSkills.Count);
 
         //Debug.Log("CurInputSequence.Count"+ CurInputSequence.Count);
@@ -296,6 +305,11 @@ public class InputSequenceController : MonoBehaviour
     #region QTE时的按键判定
     public void QTEInput(Note.NoteType inputtype)
     {
+        //锁定状态直接RETURN
+        if (RhythmController.Instance.badTime >= 0)
+        {
+            return;
+        }
 
         if (RhythmController.InputComment(UIBarController.Instance.currentQTENotes) < 2)
         {
@@ -316,6 +330,10 @@ public class InputSequenceController : MonoBehaviour
 
             }
             UIBarController.Instance.currentQTENotes.RemoveAt(0);
+        }
+        else
+        {
+            RhythmController.Instance.LockPin();
         }
     }
     #endregion
