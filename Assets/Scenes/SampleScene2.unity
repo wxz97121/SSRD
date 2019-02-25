@@ -956,6 +956,8 @@ MonoBehaviour:
   isCurBarAtFinalBeat: 0
   commentCoolTime: 0.1
   commentGoodTime: 0.3
+  badDelayTime: 1
+  badTime: 0
   mBpm: 120
   beatIndex: 0
   songPosOffset: 0
@@ -1327,8 +1329,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f050dcc1d79f45f29cfdaf4bf8f0791, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badCDtimeInBeats: 1
-  isInBadCD: 0
   CurInputSequence: []
 --- !u!4 &611087723
 Transform:
