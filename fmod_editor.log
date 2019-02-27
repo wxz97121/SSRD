@@ -4,17 +4,12 @@
 [LOG] SystemI::setOutputInternal               : Setting output to 'FMOD Core Audio Output'
 [LOG] OutputCoreAudio::enumerate               : Enumerating...
 [LOG] OutputCoreAudio::enumerate               : Found output driver: "Built-in Output".
-[LOG] OutputCoreAudio::enumerate               : Found output driver: "Boom2Device".
-[LOG] OutputCoreAudio::enumerate               : Found output driver: "Soundflower (2ch)".
-[LOG] OutputCoreAudio::enumerate               : Found output driver: "Soundflower (64ch)".
-[LOG] OutputCoreAudio::enumerate               : Found output driver: "MorphVOX Audio".
 [LOG] OutputCoreAudio::enumerate               : Done.
-[LOG] OutputCoreAudio::init                    : Output running 2 channels at 44100Hz sample rate.
+[LOG] OutputCoreAudio::init                    : Output running 2 channels at 48000Hz sample rate.
 [LOG] OutputCoreAudio::init                    : Maximum hardware read size: 1024 samples, Software buffer size: 512 samples, Number of software buffers: 4.
-[WRN] SystemI::init                            : Output requires a sample rate of 44100Hz, resampling will occur.
 [LOG] Thread::initThread                       : Init FMOD stream thread. Priority: 2, Stack Size: 65536, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Priority: 3, Stack Size: 49152, Semaphore: Yes, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 0x1402e4e08 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 0x147400008 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Priority: 0, Stack Size: 65536, Semaphore: No, Sleep Time: 1, Looping: No.
@@ -29,26 +24,18 @@
 [LOG] Manager::readBank                        : fileversion = 103, compatVersion = 99 (oldest = 44, newest = 103)
 [LOG] Manager::readBank                        : fileversion = 103, compatVersion = 99 (oldest = 44, newest = 103)
 [LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
-[LOG] Manager::readBank                        : fileversion = 103, compatVersion = 99 (oldest = 44, newest = 103)
-[LOG] Manager::readBank                        : fileversion = 103, compatVersion = 99 (oldest = 44, newest = 103)
-[LOG] Manager::readBank                        : fileversion = 103, compatVersion = 99 (oldest = 44, newest = 103)
-[LOG] Manager::readBank                        : fileversion = 103, compatVersion = 99 (oldest = 44, newest = 103)
-[LOG] Manager::readBank                        : fileversion = 103, compatVersion = 99 (oldest = 44, newest = 103)
-[LOG] Manager::readBank                        : fileversion = 103, compatVersion = 99 (oldest = 44, newest = 103)
-[LOG] Manager::readBank                        : fileversion = 103, compatVersion = 99 (oldest = 44, newest = 103)
-[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
-[LOG] SoundI::release                          :  (0x148765d78)
-[LOG] SoundI::release                          :     KICK (0x148765ee8)
-[LOG] SoundI::release                          :  (0x13b5582d8)
-[LOG] SoundI::release                          :     SNARE_02 (0x13b558448)
-[LOG] SoundI::release                          :  (0x13b557e28)
-[LOG] SoundI::release                          :     testlevel_01 (0x13b557f98)
-[LOG] SoundI::release                          :  (0x148766228)
-[LOG] SoundI::release                          :     corenodrum (0x148766398)
-[LOG] SoundI::release                          :  (0x13f941ae8)
-[LOG] SoundI::release                          :     coredrum (0x13f941c58)
-[LOG] SoundI::release                          :  (0x13b550d38)
-[LOG] SoundI::release                          :     SNARE_01 (0x13b550ea8)
+[LOG] SoundI::release                          :  (0x148085208)
+[LOG] SoundI::release                          :     KICK (0x148085378)
+[LOG] SoundI::release                          :  (0x1417ecde8)
+[LOG] SoundI::release                          :     SNARE_02 (0x1417c8148)
+[LOG] SoundI::release                          :  (0x141762d98)
+[LOG] SoundI::release                          :     testlevel_01 (0x12ab20de8)
+[LOG] SoundI::release                          :  (0x1492f3a38)
+[LOG] SoundI::release                          :     corenodrum (0x1492f3ba8)
+[LOG] SoundI::release                          :  (0x1480848f8)
+[LOG] SoundI::release                          :     coredrum (0x148082db8)
+[LOG] SoundI::release                          :  (0x1417f9918)
+[LOG] SoundI::release                          :     SNARE_01 (0x1417f8ef8)
 [LOG] Codec::release                           : Free PCM Buffer
 [LOG] Thread::callback                         : FMOD Studio update thread finished.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
@@ -59,11 +46,4 @@
 [LOG] Thread::callback                         : FMOD stream thread finished.
 [LOG] Thread::callback                         : FMOD mixer thread finished.
 [LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
-[LOG] SystemI::close                           : Closed.
-[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
-[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
-[LOG] LiveUpdate::release                      : 
-[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
-[LOG] Thread::callback                         : FMOD stream thread finished.
-[LOG] Thread::callback                         : FMOD mixer thread finished.
 [LOG] SystemI::close                           : Closed.

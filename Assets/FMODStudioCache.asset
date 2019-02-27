@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 114054149162528306}
-  - {fileID: 114971953349423752}
-  - {fileID: 114200552654397354}
+  - {fileID: 114782674054648398}
+  - {fileID: 114373344898385602}
   EditorEvents:
   - {fileID: 114002239424203978}
   - {fileID: 114423056545077640}
@@ -25,9 +25,10 @@ MonoBehaviour:
   - {fileID: 114365483086307082}
   MasterBanks:
   - {fileID: 114200552654397354}
+  - {fileID: 114373344898385602}
   StringsBanks:
   - {fileID: 114054149162528306}
-  stringsBankWriteTime: 636867274700000000
+  stringsBankWriteTime: 636866059440000000
   cacheVersion: 3
 --- !u!114 &114002239424203978
 MonoBehaviour:
@@ -44,12 +45,12 @@ MonoBehaviour:
   Path: event:/music/testlevel
   guid: 5e1ce78bd20ebb42929d81661ca7da1f
   Banks:
-  - {fileID: 114200552654397354}
+  - {fileID: 114373344898385602}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114289302469877558}
+  - {fileID: 114760408652946634}
   MinDistance: 0
   MaxDistance: 0
   Length: 64000
@@ -213,7 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: FMOD/srd_sound/Build/Desktop/Master Bank.strings.bank
-  lastModified: 636867274700000000
+  lastModified: 636866059440000000
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -232,6 +233,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: chorus
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114070596389783046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: verse
   Min: 0
   Max: 1
   Default: 0
@@ -343,17 +360,17 @@ MonoBehaviour:
   Path: event:/music/core
   guid: a0bbda2baba543428d5351dd10bcd12c
   Banks:
-  - {fileID: 114200552654397354}
+  - {fileID: 114373344898385602}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114965795561531626}
-  - {fileID: 114831992813565690}
-  - {fileID: 114053156022743212}
-  - {fileID: 114475426604691472}
-  - {fileID: 114497604860071448}
-  - {fileID: 114619219638594716}
+  - {fileID: 114070596389783046}
+  - {fileID: 114290544520482330}
+  - {fileID: 114531119772988736}
+  - {fileID: 114420814236457954}
+  - {fileID: 114611186105335112}
+  - {fileID: 114814811809675484}
   MinDistance: 0
   MaxDistance: 0
   Length: 224000
@@ -482,7 +499,7 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 13016896
-  Exists: 1
+  Exists: 0
 --- !u!114 &114201486683009160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -777,6 +794,22 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114290544520482330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: boss
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114308099535386766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -904,7 +937,7 @@ MonoBehaviour:
   Path: event:/instruments/snare1
   guid: d86affad04ad0f4eb1d09c47d17379ba
   Banks:
-  - {fileID: 114200552654397354}
+  - {fileID: 114373344898385602}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -944,6 +977,25 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114373344898385602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: /Users/Ares/SSRD/FMOD/srd_sound/Build/Desktop/Master Bank.bank
+  lastModified: 636866059440000000
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 13016896
+  Exists: 1
 --- !u!114 &114380425517123000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1027,6 +1079,22 @@ MonoBehaviour:
   - Name: Desktop
     Value: 13016896
   Exists: 1
+--- !u!114 &114420814236457954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: chorus
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114423056545077640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1042,7 +1110,7 @@ MonoBehaviour:
   Path: event:/instruments/bassdrum
   guid: 7f5f494683575b4a939aadb8d4110d9c
   Banks:
-  - {fileID: 114200552654397354}
+  - {fileID: 114373344898385602}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1129,7 +1197,7 @@ MonoBehaviour:
   Path: event:/instruments/snare
   guid: cb391aa6b13c324e912c17c18286e23a
   Banks:
-  - {fileID: 114200552654397354}
+  - {fileID: 114373344898385602}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1278,6 +1346,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: chorus
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114531119772988736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: outro
   Min: 0
   Max: 1
   Default: 0
@@ -1526,7 +1610,7 @@ MonoBehaviour:
   Path: event:/instruments/snare2
   guid: 915ce7825aa14b43b164817f1b2291f7
   Banks:
-  - {fileID: 114200552654397354}
+  - {fileID: 114373344898385602}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1534,6 +1618,22 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 976
+--- !u!114 &114611186105335112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: minibridge
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114619219638594716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1781,6 +1881,22 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114760408652946634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Parameter 1
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114761240132875432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1845,6 +1961,25 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114782674054648398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: /Users/Ares/SSRD/FMOD/srd_sound/Build/Desktop/instrument.bank
+  lastModified: 636866059440000000
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 450
+  Exists: 1
 --- !u!114 &114792530250454974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1890,6 +2025,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Parameter 1
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114814811809675484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: breakdown
   Min: 0
   Max: 1
   Default: 0

@@ -20,6 +20,10 @@ public class AI_Deadman : AI
     public override void Action()
     {
         base.Action();
+        _skillDictionary[skillSequence[actionID]].EffectFunction(this);
+        actionID++;
+        if (actionID >= skillSequence.Count)
+            actionID = 0;
         Text text = GameObject.Find("flag2").GetComponent<Text>();
         text.text = (string)SoundController.Instance.timelineInfo.lastMarker;
     }

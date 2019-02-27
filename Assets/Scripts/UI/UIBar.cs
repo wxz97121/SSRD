@@ -28,6 +28,8 @@ public class UIBar : MonoBehaviour {
     public Vector3 startPos;
     public Vector3 oneBeatSpace;
 
+    public UIBarEnemyWarn enemyWarn;
+
     //小节线
     public List<GameObject> linelist;
     //音符
@@ -65,6 +67,7 @@ public class UIBar : MonoBehaviour {
         
         InitLines();
         InitNotes();
+        enemyWarn.transform.localScale = new Vector3(0, 0, 0);
     }
 
 
@@ -227,7 +230,6 @@ public class UIBar : MonoBehaviour {
     //设置显示透明度
     public void SetAlpha(float alpha)
     {
-
         bg.color = new Color(bg.color.r, bg.color.g, bg.color.b, alpha);
         //SetPinAlpha(alpha);
         foreach(GameObject line in linelist)
@@ -250,6 +252,8 @@ public class UIBar : MonoBehaviour {
                 n.note.GetComponent<Image>().color = new Color(n.note.GetComponent<Image>().color.r, n.note.GetComponent<Image>().color.g, n.note.GetComponent<Image>().color.b, alpha);
             }
         }
+
+        enemyWarn.SetAlpha(alpha);
     }
 
     //重置

@@ -9,14 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5139e7cf22169455291dad706ec6f035, type: 3}
-  m_Name: testLevel
+  m_Script: {fileID: 11500000, guid: f59a38594d31d499791efa1414a8881c, type: 3}
+  m_Name: warntest
   m_EditorClassIdentifier: 
-  scoreData: {fileID: 11400000, guid: 0440950d86df8420794bb8b7ae20d8c9, type: 2}
-  enemyList:
-  - Deadman
-  - QTEtest
-  - Patchouli
-  - Slime
-  - Wizard
-  BGMPath: event:/music/core
+  _name: warntest
+  Effect: WRN_ATK_RED_5
