@@ -18,7 +18,7 @@ public class Character : MonoBehaviour
     public int DEF = 0;
     //当前防御力
     public int currentDEF = 0;
-
+    public bool isUndead = false;
     //装备列表
     public List<Equipment> equipmentList;
     //当前装备着的武器
@@ -142,6 +142,7 @@ public class Character : MonoBehaviour
         else
         {
             Hp = 0;
+            if (isUndead) { return; }
             Die();
         }
     }

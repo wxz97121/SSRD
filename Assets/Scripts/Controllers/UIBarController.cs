@@ -357,7 +357,7 @@ public class UIBarController : MonoBehaviour {
                 QTEbarIndex = -1;
                 NextBar();
             }
-
+            Debug.Log("QTE BAR INDEX = " + QTEbarIndex);
         }
 
 

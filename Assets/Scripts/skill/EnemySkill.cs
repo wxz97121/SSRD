@@ -8,6 +8,7 @@ public class EnemySkill
     public string m_name;
     private string EffectStr;
 
+
     //发动技能
     public void EffectFunction(AI m_Char)
     {
@@ -24,6 +25,8 @@ public class EnemySkill
             string[] InstancedEff = s.Split('_');
             switch (InstancedEff[0])
             {
+                case (""):
+                    break;
                 case ("ATK"):
                     ATK(int.Parse(InstancedEff[1]), m_Char);
                     break;
@@ -37,7 +40,10 @@ public class EnemySkill
                     DEF(m_Char);
                     break;
                 case ("WRN"):
-                    WRN(InstancedEff[1], InstancedEff[2], int.Parse(InstancedEff[3]),m_Char);
+                    WRN(InstancedEff[1], InstancedEff[2], int.Parse(InstancedEff[3]), m_Char, InstancedEff[4]);
+                    break;
+                case ("DMP"):
+                    DMP(int.Parse(InstancedEff[1]), m_Char);
                     break;
                 default:
                     break;
@@ -92,20 +98,49 @@ public class EnemySkill
         Char.animator.Play(aniname, 0);
     }
 
-    private void WRN(string spr,string col, int num, AI Char)
+
+    //图标提示
+    private void WRN(string spr,string col, int num, AI Char,string isNextbar)
     {
         Color color=Color.black;
         if (col == "RED")
         {
             color = Color.red;
-            Debug.Log(color);
         }
+        if (isNextbar=="pre") { 
         UIBarController.Instance.preBar.GetComponent<UIBar>().enemyWarn.gameObject.transform.localScale =new Vector3 (1,1,1);
 
         UIBarController.Instance.preBar.GetComponent<UIBar>().enemyWarn.SetSprite(spr);
         UIBarController.Instance.preBar.GetComponent<UIBar>().enemyWarn.SetText(num.ToString());
         UIBarController.Instance.preBar.GetComponent<UIBar>().enemyWarn.SetColor(color);
+        }
+        else
+        {
+            UIBarController.Instance.playingBar.GetComponent<UIBar>().enemyWarn.gameObject.transform.localScale = new Vector3(1, 1, 1);
 
-        Debug.Log("warning now"+col);
+            UIBarController.Instance.playingBar.GetComponent<UIBar>().enemyWarn.SetSprite(spr);
+            UIBarController.Instance.playingBar.GetComponent<UIBar>().enemyWarn.SetText(num.ToString());
+            UIBarController.Instance.playingBar.GetComponent<UIBar>().enemyWarn.SetColor(color);
+        }
+
+    }
+
+    //吸收能力
+    private void DMP(int energy,AI Char)
+    {
+        if (energy <= 0)
+        {
+            Char.mTarget.GetComponent<Character>().Mp = 0;
+
+        }
+        else
+        {
+            Char.mTarget.GetComponent<Character>().Mp -= energy;
+            if (Char.mTarget.GetComponent<Character>().Mp < 0)
+            {
+                Char.mTarget.GetComponent<Character>().Mp = 0;
+
+            }
+        }
     }
 }

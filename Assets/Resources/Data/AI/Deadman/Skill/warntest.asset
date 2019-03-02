@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: warntest
   m_EditorClassIdentifier: 
   _name: warntest
-  Effect: WRN_ATK_RED_5
+  Effect: WRN_ATK_RED_5_pre

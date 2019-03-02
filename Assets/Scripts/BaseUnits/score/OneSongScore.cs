@@ -112,7 +112,7 @@ public class OneSongScore
                     MissSkill = data.QTEscore[i].notes[j].MissSkill,
                     BadSkill = data.QTEscore[i].notes[j].BadSkill
                 });
-                Debug.Log("success skill=" + _onebarscore.notes[0].SuccessSkill);
+//                Debug.Log("success skill=" + _onebarscore.notes[0].SuccessSkill);
 
                 //                Debug.Log("added mainlude note ");
             }
@@ -120,7 +120,7 @@ public class OneSongScore
 
         }
 
-        Debug.Log("" + _score.QTEscore.Count);
+//        Debug.Log("" + _score.QTEscore.Count);
 
         return _score;
     }
