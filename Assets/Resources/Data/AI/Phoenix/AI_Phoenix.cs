@@ -20,6 +20,17 @@ public class AI_Phoenix : AI
     public List<EnemySkill> SG_P0_intro;
     public List<EnemySkill> SG_P1_attack;
 
+
+    public List<EnemySkill> SG_P2_attack1;
+    public List<EnemySkill> SG_P2_idle;
+    public List<EnemySkill> SG_P2_ready2;
+    public List<EnemySkill> SG_P2_attack2;
+    public List<EnemySkill> SG_P2_reborn;
+    public List<EnemySkill> SG_P2_defend;
+
+
+
+
     override protected void Update()
     {
         base.Update();
@@ -66,6 +77,57 @@ public class AI_Phoenix : AI
             _skillDictionary["phase1_idle"],
             _skillDictionary["phase1_idle"]
         };
+
+        //P2技能组
+        SG_P2_idle = new List<EnemySkill>
+        {
+            _skillDictionary["phase2_idle"],
+            _skillDictionary["phase2_idle"],
+            _skillDictionary["phase2_idle"],
+            _skillDictionary["phase2_idle"]
+        };
+
+        SG_P2_reborn = new List<EnemySkill>
+        {
+            _skillDictionary["phase2_reborn"],
+            _skillDictionary["phase2_idle"],
+            _skillDictionary["phase2_idle"],
+            _skillDictionary["phase2_idle"]
+        };
+
+        SG_P2_attack1 = new List<EnemySkill>
+        {
+            _skillDictionary["phase2_idle"],
+            _skillDictionary["phase2_attack1warn"],
+            _skillDictionary["phase2_idle"],
+            _skillDictionary["phase2_attack1"]
+        };
+
+        SG_P2_ready2 = new List<EnemySkill>
+        {
+            _skillDictionary["phase2_idle"],
+            _skillDictionary["phase2_idle"],
+            _skillDictionary["phase2_attack2warn"],
+            _skillDictionary["phase2_ready2"]
+        };
+        SG_P2_attack2 = new List<EnemySkill>
+        {
+            _skillDictionary["phase2_ready2"],
+            _skillDictionary["phase2_ready2"],
+            _skillDictionary["phase2_ready2"],
+            _skillDictionary["phase2_attack2"]
+        };
+
+
+
+        SG_P2_defend = new List<EnemySkill>
+        {
+            _skillDictionary["phase2_idle"],
+            _skillDictionary["phase2_idle"],
+            _skillDictionary["phase2_idle"],
+            _skillDictionary["phase2_defend"]
+        };
+
     }
 
     public override void Action()
@@ -86,16 +148,17 @@ public class AI_Phoenix : AI
                 break;
 
             case 1:
+                PhaseQTE1();
                 break;
             case 2:
-                //                Debug.Log(UIBarController.Instance.QTEbarIndex);
-                if (UIBarController.Instance.QTEbarIndex < 0 && SoundController.Instance.timelineInfo.currentMusicBeat >= 4)
-                {
-                    //           Debug.Log("back to start");
-                    SuperController.Instance.state = GameState.Start;
-                }
+
+                Phase2();
                 break;
             case 3:
+                PhaseQTE2();
+                break;
+            case 4:
+                Phase3();
                 break;
         }
     }
@@ -146,6 +209,7 @@ public class AI_Phoenix : AI
         {
             System.Random rng = new System.Random();
             float randomvalue = rng.Next(0, 10);
+            Debug.Log("random"+randomvalue);
             if (randomvalue>=7)
             {
                 SkillSequence = SG_P1_attack;
@@ -176,7 +240,7 @@ public class AI_Phoenix : AI
                 UIBarController.Instance.QTEscore = qtescore1;
                 UIBarController.Instance.QTEbarIndex = 1;
                 actionID = 0;
-                phaseID = 2;
+                phaseID = 1;
                 //    Debug.Log("change qte mode complete");
 
                 SoundController.Instance.FMODSetParameter("boss", 0);
@@ -186,14 +250,108 @@ public class AI_Phoenix : AI
                 SoundController.Instance.FMODSetParameter("outro", 0);
 
                 _skillDictionary["QTE1_turn"].EffectFunction(this);
-
+                SkillSequence.Clear();
             }
+
+        }
+    }
+
+
+    private void PhaseQTE1()
+    {
+        if (UIBarController.Instance.QTEbarIndex < 0 && SoundController.Instance.timelineInfo.currentMusicBeat >= 4)
+        {
+            //           Debug.Log("back to start");
+            SuperController.Instance.state = GameState.Start;
+            phaseID = 2;
+            SkillSequence = SG_P2_reborn;
+        }
+    }
+
+    private void Phase2()
+    {
+
+        SkillSequence[actionID].EffectFunction(this);
+
+
+        actionID++;
+        if (actionID >= SkillSequence.Count)
+        {
+            System.Random rng = new System.Random();
+            float randomvalue = rng.Next(0, 10);
+            Debug.Log("value" + randomvalue);
+            if (randomvalue >= 6)
+            {
+                Debug.Log(">=6");
+                SkillSequence = SG_P2_attack1;
+            }
+            else if(randomvalue >=3)
+            {
+                Debug.Log(">=3");
+
+                SkillSequence = SG_P2_ready2;
+                SkillSequence.AddRange(SG_P2_attack2);
+            }
+            //else if (randomvalue >= 2)
+            //{
+            //    SkillSequence = SG_P2_defend;
+            //}
             else
             {
-                actionID = 3;
+                Debug.Log("else");
+
+                SkillSequence = SG_P2_idle;
+            }
+            actionID = 0;
+        }
+
+
+
+        //转换阶段至QTE2
+        if (Hp <= 0)
+        {
+            SoundController.Instance.FMODSetParameter("boss", 0);
+            SoundController.Instance.FMODSetParameter("chorus", 0);
+            SoundController.Instance.FMODSetParameter("verse", 0);
+            SoundController.Instance.FMODSetParameter("breakdown", 1);
+            SoundController.Instance.FMODSetParameter("outro", 0);
+            //Debug.Log(SoundController.Instance.GetLastMarker());
+            if (SoundController.Instance.GetLastMarker() == "minibridge" || SoundController.Instance.GetLastMarker() == "breakdown")
+            {
+                UIBarController.Instance.TurnBarIntoQTE(UIBarController.Instance.playingBar.GetComponent<UIBar>(), qtescore2.QTEscore[0].notes);
+                UIBarController.Instance.TurnBarIntoQTE(UIBarController.Instance.preBar.GetComponent<UIBar>(), qtescore2.QTEscore[1].notes);
+                SuperController.Instance.state = GameState.QTE;
+                UIBarController.Instance.QTEscore = qtescore2;
+                UIBarController.Instance.QTEbarIndex = 1;
+                actionID = 0;
+                phaseID = 3;
+                //    Debug.Log("change qte mode complete");
+
+                SoundController.Instance.FMODSetParameter("boss", 0);
+                SoundController.Instance.FMODSetParameter("chorus", 1);
+                SoundController.Instance.FMODSetParameter("verse", 0);
+                SoundController.Instance.FMODSetParameter("breakdown", 0);
+                SoundController.Instance.FMODSetParameter("outro", 0);
+
+                _skillDictionary["QTE1_turn"].EffectFunction(this);
 
             }
 
         }
+    }
+
+    private void PhaseQTE2()
+    {
+        if (UIBarController.Instance.QTEbarIndex < 0 && SoundController.Instance.timelineInfo.currentMusicBeat >= 4)
+        {
+            //           Debug.Log("back to start");
+            SuperController.Instance.state = GameState.Start;
+            phaseID =4;
+        }
+    }
+
+    private void Phase3()
+    {
+        isUndead = false;
     }
 }

@@ -25,7 +25,7 @@ public class EnemySkill
             string[] InstancedEff = s.Split('_');
             switch (InstancedEff[0])
             {
-                case (""):
+                case ("EPT"):
                     break;
                 case ("ATK"):
                     ATK(int.Parse(InstancedEff[1]), m_Char);
@@ -37,7 +37,7 @@ public class EnemySkill
                     HEL(int.Parse(InstancedEff[1]), m_Char);
                     break;
                 case ("DEF"):
-                    DEF(m_Char);
+                    DEF(int.Parse(InstancedEff[1]), m_Char);
                     break;
                 case ("WRN"):
                     WRN(InstancedEff[1], InstancedEff[2], int.Parse(InstancedEff[3]), m_Char, InstancedEff[4]);
@@ -77,13 +77,13 @@ public class EnemySkill
         Char.Heal(dHeal);
     }
 
-    private void DEF(Character Char)
+    private void DEF(int beats,Character Char)
     {
         Debug.Log("DEF");
         Buff_defend defend = new Buff_defend
         {
             m_name = "DEF",
-            remainBeats = 2,
+            remainBeats = beats,
             character = Char,
             activateTime = RhythmController.Instance.songPosInBeats
         };

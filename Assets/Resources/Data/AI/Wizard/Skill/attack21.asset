@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: attack21
   m_EditorClassIdentifier: 
   _name: attack21
-  Effect: ANI_attack21,ATK_2
+  Effect: ANI_attack21,ATK_2,WRN_ATK_RED_5_pre

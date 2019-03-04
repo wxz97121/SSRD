@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4165937445732966770}
   - component: {fileID: 6939496998172580802}
   m_Layer: 0
-  m_Name: Prefab 1
+  m_Name: Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bf3d744215d74cc0a8be724f7af53fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 30
+  maxHp: 100
   Hp: 30
   maxMp: 5
   Mp: 0
@@ -120,6 +120,7 @@ MonoBehaviour:
   currentATK: 1
   DEF: 0
   currentDEF: 0
+  isUndead: 0
   equipmentList: []
   currentWeapon: {fileID: 0}
   currentArmor: {fileID: 0}

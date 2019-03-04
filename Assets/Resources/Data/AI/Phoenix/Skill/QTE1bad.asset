@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f59a38594d31d499791efa1414a8881c, type: 3}
   m_Name: QTE1bad
   m_EditorClassIdentifier: 
-  _name: QTE1ok
+  _name: QTE1bad
   Effect: ATK_1

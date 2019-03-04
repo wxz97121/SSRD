@@ -381,4 +381,11 @@ public class UIBarController : MonoBehaviour {
 
         
     }
+
+    //清除所有敌人行动提醒
+    public void ClearBarWarn()
+    {
+                preBar.GetComponent<UIBar>().enemyWarn.gameObject.transform.localScale = new Vector3(0, 0, 0);
+
+    }
 }

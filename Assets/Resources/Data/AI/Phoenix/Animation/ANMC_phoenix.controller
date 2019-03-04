@@ -315,7 +315,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: phase2-ready
+  m_Name: phase2-ready2
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -386,7 +386,7 @@ AnimatorStateMachine:
     m_Position: {x: 340, y: 260, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102792014303465516}
-    m_Position: {x: 375, y: 325, z: 0}
+    m_Position: {x: 372, y: 324, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102202264846348566}
     m_Position: {x: 410, y: 390, z: 0}

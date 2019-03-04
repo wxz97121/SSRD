@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: attack23
   m_EditorClassIdentifier: 
   _name: attack23
-  Effect: ANI_attack23,ATK_2
+  Effect: ANI_attack23,ATK_5

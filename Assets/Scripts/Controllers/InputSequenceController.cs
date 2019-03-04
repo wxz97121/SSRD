@@ -217,7 +217,7 @@ public class InputSequenceController : MonoBehaviour
                     SuperController.Instance.SRDTap.NewShape(10);
                     break;
                 case Note.NoteType.inputSnare:
-                    SuperController.Instance.SRDTap.NewShape(1);
+                    SuperController.Instance.SRDTap.NewShape(10);
                     break;
 
             }

@@ -4300,10 +4300,11 @@ MonoBehaviour:
   Hp: 5
   maxMp: 5
   Mp: 20
-  ATK: 4
-  currentATK: 0
-  DEF: 1
+  ATK: 1
+  currentATK: 1
+  DEF: 0
   currentDEF: 0
+  isUndead: 0
   equipmentList:
   - {fileID: 114314749759457354, guid: 2207f0fa0c9a6394395f1a0715c775fe, type: 3}
   - {fileID: 114180536259402678, guid: 7d1ff5a312ae399408203da90b682fda, type: 3}

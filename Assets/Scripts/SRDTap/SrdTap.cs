@@ -42,7 +42,7 @@ public class SrdTap : MonoBehaviour {
 			Vector3 pos = new Vector3 (midx, 0, 0);
 			var inst = Instantiate (shape, pos, transform.rotation);
 			Shape s = inst.GetComponent<Shape> ();
-            Color col = Color.red;
+            Color col = new Color(128,0,0,128);
             float widthrand = Random.Range (0.05f, 0.3f);
 			s.addKeyframe (0, 60, 0, 0, point1, 3f, 1f, 0, new Rotation[0], col, 1.0f, widthrand, 0, 0, true, true, false, Tweenmode.Expo_easeOut);
 			s.addKeyframe (60, 90, 0, 0, point1, 3f, 1f, 2 * Mathf.PI, new Rotation[0], col, 0.7f, widthrand, 0, 1.0f, true, true, false, Tweenmode.Linear);
