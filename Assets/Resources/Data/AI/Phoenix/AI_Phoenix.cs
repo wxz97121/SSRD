@@ -273,7 +273,7 @@ public class AI_Phoenix : AI
 
         SkillSequence[actionID].EffectFunction(this);
 
-
+        isUndead = false;
         actionID++;
         if (actionID >= SkillSequence.Count)
         {

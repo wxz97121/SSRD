@@ -214,10 +214,10 @@ public class InputSequenceController : MonoBehaviour
             switch (inputType)
             {
                 case Note.NoteType.inputBassdrum:
-                    SuperController.Instance.SRDTap.NewShape(10);
+                //    SuperController.Instance.SRDTap.NewShape(10);
                     break;
                 case Note.NoteType.inputSnare:
-                    SuperController.Instance.SRDTap.NewShape(10);
+                //    SuperController.Instance.SRDTap.NewShape(10);
                     break;
 
             }
