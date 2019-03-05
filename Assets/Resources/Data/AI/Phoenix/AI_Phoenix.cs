@@ -180,17 +180,18 @@ public class AI_Phoenix : AI
 
         if (SkillSequence.Count == 0)
         {
-            SkillSequence=SG_P0_intro;
-
+            SkillSequence.Clear();
+            SkillSequence.AddRange(SG_P0_intro);
         }
-        Debug.Log("actionID="+actionID);
+        Debug.Log("actionID=" + actionID);
         SkillSequence[actionID].EffectFunction(this);
         actionID++;
-        if(actionID>= SkillSequence.Count)
+        if (actionID >= SkillSequence.Count)
         {
             phaseID = 0;
             actionID = 0;
-            SkillSequence = SG_P1_idle;
+            SkillSequence.Clear();
+            SkillSequence.AddRange(SG_P1_idle);
 
         }
 
@@ -205,18 +206,20 @@ public class AI_Phoenix : AI
 
 
         actionID++;
-        if (actionID>= SkillSequence.Count)
+        if (actionID >= SkillSequence.Count)
         {
             System.Random rng = new System.Random();
             float randomvalue = rng.Next(0, 10);
-            Debug.Log("random"+randomvalue);
-            if (randomvalue>=7)
+            Debug.Log("random" + randomvalue);
+            if (randomvalue >= 7)
             {
-                SkillSequence = SG_P1_attack;
+                SkillSequence.Clear();
+                SkillSequence.AddRange(SG_P1_attack);
             }
             else
             {
-                SkillSequence = SG_P1_idle;
+                SkillSequence.Clear();
+                SkillSequence.AddRange(SG_P1_idle);
             }
             actionID = 0;
         }
@@ -224,7 +227,7 @@ public class AI_Phoenix : AI
 
 
         //转换阶段至QTE1
-        if (Hp<=0)
+        if (Hp <= 0)
         {
             SoundController.Instance.FMODSetParameter("boss", 0);
             SoundController.Instance.FMODSetParameter("chorus", 0);
@@ -264,7 +267,8 @@ public class AI_Phoenix : AI
             //           Debug.Log("back to start");
             SuperController.Instance.state = GameState.Start;
             phaseID = 2;
-            SkillSequence = SG_P2_reborn;
+            SkillSequence.Clear();
+            SkillSequence.AddRange(SG_P2_reborn);
         }
     }
 
@@ -283,13 +287,15 @@ public class AI_Phoenix : AI
             if (randomvalue >= 6)
             {
                 Debug.Log(">=6");
-                SkillSequence = SG_P2_attack1;
+                SkillSequence.Clear();
+                SkillSequence.AddRange(SG_P2_attack1);
             }
-            else if(randomvalue >=3)
+            else if (randomvalue >= 3)
             {
                 Debug.Log(">=3");
 
-                SkillSequence = SG_P2_ready2;
+                SkillSequence.Clear();
+                SkillSequence.AddRange(SG_P2_ready2);
                 SkillSequence.AddRange(SG_P2_attack2);
             }
             //else if (randomvalue >= 2)
@@ -299,8 +305,8 @@ public class AI_Phoenix : AI
             else
             {
                 Debug.Log("else");
-
-                SkillSequence = SG_P2_idle;
+                SkillSequence.Clear();
+                SkillSequence.AddRange(SG_P2_idle);
             }
             actionID = 0;
         }
@@ -346,7 +352,7 @@ public class AI_Phoenix : AI
         {
             //           Debug.Log("back to start");
             SuperController.Instance.state = GameState.Start;
-            phaseID =4;
+            phaseID = 4;
         }
     }
 
