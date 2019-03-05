@@ -229,6 +229,7 @@ public class AI_Phoenix : AI
         //转换阶段至QTE1
         if (Hp <= 0)
         {
+            InputSequenceController.Instance.CleanInputSequence();
             SoundController.Instance.FMODSetParameter("boss", 0);
             SoundController.Instance.FMODSetParameter("chorus", 0);
             SoundController.Instance.FMODSetParameter("verse", 0);
