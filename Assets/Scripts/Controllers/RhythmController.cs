@@ -33,11 +33,14 @@ public class RhythmController : MonoBehaviour
     public float badDelayTime;
     public float badTime;
 
+
+
     //BPM
     public int mBpm = 70;
 
-    //拍子锁
+    //拍子锁(保证每拍只执行一次操作)
     public int beatIndex = 0;
+    public int decayIndex = 0;
 
     //校正(校准因为视觉产生的节拍误差)
     public float songPosOffset = 0f;
@@ -134,13 +137,24 @@ public class RhythmController : MonoBehaviour
         //        Debug.Log("distime="+ AudioSettings.dspTime+ "    startTime=" + songStartTime+ "    songPos=" +songPos+   "beats ="+songPosInBeats);
 
 
-        //判定是否播放第N拍，并告知各种物体POGO起来！为了同步FLAG，这里使用FMOD判
+        //判定是否播放第N拍，并告知各种物体POGO起来！为了同步FLAG，这里使用FMOD判定
+        //次数触发BUFF的每拍效果
         if (beatIndex != SoundController.Instance.timelineInfo.currentMusicBeat)
         {
             OnBeat(SoundController.Instance.timelineInfo.currentMusicBeat - 1);
             beatIndex = SoundController.Instance.timelineInfo.currentMusicBeat;
+            Debug.Log("beat");
         }
 
+        //时间超过判定点，此时BUFF衰减
+        if(songPosInBeats>UIBarController.Instance.finishedBeats + beatIndex - 1+commentGoodTime && decayIndex!=beatIndex)
+        {
+            Player.Instance.BuffsDecay(beatIndex-1);
+            if (Player.Instance.mTarget != null)
+                Player.Instance.mTarget.GetComponent<AI>().BuffsDecay(beatIndex - 1);
+            decayIndex = beatIndex;
+            Debug.Log("decay");
+        }
 
 
         //滤掉已经过期的能量音符
@@ -272,14 +286,19 @@ public class RhythmController : MonoBehaviour
 
         }
 
-        Player.Instance.BuffBeat(beatNum);
+
+
+        Player.Instance.BuffsBeat(beatNum);
         if (Player.Instance.mTarget != null)
-            Player.Instance.mTarget.GetComponent<AI>().BuffBeat(beatNum);
+            Player.Instance.mTarget.GetComponent<AI>().BuffsBeat(beatNum);
 
         if (Player.Instance.animator.GetCurrentAnimatorStateInfo(0).IsName("player_idle"))
             Player.Instance.animator.Play("idlebeat", 0, 0);
     }
     #endregion
+
+
+
 
     //交换小节时触发
     public void NewBarInit()

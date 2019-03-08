@@ -229,7 +229,6 @@ public class AI_Phoenix : AI
         //转换阶段至QTE1
         if (Hp <= 0)
         {
-            InputSequenceController.Instance.CleanInputSequence();
             SoundController.Instance.FMODSetParameter("boss", 0);
             SoundController.Instance.FMODSetParameter("chorus", 0);
             SoundController.Instance.FMODSetParameter("verse", 0);
@@ -238,6 +237,8 @@ public class AI_Phoenix : AI
             //Debug.Log(SoundController.Instance.GetLastMarker());
             if (SoundController.Instance.GetLastMarker() == "minibridge" || SoundController.Instance.GetLastMarker() == "breakdown")
             {
+                InputSequenceController.Instance.CleanInputSequence();
+
                 UIBarController.Instance.TurnBarIntoQTE(UIBarController.Instance.playingBar.GetComponent<UIBar>(), qtescore1.QTEscore[0].notes);
                 UIBarController.Instance.TurnBarIntoQTE(UIBarController.Instance.preBar.GetComponent<UIBar>(), qtescore1.QTEscore[1].notes);
                 SuperController.Instance.state = GameState.QTE;

@@ -16,11 +16,17 @@ public class Buff_defend : Buff
     public override void BuffBeat(int beatNum)
     {
         base.BuffBeat(beatNum);
+
+
+    }
+
+    public override void BuffDecay()
+    {
+        base.BuffDecay();
         if (remainBeats == 0)
         {
             Player.Instance.animator.Play("player_idle", 0);
         }
-
     }
 
 }

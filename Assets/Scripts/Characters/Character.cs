@@ -185,13 +185,13 @@ public class Character : MonoBehaviour
         return DMG;
     }
 
-    //触发BUFF效果
-    public void BuffBeat(int beatNum)
+    //触发BUFF衰减
+    public void BuffsDecay(int beatNum)
     {
         List<Buff> remainbuffs = new List<Buff>();
         foreach(Buff b in buffs)
         {
-            b.BuffBeat(beatNum);
+            b.BuffDecay();
             if (b.remainBeats != 0)
             {
                 remainbuffs.Add(b);
@@ -199,6 +199,19 @@ public class Character : MonoBehaviour
         }
         buffs = remainbuffs;
 //        Debug.Log("buff count="+buffs.Count);
+
+    }
+
+
+    //触发BUFF效果
+    public void BuffsBeat(int beatNum)
+    {
+        foreach (Buff b in buffs)
+        {
+            b.BuffBeat(beatNum);
+
+        }
+
 
     }
 }

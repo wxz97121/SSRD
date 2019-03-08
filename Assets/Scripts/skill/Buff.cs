@@ -18,13 +18,17 @@ public class Buff
 
     public virtual void BuffBeat(int beatNum)
     {
-        if (remainBeats > 0&&(RhythmController.Instance.songPosInBeats-activateTime>=1- RhythmController.Instance.commentGoodTime))
-        {
-            remainBeats--;
-//            Debug.Log("BuffBeat,remainBeat="+ remainBeats);
-        }
+
+
     }
 
-
+    public virtual void BuffDecay()
+    {
+        if (remainBeats > 0 && (RhythmController.Instance.songPosInBeats - activateTime >= 1 - RhythmController.Instance.commentGoodTime))
+        {
+            remainBeats--;
+            //            Debug.Log("BuffBeat,remainBeat="+ remainBeats);
+        }
+    }
 
 }

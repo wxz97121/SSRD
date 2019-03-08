@@ -20,8 +20,8 @@ public class ImageEffect : MonoBehaviour
             //dx = 1;
         }
         else dx = dy = 0;
-        print("dx " + dx.ToString());
-        print("dy " + dy.ToString());
+        //print("dx " + dx.ToString());
+        //print("dy " + dy.ToString());
 
         ImageMat.SetFloat("_DeltaX", dx);
         ImageMat.SetFloat("_DeltaY", dy);
