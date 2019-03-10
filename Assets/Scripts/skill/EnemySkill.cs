@@ -12,7 +12,7 @@ public class EnemySkill
     //发动技能
     public void EffectFunction(AI m_Char)
     {
-        Debug.Log("effect string = " + EffectStr);
+//        Debug.Log("effect string = " + EffectStr);
         string[] EffectStrSplit = EffectStr.Split(',');
         //用开头三个大写字母表示功能，后面参数用下划线分割
         //例如 ATK_3 表示暗黑破坏神3
@@ -82,13 +82,14 @@ public class EnemySkill
         Debug.Log("DEF");
         Buff_defend defend = new Buff_defend
         {
-            m_name = "DEF",
+            m_name = "defend",
             remainBeats = beats,
-            character = Char,
+            //character = Char,
             activateTime = RhythmController.Instance.songPosInBeats
         };
-        Char.buffs.Add(defend);
-        defend.BuffAdded();
+        defend.BuffAdded(Char);
+        //Char.buffs.Add(defend);
+
     }
 
     private void ANI(string aniname, AI Char)

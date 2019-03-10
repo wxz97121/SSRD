@@ -358,7 +358,7 @@ public class SimpleSpectrum : MonoBehaviour {
         frequencyScaleFactor = 1.0f/(AudioSettings.outputSampleRate /2)  * numSamples;
 
 
-        isEnabled = true;
+        //isEnabled = true;
     }
 
     /// <summary>

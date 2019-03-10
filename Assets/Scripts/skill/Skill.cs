@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Skill 
+public class Skill
 {
     public string m_name;
     private string EffectStr;
@@ -22,18 +22,24 @@ public class Skill
         foreach (string s in EffectStrSplit)
         {
             string[] InstancedEff = s.Split('_');
-            switch(InstancedEff[0])
+            switch (InstancedEff[0])
             {
                 case ("ATK"):
                     ATK(int.Parse(InstancedEff[1]), m_Char);
                     break;
                 case ("ANI"):
+                    ANI(InstancedEff[1], m_Char as Player);
+
                     break;
                 case ("HEL"):
                     HEL(int.Parse(InstancedEff[1]), m_Char);
                     break;
                 case ("DEF"):
                     DEF(m_Char);
+                    break;
+                //三倍蓄力
+                case ("TBD"):
+                    TBD(int.Parse(InstancedEff[1]),m_Char);
                     break;
                 default:
                     break;
@@ -68,29 +74,45 @@ public class Skill
     //public UnityEvent EffectEvent;
     //public List<Effect> effects;
 
-    private void ATK(int dDamage, Character Char)
+    public void ATK(int dDamage, Character Char)
     {
         Char.Hit(dDamage);
         //        Debug.Log("ATK "+ dDamage);
     }
 
-    private void HEL(int dHeal, Character Char)
+    public void HEL(int dHeal, Character Char)
     {
         Char.Heal(dHeal);
     }
 
-    private void DEF(Character Char)
+    public void DEF(Character Char)
     {
         Debug.Log("DEF");
         Buff_defend defend = new Buff_defend
         {
-            m_name = "DEF",
+            m_name = "defend",
             remainBeats = 2,
-            character=Char,
-            activateTime= RhythmController.Instance.songPosInBeats
-    };
-        Char.buffs.Add(defend);
-        defend.BuffAdded();
+            //character=Char,
+            activateTime = RhythmController.Instance.songPosInBeats
+        };
+        //Char.buffs.Add(defend);
+        defend.BuffAdded(Char);
+
+    }
+
+    public void ANI(string aniname, Player Char)
+    {
+        //        Debug.Log(aniname);
+
+        Char.animator.Play(aniname, 0);
+    }
+
+    public void TBD(int c, Character Char)
+    {
+//        Debug.Log("TBD");
+
+        Buff_tripledamage buff =new Buff_tripledamage();
+        buff.BuffAdded(Char);
 
     }
 }

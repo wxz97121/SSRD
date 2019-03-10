@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Buff_defend : Buff
 {
-    public override void BuffAdded()
+    public override void BuffAdded(Character p_chara)
     {
-        base.BuffAdded();
+        base.BuffAdded(p_chara);
 
         //TODO :把播动画挪走！
         Player.Instance.animator.Play("player_defense", 0);
@@ -28,5 +28,7 @@ public class Buff_defend : Buff
             Player.Instance.animator.Play("player_idle", 0);
         }
     }
+
+
 
 }

@@ -25,6 +25,8 @@ public class Player : Character {
     public int money=10;
     public TextMeshProUGUI UIMoneyNum;
 
+    public SpecController spec;
+
 
 
     public List<GameObject> enemyList = new List<GameObject>();
@@ -87,11 +89,14 @@ public class Player : Character {
     override public bool Hit(int dDamage)
     {
         animator.Play("player_slash",0);
+        //todo:把动画移到技能里
         return base.Hit(dDamage);
     }
 
     override public void HitFail (){
         base.HitFail();
+        //todo:把动画移到技能里
+
         animator.Play("player_fail", 0);
         SoundController.Instance.PlayAudioEffect("ROUND");
 

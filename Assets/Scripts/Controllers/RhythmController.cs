@@ -143,7 +143,7 @@ public class RhythmController : MonoBehaviour
         {
             OnBeat(SoundController.Instance.timelineInfo.currentMusicBeat - 1);
             beatIndex = SoundController.Instance.timelineInfo.currentMusicBeat;
-            Debug.Log("beat");
+ //           Debug.Log("beat");
         }
 
         //时间超过判定点，此时BUFF衰减
@@ -153,7 +153,7 @@ public class RhythmController : MonoBehaviour
             if (Player.Instance.mTarget != null)
                 Player.Instance.mTarget.GetComponent<AI>().BuffsDecay(beatIndex - 1);
             decayIndex = beatIndex;
-            Debug.Log("decay");
+//            Debug.Log("decay");
         }
 
 

@@ -199,7 +199,9 @@ public class SuperController : MonoBehaviour {
         {
             new Skill("testSkill_00X_ATTACK"),
             new Skill("testSkill_0ZX_DEFEND"),
-            new Skill("testSkill_ZZX_SUPERATTACK"),
+            new Skill("testSkill_Z0X_SUPERATTACK"),
+            new Skill("testSkill_ZZX_TRIPLEDMG"),
+
             new Skill("testSkill_0Z0ZX_HEAL"),
             new Skill("testSkill_0Z0ZZX_ULTI")
         };

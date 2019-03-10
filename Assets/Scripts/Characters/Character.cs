@@ -90,26 +90,36 @@ public class Character : MonoBehaviour
     //攻击
     virtual public bool Hit(int dDamage)
     {
-            //普通攻击目标
-            if (mTarget != null)
-            {
-                Character cTarget = mTarget.GetComponent<Character>();
+        //普通攻击目标
+        if (mTarget != null)
+        {
+            Character cTarget = mTarget.GetComponent<Character>();
             //判断对方护盾
-             if (cTarget.buffs.Exists(x => x.m_name.Contains("DEF")))
+            if (cTarget.buffs.Exists(x => x.m_name == "defend"))
+            {
+                Instantiate(Resources.Load("VFX/Shield"), cTarget.transform.position, Quaternion.identity);
+                return false;
+            }
+            else
+            {
+                Instantiate(Resources.Load("VFX/Slash"), cTarget.transform.position, Quaternion.identity);
+                cTarget.Damage(CalcDmg(getCurrentATK(), cTarget.getCurrentDEF(), dDamage));
+
+                List<Buff> tempbuffs = new List<Buff>();
+                tempbuffs.AddRange(buffs);
+                //执行BUFF中的攻击结束效果
+                foreach (Buff b in tempbuffs)
                 {
-                    Instantiate(Resources.Load("VFX/Shield"), cTarget.transform.position, Quaternion.identity);
-                    return false;
-                }
-                else
-                {
-                    Instantiate(Resources.Load("VFX/Slash"), cTarget.transform.position, Quaternion.identity);
-                    cTarget.Damage(CalcDmg(getCurrentATK(), cTarget.getCurrentDEF(), dDamage));
-                    return true;
+
+                    b.AfterAttack(this);
                 }
 
+                return true;
             }
 
-//        lastAction = actionType.Hit;
+        }
+
+        //        lastAction = actionType.Hit;
         return true;
     }
     //攻击失败
@@ -181,7 +191,19 @@ public class Character : MonoBehaviour
     {
         //print("NOW ATK " + dATK.ToString() + " " + " NOW DEF " + dDEF.ToString() + " DMG " + dDamage.ToString());
         int DMG;
-        DMG = ((dATK + dDamage - dDEF) > 1) ? (dATK + dDamage - dDEF) : 1;
+        dATK += dDamage;
+        foreach (Buff B in buffs) 
+        {
+            dATK += B.damageAdd;
+        }
+        float tempATK = dATK;
+        foreach (Buff B in buffs)
+        {
+            tempATK *= B.damageMulti;
+//            Debug.Log("damageMulti = "+ B.damageMulti+ " , tempATK = "+ tempATK);
+        }
+
+        DMG = ((tempATK - dDEF) > 1) ?(int) (tempATK - dDEF) : 1;
         return DMG;
     }
 
