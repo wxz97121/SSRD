@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public enum GameState
 {
     Wait,
+    Loot,
     Start,
     QTE,
     End,
@@ -168,6 +169,7 @@ public class SuperController : MonoBehaviour {
 
 
         Player.Instance.Reset();
+        Player.Instance.BattleStart();
     }
 
     public void GameOver()

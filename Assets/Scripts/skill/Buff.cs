@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[System.Serializable]
 public class Buff
 {
     public string m_name;
@@ -10,7 +10,7 @@ public class Buff
     //buff层数，-1为不叠加
     public int multicount = -1;
     //宿主
-    public Character character;
+    protected Character character;
 
     public float activateTime;
 

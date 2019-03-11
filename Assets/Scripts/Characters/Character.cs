@@ -34,6 +34,7 @@ public class Character : MonoBehaviour
 
     public TextMeshProUGUI UIHpNum;
     public TextMeshProUGUI UIMpNum;
+
     //当前攻击的目标
     public GameObject mTarget;
     //护盾
@@ -49,7 +50,7 @@ public class Character : MonoBehaviour
     // Use this for initialization
     virtual protected void Start()
     {
-        new Buff_autoenergy().BuffAdded(this);
+
     }
 
     // Update is called once per frame
@@ -73,6 +74,11 @@ public class Character : MonoBehaviour
         getHit = false;
 
 
+
+    }
+    //战斗开始
+    public virtual void BattleStart()
+    {
 
     }
 
@@ -104,7 +110,7 @@ public class Character : MonoBehaviour
             else
             {
                 Instantiate(Resources.Load("VFX/Slash"), cTarget.transform.position, Quaternion.identity);
-                cTarget.Damage(CalcDmg(getCurrentATK(), cTarget.getCurrentDEF(), dDamage));
+                cTarget.Damage(CalcDmg(getCurrentATK(), cTarget.getCurrentDEF(), dDamage), this);
 
                 List<Buff> tempbuffs = new List<Buff>();
                 tempbuffs.AddRange(buffs);
@@ -143,8 +149,18 @@ public class Character : MonoBehaviour
     {
     }
     //受到伤害(以后名字要改下)
-    virtual public void Damage(int dDamage)
+    virtual public void Damage(int dDamage, Character source)
     {
+        //反甲Buff_reflectdmg判定
+        if (hasBuff<Buff_reflectdmg>())
+        {
+            if (!source.hasBuff<Buff_reflectdmg>())
+            {
+                source.Damage(dDamage, this);
+                return;
+            }
+        }
+
         getHit = true;
         if (Hp > dDamage)
         {

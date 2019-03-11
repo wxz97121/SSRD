@@ -27,7 +27,7 @@ public class Player : Character {
 
     public SpecController spec;
 
-
+    public Transform UIEquip;
 
     public List<GameObject> enemyList = new List<GameObject>();
 
@@ -52,15 +52,16 @@ public class Player : Character {
     override protected void Start () {
         base.Start();
         animator = GetComponent<Animator>();
-
-	}
+        currentWeapon = Resources.Load<Equipment>("Data/Equipment/0");
+        currentArmor = Resources.Load<Equipment>("Data/Equipment/1");
+    }
 
     // Update is called once per frame
     override protected void Update () {
         base.Update();
-        updateSoulUI();
+        UpdateSoulUI();
         UIMoneyNum.SetText(money.ToString());
-
+        UpdateEquipUI();
     }
     //控制玩家的输入
     protected override void UpdateInput()
@@ -102,11 +103,20 @@ public class Player : Character {
 
     }
 
-
-
-    override public void Damage(int dDamage)
+    public override void BattleStart()
     {
-        base.Damage(dDamage);
+        if (currentWeapon != null)
+        {
+            currentWeapon.AddBuffs();
+
+        }
+        if (currentArmor != null) currentArmor.AddBuffs();
+        if (currentScroll != null) currentScroll.AddBuffs();
+    }
+
+    override public void Damage(int dDamage, Character source)
+    {
+        base.Damage(dDamage, source);
         animator.Play("player_damaged", 0);
 
     }
@@ -138,7 +148,7 @@ public class Player : Character {
         soulPoint = 0;
     }
 
-    public void updateSoulUI(){
+    public void UpdateSoulUI(){
         soulPointProgress.fillAmount =((float)soulPoint / (float)soulMaxPoint);
         switch(soulLevel){
             case 0:
@@ -156,6 +166,64 @@ public class Player : Character {
                 soulLevelLetter.color = Color.red;
                 soulPointProgress.color = Color.red;
 
+                break;
+        }
+    }
+
+    public void UpdateEquipUI()
+    {
+        var weaponUI = UIEquip.Find("Weapon");
+        var armorUI = UIEquip.Find("Armor");
+        var scrollUI = UIEquip.Find("Scroll");
+        if (currentWeapon != null)
+        {
+            weaponUI.Find("Name").GetComponent<TextMeshProUGUI>().text = currentWeapon.equipName;
+            weaponUI.Find("Desc").GetComponent<TextMeshProUGUI>().text = currentWeapon.equipDesc;
+        }
+        else
+        {
+            weaponUI.Find("Name").GetComponent<TextMeshProUGUI>().text = "Weapon";
+            weaponUI.Find("Desc").GetComponent<TextMeshProUGUI>().text = "Description";
+        }
+        if (currentArmor != null)
+        {
+            armorUI.Find("Name").GetComponent<TextMeshProUGUI>().text = currentArmor.equipName;
+            armorUI.Find("Desc").GetComponent<TextMeshProUGUI>().text = currentArmor.equipDesc;
+        }
+        else
+        {
+            armorUI.Find("Name").GetComponent<TextMeshProUGUI>().text = "Armor";
+            armorUI.Find("Desc").GetComponent<TextMeshProUGUI>().text = "Description";
+        }
+        if (currentScroll != null)
+        {
+            scrollUI.Find("Name").GetComponent<TextMeshProUGUI>().text = currentScroll.equipName;
+            scrollUI.Find("Desc").GetComponent<TextMeshProUGUI>().text = currentScroll.equipDesc;
+        }
+        else
+        {
+            scrollUI.Find("Name").GetComponent<TextMeshProUGUI>().text = "Scroll";
+            scrollUI.Find("Desc").GetComponent<TextMeshProUGUI>().text = "Description";
+        }
+    }
+
+    public void Equip (Equipment equipment)
+    {
+        switch (equipment.type)
+        {
+            case equipType.Armor:
+                {
+
+                }break;
+            case equipType.Weapon:
+                {
+
+                }
+                break;
+            case equipType.Scroll:
+                {
+
+                }
                 break;
         }
     }

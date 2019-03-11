@@ -86,9 +86,9 @@ public class AI : Character
 
 
    
-    override public void Damage(int dDamage)
+    override public void Damage(int dDamage, Character source)
     {
-        base.Damage(dDamage);
+        base.Damage(dDamage, source);
     }
 
 

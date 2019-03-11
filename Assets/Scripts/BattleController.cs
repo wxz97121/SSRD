@@ -55,6 +55,8 @@ public class BattleController : MonoBehaviour {
     public void NewBattle()
     {
         AddEnemy();
+
+
     }
 
 }
