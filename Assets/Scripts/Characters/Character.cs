@@ -49,7 +49,7 @@ public class Character : MonoBehaviour
     // Use this for initialization
     virtual protected void Start()
     {
-
+        new Buff_autoenergy().BuffAdded(this);
     }
 
     // Update is called once per frame
@@ -58,6 +58,7 @@ public class Character : MonoBehaviour
         UIHpNum.SetText(Hp.ToString());
         UIMpNum.SetText(Mp.ToString());
         UpdateInput();
+        UpdateBuff();
     }
 
     virtual protected void UpdateInput()
@@ -231,9 +232,25 @@ public class Character : MonoBehaviour
         foreach (Buff b in buffs)
         {
             b.BuffBeat(beatNum);
-
         }
+    }
 
+    //判断是否存在Buff
+    public bool hasBuff<T> () where T : Buff
+    {
+        foreach (var b in buffs)
+        {
+            if (b.GetType() == typeof(T)) return true;
+        }
+        return false;
+    }
 
+    //更新长时间buff
+    public void UpdateBuff()
+    {
+        foreach (var b in buffs)
+        {
+            b.PlayerUpdate();
+        }
     }
 }

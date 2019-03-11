@@ -23,6 +23,7 @@ public class Buff
     public virtual void BuffAdded(Character p_chara)
     {
         p_chara.buffs.Add(this);
+        character = p_chara;
     }
 
     public virtual void BuffBeat(int beatNum)
@@ -60,6 +61,11 @@ public class Buff
 
     //被攻击之后
     public virtual void AfterAttacked(Character p_chara)
+    {
+
+    }
+
+    public virtual void PlayerUpdate()
     {
 
     }

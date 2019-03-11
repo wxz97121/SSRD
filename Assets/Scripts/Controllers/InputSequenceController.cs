@@ -46,6 +46,20 @@ public class InputSequenceController : MonoBehaviour
     #region 吃能量
     public void CollectEnergy()
     {
+        if (Player.Instance.hasBuff<Buff_autoenergy>())
+        {
+            if (RhythmController.InputComment(UIBarController.Instance.currentEnergyNotes) < 2)
+            {
+                Player.Instance.AddMp(1);
+                SoundController.Instance.PlayAudioEffect("HIHAT");
+
+                UIBarController.Instance.currentEnergyNotes[0].note.GetComponent<VFX>().StartCoroutine("FadeOutLarger");
+                UIBarController.Instance.currentEnergyNotes.RemoveAt(0);
+
+                //      Debug.Log("2");
+            }
+            return;
+        }
         //Debug.Log("------------------------");
 
         //Debug.Log("START TRYING COLLECT");
@@ -56,7 +70,6 @@ public class InputSequenceController : MonoBehaviour
             return;
         }
 
-
         if (RhythmController.InputComment(UIBarController.Instance.currentEnergyNotes) < 2)
         {
             Player.Instance.AddMp(1);
@@ -66,7 +79,6 @@ public class InputSequenceController : MonoBehaviour
             UIBarController.Instance.currentEnergyNotes.RemoveAt(0);
 
             //      Debug.Log("2");
-
         }
         else
         {
