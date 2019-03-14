@@ -278,8 +278,10 @@ public class RhythmController : MonoBehaviour
 
         if (beatNum == 3)
         {
-
-            DuelController.Instance.EnemyRespawn();
+            if(SuperController.Instance.state == GameState.Start)
+            {
+                DuelController.Instance.EnemyRespawn();
+            }
 
 
             if (nowAI) nowAI.Action();

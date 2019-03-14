@@ -52,8 +52,7 @@ public class Player : Character {
     override protected void Start () {
         base.Start();
         animator = GetComponent<Animator>();
-        currentWeapon = Resources.Load<Equipment>("Data/Equipment/0");
-        currentArmor = Resources.Load<Equipment>("Data/Equipment/1");
+
     }
 
     // Update is called once per frame
@@ -105,11 +104,7 @@ public class Player : Character {
 
     public override void BattleStart()
     {
-        if (currentWeapon != null)
-        {
-            currentWeapon.AddBuffs();
-
-        }
+        if (currentWeapon != null) currentWeapon.AddBuffs();
         if (currentArmor != null) currentArmor.AddBuffs();
         if (currentScroll != null) currentScroll.AddBuffs();
     }
@@ -213,11 +208,12 @@ public class Player : Character {
         {
             case equipType.Armor:
                 {
-
-                }break;
+                    currentArmor = equipment;
+                }
+                break;
             case equipType.Weapon:
                 {
-
+                    currentWeapon = equipment;
                 }
                 break;
             case equipType.Scroll:
@@ -226,5 +222,6 @@ public class Player : Character {
                 }
                 break;
         }
+        equipment.OnEquip();
     }
 }

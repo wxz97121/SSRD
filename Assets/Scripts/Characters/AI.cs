@@ -81,6 +81,9 @@ public class AI : Character
         Player.Instance.money += lootMoney;
         UIBarController.Instance.ClearBarWarn();
 
+        Debug.Log("Enemy Die");
+
+        LootController.Instance.NewLoot();
     }
 
 

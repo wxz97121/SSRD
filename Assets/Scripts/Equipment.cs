@@ -58,4 +58,9 @@ public class Equipment: ScriptableObject{
             buff.BuffAdded(Player.Instance);
         }
     }
+
+    public virtual void OnEquip()
+    {
+        AddBuffs();
+    }
 }
