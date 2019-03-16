@@ -11,7 +11,8 @@ public class Buff_tripledamage : Buff
         remainBeats = -1;
 
         //角色身上已经有本BUFF的情况，进行叠层
-        Buff_tripledamage oldbuff = p_chara.buffs.FindLast(b => b.m_name == "tripledamage") as Buff_tripledamage;
+        //Buff_tripledamage oldbuff = p_chara.buffs.FindLast(b => b.m_name == "tripledamage") as Buff_tripledamage;
+        Buff_tripledamage oldbuff = p_chara.buffs.FindLast(b => b.GetType() == typeof(Buff_tripledamage)) as Buff_tripledamage;
         if (oldbuff != null)
         {
             //如果层数已满，则直接攻击
@@ -23,7 +24,7 @@ public class Buff_tripledamage : Buff
             }
 
             oldbuff.multicount++;
-            oldbuff.damageMulti *= 3;
+            oldbuff.damageMulti += 3;
 
             switch (oldbuff.multicount)
             {
@@ -34,7 +35,6 @@ public class Buff_tripledamage : Buff
 
                     break;
                 case 2:
-                    Debug.Log("in case 2 now!");
                     Player.Instance.spec._specDictionary["SpecTripledamage"].colorMax = Player.Instance.spec.MaxColor2;
                     Player.Instance.spec._specDictionary["SpecTripledamage"].colorMin = Player.Instance.spec.MinColor2;
 

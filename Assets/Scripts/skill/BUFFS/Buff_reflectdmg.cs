@@ -11,7 +11,7 @@ public class Buff_reflectdmg : Buff
         remainBeats = -1;
 
         //角色身上已经有本BUFF的情况
-        if (p_chara.buffs.Find(x => x.GetType()== typeof(Buff_reflectdmg))!=null)
+        if (p_chara.hasBuff<Buff_reflectdmg>())
         {
             return;
         }

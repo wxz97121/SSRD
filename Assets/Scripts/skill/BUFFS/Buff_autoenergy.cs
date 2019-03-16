@@ -11,7 +11,7 @@ public class Buff_autoenergy : Buff
         remainBeats = -1;
 
         //角色身上已经有本BUFF的情况
-        if (p_chara.buffs.Find(x => x.GetType()== typeof(Buff_autoenergy))!=null)
+        if (p_chara.hasBuff<Buff_autoenergy>())
         {
             return;
         }
