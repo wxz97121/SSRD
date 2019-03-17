@@ -140,6 +140,7 @@ public class LootController : MonoBehaviour
     public IEnumerator StateDelay()
     {
         yield return new WaitForSeconds(1f);
-        SuperController.Instance.state = GameState.Start;
+        SuperController.Instance.Resume();
+        //SuperController.Instance.state = GameState.Start;
     }
 }

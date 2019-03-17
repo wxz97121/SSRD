@@ -112,9 +112,10 @@ public class Character : MonoBehaviour
                 Instantiate(Resources.Load("VFX/Slash"), cTarget.transform.position, Quaternion.identity);
                 cTarget.Damage(CalcDmg(getCurrentATK(), cTarget.getCurrentDEF(), dDamage), this);
 
+                //执行BUFF中的攻击结束效果
+
                 List<Buff> tempbuffs = new List<Buff>();
                 tempbuffs.AddRange(buffs);
-                //执行BUFF中的攻击结束效果
                 foreach (Buff b in tempbuffs)
                 {
 
@@ -157,9 +158,11 @@ public class Character : MonoBehaviour
             if (!source.hasBuff<Buff_reflectdmg>())
             {
                 source.Damage(dDamage, this);
-                return;
+                //break;
             }
         }
+
+        Bubble.AddBubble(BubbleSprType.hp, "-" + dDamage.ToString(), this);
 
         getHit = true;
         if (Hp > dDamage)

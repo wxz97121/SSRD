@@ -22,6 +22,9 @@ public class SuperController : MonoBehaviour {
     //谱子
     public OneSongScore score;
 
+    //在暂停时储存暂停前的状态
+    public GameState tempstate;
+    public bool pausing;
     //SRDTap
     public SrdTap SRDTap;
 
@@ -53,7 +56,10 @@ public class SuperController : MonoBehaviour {
 
         ReadLevelDatas();
         ReadSkillDatas();
+        SoundController.Instance.FMODmusic.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
 
+        //此处有个坑，FMODInstance必须创建完成才能获取channelgroup
+        SoundController.Instance.FMODMusicChange(SuperController.Instance.levelData.BGMPath);
         state = GameState.Wait;
     }
 
@@ -64,6 +70,18 @@ public class SuperController : MonoBehaviour {
 
     protected void UpdateInput()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (pausing)
+            {
+                Resume();
+                pausing = false;
+                return;
+            }
+            Pause(GameState.Wait);
+            pausing = true;
+        }
+
         if (SuperController.Instance.state != GameState.Start&& SuperController.Instance.state != GameState.QTE)
         {
             return;
@@ -72,11 +90,7 @@ public class SuperController : MonoBehaviour {
         //测试专用键
         if (Input.GetKeyDown(KeyCode.A))
         {
-            SoundController.Instance.FMODSetParameter("boss",1);
-            SoundController.Instance.FMODSetParameter("chorus", 0);
-            SoundController.Instance.FMODSetParameter("verse", 0);
-            SoundController.Instance.FMODSetParameter("breakdown", 0);
-            SoundController.Instance.FMODSetParameter("outro", 0);
+            Bubble.AddBubble(BubbleSprType.hp, "-6", Player.Instance);
                     }
         if (Input.GetKeyDown(KeyCode.S))
         {
@@ -163,10 +177,13 @@ public class SuperController : MonoBehaviour {
 
     public void NewGame()
     {
+        state = GameState.Start;
+        Pause(GameState.Loot);
+        LootController.Instance.NewLoot();
+
         mainMenu.gameObject.SetActive(false);
         skillTipBarController.InitSkillTipBarArea();
-        RhythmController.Instance.StartCoroutine("Reset");
-
+        RhythmController.Instance.Reset();
 
         Player.Instance.Reset();
         Player.Instance.BattleStart();
@@ -203,7 +220,6 @@ public class SuperController : MonoBehaviour {
             new Skill("testSkill_0ZX_DEFEND"),
             new Skill("testSkill_Z0X_SUPERATTACK"),
             new Skill("testSkill_ZZX_TRIPLEDMG"),
-
             new Skill("testSkill_0Z0ZX_HEAL"),
             new Skill("testSkill_0Z0ZZX_ULTI")
         };
@@ -218,12 +234,28 @@ public class SuperController : MonoBehaviour {
     public void ReadLevelDatas()
     {
         levelData = Resources.Load("Data/Level/testLevel") as LevelData;
-
         //Debug.Log("leveldata" + levelData.name);
         //Debug.Log("scoredata" + levelData.scoreData.name);
-//        RhythmController.Instance.BGM = levelData.BGM;
+        //RhythmController.Instance.BGM = levelData.BGM;
         score = OneSongScore.ReadScoreData(levelData.scoreData);
         DuelController.Instance.enemyList = levelData.enemyList;
     }
 
+    public void Pause(GameState _state)
+    {
+        tempstate = state;
+        Debug.Log("tempstate"+ tempstate);
+        state = _state;
+        Debug.Log("state" + state);
+
+        SoundController.Instance.FMODmusic.setPaused(true);
+    }
+
+    public void Resume()
+    {
+        state = tempstate;
+        Debug.Log("state" + state);
+
+        SoundController.Instance.FMODmusic.setPaused(false);
+    }
 }

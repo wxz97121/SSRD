@@ -116,8 +116,8 @@ MonoBehaviour:
   Hp: 30
   maxMp: 5
   Mp: 0
-  ATK: 1
-  currentATK: 1
+  ATK: 0
+  currentATK: 0
   DEF: 0
   currentDEF: 0
   isUndead: 0
@@ -125,6 +125,7 @@ MonoBehaviour:
   currentWeapon: {fileID: 0}
   currentArmor: {fileID: 0}
   currentScroll: {fileID: 0}
+  buffs: []
   UIHpNum: {fileID: 0}
   UIMpNum: {fileID: 0}
   mTarget: {fileID: 0}

@@ -83,7 +83,6 @@ public class AI : Character
 
         Debug.Log("Enemy Die");
 
-        LootController.Instance.NewLoot();
     }
 
 

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 using UnityEngine.UI;
 
 public class RhythmController : MonoBehaviour
@@ -12,8 +12,6 @@ public class RhythmController : MonoBehaviour
     //每一拍长度
     [HideInInspector] public float secPerBeat;
     ImageEffect m_Eff;
-
-
 
     //歌曲当前时间
     [HideInInspector] public float songPos;
@@ -72,17 +70,16 @@ public class RhythmController : MonoBehaviour
 
 
     #region 重置节拍条(重新计算bpm,归零，播放歌曲，开始游戏等)
-    IEnumerator Reset()
+    public void Reset()
     {
         badTime = -1;
-        SoundController.Instance.FMODmusic.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        //SoundController.Instance.FMODmusic.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
 
         //此处有个坑，FMODInstance必须创建完成才能获取channelgroup
-        SoundController.Instance.FMODMusicChange(SuperController.Instance.levelData.BGMPath);
+        //SoundController.Instance.FMODMusicChange(SuperController.Instance.levelData.BGMPath);
 
-        yield return new WaitForSeconds(2.0f);
+        //yield return new WaitForSeconds(2.0f);
         UIBarController.Instance.InitController();
-        SuperController.Instance.state = GameState.Start;
 
         BpmCalc();
 
@@ -127,9 +124,7 @@ public class RhythmController : MonoBehaviour
     #region 更新节拍
     private void BeatUpdate()
     {
-
-
-        //        UnityEngine.Debug.Log("dsptime="+dsptime);
+                //        UnityEngine.Debug.Log("dsptime="+dsptime);
         //获得当前歌曲位置
         songPos = SoundController.Instance.CalcDSPtime() - songStartTime + songPosOffset;
         //计算出当前在哪一拍
@@ -137,8 +132,7 @@ public class RhythmController : MonoBehaviour
         //        Debug.Log("distime="+ AudioSettings.dspTime+ "    startTime=" + songStartTime+ "    songPos=" +songPos+   "beats ="+songPosInBeats);
 
 
-        //判定是否播放第N拍，并告知各种物体POGO起来！为了同步FLAG，这里使用FMOD判定
-        //次数触发BUFF的每拍效果
+        //判定是否播放第N拍，为了同步FLAG，这里使用FMOD判定
         if (beatIndex != SoundController.Instance.timelineInfo.currentMusicBeat)
         {
             OnBeat(SoundController.Instance.timelineInfo.currentMusicBeat - 1);
@@ -146,7 +140,7 @@ public class RhythmController : MonoBehaviour
  //           Debug.Log("beat");
         }
 
-        //时间超过判定点，此时BUFF衰减
+        //时间超过判定点，此时BUFF持续时间衰减
         if(songPosInBeats>UIBarController.Instance.finishedBeats + beatIndex - 1+commentGoodTime && decayIndex!=beatIndex)
         {
             Player.Instance.BuffsDecay(beatIndex-1);
@@ -173,7 +167,6 @@ public class RhythmController : MonoBehaviour
         //清除已经过期的QTE音符
         if (UIBarController.Instance.currentQTENotes.Count > 0)
         {
-
             if (songPosInBeats - UIBarController.Instance.currentQTENotes[0].beatInSong > commentGoodTime)
             {
                 Player.Instance.enemyList[0].GetComponent<AI>().QTEAction(UIBarController.Instance.currentQTENotes[0].MissSkill);
@@ -189,7 +182,6 @@ public class RhythmController : MonoBehaviour
 
 
         //第三拍之后 清除已经过期的输入音符，
-
 
         if (songPosInBeats - UIBarController.Instance.finishedBeats - 2 > commentGoodTime)
         {
@@ -289,11 +281,12 @@ public class RhythmController : MonoBehaviour
         }
 
 
-
+        //BUFF跳
         Player.Instance.BuffsBeat(beatNum);
         if (Player.Instance.mTarget != null)
             Player.Instance.mTarget.GetComponent<AI>().BuffsBeat(beatNum);
 
+        //点头
         if (Player.Instance.animator.GetCurrentAnimatorStateInfo(0).IsName("player_idle"))
             Player.Instance.animator.Play("idlebeat", 0, 0);
     }
@@ -325,7 +318,9 @@ public class RhythmController : MonoBehaviour
         UIBarController.Instance.preBar.GetComponent<UIBar>().pin.GetComponent<UIBarPin>().SetSprite(1);
         UIBarController.Instance.postBar.GetComponent<UIBar>().pin.GetComponent<UIBarPin>().SetSprite(1);
         UIBarController.Instance.playingBar.GetComponent<UIBar>().pin.GetComponent<UIBarPin>().SetSprite(1);
-        if (m_Eff) m_Eff.isShake = true;
+        //if (m_Eff) m_Eff.isShake = true;
+        Camera.main.gameObject.transform.DOShakePosition(1,0.5f);
+
     }
     #endregion
 

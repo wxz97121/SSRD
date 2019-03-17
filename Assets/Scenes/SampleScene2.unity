@@ -757,7 +757,7 @@ RectTransform:
   m_Children:
   - {fileID: 729438070}
   m_Father: {fileID: 2045222711}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1989,7 +1989,7 @@ RectTransform:
   - {fileID: 1260965939}
   - {fileID: 849902399}
   m_Father: {fileID: 2045222711}
-  m_RootOrder: 2
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2142,7 +2142,7 @@ RectTransform:
   - {fileID: 60550190}
   - {fileID: 2873717}
   m_Father: {fileID: 2045222711}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4344,7 +4344,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045222711}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4681,6 +4681,8 @@ MonoBehaviour:
   commentController: {fileID: 0}
   skillTipBarController: {fileID: 0}
   uiBarController: {fileID: 0}
+  tempstate: 0
+  pausing: 0
   SRDTap: {fileID: 0}
   state: 0
   mainMenu: {fileID: 916387497}
@@ -4732,7 +4734,7 @@ RectTransform:
   - {fileID: 8427396}
   - {fileID: 247508137}
   m_Father: {fileID: 2045222711}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5234,7 +5236,7 @@ RectTransform:
   - {fileID: 250875224}
   - {fileID: 1453994037}
   m_Father: {fileID: 2045222711}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -5960,7 +5962,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045222711}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6096,13 +6098,13 @@ RectTransform:
   m_Children:
   - {fileID: 1024249122}
   - {fileID: 938243854}
-  - {fileID: 629565313}
   - {fileID: 767081086}
   - {fileID: 2043248687}
   - {fileID: 1368318615}
   - {fileID: 1600055066}
   - {fileID: 102185933}
   - {fileID: 1876949653}
+  - {fileID: 629565313}
   - {fileID: 916387497}
   - {fileID: 1480470278}
   m_Father: {fileID: 0}

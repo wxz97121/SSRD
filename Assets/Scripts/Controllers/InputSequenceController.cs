@@ -56,7 +56,6 @@ public class InputSequenceController : MonoBehaviour
                 UIBarController.Instance.currentEnergyNotes[0].note.GetComponent<VFX>().StartCoroutine("FadeOutLarger");
                 UIBarController.Instance.currentEnergyNotes.RemoveAt(0);
 
-                //      Debug.Log("2");
             }
             return;
         }

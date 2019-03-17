@@ -24,7 +24,7 @@ public class Buff_autoenergy : Buff
     public override void PlayerUpdate()
     {
         base.PlayerUpdate();
-
-        InputSequenceController.Instance.CollectEnergy();
+        if (RhythmController.InputComment(UIBarController.Instance.currentEnergyNotes) ==0)
+            InputSequenceController.Instance.CollectEnergy();
     }
 }
