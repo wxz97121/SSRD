@@ -221,6 +221,9 @@ public class SuperController : MonoBehaviour {
             new Skill("testSkill_Z0X_SUPERATTACK"),
             new Skill("testSkill_ZZX_TRIPLEDMG"),
             new Skill("testSkill_0Z0ZX_HEAL"),
+            new Skill("testSkill_0Z0ZX_HEAL"),
+            new Skill("testSkill_ZZZX_ALLMPATK"),
+
             new Skill("testSkill_0Z0ZZX_ULTI")
         };
         Player.Instance.skills = new List<Skill>();

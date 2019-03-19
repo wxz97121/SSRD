@@ -42,9 +42,11 @@ public class Bubble : MonoBehaviour
     // Update is called once per frame
     void Start()
     {
-        transform.DOLocalMove((transform.localPosition+new Vector3(0,1,0)),1,false);
-        sprite.DOFade(0, 1);
-        text.DOFade(0, 1);
+        System.Random rng = new System.Random(GetHashCode());
+        transform.DOLocalMove((transform.localPosition+new Vector3(0,-10,0)),1,false).SetEase(Ease.InBack);
+        transform.DOLocalMoveX(transform.localPosition.x+(float)(rng.Next(0,10)-5),1f).SetEase(Ease.InOutQuad);
+        sprite.DOFade(0, 1).SetEase(Ease.InOutQuad);
+        text.DOFade(0, 1).SetEase(Ease.InOutQuad);
         Destroy(gameObject, 1);
     }
 }

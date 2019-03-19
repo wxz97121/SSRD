@@ -85,7 +85,7 @@ public class Character : MonoBehaviour
     //加灵力
     virtual public void AddMp(int dMp)
     {
-        if (Mp + dMp <= maxMp)
+        if (Mp + dMp >= maxMp)
         {
             Mp = maxMp;
         }

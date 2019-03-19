@@ -41,6 +41,10 @@ public class Skill
                 case ("TBD"):
                     TBD(int.Parse(InstancedEff[1]),m_Char);
                     break;
+                //全力一击
+                case ("ALLMPATK"):
+                    ALLMPATK(m_Char);
+                    break;
                 default:
                     break;
             }
@@ -107,6 +111,7 @@ public class Skill
         Char.animator.Play(aniname, 0);
     }
 
+    //三倍伤害
     public void TBD(int c, Character Char)
     {
 //        Debug.Log("TBD");
@@ -114,5 +119,11 @@ public class Skill
         Buff_tripledamage buff =new Buff_tripledamage();
         buff.BuffAdded(Char);
 
+    }
+
+    public void ALLMPATK(Character Char)
+    {
+        Char.Hit(Char.Mp);
+        Char.Mp = 0;
     }
 }
