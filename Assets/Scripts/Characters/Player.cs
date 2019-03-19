@@ -21,6 +21,9 @@ public class Player : Character {
     public Image soulPointProgress;
     public Image soulLevelLetter;
 
+    //必杀用的通用Skill
+    public Skill UltiSkill;
+
     //携带金钱数
     public int money=10;
     public TextMeshProUGUI UIMoneyNum;
@@ -52,6 +55,7 @@ public class Player : Character {
     override protected void Start () {
         base.Start();
         animator = GetComponent<Animator>();
+        UltiSkill = new Skill();
 
     }
 
@@ -223,5 +227,10 @@ public class Player : Character {
                 break;
         }
         equipment.OnEquip();
+    }
+
+    public void UltiAction(string effstr)
+    {
+        UltiSkill.CommonEffect(this, effstr);
     }
 }

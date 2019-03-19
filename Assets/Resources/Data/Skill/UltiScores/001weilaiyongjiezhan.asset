@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e48f98badf111424f840262a1291b0cb, type: 3}
+  m_Name: 001_weilaiyongjiezhan
+  m_EditorClassIdentifier: 
+  QTEscore:
+  - notes:
+    - type: 32
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 0
+      beatInSong: 0
+      SuccessSkill: ATK_2
+      BadSkill: EPT
+      MissSkill: EPT
+    - type: 31
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 0.33
+      beatInSong: 0
+      SuccessSkill: ATK_1
+      BadSkill: EPT
+      MissSkill: EPT
+    - type: 32
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 0.66
+      beatInSong: 0
+      SuccessSkill: ATK_1
+      BadSkill: EPT
+      MissSkill: EPT
+    - type: 31
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 1
+      beatInSong: 0
+      SuccessSkill: AKT_2
+      BadSkill: EPT
+      MissSkill: EPT
+    - type: 32
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 1.33
+      beatInSong: 0
+      SuccessSkill: ATK_1
+      BadSkill: EPT
+      MissSkill: EPT
+    - type: 31
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 1.66
+      beatInSong: 0
+      SuccessSkill: ATK_1
+      BadSkill: EPT
+      MissSkill: EPT
+    - type: 32
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 2
+      beatInSong: 0
+      SuccessSkill: ATK_2
+      BadSkill: EPT
+      MissSkill: EPT
+    - type: 21
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 2.33
+      beatInSong: 0
+      SuccessSkill: ATK_1
+      BadSkill: EPT
+      MissSkill: EPT
+    - type: 0
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 0
+      beatInSong: 0
+      SuccessSkill: 2.66
+      BadSkill: EPT
+      MissSkill: EPT
+    - type: 33
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 3
+      beatInSong: 0
+      SuccessSkill: ATK_8
+      BadSkill: EPT
+      MissSkill: EPT
+    beatsThisBar: 4

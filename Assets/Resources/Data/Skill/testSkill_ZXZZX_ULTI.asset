@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf25b2aeb1e6b4c3a8f5b1efea2d3300, type: 3}
-  m_Name: testSkill_0Z0ZZX_ULTI
+  m_Name: testSkill_ZXZZX_ULTI
   m_EditorClassIdentifier: 
   _name: "\u4EBA\u9B3C \u672A\u6765\u6C38\u52AB\u65A9"
   cost: 20
@@ -20,24 +20,39 @@ MonoBehaviour:
     subnote: {fileID: 0}
     beatInBar: 0
     beatInSong: 0
+    SuccessSkill: 
+    BadSkill: 
+    MissSkill: 
   - type: 22
     note: {fileID: 0}
     subnote: {fileID: 0}
     beatInBar: 0.5
     beatInSong: 0
+    SuccessSkill: 
+    BadSkill: 
+    MissSkill: 
   - type: 21
     note: {fileID: 0}
     subnote: {fileID: 0}
     beatInBar: 1
     beatInSong: 0
+    SuccessSkill: 
+    BadSkill: 
+    MissSkill: 
   - type: 21
     note: {fileID: 0}
     subnote: {fileID: 0}
     beatInBar: 1.5
     beatInSong: 0
+    SuccessSkill: 
+    BadSkill: 
+    MissSkill: 
   - type: 22
     note: {fileID: 0}
     subnote: {fileID: 0}
     beatInBar: 2
     beatInSong: 0
+    SuccessSkill: 
+    BadSkill: 
+    MissSkill: 
   Effect: 

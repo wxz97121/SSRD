@@ -172,7 +172,6 @@ public class Character : MonoBehaviour
         else
         {
             Hp = 0;
-            if (isUndead) { return; }
             Die();
         }
     }

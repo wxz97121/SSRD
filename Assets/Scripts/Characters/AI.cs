@@ -73,6 +73,8 @@ public class AI : Character
     //敌人死亡的时候从玩家的目标列表中去除，然后销毁模型和ui
     override public void Die()
     {
+        if (isUndead || SuperController.Instance.state == GameState.Ulti) { return; }
+
         gameObject.AddComponent<VFX>();
         VFX vfx = gameObject.GetComponent<VFX>();
         Player.Instance.enemyList.Remove(gameObject);

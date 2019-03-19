@@ -200,6 +200,10 @@ public class RhythmController : MonoBehaviour
         {
             UnlockPin();
         }
+
+
+        //判断QTE是否结束
+        QTEEnd();
     }
 
 
@@ -218,7 +222,7 @@ public class RhythmController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (SuperController.Instance.state != GameState.Start && SuperController.Instance.state != GameState.QTE)
+        if (SuperController.Instance.state != GameState.Start && SuperController.Instance.state != GameState.QTE && SuperController.Instance.state != GameState.Ulti)
         {
             return;
         }
@@ -311,6 +315,45 @@ public class RhythmController : MonoBehaviour
     }
 
 
+    //进入QTE状态
+    public void QTEStart(OneSongScore qtescore)
+    {
+        InputSequenceController.Instance.CleanInputSequence();
+
+        UIBarController.Instance.TurnBarIntoQTE(UIBarController.Instance.playingBar.GetComponent<UIBar>(), qtescore.QTEscore[0].notes);
+        UIBarController.Instance.TurnBarIntoQTE(UIBarController.Instance.preBar.GetComponent<UIBar>(), qtescore.QTEscore[1].notes);
+        SuperController.Instance.state = GameState.QTE;
+        UIBarController.Instance.QTEscore = qtescore;
+        UIBarController.Instance.QTEbarIndex = 1;
+    }
+
+    //进入主角大招QTE状态
+    public void UltiQTEStart(OneSongScore qtescore)
+    {
+        InputSequenceController.Instance.ClnInpSeqWhenCastSkill();
+
+        ///UIBarController.Instance.TurnBarIntoQTE(UIBarController.Instance.playingBar.GetComponent<UIBar>(), qtescore.QTEscore[0].notes);
+        UIBarController.Instance.TurnBarIntoQTE(UIBarController.Instance.preBar.GetComponent<UIBar>(), qtescore.QTEscore[0].notes);
+        SuperController.Instance.state = GameState.Ulti;
+        UIBarController.Instance.QTEscore = qtescore;
+        UIBarController.Instance.QTEbarIndex = 0;
+    }
+
+    //退出各种QTE状态
+    public void QTEEnd()
+    {
+        if(SuperController.Instance.state==GameState.QTE|| SuperController.Instance.state ==GameState.Ulti)
+        if (UIBarController.Instance.QTEbarIndex < 0 && UIBarController.Instance.playingBarPosInBeats>=4-commentGoodTime)
+        {
+            //           Debug.Log("back to start");
+            SuperController.Instance.state = GameState.Start;
+                if (Player.Instance.enemyList[0].GetComponent<AI>().Hp <= 0)
+                {
+                    Player.Instance.enemyList[0].GetComponent<AI>().Die();
+                }
+
+            }
+    }
     #region 错误导致的锁定输入
     public void LockPin()
     {

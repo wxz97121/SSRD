@@ -9,7 +9,8 @@ public enum GameState
     Start,
     QTE,
     End,
-    Pause
+    Pause,
+    Ulti
 }
 //统一控制局内
 public class SuperController : MonoBehaviour {
@@ -82,7 +83,7 @@ public class SuperController : MonoBehaviour {
             pausing = true;
         }
 
-        if (SuperController.Instance.state != GameState.Start&& SuperController.Instance.state != GameState.QTE)
+        if (SuperController.Instance.state != GameState.Start && SuperController.Instance.state != GameState.QTE && SuperController.Instance.state != GameState.Ulti)
         {
             return;
         }
@@ -142,6 +143,11 @@ public class SuperController : MonoBehaviour {
                     InputSequenceController.Instance.CollectEnergy();
                     break;
                 case GameState.QTE:
+                    InputSequenceController.Instance.QTEInput(Note.NoteType.QTEHihat);
+                    break;
+                case GameState.Ulti:
+                    InputSequenceController.Instance.UltiInput(Note.NoteType.QTEHihat);
+
                     break;
             }
         }
@@ -156,6 +162,10 @@ public class SuperController : MonoBehaviour {
                 case GameState.QTE:
                     InputSequenceController.Instance.QTEInput(Note.NoteType.QTEBassdrum);
                     break;
+                case GameState.Ulti:
+                    InputSequenceController.Instance.UltiInput(Note.NoteType.QTEBassdrum);
+
+                    break;
             }
         }
         if (Input.GetKeyDown(KeyCode.X))
@@ -168,6 +178,10 @@ public class SuperController : MonoBehaviour {
                     break;
                 case GameState.QTE:
                     InputSequenceController.Instance.QTEInput(Note.NoteType.QTESnare);
+
+                    break;
+                case GameState.Ulti:
+                    InputSequenceController.Instance.UltiInput(Note.NoteType.QTESnare);
 
                     break;
             }
@@ -221,10 +235,9 @@ public class SuperController : MonoBehaviour {
             new Skill("testSkill_Z0X_SUPERATTACK"),
             new Skill("testSkill_ZZX_TRIPLEDMG"),
             new Skill("testSkill_0Z0ZX_HEAL"),
-            new Skill("testSkill_0Z0ZX_HEAL"),
             new Skill("testSkill_ZZZX_ALLMPATK"),
 
-            new Skill("testSkill_0Z0ZZX_ULTI")
+            new Skill("testSkill_ZXZZX_ULTI")
         };
         Player.Instance.skills = new List<Skill>();
 

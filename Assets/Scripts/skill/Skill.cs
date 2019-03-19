@@ -13,7 +13,12 @@ public class Skill
     public void EffectFunction(Character m_Char)
     {
 
-        string[] EffectStrSplit = EffectStr.Split(',');
+        CommonEffect(m_Char, EffectStr);
+    }
+
+    public void CommonEffect(Character m_Char,string str)
+    {
+        string[] EffectStrSplit = str.Split(',');
         //用开头三个大写字母表示功能，后面参数用下划线分割
         //例如 ATK_3 表示暗黑破坏神3
         //例如 HEL_5 表示HTML5
@@ -21,9 +26,13 @@ public class Skill
         //若干个这样的字符串，用逗号分开，表示一个技能的效果
         foreach (string s in EffectStrSplit)
         {
-            string[] InstancedEff = s.Split('_');
+
+       
+        string[] InstancedEff = s.Split('_');
             switch (InstancedEff[0])
             {
+                case ("EPT"):
+                    break;
                 case ("ATK"):
                     ATK(int.Parse(InstancedEff[1]), m_Char);
                     break;
@@ -45,11 +54,16 @@ public class Skill
                 case ("ALLMPATK"):
                     ALLMPATK(m_Char);
                     break;
+                //必杀
+                case ("ULTI"):
+                    ULTI(m_Char, InstancedEff[1]);
+                    break;
                 default:
                     break;
             }
         }
     }
+
 
     public Skill(string DataDir)
     {
@@ -73,6 +87,11 @@ public class Skill
             }
             );
         }
+
+    }
+
+    public Skill()
+    {
 
     }
     //public UnityEvent EffectEvent;
@@ -125,5 +144,15 @@ public class Skill
     {
         Char.Hit(Char.Mp);
         Char.Mp = 0;
+    }
+
+    public void ULTI(Character Char,string scorePath)
+    {
+        var score = new OneSongScore();
+        string path = "Data/Skill/UltiScores/" + scorePath;
+        Debug.Log("path = "+path);
+        score = OneSongScore.ReadQTEScoreData(Resources.Load(path) as QTEScoreData);
+        RhythmController.Instance.UltiQTEStart(score);
+
     }
 }

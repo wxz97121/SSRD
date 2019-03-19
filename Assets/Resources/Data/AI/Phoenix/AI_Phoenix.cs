@@ -239,11 +239,8 @@ public class AI_Phoenix : AI
             {
                 InputSequenceController.Instance.CleanInputSequence();
 
-                UIBarController.Instance.TurnBarIntoQTE(UIBarController.Instance.playingBar.GetComponent<UIBar>(), qtescore1.QTEscore[0].notes);
-                UIBarController.Instance.TurnBarIntoQTE(UIBarController.Instance.preBar.GetComponent<UIBar>(), qtescore1.QTEscore[1].notes);
-                SuperController.Instance.state = GameState.QTE;
-                UIBarController.Instance.QTEscore = qtescore1;
-                UIBarController.Instance.QTEbarIndex = 1;
+                //进入QTE状态
+                RhythmController.Instance.QTEStart(qtescore1);
                 actionID = 0;
                 phaseID = 1;
                 //    Debug.Log("change qte mode complete");
@@ -267,7 +264,7 @@ public class AI_Phoenix : AI
         if (UIBarController.Instance.QTEbarIndex < 0 && SoundController.Instance.timelineInfo.currentMusicBeat >= 4)
         {
             //           Debug.Log("back to start");
-            SuperController.Instance.state = GameState.Start;
+            //SuperController.Instance.state = GameState.Start;
             phaseID = 2;
             SkillSequence.Clear();
             SkillSequence.AddRange(SG_P2_reborn);

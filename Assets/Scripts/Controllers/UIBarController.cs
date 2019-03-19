@@ -81,7 +81,7 @@ public class UIBarController : MonoBehaviour {
     }
     // Update is called once per frame
     private void FixedUpdate() {
-        if (SuperController.Instance.state != GameState.Start && SuperController.Instance.state != GameState.QTE)
+        if (SuperController.Instance.state != GameState.Start && SuperController.Instance.state != GameState.QTE && SuperController.Instance.state != GameState.Ulti)
         {
             //Debug.Log("return");
             return;
@@ -378,8 +378,10 @@ public class UIBarController : MonoBehaviour {
         uIBar.InitLines();
         uIBar.ReadScore(notes);
         uIBar.InitNotes();
+        currentQTENotes.AddRange(uIBar.GetComponent<UIBar>().noteList_QTE);
 
-        
+
+
     }
 
     //清除所有敌人行动提醒

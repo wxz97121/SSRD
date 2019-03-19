@@ -348,4 +348,40 @@ public class InputSequenceController : MonoBehaviour
         }
     }
     #endregion
+
+    #region 必杀时的按键判定
+    public void UltiInput(Note.NoteType inputtype)
+    {
+        //锁定状态直接RETURN
+        if (RhythmController.Instance.badTime >= 0)
+        {
+            return;
+        }
+
+        if (RhythmController.InputComment(UIBarController.Instance.currentQTENotes) < 2)
+        {
+            if (inputtype == UIBarController.Instance.currentQTENotes[0].type)
+            {
+                Debug.Log(UIBarController.Instance.currentQTENotes[0].SuccessSkill);
+                UIBarController.Instance.currentQTENotes[0].note.GetComponent<VFX>().StartCoroutine("FadeOutLarger");
+
+                Player.Instance.UltiAction(UIBarController.Instance.currentQTENotes[0].SuccessSkill);
+
+            }
+            else
+            {
+                Debug.Log(UIBarController.Instance.currentQTENotes[0].SuccessSkill);
+                UIBarController.Instance.currentQTENotes[0].note.GetComponent<VFX>().StartCoroutine("NoteInputBad");
+
+                Player.Instance.UltiAction(UIBarController.Instance.currentQTENotes[0].BadSkill);
+
+            }
+            UIBarController.Instance.currentQTENotes.RemoveAt(0);
+        }
+        else
+        {
+         //  RhythmController.Instance.LockPin();
+        }
+    }
+    #endregion
 }
