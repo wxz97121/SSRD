@@ -158,7 +158,7 @@ public class RhythmController : MonoBehaviour
             if (songPosInBeats - UIBarController.Instance.currentEnergyNotes[0].beatInSong > commentGoodTime)
             {
                 //Debug.Log("songPosInBeat:" + songPosInBeats + "note[0].beat:" + UIBarController.Instance.currentEnergyNotes[0].beatInSong);
-                //                Debug.Log("delete a energy note:"+ UIBarController.Instance.currentEnergyNotes[0].beatInSong);
+                //Debug.Log("delete a energy note:"+ UIBarController.Instance.currentEnergyNotes[0].beatInSong);
                 UIBarController.Instance.currentEnergyNotes.RemoveAt(0);
             }
         }
@@ -172,7 +172,7 @@ public class RhythmController : MonoBehaviour
                 Player.Instance.enemyList[0].GetComponent<AI>().QTEAction(UIBarController.Instance.currentQTENotes[0].MissSkill);
 
                 //Debug.Log("songPosInBeat:" + songPosInBeats + "note[0].beat:" + UIBarController.Instance.currentEnergyNotes[0].beatInSong);
-                //                Debug.Log("delete a energy note:"+ UIBarController.Instance.currentEnergyNotes[0].beatInSong);
+                //Debug.Log("delete a energy note:"+ UIBarController.Instance.currentEnergyNotes[0].beatInSong);
                 UIBarController.Instance.currentQTENotes[0].note.GetComponent<VFX>().StartCoroutine("NoteInputBad");
 
                 UIBarController.Instance.currentQTENotes.RemoveAt(0);
@@ -187,7 +187,7 @@ public class RhythmController : MonoBehaviour
         {
             if (isCurBarCleaned == false && isCurBarAtFinalBeat == false)
             {
-                InputSequenceController.Instance.CleanInputSequence();
+                InputSequenceController.Instance.Bad();
                 isCurBarAtFinalBeat = true;
 
             }

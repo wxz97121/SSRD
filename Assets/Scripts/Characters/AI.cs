@@ -73,7 +73,6 @@ public class AI : Character
     //敌人死亡的时候从玩家的目标列表中去除，然后销毁模型和ui
     override public void Die()
     {
-        if (isUndead || SuperController.Instance.state == GameState.Ulti) { return; }
 
         gameObject.AddComponent<VFX>();
         VFX vfx = gameObject.GetComponent<VFX>();
@@ -100,7 +99,21 @@ public class AI : Character
 
     virtual public void Action()
     {
-
+        //怪物的死亡放在第一拍
+        if (Hp<=0)
+        {
+            if (!isUndead)
+            {
+                if (SoundController.Instance.timelineInfo.currentMusicBeat == 1)
+                {
+                    Die();
+                }
+                else
+                {
+                    return;
+                }
+            }
+        }
     }
 
     virtual public void QTEAction(string actionname)

@@ -36,6 +36,9 @@ public class Skill
                 case ("ATK"):
                     ATK(int.Parse(InstancedEff[1]), m_Char);
                     break;
+                case ("ATKmini"):
+                    ATKmini(int.Parse(InstancedEff[1]), m_Char);
+                    break;
                 case ("ANI"):
                     ANI(InstancedEff[1], m_Char as Player);
 
@@ -100,6 +103,12 @@ public class Skill
     public void ATK(int dDamage, Character Char)
     {
         Char.Hit(dDamage);
+        //        Debug.Log("ATK "+ dDamage);
+    }
+
+    public void ATKmini(int dDamage, Character Char)
+    {
+        Char.Hit(dDamage,true);
         //        Debug.Log("ATK "+ dDamage);
     }
 

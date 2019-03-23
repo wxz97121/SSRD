@@ -97,14 +97,7 @@ public class Player : Character {
         return base.Hit(dDamage);
     }
 
-    override public void HitFail (){
-        base.HitFail();
-        //todo:把动画移到技能里
 
-        animator.Play("player_fail", 0);
-        SoundController.Instance.PlayAudioEffect("ROUND");
-
-    }
 
     public override void BattleStart()
     {
@@ -116,6 +109,8 @@ public class Player : Character {
     override public void Damage(int dDamage, Character source)
     {
         base.Damage(dDamage, source);
+        if(Hp<=0) Die();
+
         animator.Play("player_damaged", 0);
 
     }

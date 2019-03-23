@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e48f98badf111424f840262a1291b0cb, type: 3}
-  m_Name: 001_weilaiyongjiezhan
+  m_Name: 001weilaiyongjiezhan
   m_EditorClassIdentifier: 
   QTEscore:
   - notes:
@@ -43,7 +43,7 @@ MonoBehaviour:
       subnote: {fileID: 0}
       beatInBar: 1
       beatInSong: 0
-      SuccessSkill: AKT_2
+      SuccessSkill: ATK_2
       BadSkill: EPT
       MissSkill: EPT
     - type: 32
@@ -70,28 +70,12 @@ MonoBehaviour:
       SuccessSkill: ATK_2
       BadSkill: EPT
       MissSkill: EPT
-    - type: 21
-      note: {fileID: 0}
-      subnote: {fileID: 0}
-      beatInBar: 2.33
-      beatInSong: 0
-      SuccessSkill: ATK_1
-      BadSkill: EPT
-      MissSkill: EPT
-    - type: 0
-      note: {fileID: 0}
-      subnote: {fileID: 0}
-      beatInBar: 0
-      beatInSong: 0
-      SuccessSkill: 2.66
-      BadSkill: EPT
-      MissSkill: EPT
     - type: 33
       note: {fileID: 0}
       subnote: {fileID: 0}
       beatInBar: 3
       beatInSong: 0
-      SuccessSkill: ATK_8
+      SuccessSkill: ATK_10
       BadSkill: EPT
-      MissSkill: EPT
+      MissSkill: ATK_5
     beatsThisBar: 4

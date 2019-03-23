@@ -124,17 +124,40 @@ public class Character : MonoBehaviour
 
                 return true;
             }
-
         }
 
         //        lastAction = actionType.Hit;
         return true;
     }
-    //攻击失败
-    virtual public void HitFail()
-    {
 
+    virtual public bool Hit(int dDamage,bool nothaveAfterattack)
+    {
+        //普通攻击目标
+        if (mTarget != null)
+        {
+            Character cTarget = mTarget.GetComponent<Character>();
+            //判断对方护盾
+            if (cTarget.buffs.Exists(x => x.m_name == "defend"))
+            {
+                Instantiate(Resources.Load("VFX/Shield"), cTarget.transform.position, Quaternion.identity);
+                return false;
+            }
+            else
+            {
+                Instantiate(Resources.Load("VFX/Slash"), cTarget.transform.position, Quaternion.identity);
+                cTarget.Damage(CalcDmg(getCurrentATK(), cTarget.getCurrentDEF(), dDamage), this);
+
+                return true;
+            }
+        }
+
+        //        lastAction = actionType.Hit;
+        return true;
     }
+
+
+
+
 
     virtual public void Heal(int dHeal)
     {
@@ -172,7 +195,7 @@ public class Character : MonoBehaviour
         else
         {
             Hp = 0;
-            Die();
+           // Die();
         }
     }
 

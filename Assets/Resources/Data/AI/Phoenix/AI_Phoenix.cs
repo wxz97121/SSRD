@@ -237,7 +237,6 @@ public class AI_Phoenix : AI
             //Debug.Log(SoundController.Instance.GetLastMarker());
             if (SoundController.Instance.GetLastMarker() == "minibridge" || SoundController.Instance.GetLastMarker() == "breakdown")
             {
-                InputSequenceController.Instance.CleanInputSequence();
 
                 //进入QTE状态
                 RhythmController.Instance.QTEStart(qtescore1);
