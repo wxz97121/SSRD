@@ -68,7 +68,7 @@ public class DuelController : MonoBehaviour {
         GameObject instEnemyUI = Instantiate(enemyUIPrefab, UICanvas);
         instEnemyUI.transform.localPosition += new Vector3(Screen.width / 4, Screen.height / 4, 0);
         instEnemy.GetComponent<AI>().UIHpNum = instEnemyUI.transform.Find("HpNum").GetComponent<TextMeshProUGUI>();
-        instEnemy.GetComponent<AI>().UIMpNum = instEnemyUI.transform.Find("MpNum").GetComponent<TextMeshProUGUI>();
+        //instEnemy.GetComponent<AI>().UIMpNum = instEnemyUI.transform.Find("MpNum").GetComponent<TextMeshProUGUI>();
         instEnemy.GetComponent<AI>().m_name = enemyList[enemyIndex];
         instEnemy.GetComponent<AI>().Init();
 
@@ -83,7 +83,7 @@ public class DuelController : MonoBehaviour {
         GameObject instEnemyUI = Instantiate(enemyUIPrefab, UICanvas);
         instEnemyUI.transform.localPosition += new Vector3(Screen.width / 4, Screen.height / 4, 0);
         instEnemy.GetComponent<AI>().UIHpNum = instEnemyUI.transform.Find("HpNum").GetComponent<TextMeshProUGUI>();
-        instEnemy.GetComponent<AI>().UIMpNum = instEnemyUI.transform.Find("MpNum").GetComponent<TextMeshProUGUI>();
+        //instEnemy.GetComponent<AI>().UIMpNum = instEnemyUI.transform.Find("MpNum").GetComponent<TextMeshProUGUI>();
         instEnemy.GetComponent<AI>().m_name = enemyList[id];
         instEnemy.GetComponent<AI>().Init();
 

@@ -201,6 +201,8 @@ public class SuperController : MonoBehaviour {
 
         Player.Instance.Reset();
         Player.Instance.BattleStart();
+
+        UIBattleInfo.Instance.init();
     }
 
     public void GameOver()
@@ -273,5 +275,10 @@ public class SuperController : MonoBehaviour {
         Debug.Log("state" + state);
 
         SoundController.Instance.FMODmusic.setPaused(false);
+    }
+
+    public void Blink()
+    {
+        UIBattleInfo.Instance.Blink();
     }
 }

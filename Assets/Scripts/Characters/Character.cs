@@ -33,7 +33,7 @@ public class Character : MonoBehaviour
     public List<Buff> buffs = new List<Buff>();
 
     public TextMeshProUGUI UIHpNum;
-    public TextMeshProUGUI UIMpNum;
+    //public TextMeshProUGUI UIMpNum;
 
     //当前攻击的目标
     public GameObject mTarget;
@@ -57,7 +57,7 @@ public class Character : MonoBehaviour
     virtual protected void Update()
     {
         UIHpNum.SetText(Hp.ToString());
-        UIMpNum.SetText(Mp.ToString());
+       //UIMpNum.SetText(Mp.ToString());
         UpdateInput();
         UpdateBuff();
     }

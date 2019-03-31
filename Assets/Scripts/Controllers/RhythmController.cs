@@ -293,6 +293,10 @@ public class RhythmController : MonoBehaviour
         //点头
         if (Player.Instance.animator.GetCurrentAnimatorStateInfo(0).IsName("player_idle"))
             Player.Instance.animator.Play("idlebeat", 0, 0);
+
+        //所有需要跟节奏闪的东西
+        SuperController.Instance.Blink();
+
     }
     #endregion
 

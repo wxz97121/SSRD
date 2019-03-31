@@ -46,7 +46,7 @@ public class BattleController : MonoBehaviour {
         GameObject instEnemyUI = Instantiate(enemyUIPrefab, UICanvas);
         instEnemyUI.transform.localPosition += new Vector3(Screen.width / 4, Screen.height / 4, 0);
         instEnemy.GetComponent<AI>().UIHpNum = instEnemyUI.transform.Find("HpNum").GetComponent<TextMeshProUGUI>();
-        instEnemy.GetComponent<AI>().UIMpNum = instEnemyUI.transform.Find("MpNum").GetComponent<TextMeshProUGUI>();
+        //instEnemy.GetComponent<AI>().UIMpNum = instEnemyUI.transform.Find("MpNum").GetComponent<TextMeshProUGUI>();
         Player.Instance.enemyList.Add(instEnemy);
         Player.Instance.mTarget = instEnemy;
     }
