@@ -101,6 +101,7 @@ public class UIBar : MonoBehaviour {
                     beatInBar = note.beatInBar,
                     //beatInSong = note.beatInBar + UIBarController.Instance.occupiedBeats,
                     beatInSong = note.beatInBar + startBeat,
+
                     SuccessSkill = note.SuccessSkill,
                     MissSkill=note.MissSkill,
                     BadSkill=note.BadSkill

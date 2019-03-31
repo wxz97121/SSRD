@@ -196,6 +196,7 @@ public class UIBarController : MonoBehaviour {
     public void InitBarByScore(int pieceIndex, int barIndex,UIBar uiBar)
     {
 
+        uiBar.startBeat = occupiedBeats;
 
         //QTE BAR
         if (QTEbarIndex >= 0)
@@ -216,9 +217,7 @@ public class UIBarController : MonoBehaviour {
             uiBar.beatsThisBar = _barScore.beatsThisBar;
         }
 
-        uiBar.startBeat = occupiedBeats;
         //        Debug.Log("startbeat=" + uiBar.startBeat);
-        occupiedBeats += uiBar.beatsThisBar;
 //    Debug.Log("occupiedBeats=" + occupiedBeats);
 
         uiBar.Init();
@@ -227,6 +226,7 @@ public class UIBarController : MonoBehaviour {
 
         currentEnergyNotes.AddRange(uiBar.GetComponent<UIBar>().noteList_energy);
         currentQTENotes.AddRange(uiBar.GetComponent<UIBar>().noteList_QTE);
+        occupiedBeats += uiBar.beatsThisBar;
 
     }
     #endregion
