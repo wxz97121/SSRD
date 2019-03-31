@@ -76,8 +76,9 @@ public class AI : Character
 
         gameObject.AddComponent<VFX>();
         VFX vfx = gameObject.GetComponent<VFX>();
-        Player.Instance.enemyList.Remove(gameObject);
         Destroy(UIHpNum.transform.parent.gameObject);
+
+        Player.Instance.enemyList.Remove(gameObject);
         vfx.StartCoroutine("FadeOut");
         Player.Instance.money += lootMoney;
         UIBarController.Instance.ClearBarWarn();
@@ -110,6 +111,7 @@ public class AI : Character
                 }
                 else
                 {
+                    //如果不是第一拍且死了，就是暂时不动
                     return;
                 }
             }

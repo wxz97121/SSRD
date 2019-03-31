@@ -19,7 +19,7 @@ MonoBehaviour:
       subnote: {fileID: 0}
       beatInBar: 0
       beatInSong: 0
-      SuccessSkill: ATK_2
+      SuccessSkill: ATKmini_2
       BadSkill: EPT
       MissSkill: EPT
     - type: 31
@@ -27,7 +27,7 @@ MonoBehaviour:
       subnote: {fileID: 0}
       beatInBar: 0.33
       beatInSong: 0
-      SuccessSkill: ATK_1
+      SuccessSkill: ATKmini_1
       BadSkill: EPT
       MissSkill: EPT
     - type: 32
@@ -35,7 +35,7 @@ MonoBehaviour:
       subnote: {fileID: 0}
       beatInBar: 0.66
       beatInSong: 0
-      SuccessSkill: ATK_1
+      SuccessSkill: ATKmini_1
       BadSkill: EPT
       MissSkill: EPT
     - type: 31
@@ -43,7 +43,7 @@ MonoBehaviour:
       subnote: {fileID: 0}
       beatInBar: 1
       beatInSong: 0
-      SuccessSkill: ATK_2
+      SuccessSkill: ATKmini_2
       BadSkill: EPT
       MissSkill: EPT
     - type: 32
@@ -51,7 +51,7 @@ MonoBehaviour:
       subnote: {fileID: 0}
       beatInBar: 1.33
       beatInSong: 0
-      SuccessSkill: ATK_1
+      SuccessSkill: ATKmini_1
       BadSkill: EPT
       MissSkill: EPT
     - type: 31
@@ -59,7 +59,7 @@ MonoBehaviour:
       subnote: {fileID: 0}
       beatInBar: 1.66
       beatInSong: 0
-      SuccessSkill: ATK_1
+      SuccessSkill: ATKmini_1
       BadSkill: EPT
       MissSkill: EPT
     - type: 32
@@ -67,7 +67,7 @@ MonoBehaviour:
       subnote: {fileID: 0}
       beatInBar: 2
       beatInSong: 0
-      SuccessSkill: ATK_2
+      SuccessSkill: ATKmini_2
       BadSkill: EPT
       MissSkill: EPT
     - type: 33

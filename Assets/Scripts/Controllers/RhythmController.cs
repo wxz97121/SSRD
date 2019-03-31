@@ -347,12 +347,8 @@ public class RhythmController : MonoBehaviour
         {
             //           Debug.Log("back to start");
             SuperController.Instance.state = GameState.Start;
-                if (Player.Instance.enemyList[0].GetComponent<AI>().Hp <= 0)
-                {
-                    Player.Instance.enemyList[0].GetComponent<AI>().Die();
-                }
 
-            }
+        }
     }
     #region 错误导致的锁定输入
     public void LockPin()
