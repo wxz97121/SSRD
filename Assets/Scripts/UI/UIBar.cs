@@ -86,7 +86,7 @@ public class UIBar : MonoBehaviour {
                 {
                     type = note.type,
                     beatInBar = note.beatInBar,
-                    beatInSong = note.beatInBar + UIBarController.Instance.occupiedBeats
+                    beatInSong = note.beatInBar + startBeat,
                 }
                 );
             }
@@ -179,7 +179,7 @@ public class UIBar : MonoBehaviour {
         {
             return;
         }
-        testtext.text = "barposinbeat" + barposinbeat.ToString("F2")+"/"+ (beatsThisBar);
+        testtext.text = "starttime" + startBeat;
 
         //处理位置
         pin.transform.localPosition = Vector2.Lerp

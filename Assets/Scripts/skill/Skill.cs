@@ -151,7 +151,7 @@ public class Skill
 
     public void ALLMPATK(Character Char)
     {
-        Char.Hit(Char.Mp);
+        Char.Hit(Char.Mp/2);
         Char.Mp = 0;
     }
 

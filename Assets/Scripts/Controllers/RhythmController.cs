@@ -187,7 +187,11 @@ public class RhythmController : MonoBehaviour
         {
             if (isCurBarCleaned == false && isCurBarAtFinalBeat == false)
             {
-                InputSequenceController.Instance.Bad();
+                if (InputSequenceController.Instance.CurInputSequence.Count != 0)
+                {
+                    InputSequenceController.Instance.Bad();
+
+                }
                 isCurBarAtFinalBeat = true;
 
             }

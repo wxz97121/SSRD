@@ -133,12 +133,14 @@ public class UIBarController : MonoBehaviour {
         postBar.GetComponent<UIBar>().active = false;
         occupiedBeats = 0;
         Debug.Log("uibar 0 complete!");
+        NextBar();
 
         currentBarList.Add(CreateBarByScore(pieceIndex, barIndex));
         currentBarList[1].transform.localPosition = barPos2;
 
         playingBar = currentBarList[1];
         currentEnergyNotes.AddRange(playingBar.GetComponent<UIBar>().noteList_energy);
+        NextBar();
 
         Debug.Log("uibar 1 complete!");
 
@@ -159,6 +161,7 @@ public class UIBarController : MonoBehaviour {
     public GameObject CreateBarByScore(int pieceIndex, int barIndex)
     {
         GameObject instBar = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar", typeof(GameObject)), transform);
+        instBar.GetComponent<UIBar>().startBeat = occupiedBeats;
 
 
         if (QTEbarIndex>=0)
@@ -184,7 +187,6 @@ public class UIBarController : MonoBehaviour {
         instBar.GetComponent<UIBar>().SetPinAlpha(0);
         instBar.GetComponent<UIBar>().active=true;
 
-        instBar.GetComponent<UIBar>().startBeat = occupiedBeats;
         occupiedBeats += instBar.GetComponent<UIBar>().beatsThisBar;
 
 

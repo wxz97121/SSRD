@@ -91,7 +91,7 @@ public class UIEnergyCells : MonoBehaviour
         {
             CellList[i].transform.GetChild(2).GetComponent<Image>().enabled = true;
             CellList[i].transform.GetChild(2).GetComponent<Image>().color = new Color(1, 1, 1, 1);
-            CellList[i].transform.GetChild(2).GetComponent<Image>().DOFade(0,0.4f);
+            CellList[i].transform.GetChild(2).GetComponent<Image>().DOFade(0,0.4f).SetEase(Ease.InQuad);
 
         }
     }

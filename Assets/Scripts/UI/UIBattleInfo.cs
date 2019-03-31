@@ -5,7 +5,7 @@ using UnityEngine;
 public class UIBattleInfo : MonoBehaviour
 {
     public UIEnergyCells energyCells;
-
+    public UIHPArea hPArea;
 
     #region 单例
     static UIBattleInfo _instance;
@@ -36,6 +36,8 @@ public class UIBattleInfo : MonoBehaviour
     public void init()
     {
         energyCells.init();
+        hPArea.init();
+
     }
 
     public void Blink()

@@ -224,7 +224,7 @@ public class SuperController : MonoBehaviour {
         yield return new WaitForSeconds(2.0f);
 
         mainMenu.gameObject.SetActive(true);
-        mainMenu.Find("Title").GetComponent<Text>().text = "你挂了";
+        mainMenu.Find("Title").GetComponent<Text>().text = "死";
         mainMenu.Find("Button").Find("Text").GetComponent<Text>().text = "再来!";
     }
 
