@@ -144,6 +144,8 @@ public class Character : MonoBehaviour
             }
             else
             {
+               
+
                 Instantiate(Resources.Load("VFX/Slash"), cTarget.transform.position, Quaternion.identity);
                 cTarget.Damage(CalcDmg(getCurrentATK(), cTarget.getCurrentDEF(), dDamage), this);
 
@@ -259,6 +261,10 @@ public class Character : MonoBehaviour
             if (b.remainBeats != 0)
             {
                 remainbuffs.Add(b);
+            }
+            else
+            {
+                b.BuffRemove();
             }
         }
         buffs = remainbuffs;

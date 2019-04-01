@@ -8,12 +8,17 @@ public class EnemySkill
     public string m_name;
     private string EffectStr;
 
-
-    //发动技能
     public void EffectFunction(AI m_Char)
     {
+
+        CommonEffect(m_Char, EffectStr);
+    }
+
+    //发动技能
+    public void CommonEffect(AI m_Char,string str)
+    {
 //        Debug.Log("effect string = " + EffectStr);
-        string[] EffectStrSplit = EffectStr.Split(',');
+        string[] EffectStrSplit = str.Split(',');
         //用开头三个大写字母表示功能，后面参数用下划线分割
         //例如 ATK_3 表示暗黑破坏神3
         //例如 HEL_5 表示HTML5
@@ -65,6 +70,10 @@ public class EnemySkill
 
     }
 
+    public EnemySkill()
+    {
+
+    }
 
     private void ATK(int dDamage, Character Char)
     {

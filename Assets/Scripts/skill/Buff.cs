@@ -9,6 +9,8 @@ public class Buff
     public int remainBeats;
     //buff层数，-1为不叠加
     public int multicount = -1;
+    //buff是否有显示
+    public bool isDisplay = false;
     //宿主
     protected Character character;
 
@@ -32,13 +34,21 @@ public class Buff
 
     }
 
+    //buff层数衰减
     public virtual void BuffDecay()
     {
         if (remainBeats > 0 && (RhythmController.Instance.songPosInBeats - activateTime >= 1 - RhythmController.Instance.commentGoodTime))
         {
             remainBeats--;
-            //            Debug.Log("BuffBeat,remainBeat="+ remainBeats);
+            //具体BUFF消失在Character类的BuffsDecay中实现
+
         }
+    }
+
+    public virtual void BuffRemove()
+    {
+
+
     }
 
     //左手输入错误时
@@ -55,6 +65,12 @@ public class Buff
 
     //攻击之后
     public virtual void AfterAttack(Character p_chara)
+    {
+
+    }
+
+    //被攻击之前
+    public virtual void BeforeAttacked(Character p_chara)
     {
 
     }

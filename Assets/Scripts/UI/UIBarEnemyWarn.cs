@@ -47,6 +47,8 @@ public class UIBarEnemyWarn : MonoBehaviour
 
     public void SetAlpha(float alf)
     {
+        //暂时不显示这个提示了，会让玩家过度依赖，可以换成一个辅助道具
+        alf = 0;
         image.color = new Color(255, 255, 255, alf);
         text.faceColor = new Color(text.faceColor.r, text.faceColor.g, text.faceColor.b, alf);
 
