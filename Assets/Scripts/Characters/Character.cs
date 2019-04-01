@@ -187,6 +187,9 @@ public class Character : MonoBehaviour
             }
         }
 
+        //触发被打断效果
+        Broken();
+
         Bubble.AddBubble(BubbleSprType.hp, "-" + dDamage.ToString(), this);
 
         getHit = true;
@@ -201,7 +204,11 @@ public class Character : MonoBehaviour
         }
     }
 
+    //被打断
+    public virtual void Broken()
+    {
 
+    }
 
     //计算当前攻击力
     public int getCurrentATK()
