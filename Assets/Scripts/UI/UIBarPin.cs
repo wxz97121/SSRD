@@ -5,14 +5,21 @@ using UnityEngine.UI;
 
 public class UIBarPin : MonoBehaviour
 {
-    public Sprite spr_normal;
-    public Sprite spr_locked;
-    public Image image;
+    public Color normalcolor;
+    public Color lockedcolor;
+
+    //public Sprite spr_normal;
+    //public Sprite spr_locked;
+    public Image imageup;
+    public Image imagedown;
+
+    private Color curColor;
+
     // Start is called before the first frame update
     void Start()
     {
-        image = gameObject.GetComponent<Image>();
-    }
+        curColor = normalcolor; 
+   }
 
     // Update is called once per frame
     void Update()
@@ -29,11 +36,24 @@ public class UIBarPin : MonoBehaviour
         switch (type)
         {
             case 0:
-                image.sprite = spr_normal;
+                imageup.color = normalcolor;
+                imagedown.color = normalcolor;
+                curColor = normalcolor;
+
                 break;
             case 1:
-                image.sprite = spr_locked;
+                imageup.color = lockedcolor;
+                imagedown.color = lockedcolor;
+                curColor = lockedcolor;
                 break;
         }
     }
+
+    public void SetAlpha(float alpha)
+    {
+        imageup.color = new Color(curColor.r, curColor.g, curColor.b,  alpha);
+        imagedown.color = new Color(curColor.r, curColor.g, curColor.b,  alpha);
+
+    }
+
 }

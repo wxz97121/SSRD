@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: LiberationSans SDF Material
   m_Shader: {fileID: 4800000, guid: fe393ace9b354375a9cb14cdbbc28be4, type: 3}
-  m_ShaderKeywords: _EMISSION
+  m_ShaderKeywords: UNDERLAY_ON _EMISSION
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -82,7 +82,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _Diffuse: 0.5
     - _DstBlend: 0
-    - _FaceDilate: 0
+    - _FaceDilate: 0.2
     - _FaceUVSpeedX: 0
     - _FaceUVSpeedY: 0
     - _GlossMapScale: 1
@@ -108,7 +108,7 @@ Material:
     - _Reflectivity: 10
     - _ScaleRatioA: 0.9
     - _ScaleRatioB: 0.73125
-    - _ScaleRatioC: 0.73125
+    - _ScaleRatioC: 0.55125
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
@@ -127,7 +127,7 @@ Material:
     - _UnderlayDilate: 0
     - _UnderlayOffsetX: 0
     - _UnderlayOffsetY: 0
-    - _UnderlaySoftness: 0
+    - _UnderlaySoftness: 0.46
     - _VertexOffsetX: 0
     - _VertexOffsetY: 0
     - _WeightBold: 0.75
@@ -138,7 +138,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EnvMatrixRotation: {r: 0, g: 0, b: 0, a: 0}
-    - _FaceColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FaceColor: {r: 1, g: 1, b: 1, a: 1}
     - _GlowColor: {r: 0, g: 1, b: 0, a: 0.5}
     - _MaskCoord: {r: 0, g: 0, b: 32767, a: 32767}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}

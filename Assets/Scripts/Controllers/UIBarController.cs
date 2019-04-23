@@ -372,7 +372,7 @@ public class UIBarController : MonoBehaviour {
     public void TurnBarIntoQTE(UIBar uIBar,List<Note> notes)
     {
         uIBar.type = UIBar.barType.QTEBar;
-        uIBar.bg.color = Color.black;
+        uIBar.bg.sprite= uIBar.bgQTE;
         //清除普通阶段的遗留音符
         currentEnergyNotes.Clear();
         InputSequenceController.Instance.CurInputSequence.Clear();

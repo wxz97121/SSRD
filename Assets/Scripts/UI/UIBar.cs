@@ -10,6 +10,7 @@ public class UIBar : MonoBehaviour {
     {
         inputBar=1,
         QTEBar=2,
+        ULTIBar=3,
     }
     public barType type = barType.inputBar;
     public Text testtext;
@@ -22,6 +23,9 @@ public class UIBar : MonoBehaviour {
     public GameObject pin;
     //背景
     public Image bg;
+    public Sprite bgNORMAL;
+    public Sprite bgQTE;
+    public Sprite bgULTI;
 
     public GameObject startPosGO;
     public GameObject onebeatspaceGO;
@@ -57,12 +61,12 @@ public class UIBar : MonoBehaviour {
     {
         if (type == barType.QTEBar)
         {
-            bg.color = Color.black;
+            bg.sprite = bgQTE;
         }
         if (type == barType.inputBar)
         {
             //bg.color = Color.blue;
-            bg.color = new Color(190f/255f,220f/255f,1);
+            bg.sprite=bgNORMAL;
         }
         
         InitLines();
@@ -121,11 +125,11 @@ public class UIBar : MonoBehaviour {
         {
             GameObject line = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Line", typeof(GameObject)), transform);
             line.transform.localPosition = startPos + (oneBeatSpace * i);
-            line.GetComponent<Image>().color = Color.black;
+            //line.GetComponent<Image>().color = Color.black;
             //第三拍变红提示
-            if (i == 2&&type==barType.inputBar) { line.GetComponent<Image>().color = Color.red; }
+            if (i == 2&&type==barType.inputBar) { line.GetComponent<Image>().color = new Color(0.5f,0,0); }
             //QTE变白
-            if (type == barType.QTEBar) { line.GetComponent<Image>().color = Color.white; }
+            //if (type == barType.QTEBar) { line.GetComponent<Image>().color = Color.white; }
             linelist.Add(line);
         }
 
@@ -224,8 +228,9 @@ public class UIBar : MonoBehaviour {
 
     public void SetPinAlpha(float a)
     {
-        Color tempcolor = pin.GetComponent<Image>().color;
-        pin.GetComponent<Image>().color = new Color(tempcolor.r,tempcolor.g,tempcolor.b,a);
+        pin.GetComponent<UIBarPin>().SetAlpha(a);
+        //Color tempcolor = pin.GetComponent<Image>().color;
+        //pin.GetComponent<Image>().color = new Color(tempcolor.r,tempcolor.g,tempcolor.b,a);
     }
 
 

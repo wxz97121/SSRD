@@ -9,6 +9,7 @@ public class UIEnergyCells : MonoBehaviour
     public List<GameObject> CellList;
     public int maxMP;
     public int MP;
+    public Color color;
 
     // Start is called before the first frame update
     void Start()
@@ -46,17 +47,17 @@ public class UIEnergyCells : MonoBehaviour
 
     public void Hide(int num)
     {
-        CellList[num].transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 0);
-        CellList[num].transform.GetChild(1).GetComponent<Image>().color = new Color(1, 1, 1, 0);
-        CellList[num].transform.GetChild(2).GetComponent<Image>().color = new Color(1, 1, 1, 0);
+        CellList[num].transform.GetChild(0).GetComponent<Image>().color = new Color(color.r, color.g, color.b, 0);
+        CellList[num].transform.GetChild(1).GetComponent<Image>().color = new Color(color.r, color.g, color.b, 0);
+        CellList[num].transform.GetChild(2).GetComponent<Image>().color = new Color(color.r, color.g, color.b, 0);
     }
 
     public void Show(int num)
     {
         CellList[num].transform.GetChild(0).GetComponent<Image>().fillAmount = 0;
-        CellList[num].transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 1);
-        CellList[num].transform.GetChild(1).GetComponent<Image>().color = new Color(1, 1, 1, 1);
-        CellList[num].transform.GetChild(2).GetComponent<Image>().color = new Color(1, 1, 1, 0);
+        CellList[num].transform.GetChild(0).GetComponent<Image>().color = new Color(color.r, color.g, color.b, 1);
+        CellList[num].transform.GetChild(1).GetComponent<Image>().color = new Color(color.r, color.g, color.b, 1);
+        CellList[num].transform.GetChild(2).GetComponent<Image>().color = new Color(color.r, color.g, color.b, 0);
         
     }
 
@@ -90,7 +91,7 @@ public class UIEnergyCells : MonoBehaviour
         for (int i = 0; i < fullcells; i++)
         {
             CellList[i].transform.GetChild(2).GetComponent<Image>().enabled = true;
-            CellList[i].transform.GetChild(2).GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            CellList[i].transform.GetChild(2).GetComponent<Image>().color = new Color(color.r, color.g, color.b, 1);
             CellList[i].transform.GetChild(2).GetComponent<Image>().DOFade(0,0.4f).SetEase(Ease.InQuad);
 
         }
