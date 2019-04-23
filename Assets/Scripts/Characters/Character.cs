@@ -137,14 +137,20 @@ public class Character : MonoBehaviour
         {
             Character cTarget = mTarget.GetComponent<Character>();
             //判断对方护盾
-            if (cTarget.buffs.Exists(x => x.m_name == "defend"))
+            if (cTarget.hasBuff<Buff_oneTimeShield>())
+            {
+                cTarget.transform.Find("oneTimeShield").GetComponent<VFX>().StartCoroutine("FadeOutLarger");
+                cTarget.RemoveBuff<Buff_oneTimeShield>();
+                return false;
+            }
+            else if (cTarget.hasBuff<Buff_defend>())
             {
                 Instantiate(Resources.Load("VFX/Shield"), cTarget.transform.position, Quaternion.identity);
                 return false;
             }
             else
             {
-               
+   
 
                 Instantiate(Resources.Load("VFX/Slash"), cTarget.transform.position, Quaternion.identity);
                 cTarget.Damage(CalcDmg(getCurrentATK(), cTarget.getCurrentDEF(), dDamage), this);
@@ -295,6 +301,26 @@ public class Character : MonoBehaviour
         foreach (var b in buffs)
         {
             if (b.GetType() == typeof(T)) return true;
+        }
+        return false;
+    }
+
+    //判断是否存在Buff
+    public bool RemoveBuff<T>() where T : Buff
+    {
+        int num = -1;
+        for (int i=0;i<buffs.Count; i++)
+        {
+            if (buffs[i].GetType() == typeof(T))
+            {
+                num = i;
+            }
+        }
+        if (num >= 0)
+        {
+            buffs[num].BuffRemove();
+            buffs.RemoveAt(num);
+            return true;
         }
         return false;
     }

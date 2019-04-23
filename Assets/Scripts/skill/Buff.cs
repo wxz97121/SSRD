@@ -12,7 +12,7 @@ public class Buff
     //buff是否有显示
     public bool isDisplay = false;
     //宿主
-    protected Character character;
+    public Character character;
 
     public float activateTime;
 
