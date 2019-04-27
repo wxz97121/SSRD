@@ -92,8 +92,7 @@ public class Player : Character {
     //玩家具体的控制
     override public bool Hit(int dDamage)
     {
-        animator.Play("player_slash",0);
-        //todo:把动画移到技能里
+        //animator.Play("player_slash",0);
         return base.Hit(dDamage);
     }
 
