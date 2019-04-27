@@ -93,5 +93,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aniTime: 0.2
-  type: 10
+  type: 0
   frames: []

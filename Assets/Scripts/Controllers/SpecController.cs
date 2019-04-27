@@ -27,6 +27,7 @@ public class SpecController : MonoBehaviour
         {
             _specDictionary.Add(item.name, item);
         }
+        this.transform.localScale = new Vector3(0, 0, 0);
     }
 
     // Update is called once per frame

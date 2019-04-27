@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
+
 
 public class UIHPArea : MonoBehaviour
 {
     public Image image;
     private int maxHP;
+    public TextMeshProUGUI hpNum;
     private int HP;
     private float fill;
+    public Character chara;
 
     // Start is called before the first frame update
     void Start()
@@ -22,22 +26,30 @@ public class UIHPArea : MonoBehaviour
     {
         if (maxHP == 0)
         {
+            
             return;
         }
         //HP发生变化
-        if (Player.Instance.Hp != HP)
+        if (chara != null) { 
+        if (chara.Hp != HP)
         {
-            Animate(Player.Instance.Hp);
+            Animate(chara.Hp);
+        }
+        HP = chara.Hp;
+        hpNum.text = HP.ToString();
 
         }
-        HP = Player.Instance.Hp;
     }
 
     public void init()
     {
-        maxHP = Player.Instance.maxHp;
-        HP = Player.Instance.Hp;
-        image.fillAmount= (float)HP / (float)maxHP;
+        if (chara != null)
+        {
+            maxHP = chara.maxHp;
+            HP = chara.Hp;
+            image.fillAmount = (float)HP / (float)maxHP;
+            hpNum.text = HP.ToString();
+        }
     }
 
     //血量变化动画

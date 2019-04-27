@@ -32,6 +32,11 @@ public class SuperController : MonoBehaviour {
     public GameState state;
     //主菜单UI
     public Transform mainMenu;
+    //战斗ui
+    public Transform playerBattleUIPos;
+    public Transform enemyBattleUIPos;
+    public UIBattleInfo playerBattleInfo;
+    public UIBattleInfo enemyBattleInfo;
 
 
     static SuperController _instance;
@@ -50,10 +55,14 @@ public class SuperController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        mainMenu.gameObject.SetActive(true);
         commentController = GameObject.Find("Comment").GetComponent<CommentController>();
         skillTipBarController = GameObject.Find("SkillTipArea").GetComponent<UISkillTipBarController>();
         uiBarController = GameObject.Find("BarArea").GetComponent<UIBarController>();
         SRDTap = GameObject.Find("SrdTap").GetComponent<SrdTap>();
+
+        playerBattleInfo = playerBattleUIPos.GetComponentInChildren<UIBattleInfo>();
+        enemyBattleInfo =enemyBattleUIPos.GetComponentInChildren<UIBattleInfo>();
 
         ReadLevelDatas();
         ReadSkillDatas();
@@ -201,8 +210,10 @@ public class SuperController : MonoBehaviour {
 
         Player.Instance.Reset();
         Player.Instance.BattleStart();
+        playerBattleInfo.hPArea.chara = Player.Instance;
+        playerBattleInfo.init();
+        enemyBattleInfo.init();
 
-        UIBattleInfo.Instance.init();
     }
 
     public void GameOver()
@@ -279,6 +290,6 @@ public class SuperController : MonoBehaviour {
 
     public void Blink()
     {
-        UIBattleInfo.Instance.Blink();
+        playerBattleInfo.Blink();
     }
 }

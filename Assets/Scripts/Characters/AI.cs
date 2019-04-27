@@ -76,7 +76,7 @@ public class AI : Character
 
         gameObject.AddComponent<VFX>();
         VFX vfx = gameObject.GetComponent<VFX>();
-        Destroy(UIHpNum.transform.parent.gameObject);
+//        Destroy(UIHpNum.transform.parent.gameObject);
 
         Player.Instance.enemyList.Remove(gameObject);
         vfx.StartCoroutine("FadeOut");

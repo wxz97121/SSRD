@@ -7,6 +7,8 @@ public class Buff_tripledamage : Buff
 
     public override void BuffAdded(Character p_chara)
     {
+        Player.Instance.spec.transform.localScale=new Vector3(0.0195f,0.0195f,0.0195f);
+
         m_name = "tripledamage";
         remainBeats = -1;
 
@@ -26,6 +28,7 @@ public class Buff_tripledamage : Buff
             oldbuff.multicount++;
             oldbuff.damageMulti += 3;
 
+            Player.Instance.spec.gameObject.SetActive(true);
             switch (oldbuff.multicount)
             {
                 case 1:
@@ -56,11 +59,11 @@ public class Buff_tripledamage : Buff
 
         multicount = 1;
         damageMulti = 3;
+        Debug.Log("双倍伤害叠加：1，3");
 
-       
 
-                Player.Instance.spec._specDictionary["SpecTripledamage"].colorMax = Player.Instance.spec.MaxColor1;
-                Player.Instance.spec._specDictionary["SpecTripledamage"].colorMin = Player.Instance.spec.MinColor1;
+        Player.Instance.spec._specDictionary["SpecTripledamage"].colorMax = Player.Instance.spec.MaxColor1;
+        Player.Instance.spec._specDictionary["SpecTripledamage"].colorMin = Player.Instance.spec.MinColor1;
 
         Player.Instance.spec._specDictionary["SpecTripledamage"].RebuildSpectrum();
         Player.Instance.spec._specDictionary["SpecTripledamage"].isEnabled = true;
@@ -70,10 +73,11 @@ public class Buff_tripledamage : Buff
 
     public override void AfterAttack(Character p_chara)
     {
+        Debug.Log("三倍伤害afterattack");
         base.AfterAttack(p_chara);
         p_chara.buffs.Remove(this);
         Player.Instance.spec._specDictionary["SpecTripledamage"].isEnabled = false;
-
+        Player.Instance.spec.transform.localScale=new Vector3(0,0,0);
     }
 
     public override void AfterAttacked(Character p_chara)
@@ -81,6 +85,7 @@ public class Buff_tripledamage : Buff
         base.AfterAttacked(p_chara);
         p_chara.buffs.Remove(this);
         Player.Instance.spec._specDictionary["SpecTripledamage"].isEnabled = false;
+        Player.Instance.spec.transform.localScale = new Vector3(0, 0, 0);
 
     }
 

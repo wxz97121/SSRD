@@ -32,7 +32,7 @@ public class Character : MonoBehaviour
     //当前BUFF列表
     public List<Buff> buffs = new List<Buff>();
 
-    public TextMeshProUGUI UIHpNum;
+    //public TextMeshProUGUI UIHpNum;
     //public TextMeshProUGUI UIMpNum;
 
     //当前攻击的目标
@@ -56,7 +56,7 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     virtual protected void Update()
     {
-        UIHpNum.SetText(Hp.ToString());
+       // UIHpNum.SetText(Hp.ToString());
        //UIMpNum.SetText(Mp.ToString());
         UpdateInput();
         UpdateBuff();
