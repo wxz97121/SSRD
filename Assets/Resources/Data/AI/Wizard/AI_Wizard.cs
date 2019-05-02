@@ -29,15 +29,17 @@ public class AI_Wizard : AI
         secondloopIndex = skillSequence.FindIndex(a => a == "secondloop");
     }
 
-    public override void Action()
+    public override void Action(int beatnum)
     {
-        base.Action();
+        base.Action(beatnum);
 
 
         switch (phaseID)
         {
             case 0:
-                _skillDictionary[skillSequence[actionID]].EffectFunction(this);
+
+
+                if(beatnum!=3) _skillDictionary[skillSequence[actionID]].EffectFunction(this);
                 actionID++;
                 if (actionID >= firstloopIndex)
                 {
@@ -49,7 +51,7 @@ public class AI_Wizard : AI
             case 1:
                 if (Hp <= 15)
                 {
-                    _skillDictionary[skillSequence[0]].EffectFunction(this);
+                    if (beatnum != 3) _skillDictionary[skillSequence[0]].EffectFunction(this);
                     actionID++;
                     if ((actionID - firstloopIndex) % 4 == 1)
                     {
@@ -61,7 +63,7 @@ public class AI_Wizard : AI
 
 
 
-                _skillDictionary[skillSequence[actionID]].EffectFunction(this);
+                if (beatnum != 3) _skillDictionary[skillSequence[actionID]].EffectFunction(this);
                 actionID++;
                 if (actionID >= secondloopIndex)
                     actionID = firstloopIndex + 1;
@@ -72,7 +74,7 @@ public class AI_Wizard : AI
             case 2:
                 Debug.Log("action ID:" + actionID);
                 Debug.Log("time:" + RhythmController.Instance.songPosInBeats);
-                _skillDictionary[skillSequence[actionID]].EffectFunction(this);
+                if (beatnum != 3) _skillDictionary[skillSequence[actionID]].EffectFunction(this);
                 actionID++;
                 if (actionID >= skillSequence.Count)
                     actionID = secondloopIndex + 1;

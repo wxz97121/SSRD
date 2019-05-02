@@ -14,19 +14,19 @@ public class AI_Phoenix : AI
     public OneSongScore qtescore2;
 
 
-    public List<EnemySkill> SkillSequence;
+    //public List<EnemySkill> SkillSequence;
 
-    public List<EnemySkill> SG_P1_idle;
-    public List<EnemySkill> SG_P0_intro;
-    public List<EnemySkill> SG_P1_attack;
+    public List<string> SG_P1_idle;
+    public List<string> SG_P0_intro;
+    public List<string> SG_P1_attack;
 
 
-    public List<EnemySkill> SG_P2_attack1;
-    public List<EnemySkill> SG_P2_idle;
-    public List<EnemySkill> SG_P2_ready2;
-    public List<EnemySkill> SG_P2_attack2;
-    public List<EnemySkill> SG_P2_reborn;
-    public List<EnemySkill> SG_P2_defend;
+    public List<string> SG_P2_attack1;
+    public List<string> SG_P2_idle;
+    public List<string> SG_P2_ready2;
+    public List<string> SG_P2_attack2;
+    public List<string> SG_P2_reborn;
+    public List<string> SG_P2_defend;
 
 
 
@@ -51,81 +51,81 @@ public class AI_Phoenix : AI
         qtescore2 = OneSongScore.ReadQTEScoreData(qTEScoreData_2);
         isUndead = true;
 
-        SkillSequence = new List<EnemySkill>();
+        //SkillSequence = new List<EnemySkill>();
 
         //装载技能组
-        SG_P1_idle = new List<EnemySkill>
+        SG_P1_idle = new List<string>
         {
-            _skillDictionary["phase1_idle"],
-            _skillDictionary["phase1_idle"],
-            _skillDictionary["phase1_idle"],
-            _skillDictionary["phase1_idle"]
+            "phase1_idle",
+            "phase1_idle",
+            "phase1_idle",
+            "phase1_idle"
         };
 
-        SG_P1_attack = new List<EnemySkill>
+        SG_P1_attack = new List<string>
         {
-            _skillDictionary["phase1_idle"],
-            _skillDictionary["phase1_attackwarn"],
-            _skillDictionary["phase1_idle"],
-            _skillDictionary["phase1_attack"]
+            "phase1_idle",
+            "phase1_attackwarn",
+            "phase1_idle",
+            "phase1_attack"
         };
 
-        SG_P0_intro = new List<EnemySkill>
+        SG_P0_intro = new List<string>
         {
-            _skillDictionary["phase1_idle"],
-            _skillDictionary["phase1_dmp"],
-            _skillDictionary["phase1_idle"],
-            _skillDictionary["phase1_idle"]
+            "phase1_idle",
+            "phase1_dmp",
+            "phase1_idle",
+            "phase1_idle"
         };
 
         //P2技能组
-        SG_P2_idle = new List<EnemySkill>
+        SG_P2_idle = new List<string>
         {
-            _skillDictionary["phase2_idle"],
-            _skillDictionary["phase2_idle"],
-            _skillDictionary["phase2_idle"],
-            _skillDictionary["phase2_idle"]
+            "phase2_idle",
+            "phase2_idle",
+            "phase2_idle",
+            "phase2_idle"
         };
 
-        SG_P2_reborn = new List<EnemySkill>
+        SG_P2_reborn = new List<string>
         {
-            _skillDictionary["phase2_reborn"],
-            _skillDictionary["phase2_idle"],
-            _skillDictionary["phase2_idle"],
-            _skillDictionary["phase2_idle"]
+            "phase2_reborn",
+             "phase2_idle",
+            "phase2_idle",
+            "phase2_idle"
         };
 
-        SG_P2_attack1 = new List<EnemySkill>
+        SG_P2_attack1 = new List<string>
         {
-            _skillDictionary["phase2_idle"],
-            _skillDictionary["phase2_attack1warn"],
-            _skillDictionary["phase2_idle"],
-            _skillDictionary["phase2_attack1"]
+            "phase2_idle",
+            "phase2_attack1warn",
+            "phase2_idle",
+            "phase2_attack1"
         };
 
-        SG_P2_ready2 = new List<EnemySkill>
+        SG_P2_ready2 = new List<string>
         {
-            _skillDictionary["phase2_idle"],
-            _skillDictionary["phase2_idle"],
-            _skillDictionary["phase2_attack2warn"],
-            _skillDictionary["phase2_ready2"]
+            "phase2_idle",
+            "phase2_idle",
+            "phase2_ready2",
+            "phase2_ready2"
         };
-        SG_P2_attack2 = new List<EnemySkill>
+        SG_P2_attack2 = new List<string>
         {
-            _skillDictionary["phase2_ready2"],
-            _skillDictionary["phase2_ready2"],
-            _skillDictionary["phase2_ready2"],
-            _skillDictionary["phase2_attack2"]
+            "phase2_ready2",
+            "phase2_ready2",
+            "phase2_attack2",
+            "phase2_idle"
         };
 
 
 
-        SG_P2_defend = new List<EnemySkill>
+        SG_P2_defend = new List<string>
         {
-            _skillDictionary["phase2_idle"],
-            _skillDictionary["phase2_idle"],
-            _skillDictionary["phase2_idle"],
-            _skillDictionary["phase2_defend"]
+            "phase2_idle",
+            "phase2_idle",
+            "phase2_defend",
+            "phase2_idle"
         };
 
     }
@@ -178,20 +178,21 @@ public class AI_Phoenix : AI
         SoundController.Instance.FMODSetParameter("breakdown", 0);
         SoundController.Instance.FMODSetParameter("outro", 0);
 
-        if (SkillSequence.Count == 0)
+        if (skillSequence.Count == 0)
         {
-            SkillSequence.Clear();
-            SkillSequence.AddRange(SG_P0_intro);
+            skillSequence.Clear();
+            skillSequence.AddRange(SG_P0_intro);
         }
         Debug.Log("actionID=" + actionID);
-        SkillSequence[actionID].EffectFunction(this);
+        _skillDictionary[skillSequence[actionID]].EffectFunction(this);
+
         actionID++;
-        if (actionID >= SkillSequence.Count)
+        if (actionID >= skillSequence.Count)
         {
             phaseID = 0;
             actionID = 0;
-            SkillSequence.Clear();
-            SkillSequence.AddRange(SG_P1_idle);
+            skillSequence.Clear();
+            skillSequence.AddRange(SG_P1_idle);
 
         }
 
@@ -202,24 +203,24 @@ public class AI_Phoenix : AI
     {
 
 
-        SkillSequence[actionID].EffectFunction(this);
+        _skillDictionary[skillSequence[actionID]].EffectFunction(this);
 
 
         actionID++;
-        if (actionID >= SkillSequence.Count)
+        if (actionID >= skillSequence.Count)
         {
             System.Random rng = new System.Random();
             float randomvalue = rng.Next(0, 10);
             Debug.Log("random" + randomvalue);
             if (randomvalue >= 7)
             {
-                SkillSequence.Clear();
-                SkillSequence.AddRange(SG_P1_attack);
+                skillSequence.Clear();
+                skillSequence.AddRange(SG_P1_attack);
             }
             else
             {
-                SkillSequence.Clear();
-                SkillSequence.AddRange(SG_P1_idle);
+                skillSequence.Clear();
+                skillSequence.AddRange(SG_P1_idle);
             }
             actionID = 0;
         }
@@ -251,7 +252,7 @@ public class AI_Phoenix : AI
                 SoundController.Instance.FMODSetParameter("outro", 0);
 
                 _skillDictionary["QTE1_turn"].EffectFunction(this);
-                SkillSequence.Clear();
+                skillSequence.Clear();
             }
 
         }
@@ -265,19 +266,19 @@ public class AI_Phoenix : AI
             //           Debug.Log("back to start");
             //SuperController.Instance.state = GameState.Start;
             phaseID = 2;
-            SkillSequence.Clear();
-            SkillSequence.AddRange(SG_P2_reborn);
+            skillSequence.Clear();
+            skillSequence.AddRange(SG_P2_reborn);
         }
     }
 
     private void Phase2()
     {
 
-        SkillSequence[actionID].EffectFunction(this);
+        _skillDictionary[skillSequence[actionID]].EffectFunction(this);
 
         isUndead = true;
         actionID++;
-        if (actionID >= SkillSequence.Count)
+        if (actionID >= skillSequence.Count)
         {
             System.Random rng = new System.Random();
             float randomvalue = rng.Next(0, 10);
@@ -285,16 +286,16 @@ public class AI_Phoenix : AI
             if (randomvalue >= 6)
             {
                 Debug.Log(">=6");
-                SkillSequence.Clear();
-                SkillSequence.AddRange(SG_P2_attack1);
+                skillSequence.Clear();
+                skillSequence.AddRange(SG_P2_attack1);
             }
             else if (randomvalue >= 3)
             {
                 Debug.Log(">=3");
 
-                SkillSequence.Clear();
-                SkillSequence.AddRange(SG_P2_ready2);
-                SkillSequence.AddRange(SG_P2_attack2);
+                skillSequence.Clear();
+                skillSequence.AddRange(SG_P2_ready2);
+                skillSequence.AddRange(SG_P2_attack2);
             }
             //else if (randomvalue >= 2)
             //{
@@ -303,8 +304,8 @@ public class AI_Phoenix : AI
             else
             {
                 Debug.Log("else");
-                SkillSequence.Clear();
-                SkillSequence.AddRange(SG_P2_idle);
+                skillSequence.Clear();
+                skillSequence.AddRange(SG_P2_idle);
             }
             actionID = 0;
         }
@@ -351,6 +352,8 @@ public class AI_Phoenix : AI
             //           Debug.Log("back to start");
             SuperController.Instance.state = GameState.Start;
             phaseID = 4;
+            isUndead = false;
+
         }
     }
 

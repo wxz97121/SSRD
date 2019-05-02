@@ -17,20 +17,20 @@ MonoBehaviour:
   - idle
   - idle
   - idle
+  - idle
   - firstloop
   - idle
   - idle
-  - idle
-  - ready1warn
+  - ready1
   - ready1
   - ready1
   - ready1
   - attack1
+  - idle
   - secondloop
   - idle
   - idle
-  - idle
-  - ready2warn
+  - ready2
   - ready2
   - ready2
   - ready2
@@ -39,3 +39,4 @@ MonoBehaviour:
   - attack22
   - attack22
   - attack23
+  - idle
