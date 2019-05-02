@@ -45,7 +45,7 @@ public class AI : Character
         {
             EnemySkill _skill = new EnemySkill("Data/AI/" + m_name + "/Skill/" + item.name);
             _skillDictionary.Add(_skill.m_name, _skill);
-            Debug.Log("skillname:" + _skill.m_name);
+            Debug.Log("add skill, name:" + _skill.m_name);
         }
 
         //读取技能顺序表
@@ -96,7 +96,25 @@ public class AI : Character
     }
 
 
-
+    virtual public void Action(int beatnum)
+    {
+        //怪物的死亡放在第一拍
+        if (Hp <= 0)
+        {
+            if (!isUndead)
+            {
+                if (SoundController.Instance.timelineInfo.currentMusicBeat == 1)
+                {
+                    Die();
+                }
+                else
+                {
+                    //如果不是第一拍且死了，就是暂时不动
+                    return;
+                }
+            }
+        }
+    }
 
     virtual public void Action()
     {
@@ -126,7 +144,14 @@ public class AI : Character
 
 
 
-
+    public string GetNextSkill()
+    {
+        if (skillSequence.Count == 0)
+        {
+            return "EMT";
+        }
+        return _skillDictionary[skillSequence[actionID]].EffectStr;
+    }
 
 
 

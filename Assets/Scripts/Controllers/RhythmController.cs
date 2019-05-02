@@ -181,7 +181,7 @@ public class RhythmController : MonoBehaviour
 
 
 
-        //第三拍之后 清除已经过期的输入音符，
+        //第三拍之后 清除已经过期的输入音符，AI发招，发招状态重置
 
         if (songPosInBeats - UIBarController.Instance.finishedBeats - 2 > commentGoodTime)
         {
@@ -195,7 +195,17 @@ public class RhythmController : MonoBehaviour
                 isCurBarAtFinalBeat = true;
 
             }
+            if (DuelController.Instance.isActedAt3rdBeat == false)
+            {
+                if (DuelController.Instance.GetCurAI())
+                {
+                    DuelController.Instance.SkillJudge("", DuelController.Instance.GetCurAI().GetNextSkill());
+                    DuelController.Instance.GetCurAI().Action(3);
+                }
+            }
+
             isCurBarCleaned = false;
+
         }
 
 
@@ -251,28 +261,36 @@ public class RhythmController : MonoBehaviour
     public void OnBeat(int beatNum)
     {
 
-        AI nowAI = null;
-        if (Player.Instance.mTarget)
-            nowAI = (Player.Instance.mTarget.GetComponent<AI>()) as AI;
+        AI nowAI = DuelController.Instance.GetCurAI();
+
         //everybody beat!
         if (beatNum == 0)
         {
+            //重置发招状态为未发招
+            DuelController.Instance.isActedAt3rdBeat = false;
 
-            if (nowAI) nowAI.Action();
+            if (nowAI) nowAI.Action(1);
 
         }
 
         if (beatNum == 1)
         {
 
-            if (nowAI) nowAI.Action();
+            if (nowAI) nowAI.Action(2);
 
 
         }
 
+        //已经BAD的情况，直接触发AI技能
+
         if (beatNum == 2)
         {
-            if (nowAI) nowAI.Action();
+            if(isCurBarCleaned == true&&DuelController.Instance.isActedAt3rdBeat==false&& DuelController.Instance.GetCurAI())
+            {
+                DuelController.Instance.SkillJudge("", DuelController.Instance.GetCurAI().GetNextSkill());
+                DuelController.Instance.GetCurAI().Action(3);
+                Debug.Log("INPUT BAD ,ENEMY ACT AT TIME");
+            }
 
         }
 
@@ -284,7 +302,7 @@ public class RhythmController : MonoBehaviour
             }
 
 
-            if (nowAI) nowAI.Action();
+            if (nowAI) nowAI.Action(4);
 
         }
 

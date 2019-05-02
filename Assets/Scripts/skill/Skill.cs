@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class Skill
 {
     public string m_name;
-    private string EffectStr;
+    public string EffectStr;
     public int cost;
     //输入方式
     public List<Note> inputSequence;
@@ -91,6 +91,12 @@ public class Skill
             );
         }
 
+    }
+
+    public Skill(int type,string eff)
+    {
+        m_name = "";
+        EffectStr = eff;
     }
 
     public Skill()

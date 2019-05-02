@@ -89,7 +89,7 @@ public class InputSequenceController : MonoBehaviour
     }
     #endregion
 
-
+    #region 处理输入的音符
     public void CalcSkillInput(Note.NoteType inputType)
     {
         //        Debug.Log("UIBarController.Instance.playingBarPosInBeats!" + UIBarController.Instance.playingBarPosInBeats);
@@ -134,7 +134,7 @@ public class InputSequenceController : MonoBehaviour
 
         }
     }
-
+    #endregion
 
 
     #region Insert Input Note 根据输入把新的NOTE增加进招式序列
@@ -146,7 +146,7 @@ public class InputSequenceController : MonoBehaviour
         //Debug.Log("CurInputSequence.Count"+ CurInputSequence.Count);
 
 
-
+        //已经BAD的情况
         if (RhythmController.Instance.isCurBarCleaned == true)
         {
             Debug.Log("已经BAD(当前不可输入）");
@@ -209,8 +209,15 @@ public class InputSequenceController : MonoBehaviour
                 else
                 {
                     Player.Instance.Mp -= skill.cost;
-//                    Debug.Log("cast:" + skill.m_name);
-                    skill.EffectFunction(Player.Instance);
+                    //Debug.Log("cast:" + skill.m_name);
+                    //skill.EffectFunction(Player.Instance);
+                    //和AI同时出招
+                    if (DuelController.Instance.isActedAt3rdBeat==false)
+                    {
+                        DuelController.Instance.SkillJudge(skill.EffectStr, DuelController.Instance.GetCurAI().GetNextSkill());
+                        if (DuelController.Instance.GetCurAI()) DuelController.Instance.GetCurAI().Action(3);
+
+                    }
                     ClnInpSeqWhenCastSkill();
                     RhythmController.Instance.isCurBarCleaned = true;
                 }
@@ -218,6 +225,7 @@ public class InputSequenceController : MonoBehaviour
 
             }
         }
+
 
         if (inputsuccess)
         {

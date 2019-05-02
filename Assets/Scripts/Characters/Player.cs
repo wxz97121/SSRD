@@ -110,7 +110,7 @@ public class Player : Character {
         base.Damage(dDamage, source);
         if(Hp<=0) Die();
 
-        animator.Play("player_damaged", 0);
+        animator.Play("player-damaged", 0);
 
     }
 

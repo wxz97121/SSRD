@@ -102,7 +102,7 @@ public class Character : MonoBehaviour
         {
             Character cTarget = mTarget.GetComponent<Character>();
             //判断对方护盾
-            if (cTarget.buffs.Exists(x => x.m_name == "defend"))
+            if (cTarget.hasBuff<Buff_defend>())
             {
                 Instantiate(Resources.Load("VFX/Shield"), cTarget.transform.position, Quaternion.identity);
                 return false;

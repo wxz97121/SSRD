@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class EnemySkill
 {
     public string m_name;
-    private string EffectStr;
+    public string EffectStr;
 
     public void EffectFunction(AI m_Char)
     {
@@ -67,6 +67,13 @@ public class EnemySkill
         }
         m_name = data._name;
         EffectStr = data.Effect;
+
+    }
+    public EnemySkill(int type,string Eff)
+    {
+
+        m_name = "";
+        EffectStr = Eff;
 
     }
 

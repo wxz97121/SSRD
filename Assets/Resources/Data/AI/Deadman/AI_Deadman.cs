@@ -17,7 +17,7 @@ public class AI_Deadman : AI
         base.Start();
     }
 
-    public override void Action()
+    public override void Action(int beatnum)
     {
         base.Action();
         _skillDictionary[skillSequence[actionID]].EffectFunction(this);

@@ -17,12 +17,13 @@ MonoBehaviour:
   - idle
   - idle
   - idle
+  - idle
   - '---'
   - idle
   - idle
-  - idle
-  - ready1warn
+  - ready1
   - ready1
   - ready1
   - ready1
   - attack1
+  - idle
