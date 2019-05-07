@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 //战斗逻辑
 public class DuelController : MonoBehaviour {
@@ -88,7 +89,8 @@ public class DuelController : MonoBehaviour {
     #region 增加敌人
     public void AddEnemy()
     {
-        GameObject instEnemy = Instantiate((GameObject)Resources.Load("Data/AI/" + enemyList[enemyIndex] + "/Prefab", typeof(GameObject)), new Vector3(4, 0, 0), Quaternion.identity);
+
+        GameObject instEnemy = Instantiate((GameObject)Resources.Load("Data/AI/" + enemyList[enemyIndex] + "/Prefab", typeof(GameObject)), GameObject.Find("EnemyGroup").transform);
         SuperController.Instance.enemyBattleInfo.hPArea.chara = instEnemy.GetComponent<AI>() as Character;
         SuperController.Instance.enemyBattleInfo.init();
         instEnemy.GetComponent<AI>().m_name = enemyList[enemyIndex];
@@ -98,6 +100,8 @@ public class DuelController : MonoBehaviour {
         Player.Instance.mTarget = instEnemy;
         enemyIndex = (enemyIndex + 1) % enemyList.Count;
     }
+
+
     #endregion 增加敌人
 
 

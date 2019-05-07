@@ -17,7 +17,7 @@ public class EnemySkill
     //发动技能
     public void CommonEffect(AI m_Char,string str)
     {
-//        Debug.Log("effect string = " + EffectStr);
+        Debug.Log("effect string = " + EffectStr);
         string[] EffectStrSplit = str.Split(',');
         //用开头三个大写字母表示功能，后面参数用下划线分割
         //例如 ATK_3 表示暗黑破坏神3
@@ -110,7 +110,7 @@ public class EnemySkill
 
     private void ANI(string aniname, AI Char)
     {
-        //        Debug.Log(aniname);
+                Debug.Log(aniname);
 
         Char.animator.Play(aniname, 0);
     }

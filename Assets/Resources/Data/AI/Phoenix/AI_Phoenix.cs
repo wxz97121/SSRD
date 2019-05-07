@@ -45,6 +45,7 @@ public class AI_Phoenix : AI
     public override void Init()
     {
         base.Init();
+        skillSequence.Clear();
         phaseID = -1;
         actionID = 0;
         qtescore1 = OneSongScore.ReadQTEScoreData(qTEScoreData_1);
@@ -130,9 +131,9 @@ public class AI_Phoenix : AI
 
     }
 
-    public override void Action()
+    public override void Action(int beatnum)
     {
-        base.Action();
+        base.Action(beatnum);
 
 
         switch (phaseID)
@@ -182,6 +183,7 @@ public class AI_Phoenix : AI
         {
             skillSequence.Clear();
             skillSequence.AddRange(SG_P0_intro);
+            Debug.Log("skillSequence[0] = "+skillSequence[0]);
         }
         Debug.Log("actionID=" + actionID);
         _skillDictionary[skillSequence[actionID]].EffectFunction(this);

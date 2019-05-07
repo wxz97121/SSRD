@@ -150,6 +150,7 @@ public class AI : Character
         {
             return "EMT";
         }
+        Debug.Log("skill name =" + skillSequence[actionID]);
         return _skillDictionary[skillSequence[actionID]].EffectStr;
     }
 
