@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf25b2aeb1e6b4c3a8f5b1efea2d3300, type: 3}
   m_Name: testSkill_0Z0ZX_HEAL
   m_EditorClassIdentifier: 
+  type: 4
+  sprite: {fileID: 0}
   _name: HEAL
   cost: 16
   inputSequence:
@@ -20,14 +22,23 @@ MonoBehaviour:
     subnote: {fileID: 0}
     beatInBar: 0.5
     beatInSong: 0
+    SuccessSkill: 
+    BadSkill: 
+    MissSkill: 
   - type: 21
     note: {fileID: 0}
     subnote: {fileID: 0}
     beatInBar: 1.5
     beatInSong: 0
+    SuccessSkill: 
+    BadSkill: 
+    MissSkill: 
   - type: 22
     note: {fileID: 0}
     subnote: {fileID: 0}
     beatInBar: 2
     beatInSong: 0
+    SuccessSkill: 
+    BadSkill: 
+    MissSkill: 
   Effect: HEL_10

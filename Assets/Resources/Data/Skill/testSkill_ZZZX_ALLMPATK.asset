@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf25b2aeb1e6b4c3a8f5b1efea2d3300, type: 3}
   m_Name: testSkill_ZZZX_ALLMPATK
   m_EditorClassIdentifier: 
+  type: 2
+  sprite: {fileID: 0}
   _name: ALL MP ATK
   cost: -1
   inputSequence:

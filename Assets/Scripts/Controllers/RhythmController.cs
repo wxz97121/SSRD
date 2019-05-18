@@ -189,6 +189,7 @@ public class RhythmController : MonoBehaviour
             {
                 if (InputSequenceController.Instance.CurInputSequence.Count != 0)
                 {
+                    Debug.Log("输入超时BAD");
                     InputSequenceController.Instance.Bad();
 
                 }
@@ -307,14 +308,15 @@ public class RhythmController : MonoBehaviour
         }
 
 
-        //BUFF跳
+        //BUFF跳 TODO:时序问题
         Player.Instance.BuffsBeat(beatNum);
         if (Player.Instance.mTarget != null)
             Player.Instance.mTarget.GetComponent<AI>().BuffsBeat(beatNum);
 
-        //点头
+        //点头 TODO 怪也在这点头
         if (Player.Instance.animator.GetCurrentAnimatorStateInfo(0).IsName("player-idle"))
             Player.Instance.animator.Play("idlebeat", 0, 0);
+
 
         //所有需要跟节奏闪的东西
         SuperController.Instance.Blink();

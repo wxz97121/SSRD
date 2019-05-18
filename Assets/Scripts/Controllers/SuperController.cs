@@ -32,6 +32,9 @@ public class SuperController : MonoBehaviour {
     public GameState state;
     //主菜单UI
     public Transform mainMenu;
+
+    //临时选技能菜单
+    public Transform skillSelectUI;
     //战斗ui
     public Transform playerBattleUIPos;
     public Transform enemyBattleUIPos;
@@ -65,7 +68,8 @@ public class SuperController : MonoBehaviour {
         enemyBattleInfo =enemyBattleUIPos.GetComponentInChildren<UIBattleInfo>();
 
         ReadLevelDatas();
-        ReadSkillDatas();
+        InputSequenceController.Instance.ResetAvailable();
+        //        ReadSkillDatas();
         SoundController.Instance.FMODmusic.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
 
         //此处有个坑，FMODInstance必须创建完成才能获取channelgroup
@@ -200,19 +204,11 @@ public class SuperController : MonoBehaviour {
 
     public void NewGame()
     {
-        state = GameState.Start;
-        Pause(GameState.Loot);
-        LootController.Instance.NewLoot();
+        SkillSelectUI();
+
 
         mainMenu.gameObject.SetActive(false);
-        skillTipBarController.InitSkillTipBarArea();
-        RhythmController.Instance.Reset();
 
-        Player.Instance.Reset();
-        Player.Instance.BattleStart();
-        playerBattleInfo.hPArea.chara = Player.Instance;
-        playerBattleInfo.init();
-        enemyBattleInfo.init();
 
     }
 
@@ -239,26 +235,53 @@ public class SuperController : MonoBehaviour {
         mainMenu.Find("Button").Find("Text").GetComponent<Text>().text = "再来!";
     }
 
-    public void ReadSkillDatas()
+    void SkillSelectUI()
     {
-        List<Skill> playerSkills = new List<Skill>
-        {
-            new Skill("testSkill_00X_ATTACK"),
-            new Skill("testSkill_0ZX_DEFEND"),
-            new Skill("testSkill_Z0X_SUPERATTACK"),
-            new Skill("testSkill_ZZX_TRIPLEDMG"),
-            new Skill("testSkill_0Z0ZX_HEAL"),
-            new Skill("testSkill_ZZZX_ALLMPATK"),
 
-            new Skill("testSkill_ZXZZX_ULTI")
-        };
-        Player.Instance.skills = new List<Skill>();
-
-        Player.Instance.skills = playerSkills;
-        InputSequenceController.Instance.skills = Player.Instance.skills;
-        InputSequenceController.Instance.availableSkills = InputSequenceController.Instance.skills;
+        skillSelectUI.gameObject.SetActive(true);
 
     }
+
+    public void SkillSelectOK()
+    {
+        state = GameState.Start;
+
+        Pause(GameState.Loot);
+        LootController.Instance.NewLoot();
+        skillSelectUI.gameObject.SetActive(false);
+
+        skillTipBarController.InitSkillTipBarArea();
+        RhythmController.Instance.Reset();
+
+        Player.Instance.Reset();
+        Player.Instance.BattleStart();
+        playerBattleInfo.hPArea.chara = Player.Instance;
+        playerBattleInfo.init();
+        enemyBattleInfo.init();
+        InputSequenceController.Instance.ResetAvailable();
+
+    }
+
+    //public void ReadSkillDatas()
+    //{
+    //List<Skill> playerSkills = new List<Skill>
+    //{
+    //    new Skill("testSkill_00X_ATTACK"),
+    //    new Skill("testSkill_0ZX_DEFEND"),
+    //    new Skill("testSkill_Z0X_SUPERATTACK"),
+    //    new Skill("testSkill_ZZX_TRIPLEDMG"),
+    //    new Skill("testSkill_0Z0ZX_HEAL"),
+    //    new Skill("testSkill_ZZZX_ALLMPATK"),
+
+    //    new Skill("testSkill_ZXZZX_ULTI")
+    //};
+    //Player.Instance.skills = new List<Skill>();
+
+    //Player.Instance.skills = playerSkills;
+    //InputSequenceController.Instance.skills = Player.Instance.skills;
+    //InputSequenceController.Instance.availableSkills = InputSequenceController.Instance.skills;
+
+    //}
 
     public void ReadLevelDatas()
     {

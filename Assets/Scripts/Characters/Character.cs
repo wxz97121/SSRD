@@ -8,45 +8,37 @@ public class Character : MonoBehaviour
 {
     public int maxHp = 3;
     public int Hp = 3;
+
+    public int maxLife = 10;
+    public int life =10;
+
     public int maxMp = 5;
     public int Mp = 0;
+
     //基础攻击力
     public int ATK = 2;
-    //当前攻击力
-    public int currentATK = 1;
+
     //基础防御力
     public int DEF = 0;
-    //当前防御力
-    public int currentDEF = 0;
+
     public bool isUndead = false;
-    //装备列表
-    public List<Equipment> equipmentList;
-    //当前装备着的武器
-    public Equipment currentWeapon;
-    //当前装备着的护甲
-    public Equipment currentArmor;
-    //当前装备着的卷轴
-    public Equipment currentScroll;
+
+
 
 
     //当前BUFF列表
     public List<Buff> buffs = new List<Buff>();
 
-    //public TextMeshProUGUI UIHpNum;
-    //public TextMeshProUGUI UIMpNum;
 
     //当前攻击的目标
     public GameObject mTarget;
-    //护盾
-    public int Shield = 0;
-    //蓄力列表(控制蓄力时候输出序列)
-    public List<int> mChargeList = new List<int>();
-    //上一次行动(暂时用)
-//    public actionType lastAction = actionType.None;
+
+
     //这一拍有没有被击中
-    public bool getHit = false;
+    //public bool getHit = false;
+
     //蓄力动画
-    public GameObject chargeVfx;
+    //public GameObject chargeVfx;
     // Use this for initialization
     virtual protected void Start()
     {
@@ -58,24 +50,24 @@ public class Character : MonoBehaviour
     {
        // UIHpNum.SetText(Hp.ToString());
        //UIMpNum.SetText(Mp.ToString());
-        UpdateInput();
+        //UpdateInput();
         UpdateBuff();
     }
 
-    virtual protected void UpdateInput()
-    {
+    //virtual protected void UpdateInput()
+    //{
 
-    }
+    //}
     //每次行动之前的初始化:判断蓄力是否断，清空护盾和被击
-    virtual public void Initialize()
-    {
+    //virtual public void Initialize()
+    //{
 
 
-        getHit = false;
+    //    getHit = false;
 
 
 
-    }
+    //}
     //战斗开始
     public virtual void BattleStart()
     {
@@ -94,8 +86,9 @@ public class Character : MonoBehaviour
             Mp += dMp;
         }
     }
-    //攻击
-    virtual public bool Hit(int dDamage)
+
+    //攻击别人 TODO 放进DUELCONTROLLER
+    virtual public bool Hit(int dDamage, bool noAfterattack=false)
     {
         //普通攻击目标
         if (mTarget != null)
@@ -109,18 +102,22 @@ public class Character : MonoBehaviour
             }
             else
             {
+                //todo 动画也不能放这里了，以后要有变化
                 Instantiate(Resources.Load("VFX/Slash"), cTarget.transform.position, Quaternion.identity);
                 cTarget.Damage(CalcDmg(getCurrentATK(), cTarget.getCurrentDEF(), dDamage), this);
 
                 //执行BUFF中的攻击结束效果
-
-                List<Buff> tempbuffs = new List<Buff>();
-                tempbuffs.AddRange(buffs);
-                foreach (Buff b in tempbuffs)
+                if (!noAfterattack)
                 {
+                    List<Buff> tempbuffs = new List<Buff>();
+                    tempbuffs.AddRange(buffs);
+                    foreach (Buff b in tempbuffs)
+                    {
 
-                    b.AfterAttack(this);
+                        b.AfterAttack(this);
+                    }
                 }
+
 
                 return true;
             }
@@ -129,7 +126,7 @@ public class Character : MonoBehaviour
         //        lastAction = actionType.Hit;
         return true;
     }
-
+    /*
     virtual public bool Hit(int dDamage,bool nothaveAfterattack)
     {
         //普通攻击目标
@@ -162,7 +159,7 @@ public class Character : MonoBehaviour
         //        lastAction = actionType.Hit;
         return true;
     }
-
+    */
 
 
 
@@ -198,7 +195,7 @@ public class Character : MonoBehaviour
 
         Bubble.AddBubble(BubbleSprType.hp, "-" + dDamage.ToString(), this);
 
-        getHit = true;
+        //getHit = true;
         if (Hp > dDamage)
         {
             Hp -= dDamage;
@@ -217,29 +214,16 @@ public class Character : MonoBehaviour
     }
 
     //计算当前攻击力
-    public int getCurrentATK()
+    virtual public int getCurrentATK()
     {
-        int mATK = ATK;
-        if (currentWeapon)
-            mATK += currentWeapon.ATK;
-        if (currentArmor)
-            mATK += currentArmor.ATK;
-        if (currentScroll)
-            mATK += currentScroll.ATK;
-        return mATK;
+        return ATK;
     }
 
     //计算当前防御力
-    public int getCurrentDEF()
+    virtual public int getCurrentDEF()
     {
-        int mDEF = DEF;
-        if (currentWeapon)
-            mDEF += currentWeapon.DEF;
-        if (currentArmor)
-            mDEF += currentArmor.DEF;
-        if (currentScroll)
-            mDEF += currentScroll.DEF;
-        return mDEF;
+        return DEF;
+
     }
 
 
@@ -325,7 +309,7 @@ public class Character : MonoBehaviour
         return false;
     }
 
-    //更新长时间buff
+    //更新长时间buff，比如自动集气外挂
     public void UpdateBuff()
     {
         foreach (var b in buffs)

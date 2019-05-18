@@ -3,11 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+public enum SkillType
+{
+    normal=1,
+    heavy=2,
+    defend=3,
+    special=4,
+    ultra=5,
+    free=6
+
+}
+
+
 public class Skill
 {
+    public SkillType type;
+
     public string m_name;
     public string EffectStr;
     public int cost;
+    public Sprite Icon;
     //输入方式
     public List<Note> inputSequence;
     public void EffectFunction(Character m_Char)
@@ -81,6 +96,8 @@ public class Skill
         inputSequence = new List<Note>();
         EffectStr = data.Effect;
         cost = data.cost;
+        Icon = data.sprite;
+        type = data.type;
         for (int i = 0; i < data.inputSequence.Count; i++)
         {
             inputSequence.Add(new Note

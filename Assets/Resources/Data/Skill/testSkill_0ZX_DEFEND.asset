@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf25b2aeb1e6b4c3a8f5b1efea2d3300, type: 3}
   m_Name: testSkill_0ZX_DEFEND
   m_EditorClassIdentifier: 
+  type: 3
+  sprite: {fileID: 0}
   _name: DEFEND
   cost: 4
   inputSequence:
@@ -20,9 +22,15 @@ MonoBehaviour:
     subnote: {fileID: 0}
     beatInBar: 1
     beatInSong: 0
+    SuccessSkill: 
+    BadSkill: 
+    MissSkill: 
   - type: 22
     note: {fileID: 0}
     subnote: {fileID: 0}
     beatInBar: 2
     beatInSong: 0
+    SuccessSkill: 
+    BadSkill: 
+    MissSkill: 
   Effect: DEF

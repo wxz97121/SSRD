@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf25b2aeb1e6b4c3a8f5b1efea2d3300, type: 3}
   m_Name: testSkill_ZZX_TRIPLEDMG
   m_EditorClassIdentifier: 
+  type: 4
+  sprite: {fileID: 0}
   _name: TRIPLE DMG
   cost: 4
   inputSequence:

@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class InputSequenceController : MonoBehaviour
 {
-    //存技能列表
-    public List<Skill> skills;
     //当前输入状态下，还有可能发出的技能列表
     public List<Skill> availableSkills;
     private float judgeBeat;
@@ -156,6 +154,7 @@ public class InputSequenceController : MonoBehaviour
         bool inputsuccess = false;
         foreach (Skill skill in availableSkills)
         {
+            //if (skill == null) continue;
             if (CurInputSequence.Count < skill.inputSequence.Count)
             {
 
@@ -182,7 +181,7 @@ public class InputSequenceController : MonoBehaviour
 
         if (!inputsuccess)
         {
-
+            //Debug.Break();
             Bad();
             return;
         }
@@ -196,8 +195,8 @@ public class InputSequenceController : MonoBehaviour
         //如果完全输入，则发动招式
         foreach (Skill skill in availableSkills)
         {
-
-        if (skill.inputSequence.Count == CurInputSequence.Count)
+            //if (skill == null) continue;
+            if (skill.inputSequence.Count == CurInputSequence.Count)
             {
                 //搓招正确但是能量不足
                 if (Player.Instance.Mp < skill.cost)
@@ -205,6 +204,7 @@ public class InputSequenceController : MonoBehaviour
                     Debug.Log("能量不足");
                     inputsuccess = false;
                     Bad();
+                    return;
                 }
                 else
                 {
@@ -220,6 +220,7 @@ public class InputSequenceController : MonoBehaviour
                     }
                     ClnInpSeqWhenCastSkill();
                     RhythmController.Instance.isCurBarCleaned = true;
+                    return;
                 }
 
 
@@ -263,13 +264,19 @@ public class InputSequenceController : MonoBehaviour
                 UIBarController.Instance.playingBar.GetComponent<UIBar>().noteList_main.RemoveAt(0);
             }
         }
-        availableSkills = skills;
+        ResetAvailable();
         SuperController.Instance.skillTipBarController.RemoveAllRightO();
         RhythmController.Instance.isCurBarCleaned = true;
     }
     #endregion
 
-
+    public void ResetAvailable()
+    {
+        if (availableSkills == null) availableSkills = new List<Skill>();
+        else availableSkills.Clear();
+        foreach (var slots in Player.Instance.skillSlots)
+            if (slots.skill!=null) availableSkills.Add(slots.skill);
+    }
     #region CleanInputSequence 清除输入记录
     public void CleanInputSequence()
     {
@@ -289,7 +296,7 @@ public class InputSequenceController : MonoBehaviour
                 UIBarController.Instance.playingBar.GetComponent<UIBar>().noteList_main.RemoveAt(0);
             }
         }
-        availableSkills = skills;
+        ResetAvailable();
         SuperController.Instance.skillTipBarController.RemoveAllRightO();
 
         RhythmController.Instance.isCurBarCleaned = true;
@@ -314,7 +321,7 @@ public class InputSequenceController : MonoBehaviour
                 UIBarController.Instance.playingBar.GetComponent<UIBar>().noteList_main.RemoveAt(0);
             }
         }
-        availableSkills = skills;
+        ResetAvailable();
         SuperController.Instance.skillTipBarController.RemoveAllRightOWhenSuccess();
         RhythmController.Instance.isCurBarCleaned = true;
     }

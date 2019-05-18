@@ -43,9 +43,10 @@ public class UISkillTipBarController : MonoBehaviour
         barPos0 = barPos0GO.transform.localPosition;
         oneBarSpace = barPos1GO.transform.localPosition - barPos0;
 
-        for (int i = 0; i < Player.Instance.skills.Count; i++)
+        for (int i = 0; i < Player.Instance.skillSlots.Length; i++)
         {
-            currentBarList.Add(CreateSkillTipBar(Player.Instance.skills[i]));
+            if (Player.Instance.skillSlots[i].skill == null) continue;
+            currentBarList.Add(CreateSkillTipBar(Player.Instance.skillSlots[i].skill));
             currentBarList[i].transform.localPosition = barPos0 + (oneBarSpace * i);
             currentBarList[i].transform.localScale = new Vector3(1f, 1f, 1f);
         }
