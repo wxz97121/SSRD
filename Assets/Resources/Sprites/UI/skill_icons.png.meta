@@ -1,15 +1,14 @@
 fileFormatVersion: 2
-guid: 2ead5eca57cdb4f5c8a17f50c6b603ff
+guid: 16af87af7923e401fa2d5dd82c0709d1
 TextureImporter:
   fileIDToRecycleName:
-    21300000: icon1_mp
-    21300002: icon1_life
-    21300004: icon1_rednote
-    21300006: icon1_yellownote
-    21300008: icon1_bluenote
-    21300010: icon1_0
-    21300012: icon1_pin
-    21300014: icon1_health
+    21300000: skill_icons_0
+    21300002: skill_icons_1
+    21300004: skill_icons_2
+    21300006: skill_icons_3
+    21300008: skill_icons_4
+    21300010: skill_icons_5
+    21300012: skill_icons_6
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -92,161 +91,141 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: icon1_mp
+      name: skill_icons_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 180
-        width: 37
-        height: 42
+        x: 0
+        y: 0
+        width: 100
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 893223bdd57c3484b98678d594f2c866
+      spriteID: 0d943f95fe865453396e27f73b9412f8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: icon1_life
+      name: skill_icons_1
       rect:
         serializedVersion: 2
-        x: 55
-        y: 183
-        width: 37
-        height: 35
+        x: 100
+        y: 0
+        width: 100
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 66856ff3d9420472093d5ad64f9ce6e7
+      spriteID: 08243588340fe4bdeb1bb31d2b54bffb
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: icon1_rednote
+      name: skill_icons_2
       rect:
         serializedVersion: 2
-        x: 101
-        y: 184
-        width: 34
-        height: 34
+        x: 200
+        y: 0
+        width: 100
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d0966e52fda347c9bcaeedf200a8ded
+      spriteID: e3d65ea1f4b2f4a3ba3883f41cd027be
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: icon1_yellownote
+      name: skill_icons_3
       rect:
         serializedVersion: 2
-        x: 144
-        y: 184
-        width: 34
-        height: 34
+        x: 300
+        y: 0
+        width: 100
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d4e7051bfebb49b2a98f22c2d421e87
+      spriteID: 3c0ccbcc99e1847a388705aba6c18feb
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: icon1_bluenote
+      name: skill_icons_4
       rect:
         serializedVersion: 2
-        x: 187
-        y: 184
-        width: 34
-        height: 34
+        x: 400
+        y: 0
+        width: 100
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 919e82750122c4052b5390897355fa04
+      spriteID: e22e708cf0af9485d8681c92820777d6
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: icon1_0
+      name: skill_icons_5
       rect:
         serializedVersion: 2
-        x: 9
-        y: 131
-        width: 34
-        height: 34
+        x: 501
+        y: 0
+        width: 100
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3675cc5e74a6407d82543991d4636ec
+      spriteID: 2287d11df78c449d2aecce2f6b5ba048
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: icon1_pin
+      name: skill_icons_6
       rect:
         serializedVersion: 2
-        x: 50
-        y: 121
-        width: 47
-        height: 42
+        x: 600
+        y: 0
+        width: 100
+        height: 100
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a4a1cc664a8bc466c9f4b9c67ce0c870
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: icon1_health
-      rect:
-        serializedVersion: 2
-        x: 104
-        y: 125
-        width: 35
-        height: 36
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 721d8328ce50f45a1990d40ab4645377
+      spriteID: 01fc77928bf184dbbb411f554a37d826
       vertices: []
       indices: 
       edges: []
@@ -254,7 +233,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 16d7737f17b044885a4992ea033a5065
+    spriteID: ced243b5cff1a435bbed04f93462332f
     vertices: []
     indices: 
     edges: []

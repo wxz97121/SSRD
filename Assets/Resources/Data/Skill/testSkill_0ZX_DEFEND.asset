@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: testSkill_0ZX_DEFEND
   m_EditorClassIdentifier: 
   type: 3
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300006, guid: 16af87af7923e401fa2d5dd82c0709d1, type: 3}
   _name: DEFEND
   cost: 4
   inputSequence:

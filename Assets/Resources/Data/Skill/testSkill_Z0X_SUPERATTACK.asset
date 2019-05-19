@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: testSkill_Z0X_SUPERATTACK
   m_EditorClassIdentifier: 
   type: 2
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300002, guid: 16af87af7923e401fa2d5dd82c0709d1, type: 3}
   _name: HEAVY ATTACK
   cost: 4
   inputSequence:

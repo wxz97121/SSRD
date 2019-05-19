@@ -111,7 +111,7 @@ public class Player : Character {
     override public void Damage(int dDamage, Character source)
     {
         base.Damage(dDamage, source);
-        if(Hp<=0) Die();
+        if(life<=0) Die();
 
         animator.Play("player-damaged", 0);
 

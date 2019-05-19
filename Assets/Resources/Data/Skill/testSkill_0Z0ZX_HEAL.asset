@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: testSkill_0Z0ZX_HEAL
   m_EditorClassIdentifier: 
   type: 4
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300008, guid: 16af87af7923e401fa2d5dd82c0709d1, type: 3}
   _name: HEAL
   cost: 16
   inputSequence:

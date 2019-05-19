@@ -6,6 +6,8 @@ public class UIBattleInfo : MonoBehaviour
 {
     public UIEnergyCells energyCells;
     public UIHPArea hPArea;
+    public UILifeArea lifeArea;
+
 
 
     // Start is called before the first frame update
@@ -27,6 +29,8 @@ public class UIBattleInfo : MonoBehaviour
             energyCells.init();
         }
         hPArea.init();
+        lifeArea.init();
+
 
     }
 

@@ -255,7 +255,11 @@ public class SuperController : MonoBehaviour {
 
         Player.Instance.Reset();
         Player.Instance.BattleStart();
+
+        //战斗UI
         playerBattleInfo.hPArea.chara = Player.Instance;
+        playerBattleInfo.lifeArea.chara = Player.Instance;
+
         playerBattleInfo.init();
         enemyBattleInfo.init();
         InputSequenceController.Instance.ResetAvailable();

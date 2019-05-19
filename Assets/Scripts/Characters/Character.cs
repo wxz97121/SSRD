@@ -202,8 +202,16 @@ public class Character : MonoBehaviour
         }
         else
         {
+            int lifeDamage = dDamage - Hp;
+
             Hp = 0;
-           // Die();
+
+            life -= lifeDamage;
+            if (life <= 0)
+            {
+                life = 0;
+            }
+            // Die();
         }
     }
 

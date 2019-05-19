@@ -99,7 +99,7 @@ public class AI : Character
     virtual public void Action(int beatnum)
     {
         //怪物的死亡放在第一拍
-        if (Hp <= 0)
+        if (life <= 0)
         {
             if (!isUndead)
             {
@@ -119,7 +119,7 @@ public class AI : Character
     virtual public void Action()
     {
         //怪物的死亡放在第一拍
-        if (Hp<=0)
+        if (life<=0)
         {
             if (!isUndead)
             {
