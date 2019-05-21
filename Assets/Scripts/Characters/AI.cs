@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//技能组，4个一组，用来存敌人每回合的动作
+public struct EnemySkillGroup
+{
+    string name;
+    string[] enemySkills;
+}
+
 //敌人AI，角色派生类
 public class AI : Character
 {
@@ -15,12 +22,13 @@ public class AI : Character
 
     //当前的技能列表
     public List<string> skillSequence = new List<string>();
+    private List<EnemySkillGroup> skillGroups; 
     public Animator animator;
 
 
 
     //敌人的初始位置(基本不用动，多人可能有用)
-    public Vector3 originPosition = new Vector3(5, 0, 0);
+    public Vector3 originPosition = new Vector3(0, 0, 0);
 
     //死亡后掉落金钱数
     public int lootMoney = 1;

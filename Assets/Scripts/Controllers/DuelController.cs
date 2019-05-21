@@ -91,10 +91,9 @@ public class DuelController : MonoBehaviour {
     {
 
         GameObject instEnemy = Instantiate((GameObject)Resources.Load("Data/AI/" + enemyList[enemyIndex] + "/Prefab", typeof(GameObject)), GameObject.Find("EnemyGroup").transform);
-        SuperController.Instance.enemyBattleInfo.hPArea.chara = instEnemy.GetComponent<AI>() as Character;
-        SuperController.Instance.enemyBattleInfo.lifeArea.chara = instEnemy.GetComponent<AI>() as Character;
 
-        SuperController.Instance.enemyBattleInfo.init();
+
+        SuperController.Instance.enemyBattleInfo.init(instEnemy.GetComponent<AI>() as Character);
         instEnemy.GetComponent<AI>().m_name = enemyList[enemyIndex];
         instEnemy.GetComponent<AI>().Init();
 

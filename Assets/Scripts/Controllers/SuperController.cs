@@ -257,11 +257,10 @@ public class SuperController : MonoBehaviour {
         Player.Instance.BattleStart();
 
         //战斗UI
-        playerBattleInfo.hPArea.chara = Player.Instance;
-        playerBattleInfo.lifeArea.chara = Player.Instance;
 
-        playerBattleInfo.init();
-        enemyBattleInfo.init();
+
+        playerBattleInfo.init(Player.Instance);
+        //enemyBattleInfo.init(Player.Instance.mTarget.GetComponent<Character>());
         InputSequenceController.Instance.ResetAvailable();
 
     }
@@ -318,5 +317,6 @@ public class SuperController : MonoBehaviour {
     public void Blink()
     {
         playerBattleInfo.Blink();
+        enemyBattleInfo.Blink();
     }
 }

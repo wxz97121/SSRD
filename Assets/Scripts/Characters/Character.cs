@@ -24,7 +24,10 @@ public class Character : MonoBehaviour
     public bool isUndead = false;
 
 
-
+    //魂点数
+    public int soulPoint = 0;
+    //魂到达多少点
+    public int soulMaxPoint = 10;
 
     //当前BUFF列表
     public List<Buff> buffs = new List<Buff>();
@@ -324,5 +327,17 @@ public class Character : MonoBehaviour
         {
             b.PlayerUpdate();
         }
+    }
+
+    //增加魂儿
+    public void AddSoul(int dSoul)
+    {
+        soulPoint = Mathf.Clamp(dSoul + soulPoint, 0, soulMaxPoint);
+    }
+
+    //魂清空
+    public void ClearSoul()
+    {
+        soulPoint = 0;
     }
 }

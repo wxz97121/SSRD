@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 //技能槽
-public struct SkillSlots
+public struct SkillSlot
 {
     public Skill skill;
     public SkillType requiredType;
@@ -18,18 +18,12 @@ public class Player : Character {
 
     public Animator animator;
     //当前的技能列表
-    public SkillSlots[] skillSlots=new SkillSlots[5];
-    //魂点数
-    public int soulPoint = 0;
-    //public int soulLevel = 0;
-    //魂到达多少点
-    public int soulMaxPoint = 10;
-    //魂的UI元素
-    public Image soulPointProgress;
-    public Image soulLevelLetter;
+    public SkillSlot[] skillSlots=new SkillSlot[5];
+
+
 
     //必杀用的通用Skill
-    public Skill UltiSkill;
+    public Skill commonSkill;
 
     //携带金钱数
     public int money=10;
@@ -76,13 +70,14 @@ public class Player : Character {
         skillSlots[3].requiredType = SkillType.special;
         skillSlots[4].requiredType = SkillType.ultra;
         animator = GetComponent<Animator>();
-        UltiSkill = new Skill();
+
+        //范用技能，强行发招用
+        commonSkill = new Skill();
     }
 
     // Update is called once per frame
     override protected void Update () {
         base.Update();
-        //UpdateSoulUI();
         UIMoneyNum.SetText(money.ToString());
         UpdateEquipUI();
     }
@@ -122,44 +117,11 @@ public class Player : Character {
         SuperController.Instance.GameOver();
     }
 
-    public void addSoulPoint(int dSoulPoint){
-        soulPoint += dSoulPoint;
-        if (soulPoint >= soulMaxPoint)
-        {
-            soulPoint = soulMaxPoint;
-        }
-    }
 
 
 
-    //public void decreaseSoulLevel(){
-    //    if(soulLevel>0){
-    //        soulLevel--;
-    //    }
-    //    soulPoint = 0;
-    //}
 
-    //public void UpdateSoulUI(){
-    //    soulPointProgress.fillAmount =((float)soulPoint / (float)soulMaxPoint);
-    //    switch(soulLevel){
-    //        case 0:
-    //            soulLevelLetter.color = Color.black;
-    //            soulPointProgress.color = Color.black;
-
-    //            break;
-    //        case 1:
-    //            soulLevelLetter.color = Color.yellow;
-    //            soulPointProgress.color = Color.yellow;
-
-
-    //            break;
-    //        case 2:
-    //            soulLevelLetter.color = Color.red;
-    //            soulPointProgress.color = Color.red;
-
-    //            break;
-    //    }
-    //}
+ 
 
     public void UpdateEquipUI()
     {
@@ -223,7 +185,7 @@ public class Player : Character {
 
     public void UltiAction(string effstr)
     {
-        UltiSkill.CommonEffect(this, effstr);
+        commonSkill.CommonEffect(this, effstr);
     }
 
     public override int getCurrentATK()
@@ -249,6 +211,10 @@ public class Player : Character {
             mDEF += currentScroll.DEF;
         return mDEF;
     }
+
+
+    #region 技能栏相关 @竹喵
+    //检测技能栏是否能用
     public bool CheckSkillSlot(int SlotIndex, Skill NewSkill)
     {
         if (NewSkill != null && SlotIndex < skillSlots.Length)
@@ -262,7 +228,7 @@ public class Player : Character {
         }
         else return false;
     }
-    //
+    //更换技能栏中的技能
     public Skill ChangeSkill(int SlotIndex, Skill NewSkill)
     {
         if (NewSkill != null && SlotIndex < skillSlots.Length) 
@@ -277,4 +243,7 @@ public class Player : Character {
         }
         return null;
     }
+    #endregion 
+
+
 }

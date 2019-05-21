@@ -41,8 +41,9 @@ public class UILifeArea : MonoBehaviour
         }
     }
 
-    public void init()
+    public void init(Character character)
     {
+        chara = character;
         if (chara != null)
         {
             maxLife = chara.maxLife;
