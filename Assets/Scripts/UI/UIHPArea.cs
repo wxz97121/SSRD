@@ -36,7 +36,7 @@ public class UIHPArea : MonoBehaviour
             Animate(chara.Hp);
         }
         HP = chara.Hp;
-        hpNum.text = HP.ToString();
+        hpNum.text = HP.ToString()+"/"+maxHP.ToString();
 
         }
     }
@@ -49,7 +49,7 @@ public class UIHPArea : MonoBehaviour
             maxHP = chara.maxHp;
             HP = chara.Hp;
             image.fillAmount = (float)HP / (float)maxHP;
-            hpNum.text = HP.ToString();
+            hpNum.text = HP.ToString() + "/" + maxHP.ToString();
         }
     }
 

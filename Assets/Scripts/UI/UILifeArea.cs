@@ -36,7 +36,7 @@ public class UILifeArea : MonoBehaviour
             Animate(chara.life);
         }
         Life = chara.life;
-        lifeNum.text = Life.ToString();
+        lifeNum.text = Life.ToString() + "/" + maxLife.ToString();
 
         }
     }
@@ -49,7 +49,7 @@ public class UILifeArea : MonoBehaviour
             maxLife = chara.maxLife;
             Life = chara.life;
             image.fillAmount = (float)Life / (float)maxLife;
-            lifeNum.text = Life.ToString();
+            lifeNum.text = Life.ToString()+"/"+maxLife.ToString();
         }
     }
 
