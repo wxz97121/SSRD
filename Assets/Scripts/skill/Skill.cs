@@ -176,6 +176,7 @@ public class Skill
     {
         Char.Hit(Char.Mp/2);
         Char.Mp = 0;
+        Char.AddSoul(4);
     }
 
     public void ULTI(Character Char,string scorePath)
@@ -185,6 +186,7 @@ public class Skill
         Debug.Log("path = "+path);
         score = OneSongScore.ReadQTEScoreData(Resources.Load(path) as QTEScoreData);
         RhythmController.Instance.UltiQTEStart(score);
+        Char.ClearSoul();
 
     }
 }

@@ -43,7 +43,6 @@ public class UIBattleInfo : MonoBehaviour
         if (energyCells != null)
         {
             energyCells.Blink();
-
         }
         soulArea.Blink();
     }

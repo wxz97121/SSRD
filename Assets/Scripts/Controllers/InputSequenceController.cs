@@ -206,11 +206,25 @@ public class InputSequenceController : MonoBehaviour
                     Bad();
                     return;
                 }
+
+                //搓招正确但是魂不足
+                if (Player.Instance.soulPoint < Player.Instance.soulMaxPoint && skill.type==SkillType.ultra)
+                {
+                    Debug.Log("魂不足");
+                    inputsuccess = false;
+                    Bad();
+                    return;
+                }
                 else
                 {
-                    Player.Instance.Mp -= skill.cost;
-                    //Debug.Log("cast:" + skill.m_name);
-                    //skill.EffectFunction(Player.Instance);
+                    //cost小于0时在技能中特殊处理
+                    if (skill.cost >= 0)
+                    {
+                        Player.Instance.Mp -= skill.cost;
+                        Player.Instance.AddSoul(skill.cost);
+                    }
+
+
                     //和AI同时出招
                     if (DuelController.Instance.isActedAt3rdBeat==false)
                     {

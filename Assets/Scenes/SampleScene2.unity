@@ -11809,7 +11809,7 @@ MonoBehaviour:
   DEF: 0
   isUndead: 0
   soulPoint: 0
-  soulMaxPoint: 10
+  soulMaxPoint: 40
   buffs: []
   mTarget: {fileID: 0}
   animator: {fileID: 0}
