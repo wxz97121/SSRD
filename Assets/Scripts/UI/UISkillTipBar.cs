@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class UISkillTipBar : MonoBehaviour {
 
-    public Text testtext;
-    public Text costtext;
+
+
 
     public bool active;
     //开始拍
@@ -24,6 +24,10 @@ public class UISkillTipBar : MonoBehaviour {
     public Vector3 startPos;
     public Vector3 oneBeatSpace;
 
+    //技能
+    public Skill skill;
+    //图标
+    public UI_SkillIcon icon;
     //小节线
     public List<GameObject> linelist;
     //音符
@@ -48,6 +52,8 @@ public class UISkillTipBar : MonoBehaviour {
     {
        InitLines();
         InitNotes();
+        icon.skill = skill;
+        icon.Init();
     }
 
 
@@ -79,7 +85,7 @@ public class UISkillTipBar : MonoBehaviour {
             GameObject line = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Line", typeof(GameObject)), transform);
             line.transform.localPosition = startPos + (oneBeatSpace * i);
             line.transform.localScale = new Vector3(1,0.6f,1);
-            line.GetComponent<Image>().color = Color.black;
+            line.GetComponent<Image>().color = Color.white;
             //第三拍变红提示
             if (i == 2) { line.GetComponent<Image>().color = Color.red; }
             linelist.Add(line);
@@ -120,7 +126,6 @@ public class UISkillTipBar : MonoBehaviour {
         {
             return;
         }
-        testtext.text = "barposinbeat" + barposinbeat.ToString("F2")+"/"+ (beatsThisBar);
 
         //处理位置
         pin.transform.localPosition = Vector2.Lerp

@@ -252,7 +252,7 @@ retry:
             uint size1;
             int size2;
             lowlevelSystem.getDSPBufferSize(out size1, out size2);
-
+            //todo 在此调整DSPBufferSize
             //Debug.Log("size=" + size1.ToString() + " " + size2.ToString());
             //UnityEngine.Debug.Log(lowlevelSystem.setDSPBufferSize(256, 4));
 

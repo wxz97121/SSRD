@@ -65,10 +65,10 @@ public class Player : Character {
     override protected void Start () {
         base.Start();
         skillSlots[0].requiredType = SkillType.normal;
-        skillSlots[1].requiredType = SkillType.heavy;
-        skillSlots[2].requiredType = SkillType.defend;
+        skillSlots[1].requiredType = SkillType.attack;
+        skillSlots[2].requiredType = SkillType.attack;
         skillSlots[3].requiredType = SkillType.special;
-        skillSlots[4].requiredType = SkillType.ultra;
+        skillSlots[4].requiredType = SkillType.ulti;
         animator = GetComponent<Animator>();
 
         //范用技能，强行发招用
@@ -220,7 +220,7 @@ public class Player : Character {
         if (NewSkill != null && SlotIndex < skillSlots.Length)
         {
             SkillType SlotType = skillSlots[SlotIndex].requiredType;
-            if (NewSkill.type == SkillType.ultra || SlotType == SkillType.ultra)
+            if (NewSkill.type == SkillType.ulti || SlotType == SkillType.ulti)
                 return SlotType == NewSkill.type;
             else if (SlotType == SkillType.free || NewSkill.type == SkillType.free)
                 return true;

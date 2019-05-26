@@ -6,10 +6,10 @@ using UnityEngine.Events;
 public enum SkillType
 {
     normal=1,
-    heavy=2,
+    attack=2,
     defend=3,
     special=4,
-    ultra=5,
+    ulti=5,
     free=6
 
 }
@@ -25,6 +25,13 @@ public class Skill
     public Sprite Icon;
     //输入方式
     public List<Note> inputSequence;
+    //CD
+    public int CooldownMax;
+    public int Cooldown;
+
+
+
+
     public void EffectFunction(Character m_Char)
     {
 
@@ -83,38 +90,44 @@ public class Skill
     }
 
 
-    public Skill(string DataDir)
+    public Skill(int mode,string Str)
     {
-        DataDir = "Data/Skill/" + DataDir;
-        SkillData data = Resources.Load(DataDir) as SkillData;
-        if (!data)
+        if (mode == 0)
         {
-            Debug.Log("这个路径没有SkillData！！");
-            Debug.Break();
-        }
-        m_name = data._name;
-        inputSequence = new List<Note>();
-        EffectStr = data.Effect;
-        cost = data.cost;
-        Icon = data.sprite;
-        type = data.type;
-        for (int i = 0; i < data.inputSequence.Count; i++)
-        {
-            inputSequence.Add(new Note
+            Str = "Data/Skill/" + Str;
+            SkillData data = Resources.Load(Str) as SkillData;
+            if (!data)
             {
-                type = data.inputSequence[i].type,
-                beatInBar = data.inputSequence[i].beatInBar
+                Debug.Log("这个路径没有SkillData！！");
+                Debug.Break();
             }
-            );
+            m_name = data._name;
+            inputSequence = new List<Note>();
+            EffectStr = data.Effect;
+            cost = data.cost;
+            Icon = data.sprite;
+            type = data.type;
+            CooldownMax = data.CD;
+            Cooldown = 0;
+            for (int i = 0; i < data.inputSequence.Count; i++)
+            {
+                inputSequence.Add(new Note
+                {
+                    type = data.inputSequence[i].type,
+                    beatInBar = data.inputSequence[i].beatInBar
+                }
+                );
+            }
+        }
+
+        if (mode == 1)
+        {
+            m_name = "";
+            EffectStr = Str;
         }
 
     }
 
-    public Skill(int type,string eff)
-    {
-        m_name = "";
-        EffectStr = eff;
-    }
 
     public Skill()
     {

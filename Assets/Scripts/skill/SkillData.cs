@@ -15,5 +15,6 @@ public class SkillData : ScriptableObject
     public List<Note> inputSequence;
     //public UnityEvent EffectEvent;
     public string Effect;
+    public int CD;
 }
 

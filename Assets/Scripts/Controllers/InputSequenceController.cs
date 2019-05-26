@@ -208,7 +208,7 @@ public class InputSequenceController : MonoBehaviour
                 }
 
                 //搓招正确但是魂不足
-                if (Player.Instance.soulPoint < Player.Instance.soulMaxPoint && skill.type==SkillType.ultra)
+                if (Player.Instance.soulPoint < Player.Instance.soulMaxPoint && skill.type==SkillType.ulti)
                 {
                     Debug.Log("魂不足");
                     inputsuccess = false;

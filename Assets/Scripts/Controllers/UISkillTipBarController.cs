@@ -59,13 +59,10 @@ public class UISkillTipBarController : MonoBehaviour
         instSkillTip.name = skill.m_name;
         instSkillTip.GetComponent<UISkillTipBar>().ReadScoreFromSkill(skill.inputSequence);
         instSkillTip.GetComponent<UISkillTipBar>().beatsThisBar = 4;
-        instSkillTip.GetComponent<UISkillTipBar>().testtext.text = skill.m_name;
-        instSkillTip.GetComponent<UISkillTipBar>().costtext.text = "COST:"+(skill.cost/4).ToString();
-        if (skill.cost == -1)
-        {
-            instSkillTip.GetComponent<UISkillTipBar>().costtext.text = "COST: X";
+        instSkillTip.GetComponent<UISkillTipBar>().skill = skill;
 
-        }
+        Debug.Log("skill name = " + instSkillTip.GetComponent<UISkillTipBar>().skill.m_name);
+
         instSkillTip.GetComponent<UISkillTipBar>().Init();
 
         return instSkillTip;

@@ -90,7 +90,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    //攻击别人 TODO 放进DUELCONTROLLER
+    //TODO 攻击别人  放进DUELCONTROLLER 
     virtual public bool Hit(int dDamage, bool noAfterattack=false)
     {
         //普通攻击目标
