@@ -206,7 +206,14 @@ public class InputSequenceController : MonoBehaviour
                     Bad();
                     return;
                 }
-
+                //搓招正确但是技能CD
+                if (skill.Cooldown>0)
+                {
+                    Debug.Log("技能CD中");
+                    inputsuccess = false;
+                    Bad();
+                    return;
+                }
                 //搓招正确但是魂不足
                 if (Player.Instance.soulPoint < Player.Instance.soulMaxPoint && skill.type==SkillType.ulti)
                 {
@@ -230,7 +237,8 @@ public class InputSequenceController : MonoBehaviour
                     {
                         DuelController.Instance.SkillJudge(skill.EffectStr, DuelController.Instance.GetCurAI().GetNextSkill());
                         if (DuelController.Instance.GetCurAI()) DuelController.Instance.GetCurAI().Action(3);
-
+                        skill.Cooldown = skill.CooldownMax;
+                        SuperController.Instance.skillTipBarController.UpdateCDs();
                     }
                     ClnInpSeqWhenCastSkill();
                     RhythmController.Instance.isCurBarCleaned = true;

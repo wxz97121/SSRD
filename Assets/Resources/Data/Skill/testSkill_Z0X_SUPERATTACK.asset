@@ -34,3 +34,4 @@ MonoBehaviour:
     BadSkill: 
     MissSkill: 
   Effect: ATK_2,ANI_player-heavyattack
+  CD: 1

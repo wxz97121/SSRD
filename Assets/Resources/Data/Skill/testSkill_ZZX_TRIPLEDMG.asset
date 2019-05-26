@@ -42,3 +42,4 @@ MonoBehaviour:
     BadSkill: 
     MissSkill: 
   Effect: TBD_1
+  CD: 1

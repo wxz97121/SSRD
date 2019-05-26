@@ -100,7 +100,7 @@ public class UIEnergyCells : MonoBehaviour
     public void UseEnergy(int amount,int before)
     {
         int startcell = before - amount;
-        Debug.Log("startcell" + startcell);
+//        Debug.Log("startcell" + startcell);
         for (int i= startcell;i< before; i++)
         {
             Instantiate((GameObject)Resources.Load("VFX/EnergyUsed", typeof(GameObject)), CellList[i].transform);

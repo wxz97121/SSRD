@@ -50,3 +50,4 @@ MonoBehaviour:
     BadSkill: 
     MissSkill: 
   Effect: ALLMPATK,ANI_player-slash
+  CD: 2

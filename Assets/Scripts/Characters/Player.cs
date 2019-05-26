@@ -118,10 +118,24 @@ public class Player : Character {
     }
 
 
+    //更新技能CD
+    public void UpdateCDs()
+    {
+        foreach(SkillSlot s in skillSlots)
+        {
+            if (s.skill != null)
+            {
+                if (s.skill.Cooldown > 0)
+                {
+                    s.skill.Cooldown--;
+                }
+            }
+        }
+        //更新技能CD
+        SuperController.Instance.skillTipBarController.UpdateCDs();
+    }
 
 
-
- 
 
     public void UpdateEquipUI()
     {

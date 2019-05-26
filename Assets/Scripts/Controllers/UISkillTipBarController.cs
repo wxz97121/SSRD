@@ -97,4 +97,13 @@ public class UISkillTipBarController : MonoBehaviour
             bar.GetComponent<UISkillTipBar>().RemoveRightOWhenSuccess();
         }
     }
+
+    //更新CD时间显示
+    public void UpdateCDs()
+    {
+        foreach (var bar in currentBarList)
+        {
+            bar.GetComponent<UISkillTipBar>().icon.UpdateCD();
+        }
+    }
 }

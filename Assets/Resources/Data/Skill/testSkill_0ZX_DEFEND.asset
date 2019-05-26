@@ -34,3 +34,4 @@ MonoBehaviour:
     BadSkill: 
     MissSkill: 
   Effect: DEF
+  CD: 1

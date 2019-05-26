@@ -230,5 +230,8 @@ public class DuelController : MonoBehaviour {
 
         //本小节行动过，上锁
         isActedAt3rdBeat = true;
+
+        //更新技能CD
+        Player.Instance.UpdateCDs();
     }
 }

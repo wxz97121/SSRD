@@ -42,3 +42,4 @@ MonoBehaviour:
     BadSkill: 
     MissSkill: 
   Effect: HEL_10
+  CD: 3
