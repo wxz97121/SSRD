@@ -200,7 +200,7 @@ public class RhythmController : MonoBehaviour
             {
                 if (DuelController.Instance.GetCurAI())
                 {
-                    DuelController.Instance.SkillJudge("", DuelController.Instance.GetCurAI().GetNextSkill());
+                    DuelController.Instance.SkillJudge("", DuelController.Instance.GetCurAI().GetNextSkill(3));
                     DuelController.Instance.GetCurAI().Action(3);
                 }
             }
@@ -288,7 +288,7 @@ public class RhythmController : MonoBehaviour
         {
             if(isCurBarCleaned == true&&DuelController.Instance.isActedAt3rdBeat==false&& DuelController.Instance.GetCurAI())
             {
-                DuelController.Instance.SkillJudge("", DuelController.Instance.GetCurAI().GetNextSkill());
+                DuelController.Instance.SkillJudge("", DuelController.Instance.GetCurAI().GetNextSkill(3));
                 DuelController.Instance.GetCurAI().Action(3);
                 Debug.Log("INPUT BAD ,ENEMY ACT AT TIME");
             }

@@ -22,7 +22,6 @@ public class AI_Patchouli : AI
     public override void Init()
     {
         base.Init();
-        loopIndex=skillSequence.FindIndex(a => a == "---");
     }
 
     public override void Action(int beatnum)
@@ -33,36 +32,10 @@ public class AI_Patchouli : AI
         switch (phaseID)
         {
             case 0:
-                if (beatnum == 3)
-                {
-                    actionID++;
-                    if (actionID >= loopIndex)
-                    {
-                        phaseID = 1;
-                        actionID = loopIndex + 1;
-                    }
-                    break;
-                }
-                _skillDictionary[skillSequence[actionID]].EffectFunction(this);
-                actionID++;
-                if (actionID >= loopIndex)
-                {
-                    phaseID = 1;
-                    actionID = loopIndex +1;
-                }
+
                 break;
             case 1:
-                if(beatnum==3)
-                {
-                    actionID++;
-                    if (actionID >= skillSequence.Count)
-                        actionID = loopIndex + 1;
-                    break;
-                }
-                _skillDictionary[skillSequence[actionID]].EffectFunction(this);
-                actionID++;
-                if (actionID >= skillSequence.Count)
-                    actionID = loopIndex + 1;
+
                 break;
         }
 

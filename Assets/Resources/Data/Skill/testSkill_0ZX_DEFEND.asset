@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf25b2aeb1e6b4c3a8f5b1efea2d3300, type: 3}
   m_Name: testSkill_0ZX_DEFEND
   m_EditorClassIdentifier: 
-  type: 3
+  type: 4
   sprite: {fileID: 21300006, guid: 16af87af7923e401fa2d5dd82c0709d1, type: 3}
   _name: DEFEND
   cost: 4

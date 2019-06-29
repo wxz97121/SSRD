@@ -22,32 +22,32 @@ public class AI_Slime : AI
     public override void Init()
     {
         base.Init();
-        loopIndex=skillSequence.FindIndex(a => a == "---");
+        //loopIndex=skillSequence.FindIndex(a => a == "---");
     }
 
-    public override void Action()
+    public override void Action(int beatnum)
     {
-        base.Action();
+        base.Action(beatnum);
 
 
         switch (phaseID)
         {
             case 0:
-                _skillDictionary[skillSequence[actionID]].EffectFunction(this);
-                actionID++;
-                if (actionID >= loopIndex)
-                {
-                    phaseID = 1;
-                    actionID = loopIndex +1;
-                }
+                //_skillDictionary[skillSequence[actionID]].EffectFunction(this);
+                //actionID++;
+                //if (actionID >= loopIndex)
+                //{
+                //    phaseID = 1;
+                //    actionID = loopIndex +1;
+                //}
                 break;
             case 1:
   //              Debug.Log("action ID:"+actionID);
 //                Debug.Log("time:" + RhythmController.Instance.songPosInBeats);
-                _skillDictionary[skillSequence[actionID]].EffectFunction(this);
-                actionID++;
-                if (actionID >= skillSequence.Count)
-                    actionID = loopIndex + 1;
+                //_skillDictionary[skillSequence[actionID]].EffectFunction(this);
+                //actionID++;
+                //if (actionID >= skillSequence.Count)
+                    //actionID = loopIndex + 1;
                 break;
         }
 

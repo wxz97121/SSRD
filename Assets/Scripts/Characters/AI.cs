@@ -2,12 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//技能组，4个一组，用来存敌人每回合的动作
-public struct EnemySkillGroup
-{
-    string name;
-    string[] enemySkills;
-}
+
 
 //敌人AI，角色派生类
 public class AI : Character
@@ -15,14 +10,16 @@ public class AI : Character
     public string m_name;
     public AIData data;
 
-    public Dictionary<string, EnemySkill> _skillDictionary;
+    //技能组字典
+    public Dictionary<string, EnemySkillGroup> _skillGroupDict;
 
-    //敌人当前的动作序号(在序列的哪一拍)
+    //敌人当前的动作序号
     public int actionID = 0;
 
     //当前的技能列表
-    public List<string> skillSequence = new List<string>();
-    private List<EnemySkillGroup> skillGroups; 
+    public List<EnemySkillGroup> skillGroupSeq;
+    //技能实例
+    private EnemySkill enemySkill;
     public Animator animator;
 
 
@@ -32,6 +29,8 @@ public class AI : Character
 
     //死亡后掉落金钱数
     public int lootMoney = 1;
+    //已经死亡，等着死亡动画，不再行动
+    public bool isReadyToDie=false;
 
 
 
@@ -44,31 +43,23 @@ public class AI : Character
 
     public virtual void Init()
     {
-        _skillDictionary = new Dictionary<string, EnemySkill>();
-
-        EnemySkillData[] skillArray = Resources.LoadAll<EnemySkillData>("Data/AI/"+m_name+"/Skill");
-
-        //读取文件夹中的所有技能，存入字典
-        foreach (EnemySkillData item in skillArray)
+        _skillGroupDict = new Dictionary<string, EnemySkillGroup>();
+        //读取技能组表,并存入字典
+        //skillGroups = data.enemySkillGroups;
+        foreach (EnemySkillGroup item in data.enemySkillGroups)
         {
-            EnemySkill _skill = new EnemySkill("Data/AI/" + m_name + "/Skill/" + item.name);
-            _skillDictionary.Add(_skill.m_name, _skill);
-            Debug.Log("add skill, name:" + _skill.m_name);
+            _skillGroupDict.Add(item.name, item);
         }
-
-        //读取技能顺序表
-        skillSequence = data.actionSequence;
-//        Debug.Log("skillSequence:"+ skillSequence);
 
         //初始化动作序号,下一拍到0
         actionID = 0;
         //初始化敌人目标，默认是玩家
         mTarget = GameObject.Find("Player");
-
+        enemySkill = new EnemySkill();
 
         animator = GetComponent<Animator>();
 
-
+        skillGroupSeq = new List<EnemySkillGroup>();
         //初始化敌人模型位置
         originPosition = transform.position;
     }
@@ -118,31 +109,13 @@ public class AI : Character
                 else
                 {
                     //如果不是第一拍且死了，就是暂时不动
+                    isReadyToDie = true;
                     return;
                 }
             }
         }
     }
 
-    virtual public void Action()
-    {
-        //怪物的死亡放在第一拍
-        if (life<=0)
-        {
-            if (!isUndead)
-            {
-                if (SoundController.Instance.timelineInfo.currentMusicBeat == 1)
-                {
-                    Die();
-                }
-                else
-                {
-                    //如果不是第一拍且死了，就是暂时不动
-                    return;
-                }
-            }
-        }
-    }
 
     virtual public void QTEAction(string actionname)
     {
@@ -151,20 +124,49 @@ public class AI : Character
 
 
 
-
-    public string GetNextSkill()
+    //从技能组表中读技能
+    public string GetNextSkill(int beatnum)
     {
-        if (skillSequence.Count == 0)
+        if (skillGroupSeq.Count == 0)
         {
             return "EMT";
         }
-//        Debug.Log("skill name =" + skillSequence[actionID]);
-        return _skillDictionary[skillSequence[actionID]].EffectStr;
+        if (beatnum == 4)
+        {
+            return skillGroupSeq[actionID].enemySkills[0];
+
+        }
+        else
+        {
+            return skillGroupSeq[actionID].enemySkills[beatnum];
+
+        }
+        //4-0  1-2  2-3  3-4
     }
 
 
+    //发动技能
+    public void CastSkill(string str)
+    {
+        enemySkill.CommonEffect(this, str);
+    }
 
+    //在队列中增加一个技能组
+    public void SGSAdd(string skillgroupname)
+    {
+        skillGroupSeq.Add(_skillGroupDict[skillgroupname]);
+    }
 
+    //在队列中插入一个技能组
+    public void SGSInsert(string skillgroupname)
+    {
+        skillGroupSeq.Insert(1,_skillGroupDict[skillgroupname]);
+    }
 
+    //在队列中删除一个技能组
+    public void SGSDelete(int index)
+    {
+        skillGroupSeq.RemoveAt(index);
+    }
 
 }

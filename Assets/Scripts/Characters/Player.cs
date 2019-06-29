@@ -108,7 +108,11 @@ public class Player : Character {
         base.Damage(dDamage, source);
         if(life<=0) Die();
 
-        animator.Play("player-damaged", 0);
+        if (Player.Instance.animator.GetCurrentAnimatorStateInfo(0).IsName("player-idle"))
+        {
+            animator.Play("player-damaged", 0);
+
+        }
 
     }
 

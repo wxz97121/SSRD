@@ -235,7 +235,7 @@ public class InputSequenceController : MonoBehaviour
                     //和AI同时出招
                     if (DuelController.Instance.isActedAt3rdBeat==false)
                     {
-                        DuelController.Instance.SkillJudge(skill.EffectStr, DuelController.Instance.GetCurAI().GetNextSkill());
+                        DuelController.Instance.SkillJudge(skill.EffectStr, DuelController.Instance.GetCurAI().GetNextSkill(3));
                         if (DuelController.Instance.GetCurAI()) DuelController.Instance.GetCurAI().Action(3);
                         skill.Cooldown = skill.CooldownMax;
                         SuperController.Instance.skillTipBarController.UpdateCDs();

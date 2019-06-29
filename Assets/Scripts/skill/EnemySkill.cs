@@ -61,15 +61,6 @@ public class EnemySkill
 
     public EnemySkill(string DataDir)
     {
-        EnemySkillData data = Resources.Load(DataDir) as EnemySkillData;
-        if (!data)
-        {
-            Debug.Log(DataDir);
-            Debug.Log("这个路径没有EnemySkillData！！");
-            Debug.Break();
-        }
-        m_name = data._name;
-        EffectStr = data.Effect;
 
     }
     public EnemySkill(int type,string Eff)

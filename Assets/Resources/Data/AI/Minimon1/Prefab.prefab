@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 4791602576819912933}
   - component: {fileID: 3640275738297432634}
   - component: {fileID: 4165937445732966770}
+  - component: {fileID: 3859754111211406250}
   m_Layer: 0
   m_Name: Prefab
   m_TagString: Untagged
@@ -106,7 +107,7 @@ Transform:
   m_GameObject: {fileID: 6538668489031249933}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.28, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 6226385527495288853}
   m_Father: {fileID: 0}
@@ -149,7 +150,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300002, guid: b697d733bcf424e8baa3126005facf07, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e403f2bccc575465fbe49e74757dbe8f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -170,7 +171,7 @@ Animator:
   m_GameObject: {fileID: 6538668489031249933}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e92c39608da9940df96e30a7f2bbb732, type: 2}
+  m_Controller: {fileID: 9100000, guid: 89a9a2e44daf14f74963dc4aed3a2c96, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -179,3 +180,35 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3859754111211406250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6538668489031249933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d69fe212a8ba4cb78cbfaf5a66af991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 3
+  Hp: 3
+  maxLife: 10
+  life: 10
+  maxMp: 5
+  Mp: 0
+  ATK: 2
+  DEF: 0
+  isUndead: 0
+  soulPoint: 0
+  soulMaxPoint: 10
+  buffs: []
+  mTarget: {fileID: 0}
+  m_name: 
+  data: {fileID: 11400000, guid: f5ff2a66aa2074fcb8dbf71fa1a1563f, type: 2}
+  actionID: 0
+  animator: {fileID: 0}
+  originPosition: {x: 0, y: 0, z: 0}
+  lootMoney: 1
+  isReadyToDie: 0
