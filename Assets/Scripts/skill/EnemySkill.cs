@@ -106,7 +106,7 @@ public class EnemySkill
     {
 //                Debug.Log(aniname);
 
-        Char.animator.Play(aniname, 0);
+        Char.animator.Play(aniname, -1);
     }
 
 

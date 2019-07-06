@@ -46,11 +46,12 @@ public class Minimon1 : AI
         }
         else
         {
-            Debug.Log("actionID = " + actionID);
-            Debug.Log("seq count " + skillGroupSeq.Count);
+//            Debug.Log("actionID = " + actionID);
+//            Debug.Log("seq count " + skillGroupSeq.Count);
 
-            Debug.Log("GetNextSkill(beatnum)"+GetNextSkill(beatnum));
+//            Debug.Log("GetNextSkill(beatnum)"+GetNextSkill(beatnum));
             CastSkill(GetNextSkill(beatnum));
+
 
         }
     }

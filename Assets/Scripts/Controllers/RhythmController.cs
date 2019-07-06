@@ -262,7 +262,24 @@ public class RhythmController : MonoBehaviour
     public void OnBeat(int beatNum)
     {
 
+
+
         AI nowAI = DuelController.Instance.GetCurAI();
+
+
+
+        if (Player.Instance.animator.GetCurrentAnimatorStateInfo(0).IsName("player-idle"))
+            Player.Instance.animator.Play("idlebeat", 0, 0);
+
+        if (Player.Instance.mTarget != null)
+        {
+            if (nowAI.animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
+            {
+                nowAI.animator.Play("idlebeat", 0);
+            }
+
+        }
+
 
         //everybody beat!
         if (beatNum == 0)
@@ -278,7 +295,6 @@ public class RhythmController : MonoBehaviour
         {
 
             if (nowAI) nowAI.Action(2);
-
 
         }
 
@@ -308,14 +324,12 @@ public class RhythmController : MonoBehaviour
         }
 
 
-        //BUFF跳 TODO:时序问题
+        //BUFF跳 TODO:时序问题？？？
         Player.Instance.BuffsBeat(beatNum);
         if (Player.Instance.mTarget != null)
             Player.Instance.mTarget.GetComponent<AI>().BuffsBeat(beatNum);
 
-        //点头 TODO 怪也在这点头
-        if (Player.Instance.animator.GetCurrentAnimatorStateInfo(0).IsName("player-idle"))
-            Player.Instance.animator.Play("idlebeat", 0, 0);
+
 
 
         //所有需要跟节奏闪的东西

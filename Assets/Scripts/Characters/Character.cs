@@ -100,7 +100,11 @@ public class Character : MonoBehaviour
             //判断对方护盾
             if (cTarget.hasBuff<Buff_defend>())
             {
-                Instantiate(Resources.Load("VFX/Shield"), cTarget.transform.position, Quaternion.identity);
+                if (cTarget.GetType() == typeof(Player))
+                {
+                    GameObject fxClone=Instantiate(Resources.Load("VFX/Shield"), cTarget.transform.Find("pos_defendfx").transform.position, Quaternion.identity) as GameObject;
+                    fxClone.transform.localScale = cTarget.transform.Find("pos_defendfx").transform.localScale;
+                }
                 return false;
             }
             else
