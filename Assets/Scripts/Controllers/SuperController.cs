@@ -60,6 +60,7 @@ public class SuperController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        Random.InitState(System.DateTime.Now.Second);
         mainMenu.gameObject.SetActive(true);
         commentController = GameObject.Find("Comment").GetComponent<CommentController>();
         skillTipBarController = GameObject.Find("SkillTipArea").GetComponent<UISkillTipBarController>();

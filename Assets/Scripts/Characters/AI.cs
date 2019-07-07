@@ -19,7 +19,7 @@ public class AI : Character
     //当前的技能列表
     public List<EnemySkillGroup> skillGroupSeq;
     //技能实例
-    private EnemySkill enemySkill;
+    protected EnemySkill enemySkill;
     public Animator animator;
 
 

@@ -38,6 +38,9 @@ public class EnemySkill
                 case ("ATK"):
                     ATK(int.Parse(InstancedEff[1]), m_Char);
                     break;
+                case ("DATK"):
+                    ATK(int.Parse(InstancedEff[1]), m_Char,true);
+                    break;
                 case ("ANI"):
                     ANI(InstancedEff[1], m_Char);
                     break;
@@ -56,6 +59,9 @@ public class EnemySkill
                     break;
                 case ("DMP"):
                     DMP(int.Parse(InstancedEff[1]), m_Char);
+                    break;
+                case ("SFX"):
+                    SFX(InstancedEff[1], m_Char);
                     break;
                 default:
                     break;
@@ -80,9 +86,9 @@ public class EnemySkill
 
     }
 
-    private void ATK(int dDamage, Character Char)
+    private void ATK(int dDamage, Character Char,bool isCounterable= false)
     {
-        Char.Hit(dDamage);
+        Char.Hit(dDamage, false, isCounterable); 
         //        Debug.Log("ATK "+ dDamage);
     }
 
@@ -109,7 +115,7 @@ public class EnemySkill
     private void ANI(string aniname, AI Char,bool IsSetTrigger=false)
     {
         //                Debug.Log(aniname);
-        if (aniname == "attack") Debug.Log("Attack?????");
+        //if (aniname == "attack") Debug.Log("Attack?????");
         if (IsSetTrigger)
         {
             Char.animator.SetTrigger(aniname);
@@ -166,5 +172,10 @@ public class EnemySkill
 
             }
         }
+    }
+
+    private void SFX(string name,AI Char)
+    {
+        SoundController.Instance.PlayAudioEffect(name);
     }
 }

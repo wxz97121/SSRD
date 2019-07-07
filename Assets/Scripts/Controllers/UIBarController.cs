@@ -142,7 +142,7 @@ public class UIBarController : MonoBehaviour {
         currentEnergyNotes.AddRange(playingBar.GetComponent<UIBar>().noteList_energy);
         NextBar();
 
-        Debug.Log("uibar 1 complete!");
+//        Debug.Log("uibar 1 complete!");
 
         currentBarList.Add(CreateBarByScore(pieceIndex, barIndex));
         currentBarList[2].transform.localPosition = barPos3;
@@ -151,7 +151,7 @@ public class UIBarController : MonoBehaviour {
         currentEnergyNotes.AddRange(preBar.GetComponent<UIBar>().noteList_energy);
 
         NextBar();
-        Debug.Log("uibar 2 complete!");
+//       Debug.Log("uibar 2 complete!");
 
 
     }

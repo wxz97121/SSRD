@@ -22,7 +22,8 @@ public class Character : MonoBehaviour
     public int DEF = 0;
 
     public bool isUndead = false;
-
+    //被反击
+    public bool isCountered = false;
 
     //魂点数
     public int soulPoint = 0;
@@ -90,8 +91,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    //TODO 攻击别人  放进DUELCONTROLLER 
-    virtual public bool Hit(int dDamage, bool noAfterattack=false,bool isCounterable=false)
+    virtual public void Hit(int dDamage, bool noAfterattack=false,bool isCounterable=false)
     {
         //普通攻击目标
         if (mTarget != null)
@@ -100,21 +100,24 @@ public class Character : MonoBehaviour
             //判断对方护盾
             if (cTarget.hasBuff<Buff_defend>())
             {
+
                 if (cTarget.GetType() == typeof(Player))
                 {
                     GameObject fxClone=Instantiate(Resources.Load("VFX/Shield"), cTarget.transform.Find("pos_defendfx").transform.position, Quaternion.identity) as GameObject;
                     fxClone.transform.localScale = cTarget.transform.Find("pos_defendfx").transform.localScale;
                 }
+                //Debug.Log("ISCOUNTERABLE "+isCounterable.ToString());
                 if (isCounterable)
                 {
+                    //Debug.Break();
                     SoundController.Instance.PlayAudioEffect("PDEFEND");
+                    isCountered = true;
                 }
                 else
                 {
                     SoundController.Instance.PlayAudioEffect("DEFEND");
 
                 }
-                return false;
             }
             else
             {
@@ -137,12 +140,10 @@ public class Character : MonoBehaviour
                 }
 
 
-                return true;
             }
         }
 
         //        lastAction = actionType.Hit;
-        return true;
     }
     /*
     virtual public bool Hit(int dDamage,bool nothaveAfterattack)

@@ -136,9 +136,9 @@ public class Skill
     //public UnityEvent EffectEvent;
     //public List<Effect> effects;
 
-    public void ATK(int dDamage, Character Char)
+    public void ATK(int dDamage, Character Char,bool isCounterable= false)
     {
-        Char.Hit(dDamage);
+        Char.Hit(dDamage, isCounterable);
         //        Debug.Log("ATK "+ dDamage);
     }
 
@@ -155,7 +155,7 @@ public class Skill
 
     public void DEF(Character Char)
     {
-        Debug.Log("DEF");
+//        Debug.Log("DEF");
         Buff_defend defend = new Buff_defend
         {
             m_name = "defend",
