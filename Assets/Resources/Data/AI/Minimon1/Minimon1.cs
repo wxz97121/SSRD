@@ -43,6 +43,14 @@ public class Minimon1 : AI
             }
             actionID++;
 
+            //Debug.Log("=========================");
+
+            //Debug.Log("actionid = " + actionID);
+            //foreach (string st in skillGroupSeq[actionID].enemySkills)
+            //{
+            //    Debug.Log("skill = "+ st);
+            //}
+
         }
         else
         {

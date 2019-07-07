@@ -21,7 +21,7 @@ MonoBehaviour:
     - EPT
   - name: attack
     enemySkills:
-    - ANI_ready
+    - ANIT_ready
     - EPT
     - EPT
-    - ANI_attack,ATK_1
+    - ANIT_attack,ATK_1

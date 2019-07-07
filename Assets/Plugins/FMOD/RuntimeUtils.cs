@@ -94,7 +94,11 @@ namespace FMODUnity
         CollisionEnter2D,
         CollisionExit2D,
         ObjectEnable,
-        ObjectDisable
+        ObjectDisable,
+        MouseEnter,
+        MouseExit,
+        MouseDown,
+        MouseUp,
     }
 
     public enum LoaderGameEvent
@@ -364,12 +368,8 @@ namespace FMODUnity
                 string pluginFolder = Application.dataPath + "/Plugins/";
             #elif UNITY_STANDALONE_LINUX
                 string pluginFolder = Application.dataPath + ((IntPtr.Size == 8) ? "/Plugins/x86_64/" : "/Plugins/x86/");
-            #elif UNITY_WSA
+            #elif UNITY_WSA || UNITY_ANDROID
                 string pluginFolder = "";
-            #elif UNITY_ANDROID
-                var dirInfo = new global::System.IO.DirectoryInfo(Application.persistentDataPath);
-                string packageName = dirInfo.Parent.Name;
-                string pluginFolder = "/data/data/" + packageName + "/lib/";
             #else
                 string pluginFileName = "";
                 string pluginFolder = "";
@@ -407,8 +407,10 @@ namespace FMODUnity
                     return FMODPlatform.iOS;
                 case BuildTarget.PS4:
                     return FMODPlatform.PS4;
+                #if (!UNITY_2018_3_OR_NEWER)
                 case BuildTarget.PSP2:
                     return FMODPlatform.PSVita;
+                #endif
                 case BuildTarget.StandaloneLinux:
                 case BuildTarget.StandaloneLinux64:
                 case BuildTarget.StandaloneLinuxUniversal:

@@ -41,6 +41,10 @@ public class EnemySkill
                 case ("ANI"):
                     ANI(InstancedEff[1], m_Char);
                     break;
+                case ("ANIT"):
+
+                    ANI(InstancedEff[1], m_Char,true);
+                    break;
                 case ("HEL"):
                     HEL(int.Parse(InstancedEff[1]), m_Char);
                     break;
@@ -102,11 +106,20 @@ public class EnemySkill
 
     }
 
-    private void ANI(string aniname, AI Char)
+    private void ANI(string aniname, AI Char,bool IsSetTrigger=false)
     {
-//                Debug.Log(aniname);
+        //                Debug.Log(aniname);
+        if (aniname == "attack") Debug.Log("Attack?????");
+        if (IsSetTrigger)
+        {
+            Char.animator.SetTrigger(aniname);
+        }
+        else
+        {
+            Char.animator.Play(aniname, -1);
 
-        Char.animator.Play(aniname, -1);
+        }
+
     }
 
 

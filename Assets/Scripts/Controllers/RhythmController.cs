@@ -275,9 +275,8 @@ public class RhythmController : MonoBehaviour
         {
             if (nowAI.animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
             {
-                nowAI.animator.Play("idlebeat", 0);
+                nowAI.animator.SetTrigger("idlebeat");
             }
-
         }
 
 
@@ -401,7 +400,7 @@ public class RhythmController : MonoBehaviour
         UIBarController.Instance.playingBar.GetComponent<UIBar>().pin.GetComponent<UIBarPin>().SetSprite(1);
         //if (m_Eff) m_Eff.isShake = true;
         Camera.main.gameObject.transform.DOShakePosition(1,0.5f);
-
+        SuperController.Instance.ShowInputTip("BAD");
     }
     #endregion
 

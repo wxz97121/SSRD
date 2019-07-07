@@ -41,6 +41,8 @@ public class SuperController : MonoBehaviour {
     public UIBattleInfo playerBattleInfo;
     public UIBattleInfo enemyBattleInfo;
 
+    public Transform InputTipPos;
+
 
     static SuperController _instance;
     public static SuperController Instance
@@ -141,9 +143,9 @@ public class SuperController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            //  SoundController.Instance.FMODPlayOneShot("event:/instruments/snare");
-            //  SoundController.Instance.PlayAudioEffect("SNARE_01");
-            Debug.Log(SoundController.Instance.GetSpectrum().Length);
+              SoundController.Instance.FMODPlayOneShot("event:/instruments/snare");
+              SoundController.Instance.PlayAudioEffect("SNARE_01");
+           // Debug.Log(SoundController.Instance.GetSpectrum().Length);
         }
 
         //战斗输入按键
@@ -314,9 +316,17 @@ public class SuperController : MonoBehaviour {
         SoundController.Instance.FMODmusic.setPaused(false);
     }
 
+    //一些UI的按节奏闪动
     public void Blink()
     {
         playerBattleInfo.Blink();
         enemyBattleInfo.Blink();
+    }
+
+    //
+    public void ShowInputTip(string text)
+    {
+        GameObject tip = Instantiate(Resources.Load("Prefab/InputTip/InputTip"), InputTipPos.transform) as GameObject;
+        tip.GetComponent<InputTip>().Init(text);
     }
 }

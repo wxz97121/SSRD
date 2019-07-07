@@ -221,6 +221,9 @@ namespace FMODUnity
         [SerializeField]
         public List<string> Banks;
 
+        [SerializeField]
+        public ushort LiveUpdatePort = 9264;
+
         public static FMODPlatform GetParent(FMODPlatform platform)
         {
             switch (platform)

@@ -91,7 +91,7 @@ public class Character : MonoBehaviour
     }
 
     //TODO 攻击别人  放进DUELCONTROLLER 
-    virtual public bool Hit(int dDamage, bool noAfterattack=false)
+    virtual public bool Hit(int dDamage, bool noAfterattack=false,bool isCounterable=false)
     {
         //普通攻击目标
         if (mTarget != null)
@@ -105,12 +105,23 @@ public class Character : MonoBehaviour
                     GameObject fxClone=Instantiate(Resources.Load("VFX/Shield"), cTarget.transform.Find("pos_defendfx").transform.position, Quaternion.identity) as GameObject;
                     fxClone.transform.localScale = cTarget.transform.Find("pos_defendfx").transform.localScale;
                 }
+                if (isCounterable)
+                {
+                    SoundController.Instance.PlayAudioEffect("PDEFEND");
+                }
+                else
+                {
+                    SoundController.Instance.PlayAudioEffect("DEFEND");
+
+                }
                 return false;
             }
             else
             {
                 //todo 动画也不能放这里了，以后要有变化
                 Instantiate(Resources.Load("VFX/Slash"), cTarget.transform.position, Quaternion.identity);
+                SoundController.Instance.PlayAudioEffect("SLASH");
+
                 cTarget.Damage(CalcDmg(getCurrentATK(), cTarget.getCurrentDEF(), dDamage), this);
 
                 //执行BUFF中的攻击结束效果

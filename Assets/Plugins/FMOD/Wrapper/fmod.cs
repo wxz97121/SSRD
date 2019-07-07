@@ -1,6 +1,6 @@
 /* ========================================================================================== */
 /*                                                                                            */
-/* FMOD Studio - C# Wrapper . Copyright (c), Firelight Technologies Pty, Ltd. 2004-2018.          */
+/* FMOD Studio - C# Wrapper . Copyright (c), Firelight Technologies Pty, Ltd. 2004-2019.          */
 /*                                                                                            */
 /* ========================================================================================== */
 
@@ -17,13 +17,15 @@ namespace FMOD
     */
     public class VERSION
     {
-        public const int    number = 0x00011010;
-#if (UNITY_IPHONE || UNITY_TVOS || UNITY_SWITCH || UNITY_WEBGL) && !UNITY_EDITOR
+        public const int    number = 0x00011014;
+#if   (UNITY_IPHONE || UNITY_TVOS || UNITY_SWITCH || UNITY_WEBGL) && !UNITY_EDITOR
         public const string dll    = "__Internal";
-#elif (UNITY_PS4) && DEVELOPMENT_BUILD
+#elif (UNITY_PS4 && DEVELOPMENT_BUILD)
         public const string dll    = "libfmodL";
-#elif (UNITY_PS4) && !UNITY_EDITOR
+#elif (UNITY_PS4 && !UNITY_EDITOR)
         public const string dll    = "libfmod";
+#elif (UNITY_PSP2 && DEVELOPMENT_BUILD)
+        public const string dll    = "libfmodstudioL";
 #elif (UNITY_PSP2 || UNITY_WIIU) && !UNITY_EDITOR
         public const string dll    = "libfmodstudio";
 /* Linux defines moved before the Windows define, otherwise Linux Editor tries to use Win lib when selected as build target.*/
@@ -1769,16 +1771,12 @@ namespace FMOD
                 return FMOD5_System_SetPluginPath(this.handle, encoder.byteFromStringUTF8(path));
             }
         }
-        public RESULT loadPlugin(string filename, out uint handle, uint priority)
+        public RESULT loadPlugin(string filename, out uint handle, uint priority = 0)
         {
             using (StringHelper.ThreadSafeEncoding encoder = StringHelper.GetFreeHelper())
             {
                 return FMOD5_System_LoadPlugin(this.handle, encoder.byteFromStringUTF8(filename), out handle, priority);
             }
-        }
-        public RESULT loadPlugin(string filename, out uint handle)
-        {
-            return loadPlugin(filename, out handle, 0);
         }
         public RESULT unloadPlugin(uint handle)
         {

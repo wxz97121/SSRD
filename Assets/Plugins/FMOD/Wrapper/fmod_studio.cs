@@ -1,6 +1,6 @@
 /* ========================================================================================== */
 /*                                                                                            */
-/* FMOD System - C# Wrapper . Copyright (c), Firelight Technologies Pty, Ltd. 2004-2018.      */
+/* FMOD System - C# Wrapper . Copyright (c), Firelight Technologies Pty, Ltd. 2004-2019.      */
 /*                                                                                            */
 /* ========================================================================================== */
 
@@ -13,9 +13,9 @@ namespace FMOD.Studio
 {
     public class STUDIO_VERSION
     {
-#if (UNITY_IPHONE || UNITY_TVOS || UNITY_SWITCH || UNITY_WEBGL) && !UNITY_EDITOR
+#if   (UNITY_IPHONE || UNITY_TVOS || UNITY_SWITCH || UNITY_WEBGL) && !UNITY_EDITOR
         public const string dll     = "__Internal";
-#elif (UNITY_PS4) && DEVELOPMENT_BUILD
+#elif (UNITY_PS4 || UNITY_PSP2) && DEVELOPMENT_BUILD
         public const string dll     = "libfmodstudioL";
 #elif (UNITY_PS4 || UNITY_WIIU || UNITY_PSP2) && !UNITY_EDITOR
         public const string dll     = "libfmodstudio";
@@ -75,6 +75,7 @@ namespace FMOD.Studio
         public int handleinitialsize;       /* [r/w] Optional. Specify 0 to ignore. Specify the initial size to allocate for handles.  Memory for handles will grow as needed in pages. */
         public int studioupdateperiod;      /* [r/w] Optional. Specify 0 to ignore. Specify the update period of Studio when in async mode, in milliseconds.  Will be quantised to the nearest multiple of mixer duration.  Default is 20ms. */
         public int idlesampledatapoolsize;  /* [r/w] Optional. Specify 0 to ignore. Specify the amount of sample data to keep in memory when no longer used, to avoid repeated disk IO.  Use -1 to disable.  Default is 256kB. */
+        public int streamingscheduledelay;  /* [r/w] Optional. Specify 0 to ignore. Specify the schedule delay for streams, in samples.  Lower values can reduce latency when scheduling events containing streams but may cause scheduling issues if too small. Default is 8192 samples. */
     }
 
     [StructLayout(LayoutKind.Sequential)]

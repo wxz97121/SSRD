@@ -235,6 +235,7 @@ public class InputSequenceController : MonoBehaviour
                     //和AI同时出招
                     if (DuelController.Instance.isActedAt3rdBeat==false)
                     {
+                        //Debug.Log(DuelController.Instance.GetCurAI());
                         DuelController.Instance.SkillJudge(skill.EffectStr, DuelController.Instance.GetCurAI().GetNextSkill(3));
                         if (DuelController.Instance.GetCurAI()) DuelController.Instance.GetCurAI().Action(3);
                         skill.Cooldown = skill.CooldownMax;
@@ -271,6 +272,9 @@ public class InputSequenceController : MonoBehaviour
     #region BAD 后处理音符
     public void Bad()
     {
+
+        SuperController.Instance.ShowInputTip("BAD");
+
         SoundController.Instance.PlayAudioEffect("ROUND");
         if (Instance.CurInputSequence.Count > 0)
         {
