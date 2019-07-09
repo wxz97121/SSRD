@@ -135,7 +135,7 @@ public class RhythmController : MonoBehaviour
         //判定是否播放第N拍，为了同步FLAG，这里使用FMOD判定
         if (beatIndex != SoundController.Instance.timelineInfo.currentMusicBeat)
         {
-            Debug.Log("beat"+(SoundController.Instance.timelineInfo.currentMusicBeat - 1));
+//            Debug.Log("beat"+(SoundController.Instance.timelineInfo.currentMusicBeat - 1));
 
             OnBeat(SoundController.Instance.timelineInfo.currentMusicBeat - 1);
             beatIndex = SoundController.Instance.timelineInfo.currentMusicBeat;

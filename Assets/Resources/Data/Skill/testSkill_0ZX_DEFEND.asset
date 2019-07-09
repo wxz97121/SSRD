@@ -33,5 +33,5 @@ MonoBehaviour:
     SuccessSkill: 
     BadSkill: 
     MissSkill: 
-  Effect: DEF
+  Effect: DEF,ANI_player-defense
   CD: 1

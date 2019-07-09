@@ -8,8 +8,7 @@ public class Buff_defend : Buff
     {
         base.BuffAdded(p_chara);
 
-        //TODO :把播动画挪走！
-        Player.Instance.animator.Play("player-defense", 0);
+
 
     }
 

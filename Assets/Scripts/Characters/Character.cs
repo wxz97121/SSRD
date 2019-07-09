@@ -6,6 +6,8 @@ using TMPro;
 //角色基类，控制玩家和敌人的全部属性和行动
 public class Character : MonoBehaviour
 {
+    public bool isPlayer;
+
     public int maxHp = 3;
     public int Hp = 3;
 
@@ -101,7 +103,7 @@ public class Character : MonoBehaviour
             if (cTarget.hasBuff<Buff_defend>())
             {
 
-                if (cTarget.GetType() == typeof(Player))
+                if (cTarget.isPlayer)
                 {
                     GameObject fxClone=Instantiate(Resources.Load("VFX/Shield"), cTarget.transform.Find("pos_defendfx").transform.position, Quaternion.identity) as GameObject;
                     fxClone.transform.localScale = cTarget.transform.Find("pos_defendfx").transform.localScale;

@@ -215,9 +215,9 @@ public class DuelController : MonoBehaviour {
             }
 
         }
-//        Debug.Log("E1 = " + E1 + "E2 = " + E2 + "E3 = " + E3);
+        Debug.Log("E1 = " + E1 + "E2 = " + E2 + "E3 = " + E3);
 
-//        Debug.Log("p1 = " + P1+ "p2 = " + P2+ "p3 = " + P3);
+        Debug.Log("p1 = " + P1+ "p2 = " + P2+ "p3 = " + P3);
 
 
         //依次触发技能效果

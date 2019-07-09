@@ -39,10 +39,12 @@ public class AI : Character
     {
         //默认初始化
         base.Start();
+
     }
 
     public virtual void Init()
     {
+        isPlayer = false;
         _skillGroupDict = new Dictionary<string, EnemySkillGroup>();
         //读取技能组表,并存入字典
         //skillGroups = data.enemySkillGroups;

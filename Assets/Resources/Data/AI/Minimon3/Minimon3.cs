@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Minimon2 : AI
+public class Minimon3 : AI
 {
     private int circleID = 0;
     private bool isDisabled = false;
@@ -28,39 +28,43 @@ public class Minimon2 : AI
 
         if (beatnum == 3)
         {
-            if (circleID >= 3)
+            if (skillGroupSeq.Count == actionID + 1)
             {
                 float P = Random.value;
-                if (P > 0.5)
+                if (P > 0.9)
                 {
                     SGSAdd("attack");
                     circleID = 0;
 
                 }
-                else
+                else if (P > 0.7)
                 {
                     SGSAdd("Dattack");
                     SGSAdd("attack");
-                    circleID = -1;
 
                 }
-            }
-            else
-            {
-                if(skillGroupSeq.Count==actionID+1)
-                    SGSAdd("idle");
-                circleID++;
-            }
-            actionID++;
+                else if (P > 0.3)
+                {
+                    SGSAdd("defend");
 
+                }
+                else
+                {
+                    SGSAdd("idle");
+                }
+            }
+
+            actionID++;
 
         }
         else
         {
-//            Debug.Log("cast skill="+GetNextSkill(beatnum));
+            //            Debug.Log("cast skill="+GetNextSkill(beatnum));
             CastSkill(GetNextSkill(beatnum));
         }
+
     }
+
 
     public override void Hit(int dDamage, bool noAfterattack = false, bool isCounterable = false)
     {

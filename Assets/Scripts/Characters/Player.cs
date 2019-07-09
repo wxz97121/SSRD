@@ -21,7 +21,6 @@ public class Player : Character {
     public SkillSlot[] skillSlots=new SkillSlot[5];
 
 
-
     //必杀用的通用Skill
     public Skill commonSkill;
 
@@ -64,6 +63,8 @@ public class Player : Character {
     // Use this for initialization
     override protected void Start () {
         base.Start();
+        isPlayer = true;
+
         skillSlots[0].requiredType = SkillType.normal;
         skillSlots[1].requiredType = SkillType.attack;
         skillSlots[2].requiredType = SkillType.attack;
