@@ -54,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
-    serializedVersion: 10
+    serializedVersion: 12
     m_Resolution: 2
     m_BakeResolution: 40
     m_AtlasSize: 1024
@@ -62,6 +62,7 @@ LightmapSettings:
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
     m_CompAOExponentDirect: 0
+    m_ExtractAmbientOcclusion: 0
     m_Padding: 2
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
@@ -76,10 +77,16 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
+    m_PVREnvironmentSampleCount: 500
+    m_PVREnvironmentReferencePointCount: 2048
+    m_PVRFilteringMode: 2
+    m_PVRDenoiserTypeDirect: 0
+    m_PVRDenoiserTypeIndirect: 0
+    m_PVRDenoiserTypeAO: 0
     m_PVRFilterTypeDirect: 0
     m_PVRFilterTypeIndirect: 0
     m_PVRFilterTypeAO: 0
-    m_PVRFilteringMode: 1
+    m_PVREnvironmentMIS: 0
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
@@ -88,6 +95,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
+    m_ExportTrainingData: 0
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -974,6 +982,7 @@ GameObject:
   - component: {fileID: 136946080}
   - component: {fileID: 136946082}
   - component: {fileID: 136946081}
+  - component: {fileID: 136946083}
   m_Layer: 5
   m_Name: SkillDrag (3)
   m_TagString: Untagged
@@ -1038,6 +1047,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 136946079}
   m_CullTransparentMesh: 0
+--- !u!114 &136946083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136946079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a7dcf7828cee4af4848473f7c3aaf51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillString: testSkill_Z0X_SUPERATTACK
 --- !u!1 &177382548
 GameObject:
   m_ObjectHideFlags: 0
@@ -2225,17 +2247,20 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+    m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 386835378}
@@ -3160,9 +3185,10 @@ Camera:
   m_ClearFlags: 2
   m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -3412,7 +3438,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa5b51c15fab41849cf81920c53cb61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillString: testSkill_Z0X_SUPERATTACK
 --- !u!114 &528203058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3859,6 +3884,7 @@ GameObject:
   - component: {fileID: 605334059}
   - component: {fileID: 605334061}
   - component: {fileID: 605334060}
+  - component: {fileID: 605334062}
   m_Layer: 5
   m_Name: SkillDrag (2)
   m_TagString: Untagged
@@ -3923,6 +3949,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 605334058}
   m_CullTransparentMesh: 0
+--- !u!114 &605334062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605334058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a7dcf7828cee4af4848473f7c3aaf51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillString: testSkill_0ZX_DEFEND
 --- !u!1 &611087721
 GameObject:
   m_ObjectHideFlags: 0
@@ -4217,6 +4256,7 @@ GameObject:
   - component: {fileID: 750531396}
   - component: {fileID: 750531398}
   - component: {fileID: 750531397}
+  - component: {fileID: 750531399}
   m_Layer: 5
   m_Name: SkillDrag (5)
   m_TagString: Untagged
@@ -4281,6 +4321,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 750531395}
   m_CullTransparentMesh: 0
+--- !u!114 &750531399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750531395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a7dcf7828cee4af4848473f7c3aaf51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillString: testSkill_ZZX_TRIPLEDMG
 --- !u!1 &756616260
 GameObject:
   m_ObjectHideFlags: 0
@@ -5561,7 +5614,6 @@ GameObject:
   - component: {fileID: 825094630}
   - component: {fileID: 825094633}
   - component: {fileID: 825094632}
-  - component: {fileID: 825094631}
   m_Layer: 5
   m_Name: Drop Image
   m_TagString: Untagged
@@ -5589,19 +5641,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 10.9}
   m_SizeDelta: {x: 92.645004, y: 60.145}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &825094631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 825094629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daa5b51c15fab41849cf81920c53cb61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SkillString: testSkill_00X_ATTACK
 --- !u!114 &825094632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7556,6 +7595,7 @@ GameObject:
   - component: {fileID: 1175818590}
   - component: {fileID: 1175818592}
   - component: {fileID: 1175818591}
+  - component: {fileID: 1175818593}
   m_Layer: 5
   m_Name: SkillDrag (1)
   m_TagString: Untagged
@@ -7620,6 +7660,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175818589}
   m_CullTransparentMesh: 0
+--- !u!114 &1175818593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175818589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a7dcf7828cee4af4848473f7c3aaf51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillString: testSkill_0Z0ZX_HEAL
 --- !u!1 &1196858003
 GameObject:
   m_ObjectHideFlags: 0
@@ -7838,7 +7891,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa5b51c15fab41849cf81920c53cb61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillString: testSkill_ZXZZX_ULTI
 --- !u!114 &1247290909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8100,6 +8152,7 @@ GameObject:
   - component: {fileID: 1338402825}
   - component: {fileID: 1338402827}
   - component: {fileID: 1338402826}
+  - component: {fileID: 1338402828}
   m_Layer: 5
   m_Name: SkillDrag (4)
   m_TagString: Untagged
@@ -8164,6 +8217,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1338402824}
   m_CullTransparentMesh: 0
+--- !u!114 &1338402828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338402824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a7dcf7828cee4af4848473f7c3aaf51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillString: testSkill_ZXZZX_ULTI
 --- !u!1 &1348029360
 GameObject:
   m_ObjectHideFlags: 0
@@ -8175,6 +8241,7 @@ GameObject:
   - component: {fileID: 1348029361}
   - component: {fileID: 1348029363}
   - component: {fileID: 1348029362}
+  - component: {fileID: 1348029364}
   m_Layer: 5
   m_Name: SkillDrag (6)
   m_TagString: Untagged
@@ -8239,6 +8306,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1348029360}
   m_CullTransparentMesh: 0
+--- !u!114 &1348029364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348029360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a7dcf7828cee4af4848473f7c3aaf51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillString: testSkill_ZZZX_ALLMPATK
 --- !u!1 &1355707396
 GameObject:
   m_ObjectHideFlags: 0
@@ -8682,7 +8762,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa5b51c15fab41849cf81920c53cb61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillString: testSkill_0Z0ZX_HEAL
 --- !u!114 &1386865143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9873,7 +9952,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa5b51c15fab41849cf81920c53cb61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillString: testSkill_0ZX_DEFEND
 --- !u!114 &1683489101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9962,7 +10040,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa5b51c15fab41849cf81920c53cb61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillString: testSkill_ZZZX_ALLMPATK
 --- !u!114 &1701129035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10745,7 +10822,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 112.8999, y: 32}
+  m_AnchoredPosition: {x: 112.90039, y: 32}
   m_SizeDelta: {x: 224.8, y: 342.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1876949654
@@ -11320,6 +11397,7 @@ GameObject:
   - component: {fileID: 1930863799}
   - component: {fileID: 1930863801}
   - component: {fileID: 1930863800}
+  - component: {fileID: 1930863802}
   m_Layer: 5
   m_Name: SkillDrag
   m_TagString: Untagged
@@ -11384,6 +11462,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1930863798}
   m_CullTransparentMesh: 0
+--- !u!114 &1930863802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930863798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a7dcf7828cee4af4848473f7c3aaf51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillString: testSkill_00X_ATTACK
 --- !u!1 &1969127275
 GameObject:
   m_ObjectHideFlags: 0
@@ -11545,17 +11636,20 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
+    m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1978334368}
@@ -12351,7 +12445,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa5b51c15fab41849cf81920c53cb61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillString: testSkill_ZZX_TRIPLEDMG
 --- !u!114 &2059686135
 MonoBehaviour:
   m_ObjectHideFlags: 0
