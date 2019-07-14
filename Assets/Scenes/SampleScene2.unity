@@ -1059,7 +1059,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a7dcf7828cee4af4848473f7c3aaf51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillString: testSkill_Z0X_SUPERATTACK
 --- !u!1 &177382548
 GameObject:
   m_ObjectHideFlags: 0
@@ -3158,7 +3157,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!114 &519420030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3435,9 +3434,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 528203055}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daa5b51c15fab41849cf81920c53cb61, type: 3}
+  m_Script: {fileID: 11500000, guid: aeabfe539a7bc4b37a357d412639c981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillString: testSkill_Z0X_SUPERATTACK
 --- !u!114 &528203058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3961,7 +3961,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a7dcf7828cee4af4848473f7c3aaf51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillString: testSkill_0ZX_DEFEND
 --- !u!1 &611087721
 GameObject:
   m_ObjectHideFlags: 0
@@ -4333,7 +4332,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a7dcf7828cee4af4848473f7c3aaf51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillString: testSkill_ZZX_TRIPLEDMG
 --- !u!1 &756616260
 GameObject:
   m_ObjectHideFlags: 0
@@ -5614,6 +5612,7 @@ GameObject:
   - component: {fileID: 825094630}
   - component: {fileID: 825094633}
   - component: {fileID: 825094632}
+  - component: {fileID: 825094631}
   m_Layer: 5
   m_Name: Drop Image
   m_TagString: Untagged
@@ -5641,6 +5640,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 10.9}
   m_SizeDelta: {x: 92.645004, y: 60.145}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &825094631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 825094629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeabfe539a7bc4b37a357d412639c981, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillString: testSkill_00X_ATTACK
 --- !u!114 &825094632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7672,7 +7684,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a7dcf7828cee4af4848473f7c3aaf51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillString: testSkill_0Z0ZX_HEAL
 --- !u!1 &1196858003
 GameObject:
   m_ObjectHideFlags: 0
@@ -7888,9 +7899,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1247290906}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daa5b51c15fab41849cf81920c53cb61, type: 3}
+  m_Script: {fileID: 11500000, guid: aeabfe539a7bc4b37a357d412639c981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillString: testSkill_ZZX_TRIPLEDMG
 --- !u!114 &1247290909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8229,7 +8241,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a7dcf7828cee4af4848473f7c3aaf51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillString: testSkill_ZXZZX_ULTI
 --- !u!1 &1348029360
 GameObject:
   m_ObjectHideFlags: 0
@@ -8318,7 +8329,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a7dcf7828cee4af4848473f7c3aaf51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillString: testSkill_ZZZX_ALLMPATK
 --- !u!1 &1355707396
 GameObject:
   m_ObjectHideFlags: 0
@@ -8759,9 +8769,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1386865140}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daa5b51c15fab41849cf81920c53cb61, type: 3}
+  m_Script: {fileID: 11500000, guid: aeabfe539a7bc4b37a357d412639c981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillString: testSkill_0Z0ZX_HEAL
 --- !u!114 &1386865143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9949,9 +9960,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1683489098}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daa5b51c15fab41849cf81920c53cb61, type: 3}
+  m_Script: {fileID: 11500000, guid: aeabfe539a7bc4b37a357d412639c981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillString: testSkill_0ZX_DEFEND
 --- !u!114 &1683489101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10037,9 +10049,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1701129032}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daa5b51c15fab41849cf81920c53cb61, type: 3}
+  m_Script: {fileID: 11500000, guid: aeabfe539a7bc4b37a357d412639c981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillString: testSkill_ZXZZX_ULTI
 --- !u!114 &1701129035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11474,7 +11487,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a7dcf7828cee4af4848473f7c3aaf51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillString: testSkill_00X_ATTACK
 --- !u!1 &1969127275
 GameObject:
   m_ObjectHideFlags: 0
@@ -12442,9 +12454,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2059686132}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daa5b51c15fab41849cf81920c53cb61, type: 3}
+  m_Script: {fileID: 11500000, guid: aeabfe539a7bc4b37a357d412639c981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillString: testSkill_ZZZX_ALLMPATK
 --- !u!114 &2059686135
 MonoBehaviour:
   m_ObjectHideFlags: 0
