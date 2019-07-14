@@ -98,7 +98,7 @@ public class SoundController : MonoBehaviour {
         samplerate = 48000;
 
 
-        RuntimeManager.LowlevelSystem.getSoftwareFormat(out samplerate,out sPEAKERMODE,out rawspeaker);
+//        RuntimeManager.LowlevelSystem.getSoftwareFormat(out samplerate,out sPEAKERMODE,out rawspeaker);
 
 
         //fmod callback相关
@@ -183,7 +183,7 @@ public class SoundController : MonoBehaviour {
     {
 
         FMODmusic.getChannelGroup(out channelGroup);
-        RuntimeManager.LowlevelSystem.createDSPByType(DSP_TYPE.FFT, out fftDSP);
+        //RuntimeManager.LowlevelSystem.createDSPByType(DSP_TYPE.FFT, out fftDSP);
         channelGroup.addDSP(0, fftDSP);
         channelGroup.getDSP(0, out channelhead);
         channelhead.setMeteringEnabled(false, true);
@@ -201,7 +201,7 @@ public class SoundController : MonoBehaviour {
     //修改FMOD参数
     public void FMODSetParameter(string paraname,float value)
     {
-        FMODmusic.setParameterValue(paraname, value);
+        FMODmusic.setParameterByName(paraname, value);
     }
 
     public float CalcDSPtime()
