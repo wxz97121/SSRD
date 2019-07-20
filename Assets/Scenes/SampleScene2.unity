@@ -1846,6 +1846,7 @@ MonoBehaviour:
   songPosInBeats: 0
   isCurBarCleaned: 0
   isCurBarAtFinalBeat: 0
+  isInputMissed: 0
   commentCoolTime: 0.05
   commentGoodTime: 0.3
   badDelayTime: 1

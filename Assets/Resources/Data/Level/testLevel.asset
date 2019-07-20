@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreData: {fileID: 11400000, guid: 0440950d86df8420794bb8b7ae20d8c9, type: 2}
   enemyList:
-  - Minimon2
+  - Minimon3
   - Minimon2
   - Minimon3
   BGMPath: event:/music/core
