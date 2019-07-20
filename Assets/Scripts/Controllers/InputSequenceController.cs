@@ -158,12 +158,12 @@ public class InputSequenceController : MonoBehaviour
             if (CurInputSequence.Count < skill.inputSequence.Count)
             {
 
-                //Debug.Log("skill.inputSequence.Count" + skill.inputSequence.Count);
+                Debug.Log("skill.inputSequence.Count" + skill.inputSequence.Count);
 
                 if ((beat >= skill.inputSequence[CurInputSequence.Count].beatInBar - RhythmController.Instance.commentGoodTime) && (judgeBeat <= skill.inputSequence[CurInputSequence.Count].beatInBar + RhythmController.Instance.commentGoodTime) && inputType == skill.inputSequence[CurInputSequence.Count].type)
                 {
                     inputsuccess = true;
-                    //Debug.Log("判定成功！！");
+                    Debug.Log("判定成功！！");
                     tempskills.Add(skill);
                     SuperController.Instance.skillTipBarController.AddRightOInBar(skill.m_name, CurInputSequence.Count);
                 }
@@ -233,9 +233,9 @@ public class InputSequenceController : MonoBehaviour
 
 
                     //和AI同时出招
-                    if (DuelController.Instance.isActedAt3rdBeat==false)
+                    if (!DuelController.Instance.isActedAt3rdBeat)
                     {
-                        //Debug.Log(DuelController.Instance.GetCurAI());
+                        Debug.Log("输入正确之后的发招 " +skill.m_name+" "+ skill.EffectStr);
                         DuelController.Instance.SkillJudge(skill.EffectStr, DuelController.Instance.GetCurAI().GetNextSkill(3));
                         if (DuelController.Instance.GetCurAI()) DuelController.Instance.GetCurAI().Action(3);
                         skill.Cooldown = skill.CooldownMax;

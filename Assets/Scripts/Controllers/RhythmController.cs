@@ -22,6 +22,8 @@ public class RhythmController : MonoBehaviour
     public bool isCurBarCleaned = false;
     //当前小节进入最后一拍，且已清理之前输入的的锁
     public bool isCurBarAtFinalBeat = false;
+    //当前小节是否已经处理过输入超时
+    public bool isInputMissed=false;
 
 
     //判定阈值 一个比一个大
@@ -132,17 +134,27 @@ public class RhythmController : MonoBehaviour
         //        Debug.Log("distime="+ AudioSettings.dspTime+ "    startTime=" + songStartTime+ "    songPos=" +songPos+   "beats ="+songPosInBeats);
 
 
-        //判定是否播放第N拍，为了同步FLAG，这里使用FMOD判定
-        if (beatIndex != SoundController.Instance.timelineInfo.currentMusicBeat)
-        {
-//            Debug.Log("beat"+(SoundController.Instance.timelineInfo.currentMusicBeat - 1));
+//        //判定是否播放第N拍，为了同步FLAG，这里使用FMOD判定
+//        if (beatIndex != SoundController.Instance.timelineInfo.currentMusicBeat)
+//        {
+////            Debug.Log("beat"+(SoundController.Instance.timelineInfo.currentMusicBeat - 1));
 
-            OnBeat(SoundController.Instance.timelineInfo.currentMusicBeat - 1);
-            beatIndex = SoundController.Instance.timelineInfo.currentMusicBeat;
+        //    OnBeat(SoundController.Instance.timelineInfo.currentMusicBeat - 1);
+        //    beatIndex = SoundController.Instance.timelineInfo.currentMusicBeat;
+        //}
+
+
+        //判定是否播放第N拍
+        if (beatIndex != (int)UIBarController.Instance.playingBarPosInBeats+1)
+        {
+            //            Debug.Log("beat"+(SoundController.Instance.timelineInfo.currentMusicBeat - 1));
+
+            OnBeat((int)UIBarController.Instance.playingBarPosInBeats);
+            beatIndex = (int)UIBarController.Instance.playingBarPosInBeats + 1;
         }
 
         //时间超过判定点，此时BUFF持续时间衰减
-        if(songPosInBeats>UIBarController.Instance.finishedBeats + beatIndex - 1+commentGoodTime && decayIndex!=beatIndex)
+        if (songPosInBeats>UIBarController.Instance.finishedBeats + beatIndex - 1+commentGoodTime && decayIndex!=beatIndex)
         {
             Player.Instance.BuffsDecay(beatIndex-1);
             if (Player.Instance.mTarget != null)
@@ -184,8 +196,11 @@ public class RhythmController : MonoBehaviour
 
         //第三拍之后 清除已经过期的输入音符，AI发招，发招状态重置
 
-        if (songPosInBeats - UIBarController.Instance.finishedBeats - 2 > commentGoodTime)
+        //if (songPosInBeats - UIBarController.Instance.finishedBeats - 2 > commentGoodTime)
+        if ((UIBarController.Instance.playingBarPosInBeats - 2f > commentGoodTime)&& isInputMissed == false)
         {
+            Debug.Log("bar pos = " + UIBarController.Instance.playingBarPosInBeats);
+
             if (isCurBarCleaned == false && isCurBarAtFinalBeat == false)
             {
                 if (InputSequenceController.Instance.CurInputSequence.Count != 0)
@@ -201,12 +216,14 @@ public class RhythmController : MonoBehaviour
             {
                 if (DuelController.Instance.GetCurAI())
                 {
+                    Debug.Log("第三拍之后的发招" + "空");
                     DuelController.Instance.SkillJudge("", DuelController.Instance.GetCurAI().GetNextSkill(3));
                     DuelController.Instance.GetCurAI().Action(3);
                 }
             }
 
             isCurBarCleaned = false;
+            isInputMissed = true;
 
         }
 
@@ -287,6 +304,9 @@ public class RhythmController : MonoBehaviour
             //重置发招状态为未发招
             DuelController.Instance.isActedAt3rdBeat = false;
 
+            isInputMissed = false;
+            Debug.Log("重置发招状态为未发招");
+
             if (nowAI) nowAI.Action(1);
 
         }
@@ -304,6 +324,7 @@ public class RhythmController : MonoBehaviour
         {
             if(isCurBarCleaned == true&&DuelController.Instance.isActedAt3rdBeat==false&& DuelController.Instance.GetCurAI())
             {
+                Debug.Log("BAD之后正点AI出招" + "空");
                 DuelController.Instance.SkillJudge("", DuelController.Instance.GetCurAI().GetNextSkill(3));
                 DuelController.Instance.GetCurAI().Action(3);
                 Debug.Log("INPUT BAD ,ENEMY ACT AT TIME");
