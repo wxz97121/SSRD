@@ -24,7 +24,7 @@ public class Buff_defend : Buff
         base.BuffDecay();
         if (remainBeats == 0)
         {
-            Player.Instance.animator.Play("player-idle", 0);
+            //Player.Instance.animator.Play("player-idle", 0);
         }
     }
 

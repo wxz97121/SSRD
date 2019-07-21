@@ -163,7 +163,7 @@ public class InputSequenceController : MonoBehaviour
                 if ((beat >= skill.inputSequence[CurInputSequence.Count].beatInBar - RhythmController.Instance.commentGoodTime) && (judgeBeat <= skill.inputSequence[CurInputSequence.Count].beatInBar + RhythmController.Instance.commentGoodTime) && inputType == skill.inputSequence[CurInputSequence.Count].type)
                 {
                     inputsuccess = true;
-                    Debug.Log("判定成功！！");
+//                    Debug.Log("判定成功！！");
                     tempskills.Add(skill);
                     SuperController.Instance.skillTipBarController.AddRightOInBar(skill.m_name, CurInputSequence.Count);
                 }
@@ -182,7 +182,7 @@ public class InputSequenceController : MonoBehaviour
         if (!inputsuccess)
         {
             //Debug.Break();
-            Bad();
+            Bad("BAD");
             return;
         }
   
@@ -201,25 +201,25 @@ public class InputSequenceController : MonoBehaviour
                 //搓招正确但是能量不足
                 if (Player.Instance.Mp < skill.cost)
                 {
-                    Debug.Log("能量不足");
+                    //Debug.Log("能量不足");
                     inputsuccess = false;
-                    Bad();
+                    Bad("NOT ENOUGH ENERGY");
                     return;
                 }
                 //搓招正确但是技能CD
                 if (skill.Cooldown>0)
                 {
-                    Debug.Log("技能CD中");
+                    //Debug.Log("SKILL COOLDOWN");
                     inputsuccess = false;
-                    Bad();
+                    Bad("SKILL COOLDOWN");
                     return;
                 }
                 //搓招正确但是魂不足
                 if (Player.Instance.soulPoint < Player.Instance.soulMaxPoint && skill.type==SkillType.ulti)
                 {
-                    Debug.Log("魂不足");
+                    //Debug.Log("NOT ENOUGH SOUL");
                     inputsuccess = false;
-                    Bad();
+                    Bad("NOT ENOUGH SOUL");
                     return;
                 }
                 else
@@ -270,10 +270,10 @@ public class InputSequenceController : MonoBehaviour
     #endregion
 
     #region BAD 后处理音符
-    public void Bad()
+    public void Bad(string tip)
     {
 
-        SuperController.Instance.ShowInputTip("BAD");
+        SuperController.Instance.ShowInputTip(tip);
 
         SoundController.Instance.PlayAudioEffect("ROUND");
         if (Instance.CurInputSequence.Count > 0)

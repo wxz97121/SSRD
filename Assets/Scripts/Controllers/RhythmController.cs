@@ -205,8 +205,8 @@ public class RhythmController : MonoBehaviour
             {
                 if (InputSequenceController.Instance.CurInputSequence.Count != 0)
                 {
-                    Debug.Log("输入超时BAD");
-                    InputSequenceController.Instance.Bad();
+                    //Debug.Log("输入超时BAD");
+                    InputSequenceController.Instance.Bad("BAD");
 
                 }
                 isCurBarAtFinalBeat = true;
@@ -216,7 +216,7 @@ public class RhythmController : MonoBehaviour
             {
                 if (DuelController.Instance.GetCurAI())
                 {
-                    Debug.Log("第三拍之后的发招" + "空");
+                    //Debug.Log("第三拍之后的发招" + "空");
                     DuelController.Instance.SkillJudge("", DuelController.Instance.GetCurAI().GetNextSkill(3));
                     DuelController.Instance.GetCurAI().Action(3);
                 }
@@ -291,10 +291,8 @@ public class RhythmController : MonoBehaviour
 
         if (Player.Instance.mTarget != null)
         {
-            if (nowAI.animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
-            {
+
                 nowAI.animator.SetTrigger("idlebeat");
-            }
         }
 
 
@@ -304,8 +302,6 @@ public class RhythmController : MonoBehaviour
             //重置发招状态为未发招
             DuelController.Instance.isActedAt3rdBeat = false;
 
-            isInputMissed = false;
-            Debug.Log("重置发招状态为未发招");
 
             if (nowAI) nowAI.Action(1);
 
@@ -324,10 +320,10 @@ public class RhythmController : MonoBehaviour
         {
             if(isCurBarCleaned == true&&DuelController.Instance.isActedAt3rdBeat==false&& DuelController.Instance.GetCurAI())
             {
-                Debug.Log("BAD之后正点AI出招" + "空");
+                //Debug.Log("BAD之后正点AI出招" + "空");
                 DuelController.Instance.SkillJudge("", DuelController.Instance.GetCurAI().GetNextSkill(3));
                 DuelController.Instance.GetCurAI().Action(3);
-                Debug.Log("INPUT BAD ,ENEMY ACT AT TIME");
+               //Debug.Log("INPUT BAD ,ENEMY ACT AT TIME");
             }
 
         }
@@ -338,6 +334,7 @@ public class RhythmController : MonoBehaviour
             {
                 DuelController.Instance.EnemyRespawn();
             }
+            isInputMissed = false;
 
 
             if (nowAI) nowAI.Action(4);

@@ -99,7 +99,7 @@ public class EnemySkill
 
     private void DEF(int beats,Character Char)
     {
-        Debug.Log("DEF");
+//        Debug.Log("DEF");
         Buff_defend defend = new Buff_defend
         {
             m_name = "defend",

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Minimon3 : AI
 {
-    private int circleID = 0;
-    private bool isDisabled = false;
+//    private int circleID = 0;
+//    private bool isDisabled = false;
     override protected void Update()
     {
         base.Update();
@@ -34,7 +34,6 @@ public class Minimon3 : AI
                 if (P > 0.9)
                 {
                     SGSAdd("attack");
-                    circleID = 0;
 
                 }
                 else if (P > 0.7)

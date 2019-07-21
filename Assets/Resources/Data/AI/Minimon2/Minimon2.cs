@@ -5,7 +5,7 @@ using UnityEngine;
 public class Minimon2 : AI
 {
     private int circleID = 0;
-    private bool isDisabled = false;
+//    private bool isDisabled = false;
     override protected void Update()
     {
         base.Update();

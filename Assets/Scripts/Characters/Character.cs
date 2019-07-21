@@ -103,11 +103,10 @@ public class Character : MonoBehaviour
             if (cTarget.hasBuff<Buff_defend>())
             {
 
-                if (cTarget.isPlayer)
-                {
-                    GameObject fxClone=Instantiate(Resources.Load("VFX/Shield"), cTarget.transform.Find("pos_defendfx").transform.position, Quaternion.identity) as GameObject;
-                    fxClone.transform.localScale = cTarget.transform.Find("pos_defendfx").transform.localScale;
-                }
+
+                GameObject fxClone=Instantiate(Resources.Load("VFX/Shield"), cTarget.transform.Find("pos_defendfx").transform.position, Quaternion.identity) as GameObject;
+                fxClone.transform.localScale = cTarget.transform.Find("pos_defendfx").transform.localScale;
+
                 //Debug.Log("ISCOUNTERABLE "+isCounterable.ToString());
                 if (isCounterable)
                 {
@@ -123,7 +122,6 @@ public class Character : MonoBehaviour
             }
             else
             {
-                //todo 动画也不能放这里了，以后要有变化
                 Instantiate(Resources.Load("VFX/Slash"), cTarget.transform.position, Quaternion.identity);
                 SoundController.Instance.PlayAudioEffect("SLASH");
 

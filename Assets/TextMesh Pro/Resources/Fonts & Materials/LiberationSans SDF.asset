@@ -82,7 +82,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _Diffuse: 0.5
     - _DstBlend: 0
-    - _FaceDilate: 0.66
+    - _FaceDilate: 0.28
     - _FaceUVSpeedX: 0
     - _FaceUVSpeedY: 0
     - _GlossMapScale: 1
@@ -106,9 +106,9 @@ Material:
     - _Parallax: 0.02
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
-    - _ScaleRatioA: 0.812641
+    - _ScaleRatioA: 0.9
     - _ScaleRatioB: 0.73125
-    - _ScaleRatioC: 0.13724999
+    - _ScaleRatioC: 0.47925
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0

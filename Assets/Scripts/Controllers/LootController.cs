@@ -48,7 +48,6 @@ public class LootOption
                     var equipment = Resources.Load<Equipment>("Data/Equipment/" + id.ToString());
                     return equipment.equipName;
                 }
-                break;
             case LootType.Skill:
                 {
                     //var skill = Resources.Load<SkillData>("Data/Skill/" + id.ToString());
