@@ -8253,7 +8253,6 @@ GameObject:
   - component: {fileID: 1348029361}
   - component: {fileID: 1348029363}
   - component: {fileID: 1348029362}
-  - component: {fileID: 1348029364}
   m_Layer: 5
   m_Name: SkillDrag (6)
   m_TagString: Untagged
@@ -8318,18 +8317,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1348029360}
   m_CullTransparentMesh: 0
---- !u!114 &1348029364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1348029360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a7dcf7828cee4af4848473f7c3aaf51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1355707396
 GameObject:
   m_ObjectHideFlags: 0

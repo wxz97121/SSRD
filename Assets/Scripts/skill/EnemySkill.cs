@@ -120,7 +120,8 @@ public class EnemySkill
         {
             for(int i = 0; i < Char.animator.parameterCount; i++)
             {
-                Char.animator.ResetTrigger(i);
+
+                Char.animator.ResetTrigger(Char.animator.GetParameter(i).name);
 
             }
 
