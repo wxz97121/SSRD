@@ -5439,7 +5439,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.472
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -11907,8 +11907,8 @@ MonoBehaviour:
   isPlayer: 0
   maxHp: 20
   Hp: 5
-  maxLife: 100
-  life: 100
+  maxLife: 20
+  life: 20
   maxMp: 20
   Mp: 20
   ATK: 0

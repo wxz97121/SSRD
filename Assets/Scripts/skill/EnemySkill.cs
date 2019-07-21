@@ -118,6 +118,12 @@ public class EnemySkill
         //if (aniname == "attack") Debug.Log("Attack?????");
         if (IsSetTrigger)
         {
+            for(int i = 0; i < Char.animator.parameterCount; i++)
+            {
+                Char.animator.ResetTrigger(i);
+
+            }
+
             Char.animator.SetTrigger(aniname);
         }
         else

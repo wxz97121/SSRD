@@ -15,7 +15,7 @@ MonoBehaviour:
   enemySkillGroups:
   - name: idle
     enemySkills:
-    - EPT
+    - ANI_idle
     - EPT
     - EPT
     - EPT

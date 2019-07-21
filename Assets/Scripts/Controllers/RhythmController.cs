@@ -199,7 +199,7 @@ public class RhythmController : MonoBehaviour
         //if (songPosInBeats - UIBarController.Instance.finishedBeats - 2 > commentGoodTime)
         if ((UIBarController.Instance.playingBarPosInBeats - 2f > commentGoodTime)&& isInputMissed == false)
         {
-            Debug.Log("bar pos = " + UIBarController.Instance.playingBarPosInBeats);
+//            Debug.Log("bar pos = " + UIBarController.Instance.playingBarPosInBeats);
 
             if (isCurBarCleaned == false && isCurBarAtFinalBeat == false)
             {
@@ -268,10 +268,7 @@ public class RhythmController : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
-    {
 
-    }
 
 
 
@@ -291,7 +288,7 @@ public class RhythmController : MonoBehaviour
 
         if (Player.Instance.mTarget != null)
         {
-
+            if(nowAI.animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
                 nowAI.animator.SetTrigger("idlebeat");
         }
 
@@ -301,6 +298,7 @@ public class RhythmController : MonoBehaviour
         {
             //重置发招状态为未发招
             DuelController.Instance.isActedAt3rdBeat = false;
+            isInputMissed = false;
 
 
             if (nowAI) nowAI.Action(1);
@@ -334,7 +332,6 @@ public class RhythmController : MonoBehaviour
             {
                 DuelController.Instance.EnemyRespawn();
             }
-            isInputMissed = false;
 
 
             if (nowAI) nowAI.Action(4);
