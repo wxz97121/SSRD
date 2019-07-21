@@ -325,9 +325,9 @@ public class SuperController : MonoBehaviour {
     }
 
     //
-    public void ShowInputTip(string text)
+    public void ShowInputTip(string text,int type=0)
     {
         GameObject tip = Instantiate(Resources.Load("Prefab/InputTip/InputTip"), InputTipPos.transform) as GameObject;
-        tip.GetComponent<InputTip>().Init(text);
+        tip.GetComponent<InputTip>().Init(text,type);
     }
 }

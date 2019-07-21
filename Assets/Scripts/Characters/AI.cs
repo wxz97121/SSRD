@@ -119,9 +119,9 @@ public class AI : Character
     }
 
 
-    virtual public void QTEAction(string actionname)
+    virtual public void QTEAction(string effectstr)
     {
-
+        enemySkill.CommonEffect(this, effectstr);
     }
 
 

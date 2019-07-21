@@ -51,6 +51,9 @@ public class EnemySkill
                 case ("HEL"):
                     HEL(int.Parse(InstancedEff[1]), m_Char);
                     break;
+                case ("HL"):
+                    HL(int.Parse(InstancedEff[1]), m_Char);
+                    break;
                 case ("DEF"):
                     DEF(int.Parse(InstancedEff[1]), m_Char);
                     break;
@@ -62,6 +65,9 @@ public class EnemySkill
                     break;
                 case ("SFX"):
                     SFX(InstancedEff[1], m_Char);
+                    break;
+                case ("TIP"):
+                    TIP(InstancedEff[1], int.Parse(InstancedEff[2]));
                     break;
                 default:
                     break;
@@ -95,6 +101,11 @@ public class EnemySkill
     private void HEL(int dHeal, Character Char)
     {
         Char.Heal(dHeal);
+    }
+
+    private void HL(int dHeal, Character Char)
+    {
+        Char.HealLife(dHeal);
     }
 
     private void DEF(int beats,Character Char)
@@ -184,5 +195,10 @@ public class EnemySkill
     private void SFX(string name,AI Char)
     {
         SoundController.Instance.PlayAudioEffect(name);
+    }
+
+    private void TIP(string str, int type)
+    {
+        SuperController.Instance.ShowInputTip(str,type);
     }
 }

@@ -12,9 +12,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 250233348db9d4d5295df9f54acde8e5, type: 3}
   m_Name: AIData
   m_EditorClassIdentifier: 
-  actionSequence:
-  - idle
-  - idle
-  - idle
-  - idle
-  - QTE
+  enemySkillGroups:
+  - name: form1-idle
+    enemySkills:
+    - ANI_form1-idle
+    - EPT
+    - EPT
+    - EPT
+  - name: form1-attack1
+    enemySkills:
+    - EPT
+    - ANIT_form1-ready1
+    - EPT
+    - ATK_1,ANIT_form1-attack1
+  - name: form1-attack2
+    enemySkills:
+    - ANIT_form1-ready2
+    - EPT
+    - EPT
+    - ATK_3,ANIT_form1-attack2
+  - name: form1-defend
+    enemySkills:
+    - DEF_2,ANIT_form1-defend
+    - DEF_2,ANIT_form1-defend
+    - DEF_2,ANIT_form1-defend
+    - DEF_2,ANIT_form1-defend
+  - name: QTE1
+    enemySkills:
+    - ANI_qte1-idle
+  - name: form2-idle
+    enemySkills:
+    - ANI_form2-idle
+    - EPT
+    - EPT
+    - EPT
+  - name: form2-attack1
+    enemySkills:
+    - EPT
+    - ANIT_form2-ready1
+    - EPT
+    - ATK_2,ANIT_form2-attack1
+  - name: form2-attack2
+    enemySkills:
+    - ANIT_form2-ready2
+    - EPT
+    - EPT
+    - ATK_5,ANIT_form2-attack2
+  - name: form2-heal
+    enemySkills:
+    - ANIT_form2-readyheal
+    - ANIT_form2-readyheal
+    - ANIT_form2-readyheal
+    - HEAL_20,ANIT_form2-heal
+  - name: reborn
+    enemySkills:
+    - HEAL_30,HL_30,ANI_form2-heal
+    - EPT
+    - EPT
+    - EPT

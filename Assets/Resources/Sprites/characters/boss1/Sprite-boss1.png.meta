@@ -1,21 +1,48 @@
 fileFormatVersion: 2
 guid: b697d733bcf424e8baa3126005facf07
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: boss1_fall
-    21300002: boss1_idle
-    21300004: boss1_head
-    21300006: boss1_attack1
-    21300008: boss1_fireattack1
-    21300010: boss1_attack21
-    21300012: boss1_attack22
-    21300014: boss1_fireattack21
-    21300016: boss1_fireattack22
-    21300018: boss1_shadow
-    21300020: boss1_fire
-    21300022: Sprite-boss1_0
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: boss1_fall
+  - first:
+      213: 21300002
+    second: boss1_idle
+  - first:
+      213: 21300004
+    second: boss1_head
+  - first:
+      213: 21300006
+    second: boss1_attack1
+  - first:
+      213: 21300008
+    second: boss1_fireattack1
+  - first:
+      213: 21300010
+    second: boss1_attack21
+  - first:
+      213: 21300012
+    second: boss1_attack22
+  - first:
+      213: 21300014
+    second: boss1_fireattack21
+  - first:
+      213: 21300016
+    second: boss1_fireattack22
+  - first:
+      213: 21300018
+    second: boss1_shadow
+  - first:
+      213: 21300020
+    second: boss1_fire
+  - first:
+      213: 21300022
+    second: boss1_idle2
+  - first:
+      213: -1782290175605102439
+    second: boss1_beat2
   externalObjects: {}
-  serializedVersion: 9
+  serializedVersion: 10
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -100,7 +127,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 512
+        y: 768
         width: 256
         height: 256
       alignment: 0
@@ -111,6 +138,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: ee2166af66fc74b308f0d353fa1852b5
+      internalID: 21300000
       vertices: []
       indices: 
       edges: []
@@ -120,7 +148,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 512
+        y: 768
         width: 256
         height: 256
       alignment: 0
@@ -131,6 +159,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 1dd4dfeadd00f4390a35f4175d826dc1
+      internalID: 21300002
       vertices: []
       indices: 
       edges: []
@@ -140,7 +169,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 512
-        y: 512
+        y: 768
         width: 256
         height: 256
       alignment: 0
@@ -151,12 +180,97 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 1860065de531b4d14b30e1f602843b94
+      internalID: 21300004
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
       name: boss1_attack1
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ba2e21e0d1c3492dbfe42e96c968478
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss1_fireattack1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 315fc338137fd47a0aa6854416ed6ad8
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss1_attack21
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdf345a80cf6547babfc3156c6012a6f
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss1_attack22
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a81e2e815412f459cb0d597d55a3431d
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss1_fireattack21
       rect:
         serializedVersion: 2
         x: 768
@@ -170,13 +284,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ba2e21e0d1c3492dbfe42e96c968478
+      spriteID: 2b713fd33be724fd48e771dd66368b68
+      internalID: 21300014
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss1_fireattack1
+      name: boss1_fireattack22
       rect:
         serializedVersion: 2
         x: 0
@@ -190,13 +305,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 315fc338137fd47a0aa6854416ed6ad8
+      spriteID: bb744771c365c4192a31d45bd1d19f93
+      internalID: 21300016
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss1_attack21
+      name: boss1_shadow
       rect:
         serializedVersion: 2
         x: 256
@@ -210,13 +326,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bdf345a80cf6547babfc3156c6012a6f
+      spriteID: 37295c19945244859ad938ada61e736d
+      internalID: 21300018
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss1_attack22
+      name: boss1_fire
       rect:
         serializedVersion: 2
         x: 512
@@ -230,13 +347,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a81e2e815412f459cb0d597d55a3431d
+      spriteID: be36df349ebdb42e992252e1ca9cf38f
+      internalID: 21300020
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss1_fireattack21
+      name: boss1_idle2
       rect:
         serializedVersion: 2
         x: 768
@@ -250,13 +368,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b713fd33be724fd48e771dd66368b68
+      spriteID: 47bfc4337c41346efa7be7b9556303e8
+      internalID: 21300022
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss1_fireattack22
+      name: boss1_beat2
       rect:
         serializedVersion: 2
         x: 0
@@ -264,53 +383,14 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb744771c365c4192a31d45bd1d19f93
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: boss1_shadow
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 37295c19945244859ad938ada61e736d
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: boss1_fire
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 0
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: be36df349ebdb42e992252e1ca9cf38f
+      spriteID: 993614ddfc0d04f8b8a0d818c41c66d2
+      internalID: -1782290175605102439
       vertices: []
       indices: 
       edges: []
@@ -319,10 +399,12 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 3b809f907f7fe4b209cf88c205cb5ba8
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

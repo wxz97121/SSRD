@@ -21,11 +21,14 @@ public class InputTip : MonoBehaviour
         
     }
 
-    public void Init(string text)
+    public void Init(string text,int type=0)
     {
         uppertext.text = text;
         colortext.text = text;
-
+        if (type == 1)
+        {
+            colortext.colorGradient = new VertexGradient(Color.green, Color.green, new Color(0 / 255, 135 / 255, 25 / 255), new Color(0 / 255, 135 / 255, 25 / 255));
+        }
     }
 
     public void Disappear()

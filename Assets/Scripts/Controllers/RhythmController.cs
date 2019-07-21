@@ -145,7 +145,7 @@ public class RhythmController : MonoBehaviour
 
 
         //判定是否播放第N拍
-        if (beatIndex != (int)UIBarController.Instance.playingBarPosInBeats+1)
+        if ((beatIndex != (int)UIBarController.Instance.playingBarPosInBeats+1)&& (beatIndex != SoundController.Instance.timelineInfo.currentMusicBeat))
         {
             //            Debug.Log("beat"+(SoundController.Instance.timelineInfo.currentMusicBeat - 1));
 
@@ -183,7 +183,7 @@ public class RhythmController : MonoBehaviour
             if (songPosInBeats - UIBarController.Instance.currentQTENotes[0].beatInSong > commentGoodTime)
             {
                 Player.Instance.enemyList[0].GetComponent<AI>().QTEAction(UIBarController.Instance.currentQTENotes[0].MissSkill);
-
+                SuperController.Instance.ShowInputTip("MISS");
                 //Debug.Log("songPosInBeat:" + songPosInBeats + "note[0].beat:" + UIBarController.Instance.currentEnergyNotes[0].beatInSong);
                 //Debug.Log("delete a energy note:"+ UIBarController.Instance.currentEnergyNotes[0].beatInSong);
                 UIBarController.Instance.currentQTENotes[0].note.GetComponent<VFX>().StartCoroutine("NoteInputBad");
@@ -288,7 +288,7 @@ public class RhythmController : MonoBehaviour
 
         if (Player.Instance.mTarget != null)
         {
-            if(nowAI.animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
+            if(nowAI.animator.GetCurrentAnimatorStateInfo(0).IsName("idle")|| nowAI.animator.GetCurrentAnimatorStateInfo(0).IsName("form1-idle")|| nowAI.animator.GetCurrentAnimatorStateInfo(0).IsName("form2-idle"))
                 nowAI.animator.SetTrigger("idlebeat");
         }
 

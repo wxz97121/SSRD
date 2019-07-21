@@ -192,6 +192,15 @@ public class Character : MonoBehaviour
         }
     }
 
+    virtual public void HealLife(int dHeal)
+    {
+        life = life + dHeal;
+        if (life > maxLife)
+        {
+            life = maxLife;
+        }
+    }
+
     //死亡
     virtual public void Die()
     {
