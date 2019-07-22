@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf25b2aeb1e6b4c3a8f5b1efea2d3300, type: 3}
   m_Name: testSkill_Z0X_SUPERATTACK
   m_EditorClassIdentifier: 
-  type: 2
+  type: 4
   sprite: {fileID: 21300002, guid: 16af87af7923e401fa2d5dd82c0709d1, type: 3}
   _name: HEAVY ATTACK
   cost: 4
@@ -35,3 +35,4 @@ MonoBehaviour:
     MissSkill: 
   Effect: ATK_2,ANI_player-heavyattack
   CD: 1
+  Desc: "\u91CD\u51FB\uFF1A\u6D88\u80171\u80FD\u91CF\uFF0C\u8FDB\u884C2\u70B9\u653B\u51FB\uFF0C1\u56DE\u5408CD"

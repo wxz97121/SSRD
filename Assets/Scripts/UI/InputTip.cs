@@ -27,7 +27,7 @@ public class InputTip : MonoBehaviour
         colortext.text = text;
         if (type == 1)
         {
-            colortext.colorGradient = new VertexGradient(Color.green, Color.green, new Color(0 / 255, 135 / 255, 25 / 255), new Color(0 / 255, 135 / 255, 25 / 255));
+            colortext.colorGradient = new VertexGradient(Color.green, Color.green, new Color(0f / 255f, 135f / 255f, 25f / 255f,1f), new Color(0f / 255f, 135f / 255f, 25f / 255f,1f));
         }
     }
 

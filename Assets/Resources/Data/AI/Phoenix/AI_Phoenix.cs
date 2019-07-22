@@ -394,7 +394,9 @@ public class AI_Phoenix : AI
         qtescore1 = OneSongScore.ReadQTEScoreData(qTEScoreData_1);
 
         SGSAdd("form1-idle");
-                SoundController.Instance.FMODSetParameter("boss", 1);
+        SGSAdd("form1-idle");
+
+        SoundController.Instance.FMODSetParameter("boss", 1);
                 SoundController.Instance.FMODSetParameter("chorus", 0);
                 SoundController.Instance.FMODSetParameter("verse", 0);
                 SoundController.Instance.FMODSetParameter("breakdown", 0);
@@ -454,20 +456,37 @@ public class AI_Phoenix : AI
 
         if (beatnum == 3)
         {
-            if (skillGroupSeq.Count == actionID + 1)
+            if ((skillGroupSeq.Count == actionID + 1))
             {
                 float P = Random.value;
-                if (P > 0.9)
+                if (P > 0.8)
                 {
-                    SGSAdd("form1-attack1");
+                    if(skillGroupSeq[actionID-1].name== "form1-attack1" || skillGroupSeq[actionID - 1].name == "form1-attack2")
+                    {
+                        SGSAdd("form1-idle");
+                    }
+                    else
+                    {
+                        SGSAdd("form1-attack1");
+
+                    }
 
                 }
-                else if (P > 0.6)
+                else if (P > 0.5)
                 {
-                    SGSAdd("form1-attack2");
+                    if (skillGroupSeq[actionID - 1].name == "form1-attack1" || skillGroupSeq[actionID - 1].name == "form1-attack2")
+                    {
+                        SGSAdd("form1-idle");
+                    }
+                    else
+                    {
+                        SGSAdd("form1-attack2");
+
+                    }
+
 
                 }
-                else if (P > 0.3)
+                else if (P > 0.2)
                 {
                     SGSAdd("form1-defend");
 
@@ -529,19 +548,38 @@ public class AI_Phoenix : AI
             if (skillGroupSeq.Count == actionID + 1)
             {
                 float P = Random.value;
-                if (P > 0.8)
+                if (P > 0.7)
                 {
-                    SGSAdd("form2-attack1");
+                    if (skillGroupSeq[actionID - 1].name == "form2-attack1" || skillGroupSeq[actionID - 1].name == "form2-attack2")
+                    {
+                        SGSAdd("form2-idle");
+                    }
+                    else
+                    {
+                        SGSAdd("form2-attack1");
+
+                    }
 
                 }
-                else if (P > 0.4)
+                else if (P > 0.35f)
                 {
-                    SGSAdd("form2-attack2");
+                    if (skillGroupSeq[actionID - 1].name == "form2-attack1" || skillGroupSeq[actionID - 1].name == "form2-attack2")
+                    {
+                        SGSAdd("form2-idle");
+                    }
+                    else
+                    {
+                        SGSAdd("form2-attack2");
+
+                    }
+
 
                 }
-                else if (P > 0.2)
+                else if (P > 0.1f)
                 {
                     SGSAdd("form2-heal");
+                    SGSAdd("form2-idle");
+
 
                 }
                 else
@@ -558,4 +596,6 @@ public class AI_Phoenix : AI
 
         }
     }
+
+
 }

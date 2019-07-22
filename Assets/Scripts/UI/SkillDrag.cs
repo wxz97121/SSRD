@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 
-public class SkillDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class SkillDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler,IPointerEnterHandler,IPointerExitHandler
 {
     private Color normalColor;
     public Skill m_Skill;
@@ -17,6 +17,7 @@ public class SkillDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
     private RectTransform m_DraggingPlanes;
     private SkillDrop[] AllDrop;
     private Text m_Text;
+    private Text decText;
     private void Awake()
     {
         m_Text = GetComponentInChildren<Text>();
@@ -40,6 +41,8 @@ public class SkillDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
     private void Start()
     {
         m_Player = Player.Instance;
+        decText = GameObject.Find("SkillDesc").GetComponents<Text>()[0] as Text;
+
     }
     public void OnBeginDrag(PointerEventData data)
     {
@@ -98,6 +101,13 @@ public class SkillDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
             rt.rotation = m_DraggingPlanes.rotation;
         }
     }
-
-
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if(m_Skill!=null)
+            decText.text = m_Skill.Desc;
+    }
+   public void OnPointerExit(PointerEventData eventData)
+    {
+        decText.text = "";
+    }
 }

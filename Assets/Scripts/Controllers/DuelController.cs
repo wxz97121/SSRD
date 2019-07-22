@@ -57,9 +57,9 @@ public class DuelController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         UICanvas = GameObject.Find("Canvas").transform;
-        s1 = new List<string> { "DEF", "ULTI", "ANI","ANIT","SFX"};
-        s2 = new List<string> { "ATK", "HEL", "DMP","ATKmini","ALLMPATK","DATK" };
-        s3 = new List<string> { "", "TBD", "" };
+        s1 = new List<string> { "DEF", "ULTI"};
+        s2 = new List<string> { "ATK", "HEL", "DMP","ATKmini","ALLMPATK","DATK","HL" };
+        s3 = new List<string> { "DHEL", "TBD",  "ANI", "ANIT", "SFX" };
         enemySkill = new EnemySkill();
         playerSkill = new Skill();
     }
@@ -215,21 +215,31 @@ public class DuelController : MonoBehaviour {
             }
 
         }
-//        Debug.Log("E1 = " + E1 + "E2 = " + E2 + "E3 = " + E3);
+        //        Debug.Log("E1 = " + E1 + "E2 = " + E2 + "E3 = " + E3);
 
-//        Debug.Log("p1 = " + P1+ "p2 = " + P2+ "p3 = " + P3);
+        //        Debug.Log("p1 = " + P1+ "p2 = " + P2+ "p3 = " + P3);
 
 
         //依次触发技能效果
-        if (nowAI) enemySkill.CommonEffect(nowAI, E1);
-        if (nowAI) playerSkill.CommonEffect(Player.Instance, P1);
-        if (nowAI) enemySkill.CommonEffect(nowAI, E2);
-        if (nowAI) playerSkill.CommonEffect(Player.Instance, P2);
-        if (nowAI) enemySkill.CommonEffect(nowAI, E3);
-        if (nowAI) playerSkill.CommonEffect(Player.Instance, P3);
+        if (nowAI != null)
+        {
+            if(!nowAI.isBroken)enemySkill.CommonEffect(nowAI, E1);
+            if (!Player.Instance.isBroken) playerSkill.CommonEffect(Player.Instance, P1);
+            if (!nowAI.isBroken) enemySkill.CommonEffect(nowAI, E2);
+            if (!Player.Instance.isBroken) playerSkill.CommonEffect(Player.Instance, P2);
+            if (!nowAI.isBroken) enemySkill.CommonEffect(nowAI, E3);
+            if (!Player.Instance.isBroken) playerSkill.CommonEffect(Player.Instance, P3);
+        }
+
 
         //本小节行动过，上锁
         isActedAt3rdBeat = true;
+
+        //重置双方打断状态
+        Player.Instance.isBreakable = false;
+        Player.Instance.isBroken = false;
+        nowAI.isBreakable = false;
+        nowAI.isBroken = false;
 
         //更新技能CD
         Player.Instance.UpdateCDs();

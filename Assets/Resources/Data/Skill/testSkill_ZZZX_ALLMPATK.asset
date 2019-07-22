@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf25b2aeb1e6b4c3a8f5b1efea2d3300, type: 3}
   m_Name: testSkill_ZZZX_ALLMPATK
   m_EditorClassIdentifier: 
-  type: 2
+  type: 4
   sprite: {fileID: 21300004, guid: 16af87af7923e401fa2d5dd82c0709d1, type: 3}
   _name: ALL MP ATK
   cost: -1
@@ -51,3 +51,4 @@ MonoBehaviour:
     MissSkill: 
   Effect: ALLMPATK,ANI_player-slash
   CD: 2
+  Desc: "\u5168\u529B\u4E00\u51FB\uFF1A\u6D88\u8017\u6240\u6709\u80FD\u91CF\uFF0C\u8FDB\u884C[\u6D88\u8017\u80FD\u91CF\u503C]*2\u70B9\u7684\u653B\u51FB\uFF0C2\u56DE\u5408CD"

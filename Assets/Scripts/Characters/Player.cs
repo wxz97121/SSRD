@@ -65,9 +65,9 @@ public class Player : Character {
         base.Start();
         isPlayer = true;
 
-        skillSlots[0].requiredType = SkillType.normal;
-        skillSlots[1].requiredType = SkillType.attack;
-        skillSlots[2].requiredType = SkillType.attack;
+        skillSlots[0].requiredType = SkillType.attack;
+        skillSlots[1].requiredType = SkillType.defend;
+        skillSlots[2].requiredType = SkillType.special;
         skillSlots[3].requiredType = SkillType.special;
         skillSlots[4].requiredType = SkillType.ulti;
         animator = GetComponent<Animator>();

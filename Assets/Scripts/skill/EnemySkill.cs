@@ -51,6 +51,17 @@ public class EnemySkill
                 case ("HEL"):
                     HEL(int.Parse(InstancedEff[1]), m_Char);
                     break;
+                case ("DHEL"):
+                    //可被打断的治疗
+                    if (!m_Char.isBroken)
+                    {
+                        HEL(int.Parse(InstancedEff[1]), m_Char);
+                    }
+                    else
+                    {
+                        m_Char.Broken();
+                    }
+                    break;
                 case ("HL"):
                     HL(int.Parse(InstancedEff[1]), m_Char);
                     break;
@@ -68,6 +79,10 @@ public class EnemySkill
                     break;
                 case ("TIP"):
                     TIP(InstancedEff[1], int.Parse(InstancedEff[2]));
+                    break;
+                case ("CBB"):
+                    //可被打断宣言,用在第四拍
+                    m_Char.isBreakable=true;
                     break;
                 default:
                     break;

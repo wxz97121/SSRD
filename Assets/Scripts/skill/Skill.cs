@@ -28,7 +28,7 @@ public class Skill
     //CD
     public int CooldownMax;
     public int Cooldown;
-
+    public string Desc;
 
 
 
@@ -109,6 +109,7 @@ public class Skill
             type = data.type;
             CooldownMax = data.CD;
             Cooldown = 0;
+            Desc = data.Desc;
             for (int i = 0; i < data.inputSequence.Count; i++)
             {
                 inputSequence.Add(new Note
@@ -187,7 +188,7 @@ public class Skill
 
     public void ALLMPATK(Character Char)
     {
-        Char.Hit(Char.Mp/2);
+        Char.Hit((Char.Mp/4)*2);
         Char.Mp = 0;
         Char.AddSoul(4);
     }

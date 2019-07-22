@@ -58,3 +58,5 @@ MonoBehaviour:
     BadSkill: 
     MissSkill: 
   Effect: ULTI_001weilaiyongjiezhan
+  CD: 0
+  Desc: "\u8D85\u5FC5\u6740"

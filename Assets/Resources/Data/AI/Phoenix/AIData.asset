@@ -60,10 +60,10 @@ MonoBehaviour:
     - ATK_5,ANIT_form2-attack2
   - name: form2-heal
     enemySkills:
+    - ANIT_form2-readyheal,CBB
     - ANIT_form2-readyheal
     - ANIT_form2-readyheal
-    - ANIT_form2-readyheal
-    - HEAL_20,ANIT_form2-heal
+    - DHEL_20,ANIT_form2-heal
   - name: reborn
     enemySkills:
     - HEAL_30,HL_30,ANI_form2-heal

@@ -16,5 +16,6 @@ public class SkillData : ScriptableObject
     //public UnityEvent EffectEvent;
     public string Effect;
     public int CD;
+    public string Desc;
 }
 

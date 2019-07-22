@@ -24,8 +24,12 @@ public class Character : MonoBehaviour
     public int DEF = 0;
 
     public bool isUndead = false;
-    //被反击
-    public bool isCountered = false;
+    //被精防
+    public bool isDefenced = false;
+    //被打断
+    public bool isBroken = false;
+    //当前可以被打断
+    public bool isBreakable = false;
 
     //魂点数
     public int soulPoint = 0;
@@ -93,7 +97,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    virtual public void Hit(int dDamage, bool noAfterattack=false,bool isCounterable=false)
+    virtual public void Hit(int dDamage, bool noAfterattack=false,bool isDefenceToDisable= false)
     {
         //普通攻击目标
         if (mTarget != null)
@@ -108,11 +112,11 @@ public class Character : MonoBehaviour
                 fxClone.transform.localScale = cTarget.transform.Find("pos_defendfx").transform.localScale;
 
                 //Debug.Log("ISCOUNTERABLE "+isCounterable.ToString());
-                if (isCounterable)
+                if (isDefenceToDisable)
                 {
                     //Debug.Break();
                     SoundController.Instance.PlayAudioEffect("PDEFEND");
-                    isCountered = true;
+                    isDefenced = true;
                 }
                 else
                 {
@@ -124,7 +128,7 @@ public class Character : MonoBehaviour
             {
                 Instantiate(Resources.Load("VFX/Slash"), cTarget.transform.position, Quaternion.identity);
                 SoundController.Instance.PlayAudioEffect("SLASH");
-
+                
                 cTarget.Damage(CalcDmg(getCurrentATK(), cTarget.getCurrentDEF(), dDamage), this);
 
                 //执行BUFF中的攻击结束效果
@@ -190,6 +194,7 @@ public class Character : MonoBehaviour
         {
             Hp = maxHp;
         }
+        Bubble.AddBubble(BubbleSprType.hp, "+" + dHeal.ToString(), this, true);
     }
 
     virtual public void HealLife(int dHeal)
@@ -199,6 +204,8 @@ public class Character : MonoBehaviour
         {
             life = maxLife;
         }
+        Bubble.AddBubble(BubbleSprType.life, "+" + dHeal.ToString(), this, true);
+
     }
 
     //死亡
@@ -219,18 +226,22 @@ public class Character : MonoBehaviour
         }
 
         //触发被打断效果
-        Broken();
+        if(isBreakable)Broken();
 
-        Bubble.AddBubble(BubbleSprType.hp, "-" + dDamage.ToString(), this);
 
         //getHit = true;
-        if (Hp > dDamage)
+        if (Hp >= dDamage)
         {
             Hp -= dDamage;
+            Bubble.AddBubble(BubbleSprType.hp, "-" + dDamage.ToString(), this);
+
         }
         else
         {
+            if(Hp>0)Bubble.AddBubble(BubbleSprType.hp, "-" + Hp.ToString(), this);
+
             int lifeDamage = dDamage - Hp;
+            if (lifeDamage > 0) Bubble.AddBubble(BubbleSprType.life, "-" + lifeDamage.ToString(), this);
 
             Hp = 0;
 
@@ -246,7 +257,9 @@ public class Character : MonoBehaviour
     //被打断
     public virtual void Broken()
     {
-
+        isBroken = true;
+        SuperController.Instance.ShowInputTip("BREAK!", 1);
+        //TODO:增加打断特效
     }
 
     //计算当前攻击力
