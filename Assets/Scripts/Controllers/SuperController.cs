@@ -145,7 +145,7 @@ public class SuperController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Q))
         {
               SoundController.Instance.FMODPlayOneShot("event:/instruments/snare");
-              SoundController.Instance.PlayAudioEffect("SNARE_01");
+              SoundController.Instance.PlayAudioEffect("SNARE");
            // Debug.Log(SoundController.Instance.GetSpectrum().Length);
         }
 

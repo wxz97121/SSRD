@@ -15,6 +15,8 @@ public class SkillDrop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
     private Color highlightColor = Color.yellow;
     private Color previousColor;
     private Text m_Text;
+    private Text decText;
+
     private void Awake()
     {
         containerImage = transform.parent.GetComponent<Image>();
@@ -23,6 +25,8 @@ public class SkillDrop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
     private void Start()
     {
         m_Player = Player.Instance;
+        decText = GameObject.Find("SkillDesc").GetComponents<Text>()[0] as Text;
+
     }
     private void Update()
     {
@@ -48,11 +52,14 @@ public class SkillDrop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
             var tmp = m_Player.ChangeSkill(index, originalSkill);
             originalDrag.m_Skill = tmp;
         }
-
+        if (m_Player.skillSlots[index].skill != null)
+            decText.text = m_Player.skillSlots[index].skill.Desc;
     }
 
     public void OnPointerEnter(PointerEventData data)
     {
+        if (m_Player.skillSlots[index].skill != null)
+            decText.text = m_Player.skillSlots[index].skill.Desc;
         if (containerImage == null) return;
         if (data.pointerDrag == null) return;
         var originalDrag = data.pointerDrag.GetComponent<SkillDrag>();
@@ -67,6 +74,8 @@ public class SkillDrop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
 
     public void OnPointerExit(PointerEventData data)
     {
+        decText.text = "";
+
         if (containerImage == null) return;
         if (data.pointerDrag == null) return;
         var originalDrag = data.pointerDrag.GetComponent<SkillDrag>();
