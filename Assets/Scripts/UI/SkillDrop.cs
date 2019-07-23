@@ -13,6 +13,7 @@ public class SkillDrop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
     [HideInInspector]
     public Image containerImage;
     private Color highlightColor = Color.yellow;
+    private Color previousColor;
     private Text m_Text;
     private void Awake()
     {
@@ -59,6 +60,7 @@ public class SkillDrop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
         if (originalSkill == null) return;
         if (m_Player.CheckSkillSlot(index, originalSkill))
         {
+            previousColor = containerImage.color;
             containerImage.color = highlightColor;
         }
     }
@@ -72,7 +74,7 @@ public class SkillDrop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
         if (originalSkill == null) return;
         if (m_Player.CheckSkillSlot(index, originalSkill))
         {
-            containerImage.color = highlightColor;
+            containerImage.color = previousColor;
         }
     }
 

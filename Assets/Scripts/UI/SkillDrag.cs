@@ -23,7 +23,7 @@ public class SkillDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         m_Text = GetComponentInChildren<Text>();
         AllDrop = FindObjectsOfType<SkillDrop>();
         m_Skill = new Skill(0,SkillString);
-        GetComponent<Image>().overrideSprite = m_Skill.Icon;
+        GetComponent<Image>().sprite = m_Skill.Icon;
     }
     private void Update()
     {
@@ -35,6 +35,7 @@ public class SkillDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         else
         {
             GetComponent<Image>().sprite = null;
+            //GetComponent<Image>().
             m_Text.text = "";
         }
     }
