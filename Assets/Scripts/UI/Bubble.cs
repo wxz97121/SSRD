@@ -72,5 +72,6 @@ public class Bubble : MonoBehaviour
        //sprite.DOFade(0, 0.5).SetEase(Ease.InOutQuad);
        //text.DOFade(0, 0.5).SetEase(Ease.InOutQuad);
         Destroy(gameObject, 1);
+        //test
     }
 }
