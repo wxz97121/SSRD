@@ -374,14 +374,14 @@ public class InputSequenceController : MonoBehaviour
                 Player.Instance.enemyList[0].GetComponent<AI>().QTEAction(UIBarController.Instance.currentQTENotes[0].SuccessSkill);
 
             }
-            else
-            {
-                Debug.Log(UIBarController.Instance.currentQTENotes[0].BadSkill);
-                UIBarController.Instance.currentQTENotes[0].note.GetComponent<VFX>().StartCoroutine("NoteInputBad");
-                SuperController.Instance.ShowInputTip("BAD");
-                Player.Instance.enemyList[0].GetComponent<AI>().QTEAction(UIBarController.Instance.currentQTENotes[0].BadSkill);
+            //else
+            //{
+            //    Debug.Log(UIBarController.Instance.currentQTENotes[0].BadSkill);
+            //    UIBarController.Instance.currentQTENotes[0].note.GetComponent<VFX>().StartCoroutine("NoteInputBad");
+            //    SuperController.Instance.ShowInputTip("BAD");
+            //    Player.Instance.enemyList[0].GetComponent<AI>().QTEAction(UIBarController.Instance.currentQTENotes[0].BadSkill);
 
-            }
+            //}
             UIBarController.Instance.currentQTENotes.RemoveAt(0);
         }
         else

@@ -15,6 +15,9 @@ MonoBehaviour:
   scoreData: {fileID: 11400000, guid: 0440950d86df8420794bb8b7ae20d8c9, type: 2}
   enemyList:
   - Phoenix
+  - Minimon2
   - Minimon1
+  - Minimon2
   - Minimon3
+  - Phoenix
   BGMPath: event:/music/core

@@ -194,7 +194,7 @@ public class Character : MonoBehaviour
         {
             Hp = maxHp;
         }
-        Bubble.AddBubble(BubbleSprType.hp, "+" + dHeal.ToString(), this, true);
+        if(dHeal>0)Bubble.AddBubble(BubbleSprType.hp, "+" + dHeal.ToString(), this, true);
     }
 
     virtual public void HealLife(int dHeal)
@@ -204,7 +204,7 @@ public class Character : MonoBehaviour
         {
             life = maxLife;
         }
-        Bubble.AddBubble(BubbleSprType.life, "+" + dHeal.ToString(), this, true);
+        if (dHeal > 0) Bubble.AddBubble(BubbleSprType.life, "+" + dHeal.ToString(), this, true);
 
     }
 

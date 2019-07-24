@@ -56,7 +56,7 @@ public class Bubble : MonoBehaviour
                 break;
             case BubbleSprType.life:
                 bub.sprite.sprite = bub.spr_life;
-                bub.sprite.color = new Color(76f / 255f, 76f / 255f, 255f / 255f,1f);
+                bub.sprite.color = new Color(255f / 255f, 76f / 255f, 76f / 255f,1f);
 
 
                 break;

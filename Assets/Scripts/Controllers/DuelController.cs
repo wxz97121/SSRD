@@ -79,9 +79,12 @@ public class DuelController : MonoBehaviour {
 
     public void EnemyRespawn()
     {
-
-        if(Player.Instance.enemyList.Count==0)
+        if (Player.Instance.enemyList.Count == 0)
+        {
+            Player.Instance.Heal(Player.Instance.maxHp- Player.Instance.Hp);
             AddEnemy();
+
+        }
 
     }
 
