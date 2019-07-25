@@ -95,7 +95,7 @@ public class SoundController : MonoBehaviour {
 
 
         //fmod init
-        samplerate = 48000;
+        samplerate = 44100;
 
 
 //        RuntimeManager.LowlevelSystem.getSoftwareFormat(out samplerate,out sPEAKERMODE,out rawspeaker);
@@ -183,6 +183,7 @@ public class SoundController : MonoBehaviour {
     {
 
         FMODmusic.getChannelGroup(out channelGroup);
+        RuntimeManager.CoreSystem.createDSPByType(DSP_TYPE.FFT, out fftDSP);
         //RuntimeManager.LowlevelSystem.createDSPByType(DSP_TYPE.FFT, out fftDSP);
         channelGroup.addDSP(0, fftDSP);
         channelGroup.getDSP(0, out channelhead);
@@ -192,7 +193,7 @@ public class SoundController : MonoBehaviour {
         channelGroup.getDSPClock(out dsp, out dsp2);
         UnityEngine.Debug.Log("dsp "+dsp);
 
-        //抵消播放瞬间产生的延迟
+        //记录一下实际播放时间，抵消播放瞬间产生的延迟
         RhythmController.Instance.songPosOffset =  RhythmController.Instance.songStartTime- CalcDSPtime();
 //        UnityEngine.Debug.Log("offset="+ RhythmController.Instance.songPosOffset);
 
@@ -204,6 +205,7 @@ public class SoundController : MonoBehaviour {
         FMODmusic.setParameterByName(paraname, value);
     }
 
+    //计算当前播放的时间
     public float CalcDSPtime()
     {
 
@@ -253,11 +255,13 @@ public class SoundController : MonoBehaviour {
     {
         IntPtr unmanagedData;
         uint length;
-        fftDSP.getParameterData((int)FMOD.DSP_FFT.SPECTRUMDATA, out unmanagedData, out length);
+
+        fftDSP.getParameterData(2, out unmanagedData, out length);
 
             FMOD.DSP_PARAMETER_FFT fftData = (FMOD.DSP_PARAMETER_FFT)Marshal.PtrToStructure(unmanagedData, typeof(FMOD.DSP_PARAMETER_FFT));
-            var spectrum = fftData.spectrum;
-            return spectrum[0];
+             var spectrum = fftData.spectrum;
+
+        return spectrum[0];
 
 
     }

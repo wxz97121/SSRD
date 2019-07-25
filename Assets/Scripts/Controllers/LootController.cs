@@ -118,7 +118,7 @@ public class LootController : MonoBehaviour
         Debug.Log(optionSlot.Length);
         for (int i = 0; i < optionSlot.Length; i++)
         {
-            var opt = new LootOption(LootType.Item, Random.Range(0, 2));
+            var opt = new LootOption(LootType.Item, i);
             optionView[i] = Instantiate(Resources.Load<GameObject>("Prefab/LootOption"), optionSlot[i]);
             optionView[i].GetComponent<LootOptionView>().SetOption(opt);
         }
