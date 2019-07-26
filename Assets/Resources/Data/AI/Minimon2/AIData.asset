@@ -25,12 +25,18 @@ MonoBehaviour:
     - EPT
     - EPT
     - ANIT_attack,ATK_1
+  - name: Dattack2
+    enemySkills:
+    - ANIT_ready
+    - EPT
+    - EPT
+    - ANIT_attack,ATK_3
   - name: Dattack
     enemySkills:
     - ANIT_Dready,SFX_DANGER
     - EPT
     - EPT
-    - ANIT_attack,DATK_3
+    - ANIT_attack,DATK_2
   - name: disable
     enemySkills:
     - ANIT_disable

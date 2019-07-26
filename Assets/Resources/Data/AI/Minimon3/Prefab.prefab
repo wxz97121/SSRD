@@ -845,10 +845,12 @@ MonoBehaviour:
   life: 40
   maxMp: 5
   Mp: 0
-  ATK: 3
+  ATK: 2
   DEF: 0
   isUndead: 0
-  isCountered: 0
+  isDefenced: 0
+  isBroken: 0
+  isBreakable: 0
   soulPoint: 0
   soulMaxPoint: 10
   buffs: []

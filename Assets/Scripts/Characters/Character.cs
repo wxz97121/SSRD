@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+
 using TMPro;
 
 //角色基类，控制玩家和敌人的全部属性和行动
@@ -130,7 +132,11 @@ public class Character : MonoBehaviour
                 SoundController.Instance.PlayAudioEffect("SLASH");
                 
                 cTarget.Damage(CalcDmg(getCurrentATK(), cTarget.getCurrentDEF(), dDamage), this);
+                if (cTarget.isPlayer)
+                {
+                    Camera.main.gameObject.transform.DOShakePosition(1,0.5f);
 
+                }
                 //执行BUFF中的攻击结束效果
                 if (!noAfterattack)
                 {

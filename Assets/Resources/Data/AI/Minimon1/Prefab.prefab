@@ -192,15 +192,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d69fe212a8ba4cb78cbfaf5a66af991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 0
   maxHp: 3
   Hp: 3
   maxLife: 10
   life: 10
   maxMp: 5
   Mp: 0
-  ATK: 2
+  ATK: 0
   DEF: 0
   isUndead: 0
+  isDefenced: 0
+  isBroken: 0
+  isBreakable: 0
   soulPoint: 0
   soulMaxPoint: 10
   buffs: []
@@ -208,6 +212,7 @@ MonoBehaviour:
   m_name: 
   data: {fileID: 11400000, guid: f5ff2a66aa2074fcb8dbf71fa1a1563f, type: 2}
   actionID: 0
+  skillGroupSeq: []
   animator: {fileID: 0}
   originPosition: {x: 0, y: 0, z: 0}
   lootMoney: 1

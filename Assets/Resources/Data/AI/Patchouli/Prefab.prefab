@@ -112,30 +112,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd2d8c7f0eeb4845ae214eea7fd431c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 10
-  Hp: 10
+  isPlayer: 0
+  maxHp: 20
+  Hp: 20
+  maxLife: 10
+  life: 10
   maxMp: 5
   Mp: 0
   ATK: 2
-  currentATK: 1
   DEF: 0
-  currentDEF: 0
-  equipmentList: []
-  currentWeapon: {fileID: 0}
-  currentArmor: {fileID: 0}
-  currentScroll: {fileID: 0}
-  UIHpNum: {fileID: 0}
-  UIMpNum: {fileID: 0}
+  isUndead: 0
+  isDefenced: 0
+  isBroken: 0
+  isBreakable: 0
+  soulPoint: 0
+  soulMaxPoint: 10
+  buffs: []
   mTarget: {fileID: 0}
-  Shield: 0
-  mChargeList: 
-  getHit: 0
-  chargeVfx: {fileID: 0}
   m_name: 
   data: {fileID: 11400000, guid: 10102f3c4d1414a8c855f67f0724fa9f, type: 2}
   actionID: 0
-  skillSequence: []
+  skillGroupSeq: []
   animator: {fileID: 0}
   originPosition: {x: 5, y: 0, z: 0}
   lootMoney: 1
+  isReadyToDie: 0
   phaseID: 0

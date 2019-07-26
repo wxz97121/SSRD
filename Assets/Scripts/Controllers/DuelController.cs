@@ -81,16 +81,21 @@ public class DuelController : MonoBehaviour {
     {
         if (Player.Instance.enemyList.Count == 0)
         {
+            if (enemyIndex >= enemyList.Count)
+            {
+                SuperController.Instance.Win();
+                return;
+            }
             Player.Instance.Heal(Player.Instance.maxHp- Player.Instance.Hp);
-            AddEnemy();
-
+            AddEnemy(enemyIndex);
+            enemyIndex++;
         }
 
     }
 
 
     #region 增加敌人
-    public void AddEnemy()
+    public void AddEnemy(int enemyIndex)
     {
 
         GameObject instEnemy = Instantiate((GameObject)Resources.Load("Data/AI/" + enemyList[enemyIndex] + "/Prefab", typeof(GameObject)), GameObject.Find("EnemyGroup").transform);
@@ -102,7 +107,7 @@ public class DuelController : MonoBehaviour {
 
         Player.Instance.enemyList.Add(instEnemy);
         Player.Instance.mTarget = instEnemy;
-        enemyIndex = (enemyIndex + 1) % enemyList.Count;
+        //enemyIndex = (enemyIndex + 1) % enemyList.Count;
     }
 
 

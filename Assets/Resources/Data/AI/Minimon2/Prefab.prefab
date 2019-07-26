@@ -602,16 +602,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab8094ed81a3247c494a545c240f7f80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 0
   maxHp: 0
   Hp: 0
   maxLife: 25
   life: 25
   maxMp: 5
   Mp: 0
-  ATK: 0
+  ATK: 1
   DEF: 0
   isUndead: 0
-  isCountered: 0
+  isDefenced: 0
+  isBroken: 0
+  isBreakable: 0
   soulPoint: 0
   soulMaxPoint: 10
   buffs: []

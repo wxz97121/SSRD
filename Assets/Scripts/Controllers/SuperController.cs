@@ -207,6 +207,8 @@ public class SuperController : MonoBehaviour {
 
     public void NewGame()
     {
+        DuelController.Instance.ClearEnemy();
+
         SkillSelectUI();
 
 
@@ -220,7 +222,6 @@ public class SuperController : MonoBehaviour {
         //Debug.Log("Game Over");
 
         state = GameState.End;
-        DuelController.Instance.ClearEnemy();
         uiBarController.ClearBarArea();
         skillTipBarController.ClearSkillTipArea();
         //SoundController.Instance.SetPlayedTime();
@@ -237,6 +238,26 @@ public class SuperController : MonoBehaviour {
         mainMenu.Find("Title").GetComponent<Text>().text = "死";
         mainMenu.Find("Button").Find("Text").GetComponent<Text>().text = "再来!";
     }
+    public void Win()
+    {
+        //Debug.Log("Game Over");
+
+        state = GameState.End;
+        uiBarController.ClearBarArea();
+        skillTipBarController.ClearSkillTipArea();
+        //SoundController.Instance.SetPlayedTime();
+        SoundController.Instance.FMODmusic.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        StartCoroutine("WinUI");
+
+    }
+    IEnumerator WinUI()
+    {
+        yield return new WaitForSeconds(2.0f);
+
+        mainMenu.gameObject.SetActive(true);
+        mainMenu.Find("Title").GetComponent<Text>().text = "牛逼！";
+        mainMenu.Find("Button").Find("Text").GetComponent<Text>().text = "再来!";
+    }
 
     void SkillSelectUI()
     {
@@ -248,9 +269,13 @@ public class SuperController : MonoBehaviour {
     public void SkillSelectOK()
     {
         state = GameState.Start;
-
+        Player.Instance.currentArmor = null;
+        Player.Instance.currentScroll = null;
+        Player.Instance.currentWeapon = null;
+        Player.Instance.equipmentList.Clear();
         Pause(GameState.Loot);
         LootController.Instance.NewLoot();
+
         skillSelectUI.gameObject.SetActive(false);
 
         skillTipBarController.InitSkillTipBarArea();

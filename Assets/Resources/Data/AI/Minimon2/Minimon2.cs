@@ -40,7 +40,7 @@ public class Minimon2 : AI
                 else
                 {
                     SGSAdd("Dattack");
-                    SGSAdd("attack");
+                    SGSAdd("Dattack2");
                     circleID = -1;
 
                 }
