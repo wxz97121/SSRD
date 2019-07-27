@@ -59,6 +59,8 @@ public class Player : Character {
     {
         Hp = maxHp;
         Mp = maxMp;
+        life = maxLife;
+        spec.Start();
     }
     // Use this for initialization
     override protected void Start () {

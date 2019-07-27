@@ -137,19 +137,20 @@ public class Character : MonoBehaviour
                     Camera.main.gameObject.transform.DOShakePosition(1,0.5f);
 
                 }
-                //执行BUFF中的攻击结束效果
-                if (!noAfterattack)
+
+
+
+            }
+            //执行BUFF中的攻击结束效果
+            if (!noAfterattack)
+            {
+                List<Buff> tempbuffs = new List<Buff>();
+                tempbuffs.AddRange(buffs);
+                foreach (Buff b in tempbuffs)
                 {
-                    List<Buff> tempbuffs = new List<Buff>();
-                    tempbuffs.AddRange(buffs);
-                    foreach (Buff b in tempbuffs)
-                    {
 
-                        b.AfterAttack(this);
-                    }
+                    b.AfterAttack(this);
                 }
-
-
             }
         }
 
@@ -257,6 +258,14 @@ public class Character : MonoBehaviour
                 life = 0;
             }
             // Die();
+        }
+
+        List<Buff> tempbuffs = new List<Buff>();
+        tempbuffs.AddRange(buffs);
+        foreach (Buff b in tempbuffs)
+        {
+
+            b.AfterAttacked(this);
         }
     }
 

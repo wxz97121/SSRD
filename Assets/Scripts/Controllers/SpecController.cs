@@ -15,7 +15,7 @@ public class SpecController : MonoBehaviour
     public Color MaxColor3;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         _specDictionary = new Dictionary<string, SimpleSpectrum>();
 

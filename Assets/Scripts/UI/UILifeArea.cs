@@ -31,7 +31,7 @@ public class UILifeArea : MonoBehaviour
         }
         //HP发生变化
         if (chara != null) { 
-        if (chara.Hp != Life)
+        if (chara.life != Life)
         {
             Animate(chara.life);
         }
@@ -48,7 +48,7 @@ public class UILifeArea : MonoBehaviour
         {
             maxLife = chara.maxLife;
             Life = chara.life;
-            image.fillAmount = (float)Life / (float)maxLife;
+            image.fillAmount = Life / (float)maxLife;
             lifeNum.text = Life.ToString()+"/"+maxLife.ToString();
         }
     }

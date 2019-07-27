@@ -17,10 +17,10 @@ public class Buff_tripledamage : Buff
         Buff_tripledamage oldbuff = p_chara.buffs.FindLast(b => b.GetType() == typeof(Buff_tripledamage)) as Buff_tripledamage;
         if (oldbuff != null)
         {
-            //如果层数已满，则直接攻击
+            //如果层数已满，则什么都不发生
             if (oldbuff.multicount >= 3)
             {
-                p_chara.Hit(3);
+                //p_chara.Hit(3);
                 //p_chara.buffs.Remove(oldbuff);
                 return;
             }
