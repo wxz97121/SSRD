@@ -5,7 +5,7 @@ using UnityEngine;
 public class Buff_autoenergy : Buff
 {
 
-    public override void BuffAdded(Character p_chara)
+    public override void BuffAdded(Character p_chara,string str="")
     {
         m_name = "autoenergy";
         remainBeats = -1;
@@ -16,7 +16,7 @@ public class Buff_autoenergy : Buff
             return;
         }
 
-        base.BuffAdded(p_chara);
+        base.BuffAdded(p_chara,str);
 
         multicount = -1;
     }

@@ -133,7 +133,7 @@ public class EnemySkill
             //character = Char,
             activateTime = RhythmController.Instance.songPosInBeats
         };
-        defend.BuffAdded(Char);
+        defend.BuffAdded(Char,"");
         //Char.buffs.Add(defend);
 
     }

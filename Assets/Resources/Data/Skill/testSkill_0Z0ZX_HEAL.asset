@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 4
   sprite: {fileID: 21300008, guid: 16af87af7923e401fa2d5dd82c0709d1, type: 3}
   _name: HEAL
-  cost: 16
+  cost: 12
   inputSequence:
   - type: 21
     note: {fileID: 0}
@@ -42,5 +42,5 @@ MonoBehaviour:
     BadSkill: 
     MissSkill: 
   Effect: HEL_10
-  CD: 3
+  CD: 5
   Desc: "\u6CBB\u7597\uFF1A\u6D88\u80174\u80FD\u91CF\uFF0C\u6062\u590D10\u70B9HP\uFF0C3\u56DE\u5408CD"

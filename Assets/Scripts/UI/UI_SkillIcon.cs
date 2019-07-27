@@ -36,14 +36,15 @@ public class UI_SkillIcon : MonoBehaviour
     // Update is called once per frame
     public void UpdateCD()
     {
+        //这里技能的CD是1的时候，实际上是没有CD的
         if (skill.Cooldown == 0)
         {
             mask.gameObject.SetActive(false);
-        }
-        else
-        {
+        }else{
             mask.gameObject.SetActive(true);
-            cdtext.text = skill.Cooldown.ToString();
+            cdtext.gameObject.SetActive(true);
+
+            cdtext.text = (skill.Cooldown).ToString();
         }
     }
 }

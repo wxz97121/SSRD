@@ -138,7 +138,7 @@ public class Player : Character {
                 }
             }
         }
-        //更新技能CD
+        //更新技能CD的UI显示
         SuperController.Instance.skillTipBarController.UpdateCDs();
     }
 
@@ -202,6 +202,12 @@ public class Player : Character {
                 break;
         }
         equipment.OnEquip();
+    }
+
+   override public void CastSkill(string str)
+    {
+        base.CastSkill(str);
+        commonSkill.CommonEffect(this, str);
     }
 
     public void UltiAction(string effstr)

@@ -148,8 +148,9 @@ public class AI : Character
 
 
     //发动技能
-    public void CastSkill(string str)
+    override public  void CastSkill(string str)
     {
+        base.CastSkill(str);
         enemySkill.CommonEffect(this, str);
     }
 

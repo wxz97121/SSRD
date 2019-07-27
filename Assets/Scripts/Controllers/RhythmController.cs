@@ -216,6 +216,8 @@ public class RhythmController : MonoBehaviour
             {
                 if (DuelController.Instance.GetCurAI())
                 {
+                    Player.Instance.UpdateCDs();
+
                     //Debug.Log("第三拍之后的发招" + "空");
                     DuelController.Instance.SkillJudge("", DuelController.Instance.GetCurAI().GetNextSkill(3));
                     DuelController.Instance.GetCurAI().Action(3);
@@ -318,6 +320,8 @@ public class RhythmController : MonoBehaviour
         {
             if(isCurBarCleaned == true&&DuelController.Instance.isActedAt3rdBeat==false&& DuelController.Instance.GetCurAI())
             {
+                Player.Instance.UpdateCDs();
+
                 //Debug.Log("BAD之后正点AI出招" + "空");
                 DuelController.Instance.SkillJudge("", DuelController.Instance.GetCurAI().GetNextSkill(3));
                 DuelController.Instance.GetCurAI().Action(3);
@@ -335,6 +339,7 @@ public class RhythmController : MonoBehaviour
 
 
             if (nowAI) nowAI.Action(4);
+
 
         }
 

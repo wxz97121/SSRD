@@ -1,16 +1,33 @@
 fileFormatVersion: 2
 guid: 16af87af7923e401fa2d5dd82c0709d1
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: skill_icons_0
-    21300002: skill_icons_1
-    21300004: skill_icons_2
-    21300006: skill_icons_3
-    21300008: skill_icons_4
-    21300010: skill_icons_5
-    21300012: skill_icons_6
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: skill_icons_0
+  - first:
+      213: 21300002
+    second: skill_icons_1
+  - first:
+      213: 21300004
+    second: skill_icons_2
+  - first:
+      213: 21300006
+    second: skill_icons_3
+  - first:
+      213: 21300008
+    second: skill_icons_4
+  - first:
+      213: 21300010
+    second: skill_icons_5
+  - first:
+      213: 21300012
+    second: skill_icons_6
+  - first:
+      213: 849150016359643074
+    second: skill_icons_7
   externalObjects: {}
-  serializedVersion: 9
+  serializedVersion: 10
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -95,17 +112,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 100
         width: 100
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 0d943f95fe865453396e27f73b9412f8
+      internalID: 21300000
       vertices: []
       indices: 
       edges: []
@@ -115,17 +133,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 100
-        y: 0
+        y: 100
         width: 100
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 08243588340fe4bdeb1bb31d2b54bffb
+      internalID: 21300002
       vertices: []
       indices: 
       edges: []
@@ -135,17 +154,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 200
-        y: 0
+        y: 100
         width: 100
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: e3d65ea1f4b2f4a3ba3883f41cd027be
+      internalID: 21300004
       vertices: []
       indices: 
       edges: []
@@ -155,17 +175,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 300
-        y: 0
+        y: 100
         width: 100
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 3c0ccbcc99e1847a388705aba6c18feb
+      internalID: 21300006
       vertices: []
       indices: 
       edges: []
@@ -175,17 +196,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 400
-        y: 0
+        y: 100
         width: 100
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: e22e708cf0af9485d8681c92820777d6
+      internalID: 21300008
       vertices: []
       indices: 
       edges: []
@@ -195,17 +217,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 501
-        y: 0
+        y: 100
         width: 100
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 2287d11df78c449d2aecce2f6b5ba048
+      internalID: 21300010
       vertices: []
       indices: 
       edges: []
@@ -215,6 +238,27 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 600
+        y: 100
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01fc77928bf184dbbb411f554a37d826
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skill_icons_7
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 0
         width: 100
         height: 100
@@ -225,7 +269,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01fc77928bf184dbbb411f554a37d826
+      spriteID: 59baedff1e4f949d9ace439cb1e4c65b
+      internalID: 849150016359643074
       vertices: []
       indices: 
       edges: []
@@ -234,10 +279,12 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: ced243b5cff1a435bbed04f93462332f
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

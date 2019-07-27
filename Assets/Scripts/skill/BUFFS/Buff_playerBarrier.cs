@@ -5,14 +5,14 @@ using UnityEngine;
 //防护罩
 public class Buff_playerBarrier : Buff
 {
-    public override void BuffAdded(Character p_chara)
+    public override void BuffAdded(Character p_chara,string str="")
     {
         //角色身上已经有本BUFF的情况
         if (p_chara.hasBuff<Buff_playerBarrier>())
         {
             return;
         }
-        base.BuffAdded(p_chara);
+        base.BuffAdded(p_chara,str);
 
         multicount = -1;
         remainBeats = -1;

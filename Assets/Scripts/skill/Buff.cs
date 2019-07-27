@@ -22,7 +22,7 @@ public class Buff
     //BUFF提供的伤害加倍
     public float damageMulti = 1;
 
-    public virtual void BuffAdded(Character p_chara)
+    public virtual void BuffAdded(Character p_chara,string str="")
     {
         p_chara.buffs.Add(this);
         character = p_chara;

@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class Buff_defend : Buff
 {
-    public override void BuffAdded(Character p_chara)
+
+    public string EffStr;
+    public override void BuffAdded(Character p_chara,string str)
     {
-        base.BuffAdded(p_chara);
+        m_name = "defend";
+
+        base.BuffAdded(p_chara,str);
+
+        EffStr = str.Replace('$','_');
 
 
 

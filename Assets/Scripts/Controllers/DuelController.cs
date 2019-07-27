@@ -57,7 +57,7 @@ public class DuelController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         UICanvas = GameObject.Find("Canvas").transform;
-        s1 = new List<string> { "DEF", "ULTI"};
+        s1 = new List<string> { "DEF", "ULTI","-CD"};
         s2 = new List<string> { "ATK", "HEL", "DMP","ATKmini","ALLMPATK","DATK","HL" };
         s3 = new List<string> { "DHEL", "TBD",  "ANI", "ANIT", "SFX" };
         enemySkill = new EnemySkill();
@@ -239,7 +239,9 @@ public class DuelController : MonoBehaviour {
             if (!Player.Instance.isBroken) playerSkill.CommonEffect(Player.Instance, P3);
         }
 
-
+        //更新技能CD
+        //Player.Instance.UpdateCDs();
+        SuperController.Instance.skillTipBarController.UpdateCDs();
         //本小节行动过，上锁
         isActedAt3rdBeat = true;
 
@@ -249,7 +251,6 @@ public class DuelController : MonoBehaviour {
         nowAI.isBreakable = false;
         nowAI.isBroken = false;
 
-        //更新技能CD
-        Player.Instance.UpdateCDs();
+
     }
 }

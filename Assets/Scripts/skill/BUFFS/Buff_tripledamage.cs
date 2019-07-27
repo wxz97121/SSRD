@@ -5,7 +5,7 @@ using UnityEngine;
 public class Buff_tripledamage : Buff
 {
 
-    public override void BuffAdded(Character p_chara)
+    public override void BuffAdded(Character p_chara,string str="")
     {
         Player.Instance.spec.transform.localScale=new Vector3(0.0195f,0.0195f,0.0195f);
 
@@ -54,7 +54,7 @@ public class Buff_tripledamage : Buff
             return;
         }
 
-        base.BuffAdded(p_chara);
+        base.BuffAdded(p_chara,str);
 
 
         multicount = 1;

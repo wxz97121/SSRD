@@ -69,7 +69,17 @@ public class Skill
                     HEL(int.Parse(InstancedEff[1]), m_Char);
                     break;
                 case ("DEF"):
-                    DEF(m_Char);
+                    if (InstancedEff.Length > 1)
+                    {
+                        DEF(m_Char, InstancedEff[1]);
+                    }
+                    else
+                    {
+                        DEF(m_Char, "");
+                    }
+                    break;
+                case ("-CD"):
+                    MCD(int.Parse(InstancedEff[1]), InstancedEff[2], m_Char as Player);
                     break;
                 //三倍蓄力
                 case ("TBD"):
@@ -154,7 +164,7 @@ public class Skill
         Char.Heal(dHeal);
     }
 
-    public void DEF(Character Char)
+    public void DEF(Character Char,string str)
     {
 //        Debug.Log("DEF");
         Buff_defend defend = new Buff_defend
@@ -165,7 +175,7 @@ public class Skill
             activateTime = RhythmController.Instance.songPosInBeats
         };
         //Char.buffs.Add(defend);
-        defend.BuffAdded(Char);
+        defend.BuffAdded(Char,str);
 
     }
 
@@ -202,5 +212,25 @@ public class Skill
         RhythmController.Instance.UltiQTEStart(score);
         Char.ClearSoul();
 
+    }
+
+    //减CD的技能，skilltype：   
+    //attack=2,
+    //defend=3,
+    //special=4,
+    //ulti=5,
+    public void MCD(int dCD,string skillTypes,Player player)
+    {
+
+        foreach (SkillSlot s in player.skillSlots)
+        {
+            if (s.skill != null && s.skill.Cooldown > 0)
+            {
+                if(skillTypes.Contains(((int)(s.skill.type)).ToString()))
+                s.skill.Cooldown -= dCD;
+                if (s.skill.Cooldown < 0)
+                    s.skill.Cooldown = 0;
+            }
+        }
     }
 }

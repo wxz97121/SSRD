@@ -125,6 +125,9 @@ public class Character : MonoBehaviour
                     SoundController.Instance.PlayAudioEffect("DEFEND");
 
                 }
+
+                cTarget.CastSkill((cTarget.buffs.Find((Buff obj) => obj.m_name == "defend") as Buff_defend).EffStr);
+
             }
             else
             {
@@ -392,5 +395,10 @@ public class Character : MonoBehaviour
     public void ClearSoul()
     {
         soulPoint = 0;
+    }
+
+    public virtual void CastSkill(string str)
+    {
+
     }
 }
