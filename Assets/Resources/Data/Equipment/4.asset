@@ -13,13 +13,12 @@ MonoBehaviour:
   m_Name: 4
   m_EditorClassIdentifier: 
   id: 0
-  equipName: note amulet
-  equipDesc: +1 MP every bar
-  type: 3
+  equipName: Jacket
+  equipDesc: +1 DEF
+  type: 1
   ATK: 0
-  DEF: 0
+  DEF: 1
   maxHp: 0
   maxMp: 0
-  buffs:
-  - regenEnergy
+  buffs: []
   spr: {fileID: 0}

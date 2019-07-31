@@ -227,12 +227,11 @@ public class SuperController : MonoBehaviour {
         Player.Instance.currentWeapon = null;
         Player.Instance.equipmentList.Clear();
         Player.Instance.buffs.Clear();
-        SkillSelectUI();
-
+        //SkillSelectUI();
+        MapController.Instance.CreateChapterMap();
+        MapController.Instance.ShowMap();
 
         mainMenu.gameObject.SetActive(false);
-
-
     }
 
     public void GameOver()
@@ -277,7 +276,7 @@ public class SuperController : MonoBehaviour {
         mainMenu.Find("Button").Find("Text").GetComponent<Text>().text = "再来!";
     }
 
-    void SkillSelectUI()
+    public void SkillSelectUI()
     {
         skillSelectUI.gameObject.SetActive(true);
         foreach (var skill in skillList)

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: 3
   m_EditorClassIdentifier: 
   id: 0
-  equipName: Jacket
-  equipDesc: +1 DEF
-  type: 1
-  ATK: 0
-  DEF: 1
+  equipName: Iron Sword
+  equipDesc: +1 ATK
+  type: 2
+  ATK: 1
+  DEF: 0
   maxHp: 0
   maxMp: 0
   buffs: []
