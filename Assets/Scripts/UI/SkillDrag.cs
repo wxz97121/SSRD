@@ -18,23 +18,23 @@ public class SkillDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
     private SkillDrop[] AllDrop;
     private Text m_Text;
     private Text decText;
+    [SerializeField]
+    private Image m_SkillImage;
     private void Awake()
     {
         m_Text = GetComponentInChildren<Text>();
         AllDrop = FindObjectsOfType<SkillDrop>();
-        m_Skill = new Skill(0,SkillString);
-        GetComponent<Image>().sprite = m_Skill.Icon;
     }
     private void Update()
     {
         if (m_Skill!=null)
         {
-            GetComponent<Image>().sprite = m_Skill.Icon;
+            m_SkillImage.sprite = m_Skill.Icon;
             m_Text.text = m_Skill.m_name;
         }
         else
         {
-            GetComponent<Image>().sprite = null;
+            m_SkillImage.sprite = null;
             //GetComponent<Image>().
             m_Text.text = "";
         }
@@ -43,7 +43,12 @@ public class SkillDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
     {
         m_Player = Player.Instance;
         decText = GameObject.Find("SkillDesc").GetComponents<Text>()[0] as Text;
+    }
 
+    public void InitSkill(string id)
+    {
+        SkillString = id;
+        m_Skill = new Skill(0, SkillString);
     }
     public void OnBeginDrag(PointerEventData data)
     {

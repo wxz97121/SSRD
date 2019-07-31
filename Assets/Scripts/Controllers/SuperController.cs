@@ -35,6 +35,7 @@ public class SuperController : MonoBehaviour {
 
     //临时选技能菜单
     public Transform skillSelectUI;
+    public Transform skillDragSlotUI;
     //战斗ui
     public Transform playerBattleUIPos;
     public Transform enemyBattleUIPos;
@@ -43,6 +44,7 @@ public class SuperController : MonoBehaviour {
 
     public Transform InputTipPos;
 
+    public SkillData[] skillList;
 
     static SuperController _instance;
     public static SuperController Instance
@@ -277,9 +279,13 @@ public class SuperController : MonoBehaviour {
 
     void SkillSelectUI()
     {
-
         skillSelectUI.gameObject.SetActive(true);
-
+        foreach (var skill in skillList)
+        {
+            var inst = Instantiate(Resources.Load<GameObject>("Prefab/SkillDrag"), skillDragSlotUI);
+            Debug.Log(skill.name);
+            inst.GetComponent<SkillDrag>().InitSkill(skill.name);
+        }
     }
 
     //真正的开始游戏 TODO：这里的一些初始化代码需要封装
