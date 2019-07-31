@@ -101,10 +101,10 @@ public class InputSequenceController : MonoBehaviour
 
 
 
-        //第三拍之后,要记入下一小节
-        if ((UIBarController.Instance.playingBarPosInBeats > RhythmController.Instance.commentGoodTime + 2))
+        //第三拍之后,改为不处理,仅处理下一小节第一拍之前的一小段时间
+        if ((UIBarController.Instance.playingBarPosInBeats > -RhythmController.Instance.commentGoodTime + 4f))
         {
-
+            //return;
             judgeBeat = UIBarController.Instance.preBarPosInBeats;
             //           Debug.Log("early beat!!!");
             InsertInputNote(inputType, judgeBeat, UIBarController.Instance.preBar);
@@ -134,6 +134,25 @@ public class InputSequenceController : MonoBehaviour
     }
     #endregion
 
+
+
+    //超级取消
+    public void SuperCancel()
+    {
+        //搓招正确但是能量不足
+        if (Player.Instance.Mp < 4)
+        {
+            //Debug.Log("能量不足");
+            Bad("NOT ENOUGH ENERGY");
+            return;
+        }
+        Player.Instance.Mp -= 4;
+        ClnInpSeqWhenCastSkill();
+        ResetAvailable();
+        RhythmController.Instance.isCurBarCleaned = false;
+        SuperController.Instance.ShowInputTip("Super Cancel", 1);
+
+    }
 
     #region Insert Input Note 根据输入把新的NOTE增加进招式序列
     public void InsertInputNote(Note.NoteType inputType, float beat, GameObject bar)

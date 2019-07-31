@@ -203,12 +203,28 @@ public class SuperController : MonoBehaviour {
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            //           Debug.Log("INPUT X");
+            switch (state)
+            {
+                case GameState.Start:
+                    InputSequenceController.Instance.SuperCancel();
+                    break;
+
+            }
+        }
+
     }
 
     public void NewGame()
     {
         DuelController.Instance.ClearEnemy();
-
+        Player.Instance.currentArmor = null;
+        Player.Instance.currentScroll = null;
+        Player.Instance.currentWeapon = null;
+        Player.Instance.equipmentList.Clear();
+        Player.Instance.buffs.Clear();
         SkillSelectUI();
 
 
@@ -266,13 +282,11 @@ public class SuperController : MonoBehaviour {
 
     }
 
+    //真正的开始游戏 TODO：这里的一些初始化代码需要封装
     public void SkillSelectOK()
     {
         state = GameState.Start;
-        Player.Instance.currentArmor = null;
-        Player.Instance.currentScroll = null;
-        Player.Instance.currentWeapon = null;
-        Player.Instance.equipmentList.Clear();
+
         Pause(GameState.Loot);
         LootController.Instance.NewLoot();
 

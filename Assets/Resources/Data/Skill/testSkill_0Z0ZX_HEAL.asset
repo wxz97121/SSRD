@@ -42,5 +42,5 @@ MonoBehaviour:
     BadSkill: 
     MissSkill: 
   Effect: HEL_10
-  CD: 5
+  CD: 0
   Desc: "\u6CBB\u7597\uFF1A\u6D88\u80174\u80FD\u91CF\uFF0C\u6062\u590D10\u70B9HP\uFF0C3\u56DE\u5408CD"

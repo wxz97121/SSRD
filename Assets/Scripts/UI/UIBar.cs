@@ -291,7 +291,7 @@ public class UIBar : MonoBehaviour {
     }
 
 
-    //创建已输入音符
+    //创建已输入音符，要自动贴合到最近的节拍上（最小刻度 16分音符）
     public Note AddInputNote(Note.NoteType inputType,float beat)
     {
         Note note = new Note
@@ -315,7 +315,8 @@ public class UIBar : MonoBehaviour {
 
             note.note = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Note_Snare", typeof(GameObject)), transform);
         }
-        note.note.transform.localPosition = startPos + (oneBeatSpace * beat) + new Vector3(0, -10, 0);
+        float beatmodpos = (beat % 0.25f < 0.125f) ? beat - beat % 0.25f : beat - beat % 0.25f + 0.25f;
+        note.note.transform.localPosition = startPos + (oneBeatSpace * beatmodpos) + new Vector3(0, -10, 0);
         noteList_main.Add(note);
         return note;
     }

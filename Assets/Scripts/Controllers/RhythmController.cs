@@ -134,17 +134,8 @@ public class RhythmController : MonoBehaviour
         //        Debug.Log("distime="+ AudioSettings.dspTime+ "    startTime=" + songStartTime+ "    songPos=" +songPos+   "beats ="+songPosInBeats);
 
 
-//        //判定是否播放第N拍，为了同步FLAG，这里使用FMOD判定
-//        if (beatIndex != SoundController.Instance.timelineInfo.currentMusicBeat)
-//        {
-////            Debug.Log("beat"+(SoundController.Instance.timelineInfo.currentMusicBeat - 1));
 
-        //    OnBeat(SoundController.Instance.timelineInfo.currentMusicBeat - 1);
-        //    beatIndex = SoundController.Instance.timelineInfo.currentMusicBeat;
-        //}
-
-
-        //判定是否播放第N拍
+        //判定是否播放第N拍 pos 和 fmod同时判定
         if ((beatIndex != (int)UIBarController.Instance.playingBarPosInBeats+1)&& (beatIndex != SoundController.Instance.timelineInfo.currentMusicBeat))
         {
             //            Debug.Log("beat"+(SoundController.Instance.timelineInfo.currentMusicBeat - 1));
