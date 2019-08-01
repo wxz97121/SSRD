@@ -71,7 +71,7 @@ public class SkillDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         var image = m_DraggingIcons.AddComponent<Image>();
         var group = m_DraggingIcons.AddComponent<CanvasGroup>();
         group.blocksRaycasts = false;
-        image.sprite = GetComponent<Image>().overrideSprite;
+        image.sprite = m_SkillImage.overrideSprite;
         image.SetNativeSize();
 
         m_DraggingPlanes = canvas.transform as RectTransform;
