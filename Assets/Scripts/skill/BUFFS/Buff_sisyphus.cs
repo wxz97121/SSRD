@@ -7,7 +7,7 @@ public class Buff_sisyphus : Buff
 
     public override void BuffAdded(Character p_chara,string str="")
     {
-        m_name = "autoenergy";
+        m_name = "sisyphus";
         remainBeats = -1;
 
         //角色身上已经有本BUFF的情况
@@ -25,10 +25,13 @@ public class Buff_sisyphus : Buff
     {
         base.PlayerUpdate();
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Player.Instance.Hp = Player.Instance.maxHp;
-            DuelController.Instance.GetCurAI().Hp = DuelController.Instance.GetCurAI().maxHp;
-        }
+    }
+
+    public override void AfterNoAction()
+    {
+        Player.Instance.life = Player.Instance.maxLife;
+        Player.Instance.Hp = Player.Instance.maxHp;
+        DuelController.Instance.GetCurAI().life = DuelController.Instance.GetCurAI().maxLife;
+        DuelController.Instance.GetCurAI().Hp = DuelController.Instance.GetCurAI().maxHp;
     }
 }

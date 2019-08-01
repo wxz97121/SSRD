@@ -130,7 +130,6 @@ public class DuelController : MonoBehaviour {
     {
         nowAI = GetCurAI();
 
-
         //分解敌人技能STRING
         string[] sEnemyEffStrSplit = enemySkillstring.Split(',');
         //分解玩家技能STRING
@@ -251,6 +250,14 @@ public class DuelController : MonoBehaviour {
         nowAI.isBreakable = false;
         nowAI.isBroken = false;
 
+        //Buff Effect
+        if (playerSkillstring == "")
+        {
+            foreach (var buff in Player.Instance.buffs)
+            {
+                buff.AfterNoAction();
+            }
+        }
 
     }
 }

@@ -86,4 +86,19 @@ public class Buff
 
     }
 
+    public virtual void AfterNoAction()
+    {
+
+    }
+
+    public virtual void GainEnergy()
+    {
+
+    }
+
+    public virtual void MissEnergy()
+    {
+
+    }
+
 }

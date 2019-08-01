@@ -158,12 +158,15 @@ public class RhythmController : MonoBehaviour
         //滤掉已经过期的能量音符
         if (UIBarController.Instance.currentEnergyNotes.Count > 0)
         {
-
             if (songPosInBeats - UIBarController.Instance.currentEnergyNotes[0].beatInSong > commentGoodTime)
             {
                 //Debug.Log("songPosInBeat:" + songPosInBeats + "note[0].beat:" + UIBarController.Instance.currentEnergyNotes[0].beatInSong);
                 //Debug.Log("delete a energy note:"+ UIBarController.Instance.currentEnergyNotes[0].beatInSong);
                 UIBarController.Instance.currentEnergyNotes.RemoveAt(0);
+                foreach (var buff in Player.Instance.buffs)
+                {
+                    buff.MissEnergy();
+                }
             }
         }
 

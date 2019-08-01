@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f814242c5dbb9d4782fafdee5a71fb5, type: 3}
-  m_Name: 2
+  m_Name: 7
   m_EditorClassIdentifier: 
   id: 0
-  equipName: Sisyphus Amulet
-  equipDesc: If you fail to act, you and enemy get fully healed after attack.
-  type: 3
+  equipName: Energy Armor
+  equipDesc: 'Gain Energy: 1 shield; Miss Energy: remove all shield'
+  type: 1
   ATK: 0
   DEF: 0
   maxHp: 0
   maxMp: 0
   buffs:
-  - sisyphus
+  - energygun
   spr: {fileID: 0}
