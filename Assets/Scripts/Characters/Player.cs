@@ -42,6 +42,8 @@ public class Player : Character {
     public Equipment currentArmor;
     //当前装备着的卷轴
     public Equipment currentScroll;
+    public SkillData[] skillListInBag;
+
 
     private void Awake()
     {

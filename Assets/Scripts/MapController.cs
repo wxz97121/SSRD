@@ -66,9 +66,9 @@ public class MapChapter
 
     public void UnlockAround(int i, int j)
     {
-        if (i > 0) map[i - 1, j].canVisit = true;
+        //if (i > 0) map[i - 1, j].canVisit = true;
         if (i < size - 1) map[i + 1, j].canVisit = true;
-        if (j > 0) map[i, j - 1].canVisit = true;
+        //if (j > 0) map[i, j - 1].canVisit = true;
         if (j < size - 1) map[i, j + 1].canVisit = true;
     }
 

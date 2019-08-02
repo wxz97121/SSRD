@@ -44,7 +44,7 @@ public class SuperController : MonoBehaviour {
 
     public Transform InputTipPos;
 
-    public SkillData[] skillList;
+   // public SkillData[] skillList;
 
     static SuperController _instance;
     public static SuperController Instance
@@ -265,7 +265,6 @@ public class SuperController : MonoBehaviour {
         //SoundController.Instance.SetPlayedTime();
         SoundController.Instance.FMODmusic.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         StartCoroutine("WinUI");
-
     }
     IEnumerator WinUI()
     {
@@ -279,7 +278,7 @@ public class SuperController : MonoBehaviour {
     public void SkillSelectUI()
     {
         skillSelectUI.gameObject.SetActive(true);
-        foreach (var skill in skillList)
+        foreach (var skill in Player.Instance.skillListInBag)
         {
             var inst = Instantiate(Resources.Load<GameObject>("Prefab/SkillDrag"), skillDragSlotUI);
             Debug.Log(skill.name);

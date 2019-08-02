@@ -28,7 +28,7 @@ MonoBehaviour:
   - type: 21
     note: {fileID: 0}
     subnote: {fileID: 0}
-    beatInBar: 0.75
+    beatInBar: 0.5
     beatInSong: 0
     SuccessSkill: 
     BadSkill: 
@@ -36,7 +36,7 @@ MonoBehaviour:
   - type: 21
     note: {fileID: 0}
     subnote: {fileID: 0}
-    beatInBar: 1.5
+    beatInBar: 1
     beatInSong: 0
     SuccessSkill: 
     BadSkill: 

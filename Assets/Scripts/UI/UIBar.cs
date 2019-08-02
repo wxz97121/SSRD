@@ -315,7 +315,7 @@ public class UIBar : MonoBehaviour {
 
             note.note = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Note_Snare", typeof(GameObject)), transform);
         }
-        float beatmodpos = (beat % 0.25f < 0.125f) ? beat - beat % 0.25f : beat - beat % 0.25f + 0.25f;
+        float beatmodpos = (beat % 0.5f < 0.25f) ? beat - beat % 0.5f : beat - beat % 0.5f + 0.5f;
         note.note.transform.localPosition = startPos + (oneBeatSpace * beatmodpos) + new Vector3(0, -10, 0);
         noteList_main.Add(note);
         return note;

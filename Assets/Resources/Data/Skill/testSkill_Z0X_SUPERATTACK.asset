@@ -35,4 +35,4 @@ MonoBehaviour:
     MissSkill: 
   Effect: ATK_4,ANI_player-heavyattack
   CD: 0
-  Desc: "\u91CD\u51FB\uFF1A\u6D88\u80171\u80FD\u91CF\uFF0C\u8FDB\u884C2\u70B9\u653B\u51FB\uFF0C1\u56DE\u5408CD"
+  Desc: "\u91CD\u51FB\uFF1A\u6D88\u80171\u80FD\u91CF\uFF0C\u8FDB\u884C4\u70B9\u653B\u51FB"

@@ -35,4 +35,4 @@ MonoBehaviour:
     MissSkill: 
   Effect: DEF,ANI_player-defense
   CD: 0
-  Desc: "\u9632\u5FA1\uFF1A\u6D88\u80171\u80FD\u91CF\uFF0C\u62B5\u6321\u653B\u51FB\uFF0C1\u56DE\u5408CD"
+  Desc: "\u9632\u5FA1\uFF1A\u6D88\u80172\u80FD\u91CF\uFF0C\u62B5\u6321\u653B\u51FB"
