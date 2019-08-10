@@ -21,12 +21,7 @@ public class Buff_regenEnergy : Buff
         multicount = -1;
     }
 
-    public override void PlayerUpdate()
-    {
-        base.PlayerUpdate();
-        if (RhythmController.InputComment(UIBarController.Instance.currentEnergyNotes) ==0)
-            InputSequenceController.Instance.CollectEnergy();
-    }
+
     public override void BuffBeat(int beatNum)
     {
         base.BuffBeat(beatNum);

@@ -111,7 +111,7 @@ public class Player : Character {
     override public void Damage(int dDamage, Character source)
     {
         base.Damage(dDamage, source);
-        if(life<=0) Die();
+        if (life <= 0) Die();
 
       //  if (Player.Instance.animator.GetCurrentAnimatorStateInfo(0).IsName("player-idle"))
       // {
@@ -275,7 +275,40 @@ public class Player : Character {
         }
         return null;
     }
+    public bool CheckEquipSlot(int SlotIndex, Equipment NewEquip)
+    {
+        if (NewEquip.type == equipType.Weapon && SlotIndex == 0) return true;
+        if (NewEquip.type == equipType.Armor && SlotIndex == 1) return true;
+        if (NewEquip.type == equipType.Scroll && SlotIndex == 2) return true;
+        return false;
+    }
+    //更换技能栏中的技能
+    public Equipment ChangeEquip(int SlotIndex, Equipment NewEquip)
+    {
+        if (NewEquip != null && SlotIndex < 3)
+        {
+            if (CheckEquipSlot(SlotIndex, NewEquip))
+            {
+                Equipment OldEquip;
+                if (SlotIndex == 0) OldEquip = currentWeapon;
+                else if (SlotIndex == 1) OldEquip = currentArmor;
+                else OldEquip = currentScroll;
+
+                if (SlotIndex == 0) currentWeapon = NewEquip;
+                else if (SlotIndex == 1) currentArmor = NewEquip;
+                else currentScroll = NewEquip;
+
+                return OldEquip;
+            }
+            else return null;
+        }
+        return null;
+    }
     #endregion 
-
-
+}
+public interface Item
+{
+    Sprite Icon { get; set; }
+    string Name { get; set; }
+    string Desc { get; set; }
 }

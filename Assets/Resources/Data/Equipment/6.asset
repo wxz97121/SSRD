@@ -15,6 +15,7 @@ MonoBehaviour:
   id: 0
   equipName: Energy Gun
   equipDesc: 'Gain Energy: 1 dmg to enemy; Miss Energy: 1 dmg to self'
+  Icon: {fileID: 21300000, guid: e2188cf8aefa4ed40967bafb351baeba, type: 3}
   type: 2
   ATK: 0
   DEF: 0
@@ -22,4 +23,3 @@ MonoBehaviour:
   maxMp: 0
   buffs:
   - energygun
-  spr: {fileID: 0}

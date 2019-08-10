@@ -15,7 +15,8 @@ public enum GameState
 //统一控制局内
 public class SuperController : MonoBehaviour
 {
-
+    public GameObject m_Canvas;
+    [HideInInspector]
     public LevelData levelData;
     //评价控制(评价控制还没改成全局控制)
     public CommentController commentController = null;
@@ -37,6 +38,8 @@ public class SuperController : MonoBehaviour
     //临时选技能菜单
     public Transform skillSelectUI;
     public Transform skillDragSlotUI;
+    public Transform equipSelectUI;
+    public Transform EquipDragSlotUI;
     //战斗ui
     public Transform playerBattleUIPos;
     public Transform enemyBattleUIPos;
@@ -73,13 +76,13 @@ public class SuperController : MonoBehaviour
         playerBattleInfo = playerBattleUIPos.GetComponentInChildren<UIBattleInfo>();
         enemyBattleInfo = enemyBattleUIPos.GetComponentInChildren<UIBattleInfo>();
 
-        ReadLevelDatas();
+        //ReadLevelDatas();
         InputSequenceController.Instance.ResetAvailable();
         //        ReadSkillDatas();
         SoundController.Instance.FMODmusic.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
 
         //此处有个坑，FMODInstance必须创建完成才能获取channelgroup
-        SoundController.Instance.FMODMusicChange(SuperController.Instance.levelData.BGMPath);
+
         state = GameState.Wait;
     }
 
@@ -227,11 +230,12 @@ public class SuperController : MonoBehaviour
         Player.Instance.currentArmor = null;
         Player.Instance.currentScroll = null;
         Player.Instance.currentWeapon = null;
-        Player.Instance.equipmentList.Clear();
+        CleanSelectUI();
+        //Player.Instance.equipmentList.Clear();
         for (int index = 0; index < Player.Instance.skillSlots.Length; index++)
             Player.Instance.skillSlots[index].skill = null;
-        Player.Instance.skillListInBag = new List<SkillData>();
-        Player.Instance.AddSkill(Resources.Load<SkillData>("Data/Skill/testSkill_00X_ATTACK"));
+        //Player.Instance.skillListInBag = new List<SkillData>();
+        //Player.Instance.AddSkill(Resources.Load<SkillData>("Data/Skill/testSkill_00X_ATTACK"));
         Player.Instance.buffs.Clear();
         //SkillSelectUI();
         MapController.Instance.CreateChapterMap();
@@ -243,6 +247,7 @@ public class SuperController : MonoBehaviour
     {
         DuelController.Instance.ClearEnemy();
         Player.Instance.buffs.Clear();
+        CleanSelectUI();
         Player.Instance.currentArmor = null;
         Player.Instance.currentScroll = null;
         Player.Instance.currentWeapon = null;
@@ -273,7 +278,10 @@ public class SuperController : MonoBehaviour
 
         mainMenu.gameObject.SetActive(true);
         mainMenu.Find("Title").GetComponent<Text>().text = "死";
-        mainMenu.Find("Button").Find("Text").GetComponent<Text>().text = "再来!";
+        //mainMenu.Find("Button").GetComponent<Button>().onClick.AddListener(NewGame);
+        mainMenu.Find("NewGameButton").Find("Text").GetComponent<Text>().text = "再来!";
+        mainMenu.Find("NewGameButton").transform.localScale = Vector3.one;
+        mainMenu.Find("NextButton").transform.localScale = Vector3.zero;
     }
     public void Win()
     {
@@ -293,12 +301,23 @@ public class SuperController : MonoBehaviour
     IEnumerator WinUI()
     {
         yield return new WaitForSeconds(2.0f);
-
         mainMenu.gameObject.SetActive(true);
-        mainMenu.Find("Title").GetComponent<Text>().text = "牛逼！";
-        mainMenu.Find("Button").Find("Text").GetComponent<Text>().text = "再来!";
-    }
+        //Debug.LogError("???");
+        //mainMenu.Find("Button").GetComponent<Button>().onClick.AddListener(NextArea);
 
+        mainMenu.Find("Title").GetComponent<Text>().text = "牛逼！";
+        mainMenu.Find("NextButton").Find("Text").GetComponent<Text>().text = "继续！";
+        mainMenu.Find("NewGameButton").transform.localScale = Vector3.zero;
+        mainMenu.Find("NextButton").transform.localScale = Vector3.one;
+
+    }
+    void CleanSelectUI()
+    {
+        for (int i = 0; i < skillDragSlotUI.childCount; i++)
+           Destroy(skillDragSlotUI.GetChild(i).gameObject);
+        for (int i = 0; i < EquipDragSlotUI.childCount; i++)
+            Destroy(EquipDragSlotUI.GetChild(i).gameObject);
+    }
     public void SkillSelectUI()
     {
         skillSelectUI.gameObject.SetActive(true);
@@ -309,6 +328,16 @@ public class SuperController : MonoBehaviour
             inst.GetComponent<SkillDrag>().InitSkill(skill.name);
         }
     }
+/*    public void EquipSelectUI()
+    {
+        skillSelectUI.gameObject.SetActive(true);
+        foreach (var skill in Player.Instance.skillListInBag)
+        {
+            var inst = Instantiate(Resources.Load<GameObject>("Prefab/SkillDrag"), skillDragSlotUI);
+            Debug.Log(skill.name);
+            inst.GetComponent<SkillDrag>().InitSkill(skill.name);
+        }
+    }*/
 
     //真正的开始游戏 TODO：这里的一些初始化代码需要封装
     public void SkillSelectOK()
@@ -316,9 +345,18 @@ public class SuperController : MonoBehaviour
         state = GameState.Start;
 
         Pause(GameState.Loot);
-        LootController.Instance.NewLoot();
-
         skillSelectUI.gameObject.SetActive(false);
+        equipSelectUI.gameObject.SetActive(true);
+
+        foreach (var equipment in Player.Instance.equipmentList)
+        {
+//            Debug.LogError(equipment.equipDesc);
+            var inst = Instantiate(Resources.Load<GameObject>("Prefab/EquipDrag"), EquipDragSlotUI);
+            inst.GetComponent<EquipDrag>().InitSkill(equipment);
+        }
+        //LootController.Instance.NewLoot();
+
+
 
         skillTipBarController.InitSkillTipBarArea();
         RhythmController.Instance.Reset();
@@ -334,7 +372,24 @@ public class SuperController : MonoBehaviour
         InputSequenceController.Instance.ResetAvailable();
 
     }
+    public void EquipSelectOK()
+    {
+        /*
+        for (int i = 0; i < optionView.Length; i++)
+        {
+            Destroy(optionView[i]);
+        }*/
 
+        m_Canvas.gameObject.SetActive(false);
+
+        StartCoroutine(StateDelay());
+    }
+    public IEnumerator StateDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        Resume();
+        //SuperController.Instance.state = GameState.Start;
+    }
     //public void ReadSkillDatas()
     //{
     //List<Skill> playerSkills = new List<Skill>
@@ -370,6 +425,7 @@ public class SuperController : MonoBehaviour
         levelData = newLevelData;
         score = OneSongScore.ReadScoreData(levelData.scoreData);
         DuelController.Instance.enemyList = levelData.enemyList;
+        SoundController.Instance.FMODMusicChange(SuperController.Instance.levelData.BGMPath);
     }
 
     public void Pause(GameState _state)

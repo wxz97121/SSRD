@@ -20,12 +20,12 @@ public class MapAreaView : MonoBehaviour
         {
             transform.Find("Label").GetComponent<TextMeshProUGUI>().text = area.AreaName;
 
-            if (area.visited)
+            if (area.m_VisitType==VisitType.Visited)
             {
                 GetComponent<Image>().color = Color.gray;
                 GetComponent<Button>().interactable = false;
             }
-            else if (area.canVisit)
+            else if (area.m_VisitType == VisitType.CanVisit)
             {
                 GetComponent<Image>().color = Color.green;
                 GetComponent<Button>().interactable = true;

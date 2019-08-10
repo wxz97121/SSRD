@@ -23,6 +23,8 @@ public class Equipment: ScriptableObject{
     public int id;
     public string equipName;
     public string equipDesc;
+    public Sprite Icon;
+
     public equipType type = equipType.Armor;
     //装备提供的基础属性加成
     public int ATK=0;
@@ -33,7 +35,7 @@ public class Equipment: ScriptableObject{
     public List<string> buffs;
 
     //UI图
-    public Sprite spr;
+
 
     virtual protected void init()
     {

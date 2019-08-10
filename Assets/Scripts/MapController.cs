@@ -10,7 +10,12 @@ public enum AreaType
     Story,
     Boss
 }
-
+public enum VisitType
+{
+    CanVisit,
+    Visited,
+    Locked
+}
 public class MapArea
 {
     public MapAreaView view = null;
@@ -18,13 +23,15 @@ public class MapArea
     //public AreaType type;
     public Vector2 pos;
     public string AreaName;
-
+    public VisitType m_VisitType;
+    /*
     public bool canVisit = false;
     public bool visited = false;
-
+    */
     public MapArea(int i,int j)
     {
         pos = new Vector2(i, j);
+        m_VisitType = VisitType.Locked;
         //type = AreaType.Default;
     }
     public void SetLevelData(LevelData newLeveldata)
@@ -57,7 +64,10 @@ public class MapArea
             default:
                 break;
         }
+
+        m_VisitType = VisitType.Visited;
         MapController.Instance.currentChapter.UnlockAround((int)pos.x, (int)pos.y);
+
         MapController.Instance.HideMap();
         SuperController.Instance.SkillSelectUI();
     }
@@ -92,12 +102,21 @@ public class MapChapter
         }
     }
 
-    public void UnlockAround(int i, int j)
+    public void UnlockAround(int x, int y)
     {
+        for (int i = 0; i < size; i++)
+        {
+            for (int j = 0; j < size; j++)
+            {
+                if (map[i, j].m_VisitType == VisitType.CanVisit)
+                    map[i, j].m_VisitType = VisitType.Locked;
+
+            }
+        }
         //if (i > 0) map[i - 1, j].canVisit = true;
-        if (i < size - 1) map[i + 1, j].canVisit = true;
+        if (x < size - 1) map[x + 1, y].m_VisitType = VisitType.CanVisit;
         //if (j > 0) map[i, j - 1].canVisit = true;
-        if (j < size - 1) map[i, j + 1].canVisit = true;
+        if (y < size - 1) map[x, y + 1].m_VisitType = VisitType.CanVisit;
     }
 
 }
@@ -122,7 +141,6 @@ public class MapController : MonoBehaviour
 
     public Transform mapCanvas;
     public MapChapter currentChapter;
-
     public void ShowMap()
     {
         mapCanvas.localScale = Vector3.one;
@@ -162,6 +180,6 @@ public class MapController : MonoBehaviour
             }
         }
 
-        currentChapter.map[0, 0].canVisit = true;
+        currentChapter.map[0, 0].m_VisitType = VisitType.CanVisit;
     }
 }

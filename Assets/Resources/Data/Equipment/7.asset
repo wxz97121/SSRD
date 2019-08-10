@@ -15,6 +15,7 @@ MonoBehaviour:
   id: 0
   equipName: Energy Armor
   equipDesc: 'Gain Energy: 1 shield; Miss Energy: remove all shield'
+  Icon: {fileID: 21300002, guid: 523ff0091d97c43d1b6d1f5ae56e7b39, type: 3}
   type: 1
   ATK: 0
   DEF: 0
@@ -22,4 +23,3 @@ MonoBehaviour:
   maxMp: 0
   buffs:
   - energygun
-  spr: {fileID: 0}

@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f814242c5dbb9d4782fafdee5a71fb5, type: 3}
-  m_Name: 0
+  m_Name: Sisyphus Amulet
   m_EditorClassIdentifier: 
   id: 0
-  equipName: Auto Sword
-  equipDesc: Auto Collect Energy
-  type: 2
+  equipName: Sisyphus Amulet
+  equipDesc: If you fail to act, you and enemy get fully healed after attack.
+  Icon: {fileID: 21300000, guid: 6d144188ca59cf34bb2a200660ae686c, type: 3}
+  type: 3
   ATK: 0
   DEF: 0
   maxHp: 0
   maxMp: 0
   buffs:
-  - autoenergy
-  spr: {fileID: 0}
+  - sisyphus

@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5139e7cf22169455291dad706ec6f035, type: 3}
-  m_Name: WaterLevel
+  m_Name: WaterLevel31
   m_EditorClassIdentifier: 
-  AreaName: XiaoGuan
+  AreaName: AnZhenYiYuan
   scoreData: {fileID: 11400000, guid: 0440950d86df8420794bb8b7ae20d8c9, type: 2}
   enemyList:
   - Minimon1
+  - Minimon3
   BGMPath: event:/music/core
   LevelType: 0
-  AwardSkill: {fileID: 0}
+  AwardSkill: {fileID: 11400000, guid: 629b14e0bb18e4973af87910030c7313, type: 2}
   AwardEquip: {fileID: 0}
   AwardMoney: 10

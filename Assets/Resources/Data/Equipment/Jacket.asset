@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f814242c5dbb9d4782fafdee5a71fb5, type: 3}
-  m_Name: 2
+  m_Name: Jacket
   m_EditorClassIdentifier: 
   id: 0
-  equipName: Sisyphus Amulet
-  equipDesc: If you fail to act, you and enemy get fully healed after attack.
-  type: 3
+  equipName: Jacket
+  equipDesc: +1 DEF
+  Icon: {fileID: 21300000, guid: f63b469c33538794db5beb6f7fd37af4, type: 3}
+  type: 1
   ATK: 0
-  DEF: 0
+  DEF: 1
   maxHp: 0
   maxMp: 0
-  buffs:
-  - sisyphus
-  spr: {fileID: 0}
+  buffs: []
