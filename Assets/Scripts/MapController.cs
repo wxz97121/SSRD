@@ -15,8 +15,9 @@ public class MapArea
 {
     public MapAreaView view = null;
     public LevelData levelData;
-    public AreaType type;
+    //public AreaType type;
     public Vector2 pos;
+    public string AreaName;
 
     public bool canVisit = false;
     public bool visited = false;
@@ -24,8 +25,13 @@ public class MapArea
     public MapArea(int i,int j)
     {
         pos = new Vector2(i, j);
+        //type = AreaType.Default;
     }
-
+    public void SetLevelData(LevelData newLeveldata)
+    {
+        levelData = newLeveldata;
+        AreaName = levelData.AreaName;
+    }
     public void InitView(GameObject inst)
     {
         view = inst.GetComponent<MapAreaView>();
@@ -35,6 +41,22 @@ public class MapArea
     public void Activate()
     {
         Debug.Log("Activate");
+        switch (levelData.LevelType)
+        {
+            case AreaType.Default:
+                SuperController.Instance.ReadLevelDatas(levelData);
+                break;
+            case AreaType.Fight:
+                break;
+            case AreaType.Shop:
+                break;
+            case AreaType.Story:
+                break;
+            case AreaType.Boss:
+                break;
+            default:
+                break;
+        }
         MapController.Instance.currentChapter.UnlockAround((int)pos.x, (int)pos.y);
         MapController.Instance.HideMap();
         SuperController.Instance.SkillSelectUI();
@@ -45,6 +67,9 @@ public class MapChapter
 {
     public int size = 1;
     public MapArea[,] map;
+    
+    
+    
 
     public MapChapter (int s)
     {
@@ -54,12 +79,15 @@ public class MapChapter
     public void GenerateMap()
     {
         map = new MapArea[size, size];
-
+        //LevelData = new MapArea[size]
         for (int i = 0; i < size; i++)
         {
             for (int j = 0; j < size; j++)
             {
                 map[i, j] = new MapArea(i,j);
+                if (MapController.Instance.m_LevelData.Length > i * 3 + j)
+                    map[i, j].SetLevelData(MapController.Instance.m_LevelData[i * 3 + j]);
+                else map[i, j].SetLevelData(Resources.Load<LevelData>("Data/Level/testLevel"));
             }
         }
     }
@@ -88,19 +116,12 @@ public class MapController : MonoBehaviour
             return _instance;
         }
     }
+    //将来需要把这个LevelData数组处理一下
+    //做成每个map一个的Data
+    public LevelData[] m_LevelData;
+
     public Transform mapCanvas;
     public MapChapter currentChapter;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void ShowMap()
     {

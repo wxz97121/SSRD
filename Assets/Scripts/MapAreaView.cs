@@ -18,7 +18,7 @@ public class MapAreaView : MonoBehaviour
     {
         if (area != null)
         {
-            transform.Find("Label").GetComponent<TextMeshProUGUI>().text = area.type.ToString();
+            transform.Find("Label").GetComponent<TextMeshProUGUI>().text = area.AreaName;
 
             if (area.visited)
             {
@@ -33,7 +33,7 @@ public class MapAreaView : MonoBehaviour
             else
             {
                 GetComponent<Image>().color = Color.red;
-                GetComponent<Button>().interactable = true;
+                GetComponent<Button>().interactable = false;
             }
         }
     }

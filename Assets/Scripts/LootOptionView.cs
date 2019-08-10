@@ -38,7 +38,7 @@ public class LootOptionView : MonoBehaviour,IPointerEnterHandler, IPointerExitHa
     public void OnClick()
     {
         option.Activate();
-        LootController.Instance.EndLoot();
+        //LootController.Instance.EndLoot();
     }
 
     public void OnPointerEnter(PointerEventData eventData)

@@ -5,7 +5,12 @@ using UnityEngine;
 
 public class LevelData : ScriptableObject
 {
+    public string AreaName = "安贞西里";
     public ScoreData scoreData;
     public List<string> enemyList;
     public string BGMPath;
+    public AreaType LevelType;
+    public SkillData AwardSkill;
+    public Equipment AwardEquip;
+    public int AwardMoney;
 }

@@ -98,17 +98,6 @@ public class LootController : MonoBehaviour
     }
     public Transform canvas;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void NewLoot()
     {
@@ -118,7 +107,7 @@ public class LootController : MonoBehaviour
         Debug.Log(optionSlot.Length);
         for (int i = 0; i < optionSlot.Length; i++)
         {
-            var opt = new LootOption(LootType.Item, i);
+            var opt = new LootOption(LootType.Item, i); 
             optionView[i] = Instantiate(Resources.Load<GameObject>("Prefab/LootOption"), optionSlot[i]);
             optionView[i].GetComponent<LootOptionView>().SetOption(opt);
         }

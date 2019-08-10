@@ -42,8 +42,8 @@ public class Player : Character {
     public Equipment currentArmor;
     //当前装备着的卷轴
     public Equipment currentScroll;
-    public SkillData[] skillListInBag;
-
+    public List<SkillData> skillListInBag;
+ 
 
     private void Awake()
     {
@@ -240,7 +240,10 @@ public class Player : Character {
             mDEF += currentScroll.DEF;
         return mDEF;
     }
-
+    public void AddSkill(SkillData newSkillData)
+    {
+        skillListInBag.Add(newSkillData);
+    }
 
     #region 技能栏相关 @竹喵
     //检测技能栏是否能用

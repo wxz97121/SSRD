@@ -13,7 +13,8 @@ public enum GameState
     Ulti
 }
 //统一控制局内
-public class SuperController : MonoBehaviour {
+public class SuperController : MonoBehaviour
+{
 
     public LevelData levelData;
     //评价控制(评价控制还没改成全局控制)
@@ -44,7 +45,7 @@ public class SuperController : MonoBehaviour {
 
     public Transform InputTipPos;
 
-   // public SkillData[] skillList;
+    // public SkillData[] skillList;
 
     static SuperController _instance;
     public static SuperController Instance
@@ -59,9 +60,9 @@ public class SuperController : MonoBehaviour {
         _instance = this;
     }
 
-
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         Random.InitState(System.DateTime.Now.Second);
         mainMenu.gameObject.SetActive(true);
         commentController = GameObject.Find("Comment").GetComponent<CommentController>();
@@ -70,7 +71,7 @@ public class SuperController : MonoBehaviour {
         SRDTap = GameObject.Find("SrdTap").GetComponent<SrdTap>();
 
         playerBattleInfo = playerBattleUIPos.GetComponentInChildren<UIBattleInfo>();
-        enemyBattleInfo =enemyBattleUIPos.GetComponentInChildren<UIBattleInfo>();
+        enemyBattleInfo = enemyBattleUIPos.GetComponentInChildren<UIBattleInfo>();
 
         ReadLevelDatas();
         InputSequenceController.Instance.ResetAvailable();
@@ -83,9 +84,10 @@ public class SuperController : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         UpdateInput();
-	}
+    }
 
     protected void UpdateInput()
     {
@@ -110,7 +112,7 @@ public class SuperController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.A))
         {
             Bubble.AddBubble(BubbleSprType.hp, "-6", Player.Instance);
-                    }
+        }
         if (Input.GetKeyDown(KeyCode.S))
         {
             SoundController.Instance.FMODSetParameter("boss", 0);
@@ -146,9 +148,9 @@ public class SuperController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-              SoundController.Instance.FMODPlayOneShot("event:/instruments/snare");
-              SoundController.Instance.PlayAudioEffect("SNARE");
-           // Debug.Log(SoundController.Instance.GetSpectrum().Length);
+            SoundController.Instance.FMODPlayOneShot("event:/instruments/snare");
+            SoundController.Instance.PlayAudioEffect("SNARE");
+            // Debug.Log(SoundController.Instance.GetSpectrum().Length);
         }
 
         //战斗输入按键
@@ -226,6 +228,10 @@ public class SuperController : MonoBehaviour {
         Player.Instance.currentScroll = null;
         Player.Instance.currentWeapon = null;
         Player.Instance.equipmentList.Clear();
+        for (int index = 0; index < Player.Instance.skillSlots.Length; index++)
+            Player.Instance.skillSlots[index].skill = null;
+        Player.Instance.skillListInBag = new List<SkillData>();
+        Player.Instance.AddSkill(Resources.Load<SkillData>("Data/Skill/testSkill_00X_ATTACK"));
         Player.Instance.buffs.Clear();
         //SkillSelectUI();
         MapController.Instance.CreateChapterMap();
@@ -233,7 +239,21 @@ public class SuperController : MonoBehaviour {
 
         mainMenu.gameObject.SetActive(false);
     }
+    public void NextArea()
+    {
+        DuelController.Instance.ClearEnemy();
+        Player.Instance.buffs.Clear();
+        Player.Instance.currentArmor = null;
+        Player.Instance.currentScroll = null;
+        Player.Instance.currentWeapon = null;
+        for (int index = 0; index < Player.Instance.skillSlots.Length; index++)
+            Player.Instance.skillSlots[index].skill = null;
+        //SkillSelectUI();
+        //MapController.Instance.CreateChapterMap();
+        MapController.Instance.ShowMap();
 
+        mainMenu.gameObject.SetActive(false);
+    }
     public void GameOver()
     {
         //Debug.Log("Game Over");
@@ -244,7 +264,7 @@ public class SuperController : MonoBehaviour {
         //SoundController.Instance.SetPlayedTime();
         SoundController.Instance.FMODmusic.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         StartCoroutine("GameOverUI");
-        
+
     }
 
     IEnumerator GameOverUI()
@@ -258,7 +278,11 @@ public class SuperController : MonoBehaviour {
     public void Win()
     {
         //Debug.Log("Game Over");
-
+        Player.Instance.money += levelData.AwardMoney;
+        if (levelData.AwardSkill)
+            Player.Instance.AddSkill(levelData.AwardSkill);
+        if (levelData.AwardEquip)
+            Player.Instance.equipmentList.Add(levelData.AwardEquip);
         state = GameState.End;
         uiBarController.ClearBarArea();
         skillTipBarController.ClearSkillTipArea();
@@ -341,11 +365,17 @@ public class SuperController : MonoBehaviour {
         score = OneSongScore.ReadScoreData(levelData.scoreData);
         DuelController.Instance.enemyList = levelData.enemyList;
     }
+    public void ReadLevelDatas(LevelData newLevelData)
+    {
+        levelData = newLevelData;
+        score = OneSongScore.ReadScoreData(levelData.scoreData);
+        DuelController.Instance.enemyList = levelData.enemyList;
+    }
 
     public void Pause(GameState _state)
     {
         tempstate = state;
-        Debug.Log("tempstate"+ tempstate);
+        Debug.Log("tempstate" + tempstate);
         state = _state;
         Debug.Log("state" + state);
 
@@ -368,9 +398,9 @@ public class SuperController : MonoBehaviour {
     }
 
     //
-    public void ShowInputTip(string text,int type=0)
+    public void ShowInputTip(string text, int type = 0)
     {
         GameObject tip = Instantiate(Resources.Load("Prefab/InputTip/InputTip"), InputTipPos.transform) as GameObject;
-        tip.GetComponent<InputTip>().Init(text,type);
+        tip.GetComponent<InputTip>().Init(text, type);
     }
 }
