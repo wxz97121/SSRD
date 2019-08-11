@@ -20,6 +20,10 @@ public class Player : Character {
     //当前的技能列表
     public SkillSlot[] skillSlots=new SkillSlot[5];
 
+    //自动模式
+    public bool automode = false;
+    public Queue<string> autoSkills;
+
 
     //必杀用的通用Skill
     public Skill commonSkill;
@@ -78,6 +82,8 @@ public class Player : Character {
 
         //范用技能，强行发招用
         commonSkill = new Skill();
+
+        autoSkills = new Queue<string>();
     }
 
     // Update is called once per frame
@@ -127,7 +133,7 @@ public class Player : Character {
     }
 
 
-    //更新技能CD
+    #region 更新技能 现在没啥用了
     public void UpdateCDs()
     {
         foreach(SkillSlot s in skillSlots)
@@ -143,8 +149,40 @@ public class Player : Character {
         //更新技能CD的UI显示
         SuperController.Instance.skillTipBarController.UpdateCDs();
     }
+    #endregion
 
 
+    #region 进入自动模式(蓄力或者硬直专用)
+    public void IntoAutoMode(Queue<string> skills)
+    {
+        automode = true;
+        autoSkills.Clear();
+        autoSkills = skills;
+        UIBarController.Instance.ShowNoInput();
+    }
+    #endregion
+
+    #region 退出自动模式(蓄力或者硬直专用)
+    public void LeaveAutoMode()
+    {
+        automode = false;
+        autoSkills.Clear();
+        UIBarController.Instance.HideNoInput();
+    }
+    #endregion
+
+    #region 自动模式使用技能(蓄力或者硬直专用)
+    public void CastAutoSkill()
+    {
+
+        CastSkill(autoSkills.Dequeue());
+        if (autoSkills.Count == 0)
+        {
+            LeaveAutoMode();
+        }
+
+    }
+    #endregion
 
     public void UpdateEquipUI()
     {
@@ -306,6 +344,12 @@ public class Player : Character {
     }
     #endregion 
 }
+
+
+
+
+
+
 public interface Item
 {
     Sprite Icon { get; set; }

@@ -7201,7 +7201,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &957970463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13221,6 +13221,7 @@ MonoBehaviour:
   buffs: []
   mTarget: {fileID: 0}
   animator: {fileID: 0}
+  automode: 0
   money: 10
   UIMoneyNum: {fileID: 60550191}
   spec: {fileID: 242401760}
@@ -13232,6 +13233,7 @@ MonoBehaviour:
   currentScroll: {fileID: 0}
   skillListInBag:
   - {fileID: 11400000, guid: e59e2f5e71a394b898068a64db9eee71, type: 2}
+  - {fileID: 11400000, guid: b87acd6adfc804ab1b4cacf11a718dae, type: 2}
 --- !u!95 &1979303376
 Animator:
   serializedVersion: 3

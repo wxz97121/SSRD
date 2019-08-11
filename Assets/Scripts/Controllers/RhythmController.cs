@@ -298,6 +298,7 @@ public class RhythmController : MonoBehaviour
 
 
             if (nowAI) nowAI.Action(1);
+            if (Player.Instance.automode) Player.Instance.CastAutoSkill();
 
         }
 
@@ -305,14 +306,26 @@ public class RhythmController : MonoBehaviour
         {
 
             if (nowAI) nowAI.Action(2);
+            if (Player.Instance.automode) Player.Instance.CastAutoSkill();
+
 
         }
 
-        //已经BAD的情况，直接触发AI技能
+        //已经BAD的情况，直接触发AI技能，auto状态 直接触发节能
 
         if (beatNum == 2)
         {
-            if(isCurBarCleaned == true&&DuelController.Instance.isActedAt3rdBeat==false&& DuelController.Instance.GetCurAI())
+            if (Player.Instance.automode&&DuelController.Instance.isActedAt3rdBeat==false)
+            {
+                DuelController.Instance.SkillJudge(Player.Instance.autoSkills.Dequeue(), DuelController.Instance.GetCurAI().GetNextSkill(3));
+                if (Player.Instance.autoSkills.Count == 0)
+                {
+                    Player.Instance.LeaveAutoMode();
+                }
+                DuelController.Instance.GetCurAI().Action(3);
+            }
+
+            if (isCurBarCleaned == true&&DuelController.Instance.isActedAt3rdBeat==false&& DuelController.Instance.GetCurAI())
             {
                 Player.Instance.UpdateCDs();
 
@@ -333,6 +346,7 @@ public class RhythmController : MonoBehaviour
 
 
             if (nowAI) nowAI.Action(4);
+            if (Player.Instance.automode) Player.Instance.CastAutoSkill();
 
 
         }

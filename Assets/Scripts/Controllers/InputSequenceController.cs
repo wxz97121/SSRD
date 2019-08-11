@@ -107,7 +107,11 @@ public class InputSequenceController : MonoBehaviour
             return;
         }
 
-
+        //自动状态直接RETURN
+        if (Player.Instance.automode)
+        {
+            return;
+        }
 
         //第三拍之后,改为不处理,仅处理下一小节第一拍之前的一小段时间
         if ((UIBarController.Instance.playingBarPosInBeats > -RhythmController.Instance.commentGoodTime + 4f))

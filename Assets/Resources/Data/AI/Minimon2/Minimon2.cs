@@ -47,11 +47,9 @@ public class Minimon2 : AI
             }
             else
             {
-                if(skillGroupSeq.Count==actionID+1)
-                    SGSAdd("idle");
+                SGSAdd("idle");
                 circleID++;
             }
-            actionID++;
 
 
         }
@@ -62,9 +60,9 @@ public class Minimon2 : AI
         }
     }
 
-    public override void Hit(int dDamage, bool noAfterattack = false, bool isCounterable = false)
+    public override void Hit(int dDamage, bool noAfterattack = false, bool isDefenceToDisable = false, bool isDefencePenetrate = false)
     {
-        base.Hit(dDamage, noAfterattack, isCounterable);
+        base.Hit(dDamage, noAfterattack, isDefenceToDisable, isDefencePenetrate);
         if (isDefenced)
         {
             //.Break();
@@ -75,4 +73,5 @@ public class Minimon2 : AI
             isDefenced = false;
         }
     }
+
 }

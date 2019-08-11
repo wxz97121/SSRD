@@ -69,6 +69,7 @@ public class Skill
                     HEL(int.Parse(InstancedEff[1]), m_Char);
                     break;
                 case ("DEF"):
+                    //防御成功带技能
                     if (InstancedEff.Length > 1)
                     {
                         DEF(m_Char, InstancedEff[1]);
@@ -81,6 +82,10 @@ public class Skill
                 case ("-CD"):
                     MCD(int.Parse(InstancedEff[1]), InstancedEff[2], m_Char as Player);
                     break;
+                //加能量
+                case ("ENG"):
+                    ENG(int.Parse(InstancedEff[1]), m_Char as Player);
+                    break;
                 //三倍蓄力
                 case ("TBD"):
                     TBD(int.Parse(InstancedEff[1]),m_Char);
@@ -89,9 +94,19 @@ public class Skill
                 case ("ALLMPATK"):
                     ALLMPATK(m_Char);
                     break;
-                //必杀
+                //QTE必杀
                 case ("ULTI"):
                     ULTI(m_Char, InstancedEff[1]);
+                    break;
+
+                case ("CBB"):
+                    //可被打断宣言
+                    m_Char.isBreakable = true;
+                    break;
+
+                case ("AUTO"):
+                    //开始自动操作
+                    AUTO(InstancedEff[1], m_Char as Player);
                     break;
                 default:
                     break;
@@ -104,11 +119,11 @@ public class Skill
     {
         if (mode == 0)
         {
-            Str = "Data/Skill/" + Str;
+            Str = "Data/Player/Skill/" + Str;
             SkillData data = Resources.Load(Str) as SkillData;
             if (!data)
             {
-                Debug.Log("这个路径没有SkillData！！");
+                Debug.Log("这个路径没有SkillData！！" + Str);
                 Debug.Break();
             }
             m_name = data._name;
@@ -147,15 +162,21 @@ public class Skill
     //public UnityEvent EffectEvent;
     //public List<Effect> effects;
 
-    public void ATK(int dDamage, Character Char,bool isCounterable= false)
+    public void ATK(int dDamage, Character Char,bool isDefenceToDisable = false)
     {
-        Char.Hit(dDamage, isCounterable);
+        Char.Hit(dDamage, isDefenceToDisable);
         //        Debug.Log("ATK "+ dDamage);
     }
 
     public void ATKmini(int dDamage, Character Char)
     {
         Char.Hit(dDamage,true);
+        //        Debug.Log("ATK "+ dDamage);
+    }
+
+    public void ATKpene(int dDamage, Character Char)
+    {
+        Char.Hit(dDamage,false,false,true);
         //        Debug.Log("ATK "+ dDamage);
     }
 
@@ -232,5 +253,34 @@ public class Skill
                     s.skill.Cooldown = 0;
             }
         }
+    }
+
+
+    //加能量 
+    public void ENG(int dMP, Player player)
+    {
+
+
+        player.AddMp(dMP);
+    }
+
+    //开始自动行动
+    public void AUTO(string str, Player player)
+    {
+        //&用来分隔每个技能组
+        //;代表, 用来分隔组里的每个技能
+        //=替代_
+        str = str.Replace(';', ',');
+        str = str.Replace('=', '_');
+
+        string[] StrSplit = str.Split('&');
+        Queue<string> skills = new Queue<string>();
+        foreach(string s in StrSplit)
+        {
+            skills.Enqueue(s);
+        }
+
+        player.IntoAutoMode(skills);
+
     }
 }

@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf25b2aeb1e6b4c3a8f5b1efea2d3300, type: 3}
+  m_Name: testSkill_0Z0ZX_HEAL
+  m_EditorClassIdentifier: 
+  type: 4
+  sprite: {fileID: 21300008, guid: 16af87af7923e401fa2d5dd82c0709d1, type: 3}
+  _name: HEAL
+  cost: 12
+  inputSequence:
+  - type: 21
+    note: {fileID: 0}
+    subnote: {fileID: 0}
+    beatInBar: 0.5
+    beatInSong: 0
+    SuccessSkill: 
+    BadSkill: 
+    MissSkill: 
+  - type: 21
+    note: {fileID: 0}
+    subnote: {fileID: 0}
+    beatInBar: 1.5
+    beatInSong: 0
+    SuccessSkill: 
+    BadSkill: 
+    MissSkill: 
+  - type: 22
+    note: {fileID: 0}
+    subnote: {fileID: 0}
+    beatInBar: 2
+    beatInSong: 0
+    SuccessSkill: 
+    BadSkill: 
+    MissSkill: 
+  Effect: HEL_10
+  CD: 0
+  Desc: "\u6CBB\u7597\uFF1A\u6D88\u80173\u80FD\u91CF\uFF0C\u6062\u590D10\u70B9HP"

@@ -26,7 +26,6 @@ public class UIBarController : MonoBehaviour {
     //播放到当前小节的节拍数
     public float postBarPosInBeats;
     public float playingBarPosInBeats;
-
     public float preBarPosInBeats;
 
     public GameObject barPos0GO;
@@ -390,6 +389,26 @@ public class UIBarController : MonoBehaviour {
     public void ClearBarWarn()
     {
 //                preBar.GetComponent<UIBar>().enemyWarn.gameObject.transform.localScale = new Vector3(0, 0, 0);
+
+    }
+
+    //进入auto模式，显示no input
+    public void ShowNoInput()
+    {
+        Debug.Log("ShowNoInput");
+        preBar.GetComponent<UIBar>().noInput.localScale = new Vector3(1, 1, 1);
+        playingBar.GetComponent<UIBar>().noInput.localScale = new Vector3(1, 1, 1);
+        postBar.GetComponent<UIBar>().noInput.localScale = new Vector3(1, 1, 1);
+
+    }
+
+
+    //退出auto模式，隐藏no input
+    public void HideNoInput()
+    {
+        preBar.GetComponent<UIBar>().noInput.localScale = new Vector3(0,0,0);
+        playingBar.GetComponent<UIBar>().noInput.localScale = new Vector3(0, 0, 0);
+        postBar.GetComponent<UIBar>().noInput.localScale = new Vector3(0, 0, 0);
 
     }
 }

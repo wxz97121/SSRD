@@ -28,7 +28,7 @@ public class Minimon3 : AI
 
         if (beatnum == 3)
         {
-            if (skillGroupSeq.Count == actionID + 1)
+            if (skillGroupSeq.Count == 0)
             {
                 float P = Random.value;
                 if (P > 0.9)
@@ -53,7 +53,6 @@ public class Minimon3 : AI
                 }
             }
 
-            actionID++;
 
         }
         else
@@ -65,9 +64,9 @@ public class Minimon3 : AI
     }
 
 
-    public override void Hit(int dDamage, bool noAfterattack = false, bool isDefenceToDisable = false)
+    public override void Hit(int dDamage, bool noAfterattack = false, bool isDefenceToDisable = false, bool isDefencePenetrate = false)
     {
-        base.Hit(dDamage, noAfterattack, isDefenceToDisable);
+        base.Hit(dDamage, noAfterattack, isDefenceToDisable, isDefencePenetrate);
         if (isDefenced)
         {
             //.Break();

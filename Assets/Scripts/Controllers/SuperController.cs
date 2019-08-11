@@ -71,7 +71,7 @@ public class SuperController : MonoBehaviour
         commentController = GameObject.Find("Comment").GetComponent<CommentController>();
         skillTipBarController = GameObject.Find("SkillTipArea").GetComponent<UISkillTipBarController>();
         uiBarController = GameObject.Find("BarArea").GetComponent<UIBarController>();
-        SRDTap = GameObject.Find("SrdTap").GetComponent<SrdTap>();
+        //SRDTap = GameObject.Find("SrdTap").GetComponent<SrdTap>();
 
         playerBattleInfo = playerBattleUIPos.GetComponentInChildren<UIBattleInfo>();
         enemyBattleInfo = enemyBattleUIPos.GetComponentInChildren<UIBattleInfo>();

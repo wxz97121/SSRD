@@ -99,7 +99,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    virtual public void Hit(int dDamage, bool noAfterattack=false,bool isDefenceToDisable= false)
+    virtual public void Hit(int dDamage, bool noAfterattack=false,bool isDefenceToDisable= false,bool isDefencePenetrate = false)
     {
         //普通攻击目标
         if (mTarget != null)

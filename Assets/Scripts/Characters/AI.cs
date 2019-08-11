@@ -135,13 +135,19 @@ public class AI : Character
         }
         if (beatnum == 4)
         {
-            return skillGroupSeq[actionID].enemySkills[0];
+            return skillGroupSeq[0].enemySkills[0];
+
+        }
+        else if(beatnum==3)
+        {
+            string str= skillGroupSeq[0].enemySkills[beatnum];
+            skillGroupSeq.RemoveAt(0);
+            return str;
 
         }
         else
         {
-            return skillGroupSeq[actionID].enemySkills[beatnum];
-
+            return skillGroupSeq[0].enemySkills[beatnum];
         }
         //4-0  1-2  2-3  3-4
     }

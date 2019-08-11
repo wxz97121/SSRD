@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 
 
 public class UIBar : MonoBehaviour {
@@ -27,6 +29,7 @@ public class UIBar : MonoBehaviour {
     public Sprite bgQTE;
     public Sprite bgULTI;
 
+    public Transform noInput;
     public GameObject startPosGO;
     public GameObject onebeatspaceGO;
     public Vector3 startPos;
@@ -261,6 +264,11 @@ public class UIBar : MonoBehaviour {
         }
 
         enemyWarn.SetAlpha(alpha);
+
+        noInput.GetComponentsInChildren<Image>()[0].color = new Color(250f/255f, 136f / 255f, 39f / 255f, alpha);
+        noInput.GetComponentsInChildren<Image>()[1].color = new Color(250f / 255f, 136f / 255f, 39f / 255f, alpha);
+        noInput.GetComponentsInChildren<TextMeshProUGUI>()[0].color = new Color(250f / 255f, 136f / 255f, 39f / 255f, alpha);
+
     }
 
     //重置
