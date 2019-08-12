@@ -118,11 +118,8 @@ public class SuperController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            SoundController.Instance.FMODSetParameter("boss", 0);
-            SoundController.Instance.FMODSetParameter("chorus", 1);
-            SoundController.Instance.FMODSetParameter("verse", 0);
-            SoundController.Instance.FMODSetParameter("breakdown", 0);
-            SoundController.Instance.FMODSetParameter("outro", 0);
+            Instantiate(Resources.Load("VFX/SlashTest"), DuelController.Instance.GetCurAI().transform.position+new Vector3(0,0,-1), Quaternion.identity);
+
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
