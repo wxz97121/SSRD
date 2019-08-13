@@ -10,25 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf25b2aeb1e6b4c3a8f5b1efea2d3300, type: 3}
-  m_Name: SUPERSUPERATTACK
+  m_Name: PIERCEATTACK1
   m_EditorClassIdentifier: 
   type: 4
-  sprite: {fileID: 21300010, guid: 16af87af7923e401fa2d5dd82c0709d1, type: 3}
-  _name: SUPER HEAVY DMG
+  sprite: {fileID: 21300000, guid: 16af87af7923e401fa2d5dd82c0709d1, type: 3}
+  _name: Pierce
   cost: 8
   inputSequence:
   - type: 21
     note: {fileID: 0}
     subnote: {fileID: 0}
-    beatInBar: 0
-    beatInSong: 0
-    SuccessSkill: 
-    BadSkill: 
-    MissSkill: 
-  - type: 21
-    note: {fileID: 0}
-    subnote: {fileID: 0}
-    beatInBar: 0.5
+    beatInBar: 1.5
     beatInSong: 0
     SuccessSkill: 
     BadSkill: 
@@ -41,6 +33,6 @@ MonoBehaviour:
     SuccessSkill: 
     BadSkill: 
     MissSkill: 
-  Effect: AUTO_ANI=player-readytoslash>ANI=player-readytoslash>ANI=player-readytoslash>ANI=player-slash;ATK=8;VFX=SlashDownBig=7/1/0,ANI_player-readytoslash
+  Effect: ATKPRO_dmg:3&IDP,ANI_player-attack
   CD: 0
-  Desc: "\u8D85\u91CD\u51FB\uFF1A\u84C4\u529B\u4E00\u56DE\u5408\uFF0C\u6D88\u80172\u80FD\u91CF\uFF0C\u8FDB\u884C8\u70B9\u653B\u51FB"
+  Desc: "\u7A81\u523A\uFF0C\u6D88\u80172\u80FD\u91CF\uFF0C3\u70B9\u653B\u51FB\uFF0C\u53EF\u7A7F\u900F\u654C\u4EBA\u7684\u9632\u5FA1\u52A8\u4F5C"

@@ -64,9 +64,9 @@ public class Minimon3 : AI
     }
 
 
-    public override void Hit(int dDamage, bool noAfterattack = false, bool isDefenceToDisable = false, bool isDefencePenetrate = false)
+    public override void Hit(int dDamage, bool noAfterattack = false, bool isDefenceToDisable = false, bool isDefencePenetrate = false, string sfxstr = "SLASH")
     {
-        base.Hit(dDamage, noAfterattack, isDefenceToDisable, isDefencePenetrate);
+        base.Hit(dDamage, noAfterattack, isDefenceToDisable, isDefencePenetrate, sfxstr);
         if (isDefenced)
         {
             //.Break();

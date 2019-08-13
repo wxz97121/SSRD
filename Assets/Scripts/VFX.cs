@@ -20,6 +20,8 @@ public class VFX : MonoBehaviour {
             StartCoroutine("FrameAnimation");
         }
 
+
+
     }
 	
 	// Update is called once per frame
@@ -98,5 +100,16 @@ public class VFX : MonoBehaviour {
             timeCount += Time.deltaTime;
 
         }
+    }
+
+    public void Kill()
+    {
+        Destroy(gameObject);
+
+    }
+
+    public static void ShowVFX(string str,Vector3 vector,Character Char)
+    {
+        Instantiate(Resources.Load("VFX/"+str),Char.transform.position+vector, Quaternion.identity);
     }
 }

@@ -99,7 +99,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    virtual public void Hit(int dDamage, bool noAfterattack=false,bool isDefenceToDisable= false,bool isDefencePenetrate = false)
+    virtual public void Hit(int dDamage, bool noAfterattack=false,bool isDefenceToDisable= false,bool isDefencePenetrate = false,string sfxstr="SLASH")
     {
         //普通攻击目标
         if (mTarget != null)
@@ -108,31 +108,48 @@ public class Character : MonoBehaviour
             //判断对方护盾
             if (cTarget.hasBuff<Buff_defend>())
             {
-
-
-                GameObject fxClone=Instantiate(Resources.Load("VFX/Shield"), cTarget.transform.Find("pos_defendfx").transform.position, Quaternion.identity) as GameObject;
-                fxClone.transform.localScale = cTarget.transform.Find("pos_defendfx").transform.localScale;
-
-                //Debug.Log("ISCOUNTERABLE "+isCounterable.ToString());
-                if (isDefenceToDisable)
+                //破防
+                if (isDefencePenetrate)
                 {
-                    //Debug.Break();
-                    SoundController.Instance.PlayAudioEffect("PDEFEND");
-                    isDefenced = true;
+                    //todo:通用的破防挨打动画，破防音效
+                    SoundController.Instance.PlayAudioEffect(sfxstr);
+
+                    cTarget.Damage(CalcDmg(getCurrentATK(), cTarget.getCurrentDEF(), dDamage), this);
+                    if (cTarget.isPlayer)
+                    {
+                        Camera.main.gameObject.transform.DOShakePosition(1, 0.5f);
+
+                    }
                 }
                 else
                 {
-                    SoundController.Instance.PlayAudioEffect("DEFEND");
+                    GameObject fxClone = Instantiate(Resources.Load("VFX/Shield"), cTarget.transform.Find("pos_defendfx").transform.position, Quaternion.identity) as GameObject;
+                    fxClone.transform.localScale = cTarget.transform.Find("pos_defendfx").transform.localScale;
+
+                    //Debug.Log("ISCOUNTERABLE "+isCounterable.ToString());
+                    if (isDefenceToDisable)
+                    {
+                        //Debug.Break();
+                        SoundController.Instance.PlayAudioEffect("PDEFEND");
+                        isDefenced = true;
+                    }
+                    else
+                    {
+                        SoundController.Instance.PlayAudioEffect("DEFEND");
+
+                    }
+
+                    //释放防御成功带的技能
+                    cTarget.CastSkill((cTarget.buffs.Find((Buff obj) => obj.m_name == "defend") as Buff_defend).EffStr);
 
                 }
 
-                cTarget.CastSkill((cTarget.buffs.Find((Buff obj) => obj.m_name == "defend") as Buff_defend).EffStr);
 
             }
             else
             {
-                Instantiate(Resources.Load("VFX/Slash"), cTarget.transform.position, Quaternion.identity);
-                SoundController.Instance.PlayAudioEffect("SLASH");
+                //todo:通用的挨打动画
+                SoundController.Instance.PlayAudioEffect(sfxstr);
                 
                 cTarget.Damage(CalcDmg(getCurrentATK(), cTarget.getCurrentDEF(), dDamage), this);
                 if (cTarget.isPlayer)

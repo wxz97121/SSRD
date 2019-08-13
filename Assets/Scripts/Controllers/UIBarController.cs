@@ -395,7 +395,7 @@ public class UIBarController : MonoBehaviour {
     //进入auto模式，显示no input
     public void ShowNoInput()
     {
-        Debug.Log("ShowNoInput");
+//        Debug.Log("ShowNoInput");
         preBar.GetComponent<UIBar>().noInput.localScale = new Vector3(1, 1, 1);
         playingBar.GetComponent<UIBar>().noInput.localScale = new Vector3(1, 1, 1);
         postBar.GetComponent<UIBar>().noInput.localScale = new Vector3(1, 1, 1);

@@ -55,6 +55,9 @@ public class Skill
             {
                 case ("EPT"):
                     break;
+                case ("ATKPRO"):
+                    ATKPRO(InstancedEff[1], m_Char);
+                    break;
                 case ("ATK"):
                     ATK(int.Parse(InstancedEff[1]), m_Char);
                     break;
@@ -103,7 +106,10 @@ public class Skill
                     //可被打断宣言
                     m_Char.isBreakable = true;
                     break;
-
+                case ("VFX"):
+                    //出现特效
+                    Vfx(InstancedEff[1], InstancedEff[2],m_Char);
+                    break;
                 case ("AUTO"):
                     //开始自动操作
                     AUTO(InstancedEff[1], m_Char as Player);
@@ -161,6 +167,44 @@ public class Skill
     }
     //public UnityEvent EffectEvent;
     //public List<Effect> effects;
+
+
+    public void ATKPRO(string effstr, Character Char)
+    {
+
+        int dDamage = 0;
+        bool noAfterattack = false;
+        bool isDefenceToDisable = false;
+        bool isDefencePenetrate = false;
+        string sfxstr = "SLASH";
+        string[] InstancedEffstr = effstr.Split('&');
+        foreach(string s in InstancedEffstr)
+        {
+            switch (s.Split(':')[0])
+            {
+                case ("dmg"):
+                    dDamage = int.Parse(s.Split(':')[1]);
+                    break;
+                case ("NAA"):
+                    noAfterattack = true;
+                    break;
+                case ("IDTD"):
+                    isDefenceToDisable = true;
+                    break;
+                case ("IDP"):
+                    isDefencePenetrate = true;
+                    break;
+                case ("sfx"):
+                    sfxstr = s.Split(':')[1];
+                    break;
+
+            }
+        }
+        Char.Hit( dDamage,  noAfterattack ,  isDefenceToDisable,  isDefencePenetrate,  sfxstr);
+    }
+
+
+
 
     public void ATK(int dDamage, Character Char,bool isDefenceToDisable = false)
     {
@@ -273,7 +317,7 @@ public class Skill
         str = str.Replace(';', ',');
         str = str.Replace('=', '_');
 
-        string[] StrSplit = str.Split('&');
+        string[] StrSplit = str.Split('>');
         Queue<string> skills = new Queue<string>();
         foreach(string s in StrSplit)
         {
@@ -281,6 +325,15 @@ public class Skill
         }
 
         player.IntoAutoMode(skills);
+
+    }
+
+
+    public void Vfx(string str,string vecstr,Character Char)
+    {
+        string[] vecstrs= vecstr.Split('/');
+        Vector3 vector = new Vector3(float.Parse(vecstrs[0]), float.Parse(vecstrs[1]), float.Parse(vecstrs[2]));
+        VFX.ShowVFX(str,vector,Char);
 
     }
 }
