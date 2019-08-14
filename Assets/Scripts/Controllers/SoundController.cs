@@ -89,9 +89,9 @@ public class SoundController : MonoBehaviour {
             _soundDictionary.Add(item.name, item);
         }
 
-        audioSourceEffect_Z.clip=_soundDictionary["KICK"];
-        audioSourceEffect_X.clip = _soundDictionary["SNARE"];
-        audioSourceEffect_M.clip = _soundDictionary["HIHAT"];
+        audioSourceEffect_Z.clip=_soundDictionary["Bassdrum"];
+        audioSourceEffect_X.clip = _soundDictionary["Snare"];
+        audioSourceEffect_M.clip = _soundDictionary["Hihat"];
 
 
         //fmod init
@@ -121,19 +121,21 @@ public class SoundController : MonoBehaviour {
     //播放音效
     public void PlayAudioEffect(string audioEffectName)
     {
+        audioSourceEffect.volume = 1f;
+
         switch (audioEffectName)
         {
-            case "SNARE":
+            case "Snare":
                 audioSourceEffect_X.Stop();
 
                 audioSourceEffect_X.Play();
                 break;
-            case "KICK":
+            case "Bassdrum":
                 audioSourceEffect_Z.Stop();
 
                 audioSourceEffect_Z.Play();
                 break;
-            case "HIHAT":
+            case "Hihat":
                 audioSourceEffect_M.Stop();
 
                 audioSourceEffect_M.Play();
@@ -189,6 +191,7 @@ public class SoundController : MonoBehaviour {
         channelGroup.getDSP(0, out channelhead);
         channelhead.setMeteringEnabled(false, true);
         playedtime = CalcDSPtime();
+        FMODmusic.setVolume(0.5f);
         FMODmusic.start();
         channelGroup.getDSPClock(out dsp, out dsp2);
         UnityEngine.Debug.Log("dsp "+dsp);

@@ -80,6 +80,11 @@ public class EnemySkill
                 case ("TIP"):
                     TIP(InstancedEff[1], int.Parse(InstancedEff[2]));
                     break;
+                    //长时间持续的特效，用BUFF控制
+                case ("LVFX"):
+                    LVFX(InstancedEff[1], int.Parse(InstancedEff[2]),m_Char);
+                    break;
+
                 case ("CBB"):
                     //可被打断宣言,用在第四拍
                     m_Char.isBreakable=true;
@@ -135,6 +140,19 @@ public class EnemySkill
         };
         defend.BuffAdded(Char,"");
         //Char.buffs.Add(defend);
+
+    }
+
+    private void LVFX(string str, int beats, Character Char)
+    {
+        Buff_playVFX buff_PlayVFX = new Buff_playVFX
+        {
+            m_name = "Lvfx",
+            remainBeats = beats,
+            //character = Char,
+            activateTime = RhythmController.Instance.songPosInBeats
+        };
+        buff_PlayVFX.BuffAdded(Char, str);
 
     }
 

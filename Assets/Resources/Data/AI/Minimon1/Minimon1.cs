@@ -33,7 +33,7 @@ public class Minimon1 : AI
         {
             if (circleID >= 3)
             {
-                SGSAdd("attack");
+                SGSAdd("VFXTEST");
                 circleID = 0;
             }
             else

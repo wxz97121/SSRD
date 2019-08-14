@@ -114,20 +114,24 @@ public class SuperController : MonoBehaviour
         //测试专用键
         if (Input.GetKeyDown(KeyCode.A))
         {
-            Bubble.AddBubble(BubbleSprType.hp, "-6", Player.Instance);
+            Instantiate(Resources.Load("VFX/HealStream"), DuelController.Instance.GetCurAI().transform.position + new Vector3(0, 0, -1), Quaternion.identity);
+
+            // Bubble.AddBubble(BubbleSprType.hp, "-6", Player.Instance);
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            Instantiate(Resources.Load("VFX/SlashTest"), DuelController.Instance.GetCurAI().transform.position+new Vector3(0,0,-1), Quaternion.identity);
+            Instantiate(Resources.Load("VFX/HealBig"), DuelController.Instance.GetCurAI().transform.position+new Vector3(0,0,-1), Quaternion.identity);
 
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
-            SoundController.Instance.FMODSetParameter("boss", 0);
-            SoundController.Instance.FMODSetParameter("chorus", 0);
-            SoundController.Instance.FMODSetParameter("verse", 1);
-            SoundController.Instance.FMODSetParameter("breakdown", 0);
-            SoundController.Instance.FMODSetParameter("outro", 0);
+            Instantiate(Resources.Load("VFX/HealOnce"), DuelController.Instance.GetCurAI().transform.position + new Vector3(0, 0, -1), Quaternion.identity);
+
+            //SoundController.Instance.FMODSetParameter("boss", 0);
+            //SoundController.Instance.FMODSetParameter("chorus", 0);
+            //SoundController.Instance.FMODSetParameter("verse", 1);
+            //SoundController.Instance.FMODSetParameter("breakdown", 0);
+            //SoundController.Instance.FMODSetParameter("outro", 0);
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -149,7 +153,7 @@ public class SuperController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             SoundController.Instance.FMODPlayOneShot("event:/instruments/snare");
-            SoundController.Instance.PlayAudioEffect("SNARE");
+            SoundController.Instance.PlayAudioEffect("Snare");
             // Debug.Log(SoundController.Instance.GetSpectrum().Length);
         }
 

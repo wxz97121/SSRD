@@ -309,7 +309,7 @@ public class UIBar : MonoBehaviour {
         };
         if (inputType == Note.NoteType.inputBassdrum)
         {
-            SoundController.Instance.PlayAudioEffect("KICK");
+            SoundController.Instance.PlayAudioEffect("Bassdrum");
             //SoundController.Instance.PlayOneShot("event:/instruments/bassdrum");
 
             note.note = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Note_Bassdrum", typeof(GameObject)), transform);
@@ -319,7 +319,7 @@ public class UIBar : MonoBehaviour {
         {
 
             //SoundController.Instance.PlayOneShot("event:/instruments/snare");
-            SoundController.Instance.PlayAudioEffect("SNARE");
+            SoundController.Instance.PlayAudioEffect("Snare");
 
             note.note = Instantiate((GameObject)Resources.Load("Prefab/UI/Bar/UI_Bar_Note_Snare", typeof(GameObject)), transform);
         }

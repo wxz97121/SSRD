@@ -25,3 +25,9 @@ MonoBehaviour:
     - EPT
     - EPT
     - ANIT_attack,ATK_1
+  - name: VFXTEST
+    enemySkills:
+    - LVFX_ChargeRed/0/0/0_3
+    - EPT
+    - EPT
+    - EPT

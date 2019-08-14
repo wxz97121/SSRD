@@ -7,6 +7,7 @@ public class VFX : MonoBehaviour {
     public float aniTime = 0.2f;
     public int type = 0;
     public Sprite[] frames;
+    public float killtime;
     // Use this for initialization
     private void Awake()
     {
@@ -20,7 +21,10 @@ public class VFX : MonoBehaviour {
             StartCoroutine("FrameAnimation");
         }
 
-
+        if (type == 1)
+        {
+            StartCoroutine("KillInTime");
+        }
 
     }
 	
@@ -102,14 +106,22 @@ public class VFX : MonoBehaviour {
         }
     }
 
+    IEnumerator KillInTime()
+    {
+        yield return new WaitForSeconds(killtime);
+        Destroy(gameObject);
+
+    }
+
+
     public void Kill()
     {
         Destroy(gameObject);
 
     }
 
-    public static void ShowVFX(string str,Vector3 vector,Character Char)
+    public static GameObject ShowVFX(string str,Vector3 vector,Character Char)
     {
-        Instantiate(Resources.Load("VFX/"+str),Char.transform.position+vector, Quaternion.identity);
+       return Instantiate(Resources.Load("VFX/"+str),Char.transform.position+vector, Quaternion.identity,Char.transform) as GameObject;
     }
 }

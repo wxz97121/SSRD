@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aniTime: 0.5
-  type: 2
+  type: 3
   frames:
   - {fileID: 21300000, guid: 4d131378767324b4b9d252833d08bcf9, type: 3}
   - {fileID: 21300000, guid: fa4cfb46749bc403a8f2a147479ae45a, type: 3}
@@ -109,3 +109,4 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e08a34e58ed1f43279eec75216fdb283, type: 3}
   - {fileID: 21300000, guid: cd523b30b57be42eeba746b4a07812e5, type: 3}
   - {fileID: 21300000, guid: aee935c39cf2d4735b2d575b7ac18018, type: 3}
+  killtime: 0

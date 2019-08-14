@@ -293,6 +293,7 @@ public class Character : MonoBehaviour
     public virtual void Broken()
     {
         isBroken = true;
+        SoundController.Instance.PlayAudioEffect("Break");
         SuperController.Instance.ShowInputTip("BREAK!", 1);
         //TODO:增加打断特效
     }

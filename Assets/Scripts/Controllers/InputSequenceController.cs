@@ -49,7 +49,7 @@ public class InputSequenceController : MonoBehaviour
             if (RhythmController.InputComment(UIBarController.Instance.currentEnergyNotes) < 2)
             {
                 Player.Instance.AddMp(1);
-                SoundController.Instance.PlayAudioEffect("HIHAT");
+                SoundController.Instance.PlayAudioEffect("Hihat");
 
                 UIBarController.Instance.currentEnergyNotes[0].note.GetComponent<VFX>().StartCoroutine("FadeOutLarger");
                 UIBarController.Instance.currentEnergyNotes.RemoveAt(0);
@@ -74,7 +74,7 @@ public class InputSequenceController : MonoBehaviour
         if (RhythmController.InputComment(UIBarController.Instance.currentEnergyNotes) < 2)
         {
             Player.Instance.AddMp(1);
-            SoundController.Instance.PlayAudioEffect("HIHAT");
+            SoundController.Instance.PlayAudioEffect("Hihat");
 
             UIBarController.Instance.currentEnergyNotes[0].note.GetComponent<VFX>().StartCoroutine("FadeOutLarger");
             UIBarController.Instance.currentEnergyNotes.RemoveAt(0);
@@ -311,7 +311,7 @@ public class InputSequenceController : MonoBehaviour
 
         SuperController.Instance.ShowInputTip(tip);
 
-        SoundController.Instance.PlayAudioEffect("ROUND");
+        SoundController.Instance.PlayAudioEffect("Side");
         if (Instance.CurInputSequence.Count > 0)
         {
             int tempcount = Instance.CurInputSequence.Count;
