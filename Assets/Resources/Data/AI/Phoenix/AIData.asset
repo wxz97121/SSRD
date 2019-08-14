@@ -60,7 +60,7 @@ MonoBehaviour:
     - ATK_5,ANIT_form2-attack2
   - name: form2-heal
     enemySkills:
-    - ANIT_form2-readyheal,CBB
+    - ANIT_form2-readyheal,CBB,LVFX_ChargeGreen/0/0/0_3
     - ANIT_form2-readyheal
     - ANIT_form2-readyheal
     - DHEL_20,ANIT_form2-heal

@@ -16,6 +16,7 @@ MonoBehaviour:
   scoreData: {fileID: 11400000, guid: 0440950d86df8420794bb8b7ae20d8c9, type: 2}
   enemyList:
   - Minimon1
+  - Phoenix
   BGMPath: event:/music/core
   LevelType: 0
   AwardSkill: {fileID: 11400000, guid: 9768a1d9c4b3b40a2a403dc02350b52d, type: 2}

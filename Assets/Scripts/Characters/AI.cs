@@ -9,6 +9,7 @@ public class AI : Character
 {
     public string m_name;
     public AIData data;
+    public string lastSkill;
 
     //技能组字典
     public Dictionary<string, EnemySkillGroup> _skillGroupDict;
@@ -141,6 +142,7 @@ public class AI : Character
         else if(beatnum==3)
         {
             string str= skillGroupSeq[0].enemySkills[beatnum];
+            lastSkill = skillGroupSeq[0].name;
             skillGroupSeq.RemoveAt(0);
             return str;
 

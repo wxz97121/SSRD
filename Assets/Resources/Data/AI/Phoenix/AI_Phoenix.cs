@@ -95,7 +95,7 @@ public class AI_Phoenix : AI
                 float P = Random.value;
                 if (P > 0.8)
                 {
-                    if(skillGroupSeq[actionID].name== "form1-attack1" || skillGroupSeq[actionID].name == "form1-attack2")
+                    if(lastSkill== "form1-attack1" || lastSkill == "form1-attack2")
                     {
                         SGSAdd("form1-idle");
                     }
@@ -108,7 +108,7 @@ public class AI_Phoenix : AI
                 }
                 else if (P > 0.5)
                 {
-                    if (skillGroupSeq[actionID].name == "form1-attack1" || skillGroupSeq[actionID].name == "form1-attack2")
+                    if (lastSkill == "form1-attack1" || lastSkill == "form1-attack2")
                     {
                         SGSAdd("form1-idle");
                     }
@@ -182,7 +182,7 @@ public class AI_Phoenix : AI
                 float P = Random.value;
                 if (P > 0.7)
                 {
-                    if (skillGroupSeq[actionID - 1].name == "form2-attack1" || skillGroupSeq[actionID - 1].name == "form2-attack2")
+                    if (lastSkill == "form2-attack1" || lastSkill == "form2-attack2")
                     {
                         SGSAdd("form2-idle");
                     }
@@ -195,7 +195,7 @@ public class AI_Phoenix : AI
                 }
                 else if (P > 0.35f)
                 {
-                    if (skillGroupSeq[actionID - 1].name == "form2-attack1" || skillGroupSeq[actionID - 1].name == "form2-attack2")
+                    if (lastSkill == "form2-attack1" || lastSkill == "form2-attack2")
                     {
                         SGSAdd("form2-idle");
                     }

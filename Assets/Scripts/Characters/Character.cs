@@ -149,6 +149,7 @@ public class Character : MonoBehaviour
             else
             {
                 //todo:通用的挨打动画
+                cTarget.GetComponent<VFX>().StartCoroutine("GetHit");
                 SoundController.Instance.PlayAudioEffect(sfxstr);
                 
                 cTarget.Damage(CalcDmg(getCurrentATK(), cTarget.getCurrentDEF(), dDamage), this);

@@ -114,6 +114,24 @@ public class VFX : MonoBehaviour {
     }
 
 
+    public IEnumerator GetHit()
+    {
+        float timeCount = 0f;
+        GetComponent<SpriteRenderer>().color = new Color(1f, 0f,0f);
+
+        while (timeCount < aniTime)
+        {
+            yield return new WaitForSeconds(Time.deltaTime);
+            timeCount += Time.deltaTime;
+            var deltacolor = timeCount / aniTime;
+            GetComponent<SpriteRenderer>().color = new Color(1f, deltacolor * deltacolor, deltacolor * deltacolor);
+        }
+        GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
+
+
+    }
+
+
     public void Kill()
     {
         Destroy(gameObject);

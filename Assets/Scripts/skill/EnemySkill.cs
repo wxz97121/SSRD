@@ -88,6 +88,7 @@ public class EnemySkill
                 case ("CBB"):
                     //可被打断宣言,用在第四拍
                     m_Char.isBreakable=true;
+                    SoundController.Instance.PlayAudioEffect("Breakable");
                     break;
                 default:
                     break;
