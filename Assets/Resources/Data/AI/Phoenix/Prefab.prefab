@@ -982,6 +982,7 @@ MonoBehaviour:
   mTarget: {fileID: 0}
   m_name: 
   data: {fileID: 11400000, guid: 1fb654794625a401f9c60fdc0abf34ae, type: 2}
+  lastSkill: 
   actionID: 0
   skillGroupSeq: []
   animator: {fileID: 0}
@@ -989,6 +990,7 @@ MonoBehaviour:
   lootMoney: 1
   isReadyToDie: 0
   qTEScoreData_1: {fileID: 11400000, guid: c54917114c78a4e53b1e26456b942dc8, type: 2}
+  qTEScoreData_2: {fileID: 11400000, guid: 75160c4fc176a46aabc51b206262fe5d, type: 2}
   phaseID: 0
 --- !u!114 &1329062112080726905
 MonoBehaviour:

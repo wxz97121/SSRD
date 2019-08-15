@@ -35,6 +35,19 @@ public class EnemySkill
             {
                 case ("EPT"):
                     break;
+                case ("ATKPRO"):
+                    ATKPRO(InstancedEff[1], m_Char);
+                    break;
+                case ("DATKPRO"):
+                    if (!m_Char.isBroken)
+                    {
+                        ATKPRO(InstancedEff[1], m_Char);
+                    }
+                    else
+                    {
+                        m_Char.Broken();
+                    }
+                    break;
                 case ("ATK"):
                     ATK(int.Parse(InstancedEff[1]), m_Char);
                     break;
@@ -86,7 +99,7 @@ public class EnemySkill
                     break;
                 case ("VFX"):
                     //出现特效
-                    Vfx(InstancedEff[1], InstancedEff[2], m_Char);
+                    Vfx(InstancedEff[1], m_Char);
                     break;
                 case ("CBB"):
                     //可被打断宣言,用在第四拍
@@ -115,6 +128,43 @@ public class EnemySkill
     {
 
     }
+
+
+
+    public void ATKPRO(string effstr, Character Char)
+    {
+
+        int dDamage = 0;
+        bool noAfterattack = false;
+        bool isDefenceToDisable = false;
+        bool isDefencePenetrate = false;
+        string sfxstr = "SLASH";
+        string[] InstancedEffstr = effstr.Split('&');
+        foreach (string s in InstancedEffstr)
+        {
+            switch (s.Split(':')[0])
+            {
+                case ("dmg"):
+                    dDamage = int.Parse(s.Split(':')[1]);
+                    break;
+                case ("NAA"):
+                    noAfterattack = true;
+                    break;
+                case ("IDTD"):
+                    isDefenceToDisable = true;
+                    break;
+                case ("IDP"):
+                    isDefencePenetrate = true;
+                    break;
+                case ("sfx"):
+                    sfxstr = s.Split(':')[1];
+                    break;
+
+            }
+        }
+        Char.Hit(dDamage, noAfterattack, isDefenceToDisable, isDefencePenetrate, sfxstr);
+    }
+
 
     private void ATK(int dDamage, Character Char,bool isCounterable= false)
     {
@@ -240,11 +290,52 @@ public class EnemySkill
     }
 
 
-    public void Vfx(string str, string vecstr, Character Char)
+    public void Vfx(string str,  Character Char)
     {
-        string[] vecstrs = vecstr.Split('/');
-        Vector3 vector = new Vector3(float.Parse(vecstrs[0]), float.Parse(vecstrs[1]), float.Parse(vecstrs[2]));
-        VFX.ShowVFX(str, vector + Char.transform.position);
+        string name = "";
+        int father = 0;
+        Vector3 pos = new Vector3(0,0,0);
+        string[] vfxstrs = str.Split('&');
+        Vector3 scale = new Vector3(1f, 1f, 1f);
 
+        GameObject VFXGO=null;
+        foreach (string s in vfxstrs)
+        {
+            switch (s.Split(':')[0])
+            {
+                case ("name"):
+                    name = s.Split(':')[1];
+                    break;
+                case ("father"):
+                    father =int.Parse(s.Split(':')[1]);
+                    break;
+                case ("pos"):
+                    string[] posstrs = s.Split(':')[1].Split('/');
+                    pos = new Vector3(float.Parse(posstrs[0]), float.Parse(posstrs[1]), float.Parse(posstrs[2]));
+                    break;
+                case ("scale"):
+                    string[] sclstrs = s.Split(':')[1].Split('/');
+                    scale = new Vector3(float.Parse(sclstrs[0]), float.Parse(sclstrs[1]), float.Parse(sclstrs[2]));
+
+                    break;
+            }
+
+        }
+        if (father == 0)
+        {
+             VFXGO = VFX.ShowVFX(name, pos);
+
+        }
+        if(father == 1)
+        {
+             VFXGO = VFX.ShowVFX(name, pos,Char);
+
+        }
+        if (father == 2)
+        {
+             VFXGO = VFX.ShowVFX(name, pos, Char.mTarget.GetComponent<Character>());
+
+        }
+        VFXGO.transform.localScale = scale;
     }
 }

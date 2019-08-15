@@ -48,8 +48,8 @@ MonoBehaviour:
     - EPT
   - name: form2-attack1
     enemySkills:
-    - EPT
     - ANIT_form2-ready1
+    - EPT
     - EPT
     - ATK_2,ANIT_form2-attack1
   - name: form2-attack2
@@ -63,8 +63,38 @@ MonoBehaviour:
     - ANIT_form2-readyheal,CBB,LVFX_ChargeGreen/0/0/0_3
     - ANIT_form2-readyheal
     - ANIT_form2-readyheal
-    - DHEL_20,ANIT_form2-heal,VFX_HealOnce_0/0/0,SFX_Heal
+    - DHEL_20,ANIT_form2-heal,VFX_name:HealOnce&pos:0/0/0&father:1,SFX_Heal
   - name: reborn
+    enemySkills:
+    - HEAL_30,HL_30,VFX_name:HealBig
+    - EPT
+    - EPT
+    - EPT
+  - name: form3-attack
+    enemySkills:
+    - HEAL_30,HL_30,ANI_form2-heal
+    - EPT
+    - EPT
+    - EPT
+  - name: form3-pierce
+    enemySkills:
+    - ANIT_form2-ready1,CBB,LVFX_ChargeRed/0/0/0_3
+    - EPT
+    - EPT
+    - ANIT_form2-attack1,DATKPRO_dmg:5&IDP,VFX_name:FireLineR&pos:0/0.6/0&scale:-5/5/5
+  - name: form3-heal
+    enemySkills:
+    - ANIT_form2-readyheal,CBB,LVFX_ChargeGreen/0/0/0_3
+    - EPT
+    - EPT
+    - DHEL_20,ANIT_form2-heal,VFX_name:HealOnce&pos:0/0/0&father:1,SFX_Heal
+  - name: form3-counter
+    enemySkills:
+    - HEAL_30,HL_30,ANI_form2-heal
+    - EPT
+    - EPT
+    - EPT
+  - name: form3-idle
     enemySkills:
     - HEAL_30,HL_30,ANI_form2-heal
     - EPT

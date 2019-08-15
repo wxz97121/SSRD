@@ -25,7 +25,10 @@ public class VFX : MonoBehaviour {
         {
             StartCoroutine("KillInTime");
         }
-
+        if (type == 4)
+        {
+            StartCoroutine("FrameAnimationLoop");
+        }
     }
 	
 	// Update is called once per frame
@@ -56,6 +59,17 @@ public class VFX : MonoBehaviour {
             yield return new WaitForSeconds(Time.deltaTime * 2f);
         }
         Destroy(gameObject);
+    }
+
+    IEnumerator FrameAnimationLoop()
+    {
+        int fCount = 0;
+        while (fCount < frames.Length)
+        {
+            GetComponent<SpriteRenderer>().sprite = frames[fCount++];
+            yield return new WaitForSeconds(Time.deltaTime * 2f);
+            if (fCount == frames.Length) fCount = 0;
+        }
     }
 
     IEnumerator NoteInputBad()
