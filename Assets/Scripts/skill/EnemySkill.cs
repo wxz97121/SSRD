@@ -84,7 +84,10 @@ public class EnemySkill
                 case ("LVFX"):
                     LVFX(InstancedEff[1], int.Parse(InstancedEff[2]),m_Char);
                     break;
-
+                case ("VFX"):
+                    //出现特效
+                    Vfx(InstancedEff[1], InstancedEff[2], m_Char);
+                    break;
                 case ("CBB"):
                     //可被打断宣言,用在第四拍
                     m_Char.isBreakable=true;
@@ -234,5 +237,14 @@ public class EnemySkill
     private void TIP(string str, int type)
     {
         SuperController.Instance.ShowInputTip(str,type);
+    }
+
+
+    public void Vfx(string str, string vecstr, Character Char)
+    {
+        string[] vecstrs = vecstr.Split('/');
+        Vector3 vector = new Vector3(float.Parse(vecstrs[0]), float.Parse(vecstrs[1]), float.Parse(vecstrs[2]));
+        VFX.ShowVFX(str, vector + Char.transform.position);
+
     }
 }

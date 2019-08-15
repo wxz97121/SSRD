@@ -333,7 +333,7 @@ public class Skill
     {
         string[] vecstrs= vecstr.Split('/');
         Vector3 vector = new Vector3(float.Parse(vecstrs[0]), float.Parse(vecstrs[1]), float.Parse(vecstrs[2]));
-        VFX.ShowVFX(str,vector,Char);
+        VFX.ShowVFX(str,vector+Char.transform.localPosition);
 
     }
 }

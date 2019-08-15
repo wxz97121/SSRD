@@ -63,7 +63,7 @@ MonoBehaviour:
     - ANIT_form2-readyheal,CBB,LVFX_ChargeGreen/0/0/0_3
     - ANIT_form2-readyheal
     - ANIT_form2-readyheal
-    - DHEL_20,ANIT_form2-heal
+    - DHEL_20,ANIT_form2-heal,VFX_HealOnce_0/0/0,SFX_Heal
   - name: reborn
     enemySkills:
     - HEAL_30,HL_30,ANI_form2-heal

@@ -8,6 +8,8 @@ public class AI_Phoenix : AI
 {
     public QTEScoreData qTEScoreData_1; 
     public OneSongScore qtescore1;
+    public QTEScoreData qTEScoreData_2;
+    public OneSongScore qtescore2;
     public int phaseID = 1;
 
     override protected void Update()
@@ -74,11 +76,11 @@ public class AI_Phoenix : AI
                 //    Debug.Log("change qte mode complete");
 
                 SoundController.Instance.FMODSetParameter("boss", 0);
-                SoundController.Instance.FMODSetParameter("chorus", 1);
-                SoundController.Instance.FMODSetParameter("verse", 0);
+                SoundController.Instance.FMODSetParameter("chorus", 0);
+                SoundController.Instance.FMODSetParameter("verse", 1);
                 SoundController.Instance.FMODSetParameter("breakdown", 0);
                 SoundController.Instance.FMODSetParameter("outro", 0);
-
+                skillGroupSeq.Clear();
                 CastSkill("ANI_qte1-idle");
             }
             else

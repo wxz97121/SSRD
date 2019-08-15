@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 212751789643173530}
   - component: {fileID: 114246708448417554}
   m_Layer: 0
-  m_Name: SlashDownBig
+  m_Name: PierceHit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1506153085726734}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.26, y: 0, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -96,17 +96,20 @@ MonoBehaviour:
   aniTime: 0.5
   type: 2
   frames:
-  - {fileID: 21300000, guid: 4d131378767324b4b9d252833d08bcf9, type: 3}
-  - {fileID: 21300000, guid: fa4cfb46749bc403a8f2a147479ae45a, type: 3}
-  - {fileID: 21300000, guid: f6d1c45899a5040f79ddb573de86a0e3, type: 3}
-  - {fileID: 21300000, guid: 994e9d23c4e1047c29d39a41fe8c541a, type: 3}
-  - {fileID: 21300000, guid: a7bcfd7ba8ed047b0ab6df5f6b5a0444, type: 3}
-  - {fileID: 21300000, guid: 6e25329f4f21d4275ab8b88bb4d8c8b8, type: 3}
-  - {fileID: 21300000, guid: fe4f04cb5d3ce451f96ef65284a5dc95, type: 3}
-  - {fileID: 21300000, guid: b26977cfee43a4765a294f9c438112cc, type: 3}
-  - {fileID: 21300000, guid: 0d60d1c5ace5247c9a39dd9c99317046, type: 3}
-  - {fileID: 21300000, guid: 2e84ed99fda4541ae834c1f9e34a1450, type: 3}
-  - {fileID: 21300000, guid: e08a34e58ed1f43279eec75216fdb283, type: 3}
-  - {fileID: 21300000, guid: cd523b30b57be42eeba746b4a07812e5, type: 3}
-  - {fileID: 21300000, guid: aee935c39cf2d4735b2d575b7ac18018, type: 3}
+  - {fileID: 21300000, guid: 94dd2e7ccddd441a4852de4bef1821f3, type: 3}
+  - {fileID: 21300000, guid: 65a988ff2a6b942c9a68fb84d58eeb49, type: 3}
+  - {fileID: 21300000, guid: 5d56070eef2dd49a9b92561c8cbacaf6, type: 3}
+  - {fileID: 21300000, guid: 10efaf0f0ab9f4d1e9616702bbc89f03, type: 3}
+  - {fileID: 21300000, guid: 06867efb1ae3748f68a4a70b7b846d64, type: 3}
+  - {fileID: 21300000, guid: 8b55118b428154d2c80924b1f206a4bc, type: 3}
+  - {fileID: 21300000, guid: 5432e65d048b7416a80ff77b6fe56479, type: 3}
+  - {fileID: 21300000, guid: 6b900eec36183426e953e7c0b675b06e, type: 3}
+  - {fileID: 21300000, guid: 089aebc0491e74eae8838f5379d80626, type: 3}
+  - {fileID: 21300000, guid: 412cb43f6b23b4612a6845a0b4c6df5b, type: 3}
+  - {fileID: 21300000, guid: 6dc0f1b8e261b4f28bd574ea1ab4fa6d, type: 3}
+  - {fileID: 21300000, guid: 1db1fdbbaaf73446493dbb3972789189, type: 3}
+  - {fileID: 21300000, guid: b855d5d0e77b646438a147d8fe039e2c, type: 3}
+  - {fileID: 21300000, guid: 864a41cf47f5f457d94cd03f45527622, type: 3}
+  - {fileID: 21300000, guid: d39cca2dff30345ceb6b76a38955c195, type: 3}
+  - {fileID: 21300000, guid: 7c47a606bd9df4aa0a317370218e2860, type: 3}
   killtime: 0

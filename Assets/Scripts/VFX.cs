@@ -142,4 +142,9 @@ public class VFX : MonoBehaviour {
     {
        return Instantiate(Resources.Load("VFX/"+str),Char.transform.position+vector, Quaternion.identity,Char.transform) as GameObject;
     }
+
+    public static GameObject ShowVFX(string str, Vector3 vector)
+    {
+        return Instantiate(Resources.Load("VFX/" + str),  vector, Quaternion.identity) as GameObject;
+    }
 }

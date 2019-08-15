@@ -408,7 +408,21 @@ public class InputSequenceController : MonoBehaviour
                 SuperController.Instance.ShowInputTip("NICE",1);
 
                 Player.Instance.enemyList[0].GetComponent<AI>().QTEAction(UIBarController.Instance.currentQTENotes[0].SuccessSkill);
+                if (inputtype==Note.NoteType.QTEHihat)
+                {
+                    SoundController.Instance.PlayAudioEffect("Hihat");
 
+                }
+                if (inputtype == Note.NoteType.QTESnare)
+                {
+                    SoundController.Instance.PlayAudioEffect("Snare");
+
+                }
+                if (inputtype == Note.NoteType.QTEBassdrum)
+                {
+                    SoundController.Instance.PlayAudioEffect("Bassdrum");
+
+                }
             }
             //else
             //{

@@ -112,6 +112,7 @@ public class Character : MonoBehaviour
                 if (isDefencePenetrate)
                 {
                     //todo:通用的破防挨打动画，破防音效
+                    cTarget.GetComponent<VFX>().StartCoroutine("GetHit");
                     SoundController.Instance.PlayAudioEffect(sfxstr);
 
                     cTarget.Damage(CalcDmg(getCurrentATK(), cTarget.getCurrentDEF(), dDamage), this);
@@ -148,7 +149,6 @@ public class Character : MonoBehaviour
             }
             else
             {
-                //todo:通用的挨打动画
                 cTarget.GetComponent<VFX>().StartCoroutine("GetHit");
                 SoundController.Instance.PlayAudioEffect(sfxstr);
                 
