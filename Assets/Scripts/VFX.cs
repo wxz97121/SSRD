@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 //特效控制：0-淡出，1-静态，2-帧动画
 public class VFX : MonoBehaviour {
-    public float aniTime = 0.2f;
+    public float aniTime = 0.5f;
     public int type = 0;
     public Sprite[] frames;
     public float killtime;
@@ -53,10 +53,11 @@ public class VFX : MonoBehaviour {
     IEnumerator FrameAnimation()
     {
         int fCount = 0;
+        float dtime = aniTime / frames.Length;
         while (fCount<frames.Length)
         {
             GetComponent<SpriteRenderer>().sprite = frames[fCount++];
-            yield return new WaitForSeconds(Time.deltaTime * 2f);
+            yield return new WaitForSeconds(dtime);
         }
         Destroy(gameObject);
     }

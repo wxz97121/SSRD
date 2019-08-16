@@ -105,61 +105,79 @@ public class Character : MonoBehaviour
         if (mTarget != null)
         {
             Character cTarget = mTarget.GetComponent<Character>();
+            bool ishit = true;
             //判断对方护盾
-            if (cTarget.hasBuff<Buff_defend>())
+            if (cTarget.HasBuff("defend"))
             {
                 //破防
                 if (isDefencePenetrate)
                 {
+                    
                     //todo:通用的破防挨打动画，破防音效
-                    cTarget.GetComponent<VFX>().StartCoroutine("GetHit");
-                    SoundController.Instance.PlayAudioEffect(sfxstr);
 
-                    cTarget.Damage(CalcDmg(getCurrentATK(), cTarget.getCurrentDEF(), dDamage), this);
-                    if (cTarget.isPlayer)
-                    {
-                        Camera.main.gameObject.transform.DOShakePosition(1, 0.5f);
-
-                    }
                 }
                 else
                 {
-                    GameObject fxClone = Instantiate(Resources.Load("VFX/Shield"), cTarget.transform.Find("pos_defendfx").transform.position, Quaternion.identity) as GameObject;
-                    fxClone.transform.localScale = cTarget.transform.Find("pos_defendfx").transform.localScale;
 
-                    //Debug.Log("ISCOUNTERABLE "+isCounterable.ToString());
+
+                    //被防反;
                     if (isDefenceToDisable)
                     {
-                        //Debug.Break();
+                        GameObject fxClone = Instantiate(Resources.Load("VFX/DefendBig"), cTarget.transform.position, Quaternion.identity) as GameObject;
+                        fxClone.transform.localScale = new Vector3(fxClone.transform.localScale.x * cTarget.transform.Find("pos_defendfx").transform.localScale.x, fxClone.transform.localScale.y, fxClone.transform.localScale.z);
                         SoundController.Instance.PlayAudioEffect("PDEFEND");
                         isDefenced = true;
                     }
                     else
                     {
+                        GameObject fxClone = Instantiate(Resources.Load("VFX/Defend"), cTarget.transform.Find("pos_defendfx").transform.position, Quaternion.identity) as GameObject;
+                        fxClone.transform.localScale = new Vector3(3f * cTarget.transform.Find("pos_defendfx").transform.localScale.x, 3f, 3f);
+
                         SoundController.Instance.PlayAudioEffect("DEFEND");
 
                     }
 
                     //释放防御成功带的技能
                     cTarget.CastSkill((cTarget.buffs.Find((Buff obj) => obj.m_name == "defend") as Buff_defend).EffStr);
-
+                    ishit = false;
                 }
 
 
             }
-            else
+
+            //反击
+            foreach (Buff b in cTarget.buffs)
+            {
+                bool iscountered = false;
+                if (b.m_name == "counter")
+                {
+                    ishit = false;
+                    (b as Buff_counter).CounterAction();
+                    iscountered = true;
+                }
+                if (iscountered)
+                {
+                    GameObject fxClone = Instantiate(Resources.Load("VFX/CounterHit"), cTarget.transform.Find("pos_defendfx").transform.position, Quaternion.identity) as GameObject;
+                    fxClone.transform.localScale = new Vector3(3f * cTarget.transform.Find("pos_defendfx").transform.localScale.x, 3f, 3f);
+                    SoundController.Instance.PlayAudioEffect("PDEFEND");
+                    SuperController.Instance.ShowInputTip("Counter!");
+
+                }
+            }
+
+
+            //确定被击中时
+            if (ishit)
             {
                 cTarget.GetComponent<VFX>().StartCoroutine("GetHit");
                 SoundController.Instance.PlayAudioEffect(sfxstr);
-                
+
                 cTarget.Damage(CalcDmg(getCurrentATK(), cTarget.getCurrentDEF(), dDamage), this);
                 if (cTarget.isPlayer)
                 {
                     Camera.main.gameObject.transform.DOShakePosition(1,0.5f);
 
                 }
-
-
 
             }
             //执行BUFF中的攻击结束效果
@@ -371,6 +389,16 @@ public class Character : MonoBehaviour
         foreach (var b in buffs)
         {
             if (b.GetType() == typeof(T)) return true;
+        }
+        return false;
+    }
+
+    //判断是否存在Buff
+    public bool HasBuff(string buffname) 
+    {
+        foreach (var b in buffs)
+        {
+            if (b.m_name == buffname) return true;
         }
         return false;
     }

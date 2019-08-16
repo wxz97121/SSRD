@@ -81,6 +81,9 @@ public class EnemySkill
                 case ("DEF"):
                     DEF(int.Parse(InstancedEff[1]), m_Char);
                     break;
+                case ("CTR"):
+                    Counter(InstancedEff[1], m_Char);
+                    break;
                 case ("WRN"):
                     WRN(InstancedEff[1], InstancedEff[2], int.Parse(InstancedEff[3]), m_Char, InstancedEff[4]);
                     break;
@@ -286,7 +289,20 @@ public class EnemySkill
 
     private void TIP(string str, int type)
     {
-        SuperController.Instance.ShowInputTip(str,type);
+        SuperController.Instance.ShowInputTip(str, type);
+    }
+
+    //当身技能
+    private void Counter(string str,AI Char)
+    {
+        Buff_counter counter = new Buff_counter
+        {
+            m_name = "counter",
+            remainBeats = 2,
+            activateTime = RhythmController.Instance.songPosInBeats
+            
+        };
+        counter.BuffAdded(Char, str);
     }
 
 
@@ -336,6 +352,6 @@ public class EnemySkill
              VFXGO = VFX.ShowVFX(name, pos, Char.mTarget.GetComponent<Character>());
 
         }
-        VFXGO.transform.localScale = scale;
+        VFXGO.transform.localScale = new Vector3(VFXGO.transform.localScale.x*scale.x, VFXGO.transform.localScale.y * scale.y, VFXGO.transform.localScale.z * scale.z);
     }
 }

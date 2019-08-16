@@ -311,7 +311,7 @@ public class Skill
     //开始自动行动
     public void AUTO(string str, Player player)
     {
-        //&用来分隔每个技能组
+        //>用来分隔每个技能组
         //;代表, 用来分隔组里的每个技能
         //=替代_
         str = str.Replace(';', ',');

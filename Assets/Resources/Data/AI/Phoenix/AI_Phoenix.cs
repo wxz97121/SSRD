@@ -102,7 +102,7 @@ public class AI_Phoenix : AI
             if ((skillGroupSeq.Count == 0))
             {
                 float P = Random.value;
-                if (P > 0.8)
+                if (P > 0.08)
                 {
                     if (lastSkill == "form1-attack1" || lastSkill == "form1-attack2")
                     {
@@ -110,7 +110,8 @@ public class AI_Phoenix : AI
                     }
                     else
                     {
-                        SGSAdd("form1-attack1");
+                        SGSAdd("form3-counter");
+                        //SGSAdd("form1-attack1");
 
                     }
 

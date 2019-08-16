@@ -72,10 +72,10 @@ MonoBehaviour:
     - EPT
   - name: form3-attack
     enemySkills:
-    - HEAL_30,HL_30,ANI_form2-heal
+    - ANIT_form2-ready2
     - EPT
     - EPT
-    - EPT
+    - ATK_6,ANIT_form2-attack2
   - name: form3-pierce
     enemySkills:
     - ANIT_form2-ready1,CBB,LVFX_ChargeRed/0/0/0_3
@@ -90,13 +90,19 @@ MonoBehaviour:
     - DHEL_20,ANIT_form2-heal,VFX_name:HealOnce&pos:0/0/0&father:1,SFX_Heal
   - name: form3-counter
     enemySkills:
-    - HEAL_30,HL_30,ANI_form2-heal
+    - ANI_form2-readycounter,LVFX_RedRing/0/-3/1_3
     - EPT
     - EPT
-    - EPT
+    - CTR_counterSkill
   - name: form3-idle
     enemySkills:
     - HEAL_30,HL_30,ANI_form2-heal
     - EPT
     - EPT
     - EPT
+  - name: counterSkill
+    enemySkills:
+    - ANIT_form2-ready2
+    - EPT
+    - EPT
+    - ATK_10,ANIT_form2-attack2,VFX_name:FireKickBig&pos:0/-3.5/0&father:0&scale:-1/1/1

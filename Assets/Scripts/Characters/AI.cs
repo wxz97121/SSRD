@@ -171,7 +171,7 @@ public class AI : Character
     //在队列中插入一个技能组
     public void SGSInsert(string skillgroupname)
     {
-        skillGroupSeq.Insert(1,_skillGroupDict[skillgroupname]);
+        skillGroupSeq.Insert(0,_skillGroupDict[skillgroupname]);
     }
 
     //在队列中删除一个技能组
