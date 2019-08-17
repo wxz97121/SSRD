@@ -13012,8 +13012,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 0
-  maxHp: 20
-  Hp: 20
+  maxHp: 10
+  Hp: 10
   maxLife: 20
   life: 20
   maxMp: 20
@@ -13041,9 +13041,6 @@ MonoBehaviour:
   currentScroll: {fileID: 0}
   skillListInBag:
   - {fileID: 11400000, guid: e59e2f5e71a394b898068a64db9eee71, type: 2}
-  - {fileID: 11400000, guid: 83891e027047b438c9d0e3b2d00f4dc7, type: 2}
-  - {fileID: 11400000, guid: 9768a1d9c4b3b40a2a403dc02350b52d, type: 2}
-  - {fileID: 11400000, guid: 6600994b711754ffca5bda012952c6d1, type: 2}
 --- !u!95 &1979303376
 Animator:
   serializedVersion: 3

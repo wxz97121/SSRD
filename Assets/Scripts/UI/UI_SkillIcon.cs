@@ -24,7 +24,7 @@ public class UI_SkillIcon : MonoBehaviour
         icon.sprite = skill.Icon;
         if (skill.cost == -1)
         {
-            costtext.text = "ALL";
+            costtext.text = "A";
         }
         else
         {
