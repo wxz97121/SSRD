@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SUPERSUPERATTACK
   m_EditorClassIdentifier: 
   type: 4
-  sprite: {fileID: 21300010, guid: 16af87af7923e401fa2d5dd82c0709d1, type: 3}
+  sprite: {fileID: 21300000, guid: dd4c9eba7bf1c4d72bf632e9f94c5081, type: 3}
   _name: SUPER HEAVY DMG
   cost: 8
   inputSequence:
@@ -43,4 +43,4 @@ MonoBehaviour:
     MissSkill: 
   Effect: AUTO_ANI=player-readytoslash>ANI=player-readytoslash>ANI=player-readytoslash>ANI=player-slash;ATK=8;VFX=SlashDownBig=7/1/0,ANI_player-readytoslash
   CD: 0
-  Desc: "\u8D85\u91CD\u51FB\uFF1A\u84C4\u529B\u4E00\u56DE\u5408\uFF0C\u6D88\u80172\u80FD\u91CF\uFF0C\u8FDB\u884C8\u70B9\u653B\u51FB"
+  Desc: "\u8D85\u91CD\u51FB\uFF1A\u84C4\u529B\u4E00\u56DE\u5408\uFF0C\u6D88\u80172\u80FD\u91CF\uFF0C\u8FDB\u884C5\u70B9\u653B\u51FB"

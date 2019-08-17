@@ -970,7 +970,7 @@ MonoBehaviour:
   life: 10
   maxMp: 0
   Mp: 0
-  ATK: 3
+  ATK: 0
   DEF: 0
   isUndead: 0
   isDefenced: 0

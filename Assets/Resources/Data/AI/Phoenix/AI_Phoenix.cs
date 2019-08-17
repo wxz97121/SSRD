@@ -102,7 +102,7 @@ public class AI_Phoenix : AI
             if ((skillGroupSeq.Count == 0))
             {
                 float P = Random.value;
-                if (P > 0.08)
+                if (P > 0.8)
                 {
                     if (lastSkill == "form1-attack1" || lastSkill == "form1-attack2")
                     {
@@ -110,8 +110,7 @@ public class AI_Phoenix : AI
                     }
                     else
                     {
-                        SGSAdd("form3-counter");
-                        //SGSAdd("form1-attack1");
+                        SGSAdd("form1-attack1");
 
                     }
 
@@ -179,7 +178,7 @@ public class AI_Phoenix : AI
             //           Debug.Log("back to start");
             //SuperController.Instance.state = GameState.Start;
             phaseID = 3;
-            CastSkill("HEAL_30,HL_30,VFX_name:HealBig&father:1&scale:2/2/2,ANI_form2-idle");
+            CastSkill("HEAL_30,HL_30,VFX_name:HealBig&father:1&scale:1/1/1,ANI_form2-idle");
             isUndead = true;
             SGSAdd("form2-idle");
         }
@@ -187,7 +186,6 @@ public class AI_Phoenix : AI
 
     private void Phase2Action(int beatnum)
     {
-        Debug.Log("111111");
         if (beatnum == 1)
         {
             if (SoundController.Instance.GetLastMarker() == "minibridge" || SoundController.Instance.GetLastMarker() == "breakdown")
@@ -222,7 +220,6 @@ public class AI_Phoenix : AI
 
         if (beatnum == 3)
         {
-            Debug.Log("2222222");
 
             if (skillGroupSeq.Count == 0)
             {
@@ -300,7 +297,7 @@ public class AI_Phoenix : AI
             //           Debug.Log("back to start");
             //SuperController.Instance.state = GameState.Start;
             phaseID = 5;
-            CastSkill("HEAL_30,HL_30,VFX_name:HealBig&father:1&scale:2/2/2,ANI_form2-idle");
+            CastSkill("HEAL_30,HL_30,VFX_name:HealBig&father:1&scale:1/1/1,ANI_form2-idle");
             isUndead = false;
             SGSAdd("form2-idle");
         }
@@ -327,10 +324,23 @@ public class AI_Phoenix : AI
             if (skillGroupSeq.Count == 0)
             {
                 float P = Random.value;
+                if (P > 0.8)
+                {
+                    SGSAdd("form3-counter");
+
+                }
                 if (P > 0.7)
                 {
 
-                        SGSAdd("form3-heal");
+                    SGSAdd("form3-heal");
+
+
+                }
+                else if (P > 0.55f)
+                {
+
+
+                    SGSAdd("form2-attack2");
 
 
                 }
@@ -338,10 +348,7 @@ public class AI_Phoenix : AI
                 {
 
 
-
-                        SGSAdd("form3-pierce");
-
-
+                    SGSAdd("form3-pierce");
 
 
                 }else

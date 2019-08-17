@@ -155,16 +155,20 @@ public class UIBar : MonoBehaviour {
         foreach (Note note in noteList_QTE)
         {
             string path;
+            float ypos=0;
             switch (note.type)
             {
                 case Note.NoteType.QTEHihat:
                     path = "Prefab/UI/Bar/UI_Bar_QTE_Note_Energy";
+                    ypos = 10;
                     break;
                 case Note.NoteType.QTESnare:
                     path = "Prefab/UI/Bar/UI_Bar_QTE_Note_Snare";
+                    ypos = 0;
                     break;
                 case Note.NoteType.QTEBassdrum:
                     path= "Prefab/UI/Bar/UI_Bar_QTE_Note_Bassdrum";
+                    ypos = -10;
                     break;
                 default:
                     path = "error path";
@@ -173,7 +177,7 @@ public class UIBar : MonoBehaviour {
 //            Debug.Log("init note path ="+path);
             GameObject _note = Instantiate((GameObject)Resources.Load(path, typeof(GameObject)), transform);
             note.note = _note;
-            note.note.transform.localPosition = startPos + (oneBeatSpace * (note.beatInBar)) + new Vector3(0, 10, 0);
+            note.note.transform.localPosition = startPos + (oneBeatSpace * (note.beatInBar)) + new Vector3(0, ypos, 0);
         }
     }
 

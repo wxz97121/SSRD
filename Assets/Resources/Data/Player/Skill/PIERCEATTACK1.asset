@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PIERCEATTACK1
   m_EditorClassIdentifier: 
   type: 4
-  sprite: {fileID: 21300000, guid: 16af87af7923e401fa2d5dd82c0709d1, type: 3}
+  sprite: {fileID: 21300000, guid: ba5201cecf2a34094b8496b01c8fafde, type: 3}
   _name: Pierce
   cost: 8
   inputSequence:

@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 0
   equipName: Blade Mail
   equipDesc: Reflect all damage back
-  Icon: {fileID: 21300000, guid: 4e63785168bddb84f81d7b2e8bc59e29, type: 3}
+  Icon: {fileID: 21300000, guid: a220c5af68fa541538d67ddf34a4206d, type: 3}
   type: 1
   ATK: 0
   DEF: 0

@@ -86,7 +86,7 @@ public class DuelController : MonoBehaviour {
                 SuperController.Instance.Win();
                 return;
             }
-            Player.Instance.Heal(Player.Instance.maxHp- Player.Instance.Hp);
+            //Player.Instance.Heal(Player.Instance.maxHp- Player.Instance.Hp);
             AddEnemy(enemyIndex);
             enemyIndex++;
         }

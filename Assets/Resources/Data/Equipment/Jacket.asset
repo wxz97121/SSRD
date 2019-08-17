@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   equipName: Jacket
-  equipDesc: +1 DEF
-  Icon: {fileID: 21300000, guid: f63b469c33538794db5beb6f7fd37af4, type: 3}
+  equipDesc: +2 DEF
+  Icon: {fileID: 21300000, guid: 1b9f999f046d3437d8f378ef5b4bf3c4, type: 3}
   type: 1
   ATK: 0
-  DEF: 1
+  DEF: 2
   maxHp: 0
   maxMp: 0
   buffs: []

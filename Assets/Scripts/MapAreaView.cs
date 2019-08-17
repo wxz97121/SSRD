@@ -42,4 +42,24 @@ public class MapAreaView : MonoBehaviour
     {
         area.Activate();
     }
+
+
+    public void ShowDesc()
+    {
+        string lootequip="";
+        string lootskill="";
+        if (area.levelData.AwardEquip != null)
+        {
+            lootequip = area.levelData.AwardEquip.equipName;
+        }
+        if (area.levelData.AwardSkill != null)
+        {
+            lootskill = area.levelData.AwardSkill._name;
+        }
+        GameObject.Find("AreaDescText").GetComponent<Text>().text = area.levelData.AreaName + " , \n 掉落：" + lootequip + "  " + lootskill;
+    }
+    public void HideDesc()
+    {
+        GameObject.Find("AreaDescText").GetComponent<Text>().text = "";
+    }
 }

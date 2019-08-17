@@ -254,6 +254,9 @@ public class SuperController : MonoBehaviour
         Player.Instance.currentWeapon = null;
         for (int index = 0; index < Player.Instance.skillSlots.Length; index++)
             Player.Instance.skillSlots[index].skill = null;
+
+        Player.Instance.Heal(Player.Instance.maxHp- Player.Instance.Hp);
+
         //SkillSelectUI();
         //MapController.Instance.CreateChapterMap();
         MapController.Instance.ShowMap();
@@ -296,7 +299,7 @@ public class SuperController : MonoBehaviour
         uiBarController.ClearBarArea();
         skillTipBarController.ClearSkillTipArea();
         //SoundController.Instance.SetPlayedTime();
-        SoundController.Instance.FMODmusic.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        SoundController.Instance.FMODmusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         StartCoroutine("WinUI");
     }
     IEnumerator WinUI()
@@ -305,6 +308,8 @@ public class SuperController : MonoBehaviour
         mainMenu.gameObject.SetActive(true);
         //Debug.LogError("???");
         //mainMenu.Find("Button").GetComponent<Button>().onClick.AddListener(NextArea);
+        mainMenu.Find("DescText").GetComponent<Text>().text = levelData.AreaName+" Clear !";
+
 
         mainMenu.Find("Title").GetComponent<Text>().text = "牛逼！";
         mainMenu.Find("NextButton").Find("Text").GetComponent<Text>().text = "继续！";

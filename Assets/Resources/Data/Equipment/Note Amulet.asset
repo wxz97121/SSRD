@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 0
   equipName: note amulet
   equipDesc: +1 MP every bar
-  Icon: {fileID: 21300000, guid: f1d091c06fec14c11aa012de01cf7b39, type: 3}
+  Icon: {fileID: 21300000, guid: 9d78ce220224641cbaab8bf47daccfc9, type: 3}
   type: 3
   ATK: 0
   DEF: 0

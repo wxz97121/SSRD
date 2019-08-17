@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   equipName: Iron Sword
-  equipDesc: +1 ATK
-  Icon: {fileID: 21300000, guid: c32a0bcbd6eb84140982780babadd840, type: 3}
+  equipDesc: +2 ATK
+  Icon: {fileID: 21300000, guid: 41502bf9111354e2c995dabab86daf32, type: 3}
   type: 2
-  ATK: 1
+  ATK: 2
   DEF: 0
   maxHp: 0
   maxMp: 0

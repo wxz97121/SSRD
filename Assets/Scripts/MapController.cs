@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum AreaType
 {
@@ -70,6 +71,16 @@ public class MapArea
 
         MapController.Instance.HideMap();
         SuperController.Instance.SkillSelectUI();
+    }
+
+
+    public void ShowDesc()
+    {
+        GameObject.Find("AreaDescText").GetComponent<Text>().text = levelData.AreaName + " , \n 掉落：" + levelData.AwardEquip.equipName + "  " + levelData.AwardSkill._name;
+    }
+    public void HideDesc()
+    {
+        GameObject.Find("AreaDescText").GetComponent<Text>().text = "";
     }
 }
 

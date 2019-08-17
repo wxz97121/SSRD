@@ -18,6 +18,6 @@ MonoBehaviour:
   - Minimon3
   BGMPath: event:/music/core
   LevelType: 0
-  AwardSkill: {fileID: 11400000, guid: 1df9db8fb9e7e4b089493ca616412800, type: 2}
+  AwardSkill: {fileID: 11400000, guid: b87acd6adfc804ab1b4cacf11a718dae, type: 2}
   AwardEquip: {fileID: 0}
   AwardMoney: 10
