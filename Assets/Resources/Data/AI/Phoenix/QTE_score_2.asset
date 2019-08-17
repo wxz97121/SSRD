@@ -57,7 +57,7 @@ MonoBehaviour:
       beatInSong: 0
       SuccessSkill: QTE1ok
       BadSkill: QTE1bad
-      MissSkill: ATK_2
+      MissSkill: ATK_1
     - type: 33
       note: {fileID: 0}
       subnote: {fileID: 0}
@@ -73,7 +73,7 @@ MonoBehaviour:
       beatInSong: 0
       SuccessSkill: QTE1ok
       BadSkill: QTE1bad
-      MissSkill: ATK_3
+      MissSkill: ATK_1
     - type: 33
       note: {fileID: 0}
       subnote: {fileID: 0}
@@ -91,7 +91,7 @@ MonoBehaviour:
       beatInSong: 0
       SuccessSkill: QTE1ok
       BadSkill: QTE1bad
-      MissSkill: ATK_2
+      MissSkill: ATK_1
     - type: 31
       note: {fileID: 0}
       subnote: {fileID: 0}
@@ -99,7 +99,7 @@ MonoBehaviour:
       beatInSong: 0
       SuccessSkill: QTE1ok
       BadSkill: QTE1bad
-      MissSkill: ATK_2
+      MissSkill: ATK_1
     - type: 33
       note: {fileID: 0}
       subnote: {fileID: 0}
@@ -115,7 +115,7 @@ MonoBehaviour:
       beatInSong: 0
       SuccessSkill: QTE1ok
       BadSkill: QTE1bad
-      MissSkill: ATK_3
+      MissSkill: ATK_1
     - type: 33
       note: {fileID: 0}
       subnote: {fileID: 0}
@@ -133,7 +133,7 @@ MonoBehaviour:
       beatInSong: 0
       SuccessSkill: QTE1ok
       BadSkill: QTE1bad
-      MissSkill: ATK_2
+      MissSkill: ATK_1
     - type: 33
       note: {fileID: 0}
       subnote: {fileID: 0}
@@ -157,7 +157,7 @@ MonoBehaviour:
       beatInSong: 0
       SuccessSkill: QTE1ok
       BadSkill: QTE1bad
-      MissSkill: ATK_2
+      MissSkill: ATK_1
     - type: 33
       note: {fileID: 0}
       subnote: {fileID: 0}
@@ -173,7 +173,7 @@ MonoBehaviour:
       beatInSong: 0
       SuccessSkill: QTE1ok
       BadSkill: QTE1bad
-      MissSkill: ATK_3
+      MissSkill: ATK_1
     beatsThisBar: 4
   - notes:
     - type: 31
@@ -183,7 +183,7 @@ MonoBehaviour:
       beatInSong: 0
       SuccessSkill: QTE1ok
       BadSkill: QTE1bad
-      MissSkill: ATK_2
+      MissSkill: ATK_1
     - type: 31
       note: {fileID: 0}
       subnote: {fileID: 0}
@@ -191,7 +191,7 @@ MonoBehaviour:
       beatInSong: 0
       SuccessSkill: QTE1ok
       BadSkill: QTE1bad
-      MissSkill: ATK_2
+      MissSkill: ATK_1
     - type: 31
       note: {fileID: 0}
       subnote: {fileID: 0}
@@ -199,7 +199,7 @@ MonoBehaviour:
       beatInSong: 0
       SuccessSkill: QTE1ok
       BadSkill: QTE1bad
-      MissSkill: ATK_2
+      MissSkill: ATK_1
     - type: 32
       note: {fileID: 0}
       subnote: {fileID: 0}
@@ -207,7 +207,7 @@ MonoBehaviour:
       beatInSong: 0
       SuccessSkill: QTE1ok
       BadSkill: QTE1bad
-      MissSkill: ATK_2
+      MissSkill: ATK_1
     beatsThisBar: 4
   - notes:
     - type: 31
@@ -217,7 +217,7 @@ MonoBehaviour:
       beatInSong: 0
       SuccessSkill: QTE1ok
       BadSkill: QTE1bad
-      MissSkill: ATK_2
+      MissSkill: ATK_1
     - type: 33
       note: {fileID: 0}
       subnote: {fileID: 0}
@@ -233,7 +233,7 @@ MonoBehaviour:
       beatInSong: 0
       SuccessSkill: QTE1ok
       BadSkill: QTE1bad
-      MissSkill: ATK_3
+      MissSkill: ATK_1
     - type: 33
       note: {fileID: 0}
       subnote: {fileID: 0}
@@ -242,106 +242,6 @@ MonoBehaviour:
       SuccessSkill: QTE1ok
       BadSkill: QTE1bad
       MissSkill: ATK_1
-    beatsThisBar: 4
-  - notes:
-    - type: 31
-      note: {fileID: 0}
-      subnote: {fileID: 0}
-      beatInBar: 0
-      beatInSong: 0
-      SuccessSkill: QTE1ok
-      BadSkill: QTE1bad
-      MissSkill: ATK_2
-    - type: 31
-      note: {fileID: 0}
-      subnote: {fileID: 0}
-      beatInBar: 0.75
-      beatInSong: 0
-      SuccessSkill: QTE1ok
-      BadSkill: QTE1bad
-      MissSkill: ATK_2
-    - type: 31
-      note: {fileID: 0}
-      subnote: {fileID: 0}
-      beatInBar: 1.5
-      beatInSong: 0
-      SuccessSkill: QTE1ok
-      BadSkill: QTE1bad
-      MissSkill: ATK_2
-    - type: 32
-      note: {fileID: 0}
-      subnote: {fileID: 0}
-      beatInBar: 2
-      beatInSong: 0
-      SuccessSkill: QTE1ok
-      BadSkill: QTE1bad
-      MissSkill: ATK_3
-    - type: 33
-      note: {fileID: 0}
-      subnote: {fileID: 0}
-      beatInBar: 3
-      beatInSong: 0
-      SuccessSkill: QTE1ok
-      BadSkill: QTE1bad
-      MissSkill: ATK_1
-    beatsThisBar: 4
-  - notes:
-    - type: 31
-      note: {fileID: 0}
-      subnote: {fileID: 0}
-      beatInBar: 0
-      beatInSong: 0
-      SuccessSkill: QTE1ok
-      BadSkill: QTE1bad
-      MissSkill: ATK_2
-    - type: 33
-      note: {fileID: 0}
-      subnote: {fileID: 0}
-      beatInBar: 1
-      beatInSong: 0
-      SuccessSkill: QTE1ok
-      BadSkill: QTE1bad
-      MissSkill: ATK_1
-    - type: 31
-      note: {fileID: 0}
-      subnote: {fileID: 0}
-      beatInBar: 1.5
-      beatInSong: 0
-      SuccessSkill: QTE1ok
-      BadSkill: QTE1bad
-      MissSkill: ATK_2
-    - type: 32
-      note: {fileID: 0}
-      subnote: {fileID: 0}
-      beatInBar: 2
-      beatInSong: 0
-      SuccessSkill: QTE1ok
-      BadSkill: QTE1bad
-      MissSkill: ATK_3
-    - type: 31
-      note: {fileID: 0}
-      subnote: {fileID: 0}
-      beatInBar: 2.5
-      beatInSong: 0
-      SuccessSkill: QTE1ok
-      BadSkill: QTE1bad
-      MissSkill: ATK_2
-    - type: 33
-      note: {fileID: 0}
-      subnote: {fileID: 0}
-      beatInBar: 3
-      beatInSong: 0
-      SuccessSkill: QTE1ok
-      BadSkill: QTE1bad
-      MissSkill: ATK_1
-    - type: 32
-      note: {fileID: 0}
-      subnote: {fileID: 0}
-      beatInBar: 3.5
-      beatInSong: 0
-      SuccessSkill: QTE1ok
-      BadSkill: QTE1bad
-      MissSkill: ATK_2
     beatsThisBar: 4
   - notes:
     - type: 31
@@ -376,6 +276,106 @@ MonoBehaviour:
       SuccessSkill: QTE1ok
       BadSkill: QTE1bad
       MissSkill: ATK_3
+    - type: 33
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 3
+      beatInSong: 0
+      SuccessSkill: QTE1ok
+      BadSkill: QTE1bad
+      MissSkill: ATK_1
+    beatsThisBar: 4
+  - notes:
+    - type: 31
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 0
+      beatInSong: 0
+      SuccessSkill: QTE1ok
+      BadSkill: QTE1bad
+      MissSkill: ATK_2
+    - type: 33
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 1
+      beatInSong: 0
+      SuccessSkill: QTE1ok
+      BadSkill: QTE1bad
+      MissSkill: ATK_1
+    - type: 31
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 1.5
+      beatInSong: 0
+      SuccessSkill: QTE1ok
+      BadSkill: QTE1bad
+      MissSkill: ATK_2
+    - type: 32
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 2
+      beatInSong: 0
+      SuccessSkill: QTE1ok
+      BadSkill: QTE1bad
+      MissSkill: ATK_3
+    - type: 31
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 2.5
+      beatInSong: 0
+      SuccessSkill: QTE1ok
+      BadSkill: QTE1bad
+      MissSkill: ATK_2
+    - type: 33
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 3
+      beatInSong: 0
+      SuccessSkill: QTE1ok
+      BadSkill: QTE1bad
+      MissSkill: ATK_1
+    - type: 32
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 3.5
+      beatInSong: 0
+      SuccessSkill: QTE1ok
+      BadSkill: QTE1bad
+      MissSkill: ATK_2
+    beatsThisBar: 4
+  - notes:
+    - type: 31
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 0
+      beatInSong: 0
+      SuccessSkill: QTE1ok
+      BadSkill: QTE1bad
+      MissSkill: ATK_1
+    - type: 31
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 0.75
+      beatInSong: 0
+      SuccessSkill: QTE1ok
+      BadSkill: QTE1bad
+      MissSkill: ATK_1
+    - type: 31
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 1.5
+      beatInSong: 0
+      SuccessSkill: QTE1ok
+      BadSkill: QTE1bad
+      MissSkill: ATK_1
+    - type: 32
+      note: {fileID: 0}
+      subnote: {fileID: 0}
+      beatInBar: 2
+      beatInSong: 0
+      SuccessSkill: QTE1ok
+      BadSkill: QTE1bad
+      MissSkill: ATK_1
     - type: 32
       note: {fileID: 0}
       subnote: {fileID: 0}
@@ -409,7 +409,7 @@ MonoBehaviour:
       beatInSong: 0
       SuccessSkill: QTE1ok
       BadSkill: QTE1bad
-      MissSkill: ATK_2
+      MissSkill: ATK_1
     - type: 33
       note: {fileID: 0}
       subnote: {fileID: 0}

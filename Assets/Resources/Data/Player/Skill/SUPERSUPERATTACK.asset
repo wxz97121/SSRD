@@ -41,6 +41,6 @@ MonoBehaviour:
     SuccessSkill: 
     BadSkill: 
     MissSkill: 
-  Effect: AUTO_ANI=player-readytoslash>ANI=player-readytoslash>ANI=player-readytoslash>ANI=player-slash;ATK=8;VFX=SlashDownBig=7/1/0,ANI_player-readytoslash
+  Effect: AUTO_ANI=player-readytoslash>ANI=player-readytoslash>ANI=player-readytoslash>ANI=player-slash;ATK=6;VFX=SlashDownBig=7/1/0,ANI_player-readytoslash
   CD: 0
-  Desc: "\u8D85\u91CD\u51FB\uFF1A\u84C4\u529B\u4E00\u56DE\u5408\uFF0C\u6D88\u80172\u80FD\u91CF\uFF0C\u8FDB\u884C5\u70B9\u653B\u51FB"
+  Desc: "\u8D85\u91CD\u51FB\uFF1A\u84C4\u529B\u4E00\u56DE\u5408\uFF0C\u6D88\u80172\u80FD\u91CF\uFF0C\u8FDB\u884C6\u70B9\u653B\u51FB"

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   sprite: {fileID: 849150016359643074, guid: 16af87af7923e401fa2d5dd82c0709d1, type: 3}
-  _name: ACCDEFEND
+  _name: Accurate Defence
   cost: 12
   inputSequence:
   - type: 21

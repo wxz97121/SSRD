@@ -42,7 +42,7 @@ public class Minimon3 : AI
                     SGSAdd("attack");
 
                 }
-                else if (P > 0.3)
+                else if (P > 0.4)
                 {
                     SGSAdd("defend");
 
@@ -70,7 +70,7 @@ public class Minimon3 : AI
         if (isDefenced)
         {
             //.Break();
-            SGSDelete(skillGroupSeq.Count - 1);
+            skillGroupSeq.Clear();
             SGSAdd("disable");
             //enemySkill.CommonEffect(this, "ANIT_disable");
             //animator.ResetTrigger("attack");

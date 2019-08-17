@@ -74,14 +74,6 @@ public class MapArea
     }
 
 
-    public void ShowDesc()
-    {
-        GameObject.Find("AreaDescText").GetComponent<Text>().text = levelData.AreaName + " , \n 掉落：" + levelData.AwardEquip.equipName + "  " + levelData.AwardSkill._name;
-    }
-    public void HideDesc()
-    {
-        GameObject.Find("AreaDescText").GetComponent<Text>().text = "";
-    }
 }
 
 public class MapChapter
