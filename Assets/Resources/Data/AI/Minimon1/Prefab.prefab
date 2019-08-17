@@ -196,10 +196,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 0
-  maxHp: 3
-  Hp: 3
-  maxLife: 10
-  life: 10
+  maxHp: 0
+  Hp: 0
+  maxLife: 3
+  life: 3
   maxMp: 5
   Mp: 0
   ATK: 0
@@ -214,6 +214,7 @@ MonoBehaviour:
   mTarget: {fileID: 0}
   m_name: 
   data: {fileID: 11400000, guid: f5ff2a66aa2074fcb8dbf71fa1a1563f, type: 2}
+  lastSkill: 
   actionID: 0
   skillGroupSeq: []
   animator: {fileID: 0}

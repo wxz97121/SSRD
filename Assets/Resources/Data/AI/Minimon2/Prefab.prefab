@@ -610,8 +610,8 @@ MonoBehaviour:
   isPlayer: 0
   maxHp: 0
   Hp: 0
-  maxLife: 25
-  life: 25
+  maxLife: 10
+  life: 10
   maxMp: 5
   Mp: 0
   ATK: 1
@@ -626,6 +626,7 @@ MonoBehaviour:
   mTarget: {fileID: 0}
   m_name: 
   data: {fileID: 11400000, guid: 00816b76f58ee4696b0a3fd87e15c962, type: 2}
+  lastSkill: 
   actionID: 0
   skillGroupSeq: []
   animator: {fileID: 0}

@@ -17,7 +17,6 @@ MonoBehaviour:
   enemyList:
   - Minimon2
   - Minimon2
-  - Minimon2
   BGMPath: event:/music/core
   LevelType: 0
   AwardSkill: {fileID: 11400000, guid: 4dd3de6ef86b14ad084e9bc2919194d5, type: 2}

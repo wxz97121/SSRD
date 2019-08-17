@@ -28,7 +28,7 @@ public class UI_SkillIcon : MonoBehaviour
         }
         else
         {
-            costtext.text = skill.cost.ToString();
+            costtext.text = (skill.cost/4).ToString();
         }
         UpdateCD();
     }

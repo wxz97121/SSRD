@@ -966,8 +966,8 @@ MonoBehaviour:
   isPlayer: 0
   maxHp: 20
   Hp: 20
-  maxLife: 10
-  life: 10
+  maxLife: 15
+  life: 15
   maxMp: 0
   Mp: 0
   ATK: 0
