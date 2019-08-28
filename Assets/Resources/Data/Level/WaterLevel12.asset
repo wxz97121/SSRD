@@ -23,3 +23,4 @@ MonoBehaviour:
   AwardSkill: {fileID: 11400000, guid: 70c94c18c0ffc4998b32f2309e815186, type: 2}
   AwardEquip: {fileID: 11400000, guid: 4e4418f486a3f43ebb7146e3ede65e05, type: 2}
   AwardMoney: 10
+  StoryScript: {fileID: 11400000, guid: 016df33752f1249ebb81bd876f29dbec, type: 2}

@@ -369,6 +369,7 @@ public class SuperController : MonoBehaviour
 
         Player.Instance.Reset();
         Player.Instance.BattleStart();
+       
 
         //战斗UI
 

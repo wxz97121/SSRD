@@ -53,6 +53,14 @@ public class MapArea
         {
             case AreaType.Default:
                 SuperController.Instance.ReadLevelDatas(levelData);
+                if (levelData.StoryScript != null)
+                {
+                    VisualNovelController.Instance.InitScript(levelData);
+                }
+                else
+                {
+                    SuperController.Instance.SkillSelectUI();
+                }
                 break;
             case AreaType.Fight:
                 break;
@@ -70,7 +78,7 @@ public class MapArea
         MapController.Instance.currentChapter.UnlockAround((int)pos.x, (int)pos.y);
 
         MapController.Instance.HideMap();
-        SuperController.Instance.SkillSelectUI();
+        
     }
 
 

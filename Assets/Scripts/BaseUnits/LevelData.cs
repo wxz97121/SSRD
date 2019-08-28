@@ -13,4 +13,5 @@ public class LevelData : ScriptableObject
     public SkillData AwardSkill;
     public Equipment AwardEquip;
     public int AwardMoney;
+    public NovelScript StoryScript;
 }
