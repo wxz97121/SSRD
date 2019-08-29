@@ -10,13 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90958fe3dd7134c8fbdab73240367ca1, type: 3}
-  m_Name: TestScript_yes
+  m_Name: TestScript_end
   m_EditorClassIdentifier: 
   lines:
+  - left: 1
+    sprite: {fileID: 21300000, guid: c1ea73cadad614618a06a65cea42f467, type: 3}
+    name: "\u4E8C\u59E8"
+    content: "\u4F60\u597D\u5F31\u554A"
+    effstring: []
+    options: []
   - left: 0
     sprite: {fileID: 21300006, guid: e403f2bccc575465fbe49e74757dbe8f, type: 3}
     name: "\u7AF9\u55B5"
-    content: "\u54C8\u54C8\u54C8\u7B54\u5BF9\u5566\uFF01"
+    content: "\u54FC"
     effstring:
     - showmap
     options: []

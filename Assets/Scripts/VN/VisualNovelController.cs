@@ -44,15 +44,15 @@ public class VisualNovelController : MonoBehaviour
         }
     }
 
-    public void InitScript(LevelData levelData)
+    public void InitScript(NovelScript script)
     {
-        if (levelData.StoryScript == null)
+        if (script == null)
         {
             MapController.Instance.ShowMap();
             return;
         }
 
-        currentscript = levelData.StoryScript;
+        currentscript = script;
 
         currentLine = 0;
 
@@ -120,7 +120,7 @@ public class VisualNovelController : MonoBehaviour
                     SuperController.Instance.SkillSelectUI();
                 }
                 break;
-            case "nofight":
+            case "showmap":
                 {
                     MapController.Instance.ShowMap();
                 }

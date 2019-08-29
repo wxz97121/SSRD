@@ -49,7 +49,7 @@ public class SuperController : MonoBehaviour
     public Transform InputTipPos;
 
     // public SkillData[] skillList;
-
+    public NovelScript AfterStory;
     static SuperController _instance;
     public static SuperController Instance
     {
@@ -259,7 +259,14 @@ public class SuperController : MonoBehaviour
 
         //SkillSelectUI();
         //MapController.Instance.CreateChapterMap();
-        MapController.Instance.ShowMap();
+        if (AfterStory != null)
+        {
+            VisualNovelController.Instance.InitScript(AfterStory);
+        }
+        else
+        {
+            MapController.Instance.ShowMap();
+        }
 
         mainMenu.gameObject.SetActive(false);
     }

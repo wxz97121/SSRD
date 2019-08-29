@@ -53,13 +53,21 @@ public class MapArea
         {
             case AreaType.Default:
                 SuperController.Instance.ReadLevelDatas(levelData);
-                if (levelData.StoryScript != null)
+                if (levelData.PreStory != null)
                 {
-                    VisualNovelController.Instance.InitScript(levelData);
+                    VisualNovelController.Instance.InitScript(levelData.PreStory);
                 }
                 else
                 {
                     SuperController.Instance.SkillSelectUI();
+                }
+                if (levelData.AfterStory != null)
+                {
+                    SuperController.Instance.AfterStory = levelData.AfterStory;
+                }
+                else
+                {
+                    SuperController.Instance.AfterStory = null;
                 }
                 break;
             case AreaType.Fight:
@@ -88,9 +96,6 @@ public class MapChapter
 {
     public int size = 1;
     public MapArea[,] map;
-    
-    
-    
 
     public MapChapter (int s)
     {
@@ -193,4 +198,5 @@ public class MapController : MonoBehaviour
 
         currentChapter.map[0, 0].m_VisitType = VisitType.CanVisit;
     }
+
 }
