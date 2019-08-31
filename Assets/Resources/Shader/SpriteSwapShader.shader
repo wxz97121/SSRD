@@ -7,7 +7,16 @@
 			[MaterialToggle] PixelSnap("Pixel snap", Float) = 0
 			_OldColor("OldColor",Color) = (1,1,1,1)
 			_NewColor("NewColor",Color) = (1,1,1,1)
-			_DistToSwap("Dist",float) = 0.1
+			_DistToSwap("Dist",float) = -0.1
+
+			_OldColor2("OldColor",Color) = (1,1,1,1)
+			_NewColor2("NewColor",Color) = (1,1,1,1)
+			_DistToSwap2("Dist",float) = -0.1
+
+
+			_OldColor3("OldColor",Color) = (1,1,1,1)
+			_NewColor3("NewColor",Color) = (1,1,1,1)
+			_DistToSwap3("Dist",float) = -0.1
 		}
 
 			SubShader
@@ -51,8 +60,16 @@
 					fixed4 _Color;
 					fixed4 _OldColor;
 					fixed4 _NewColor;
-
 					float _DistToSwap;
+
+					fixed4 _OldColor2;
+					fixed4 _NewColor2;
+					float _DistToSwap2;
+
+					fixed4 _OldColor3;
+					fixed4 _NewColor3;
+					float _DistToSwap3;
+					
 
 					v2f vert(appdata_t IN)
 					{
@@ -86,7 +103,10 @@
 					fixed4 frag(v2f IN) : SV_Target
 					{
 						fixed4 c = SampleSpriteTexture(IN.texcoord) * IN.color;
-						if (length(c.rgb - _OldColor.rgb) < _DistToSwap) c = _NewColor;
+						if (length(c.rgb - _OldColor.rgb) < _DistToSwap) c = saturate(c + (_NewColor - _OldColor));
+						else if (length(c.rgb - _OldColor2.rgb) < _DistToSwap2) c = saturate(c + (_NewColor2 - _OldColor2));
+						else if (length(c.rgb - _OldColor3.rgb) < _DistToSwap3) c = saturate(c + (_NewColor3 - _OldColor3));
+
 						c.rgb *= c.a;
 						
 						return c;
