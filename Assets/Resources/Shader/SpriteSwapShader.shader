@@ -76,6 +76,7 @@
 						v2f OUT;
 						OUT.vertex = UnityObjectToClipPos(IN.vertex);
 						OUT.texcoord = IN.texcoord;
+
 						OUT.color = IN.color * _Color;
 						#ifdef PIXELSNAP_ON
 						OUT.vertex = UnityPixelSnap(OUT.vertex);
@@ -102,11 +103,12 @@
 
 					fixed4 frag(v2f IN) : SV_Target
 					{
-						fixed4 c = SampleSpriteTexture(IN.texcoord) * IN.color;
+						fixed4 c = SampleSpriteTexture(IN.texcoord);
 						if (length(c.rgb - _OldColor.rgb) < _DistToSwap) c = saturate(c + (_NewColor - _OldColor));
 						else if (length(c.rgb - _OldColor2.rgb) < _DistToSwap2) c = saturate(c + (_NewColor2 - _OldColor2));
 						else if (length(c.rgb - _OldColor3.rgb) < _DistToSwap3) c = saturate(c + (_NewColor3 - _OldColor3));
 
+						c *= IN.color;
 						c.rgb *= c.a;
 						
 						return c;
