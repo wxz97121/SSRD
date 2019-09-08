@@ -73,7 +73,7 @@ public static class SkillUpgrade
             skill.upgradeChoice3 = 2;
 
         }
-
+        
 
     }
 
