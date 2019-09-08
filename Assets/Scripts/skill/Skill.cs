@@ -30,6 +30,16 @@ public class Skill
     public int Cooldown;
     public string Desc;
 
+    //技能进阶级数
+    public int upgradeLevel = 0;
+    public int upgradeChoice1 = 0;
+    public int upgradeChoice2 = 0;
+    public int upgradeChoice3 = 0;
+
+
+
+
+
 
 
     public void EffectFunction(Character m_Char)

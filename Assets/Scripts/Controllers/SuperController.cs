@@ -156,6 +156,14 @@ public class SuperController : MonoBehaviour
             SoundController.Instance.PlayAudioEffect("Snare");
             // Debug.Log(SoundController.Instance.GetSpectrum().Length);
         }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            SkillUpgrade.UpgradeSkill("attack", 1, 1, Player.Instance.skillSlots[0].skill);
+        }
+
+
+
+
 
         //战斗输入按键
         if (Input.GetKeyDown(KeyCode.M))
