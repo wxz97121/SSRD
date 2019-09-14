@@ -10,11 +10,18 @@ public enum GameState
     QTE,
     End,
     Pause,
-    Ulti
+    Ulti,
+    MainMenu,
+    StoryCut,
+    Map,
+    Menu
 }
-//统一控制局内
+//统一控制
 public class SuperController : MonoBehaviour
 {
+    //流程
+    public string StoryStep = "fresh new";
+
     public GameObject m_Canvas;
     [HideInInspector]
     public LevelData levelData;
@@ -50,6 +57,9 @@ public class SuperController : MonoBehaviour
 
     // public SkillData[] skillList;
     public NovelScript AfterStory;
+
+
+    #region 单例
     static SuperController _instance;
     public static SuperController Instance
     {
@@ -62,6 +72,7 @@ public class SuperController : MonoBehaviour
     {
         _instance = this;
     }
+    #endregion
 
     // Use this for initialization
     void Start()
@@ -91,6 +102,8 @@ public class SuperController : MonoBehaviour
     {
         UpdateInput();
     }
+
+
 
     protected void UpdateInput()
     {
@@ -233,6 +246,42 @@ public class SuperController : MonoBehaviour
 
     }
 
+    #region 剧情关键点时调用
+    public void NextStep(string p_storystep)
+    {
+        StoryStep = p_storystep;
+        Debug.Log("Next Step : " + p_storystep);
+        //todo:整体流程在这控制吧
+        switch (p_storystep)
+        {
+            case "start game":
+                //todo 进游戏，展示剧情介绍
+                Story.PlayStoryAnim("Story1");
+                break;
+            case "teaching":
+                //todo 进入教学
+                Debug.Log("story animation over");
+                break;
+            case "story 1-1":
+                break;
+            default:
+                break;
+        }
+    }
+    #endregion
+
+
+    public void NewGameButton()
+    {
+        NextStep("start game");
+
+        mainMenu.gameObject.SetActive(false);
+
+
+    }
+
+
+
     public void NewGame()
     {
         DuelController.Instance.ClearEnemy();
@@ -278,6 +327,8 @@ public class SuperController : MonoBehaviour
 
         mainMenu.gameObject.SetActive(false);
     }
+
+
     public void GameOver()
     {
         //Debug.Log("Game Over");
@@ -412,26 +463,9 @@ public class SuperController : MonoBehaviour
         Resume();
         //SuperController.Instance.state = GameState.Start;
     }
-    //public void ReadSkillDatas()
-    //{
-    //List<Skill> playerSkills = new List<Skill>
-    //{
-    //    new Skill("testSkill_00X_ATTACK"),
-    //    new Skill("testSkill_0ZX_DEFEND"),
-    //    new Skill("testSkill_Z0X_SUPERATTACK"),
-    //    new Skill("testSkill_ZZX_TRIPLEDMG"),
-    //    new Skill("testSkill_0Z0ZX_HEAL"),
-    //    new Skill("testSkill_ZZZX_ALLMPATK"),
 
-    //    new Skill("testSkill_ZXZZX_ULTI")
-    //};
-    //Player.Instance.skills = new List<Skill>();
 
-    //Player.Instance.skills = playerSkills;
-    //InputSequenceController.Instance.skills = Player.Instance.skills;
-    //InputSequenceController.Instance.availableSkills = InputSequenceController.Instance.skills;
 
-    //}
 
     public void ReadLevelDatas()
     {
