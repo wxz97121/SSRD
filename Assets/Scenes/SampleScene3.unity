@@ -2944,7 +2944,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 398019754}
   m_OnClick:
     m_PersistentCalls:
@@ -11039,7 +11039,7 @@ GameObject:
   - component: {fileID: 1647738165}
   - component: {fileID: 1647738164}
   m_Layer: 5
-  m_Name: NewGameButton New
+  m_Name: NewGameButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14001,7 +14001,7 @@ PrefabInstance:
         type: 3}
       propertyPath: levelData
       value: 
-      objectReference: {fileID: 11400000, guid: f872423c446fe4afa98e41bfac9cc020,
+      objectReference: {fileID: 11400000, guid: de6513a0356f14938aea7bfed11950c0,
         type: 2}
     - target: {fileID: 8951843376700240513, guid: e5a592088cbc14e28b7d8868735ed9f4,
         type: 3}
