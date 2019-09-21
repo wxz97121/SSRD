@@ -14,6 +14,7 @@ public class Story : MonoBehaviour
 
     public static void PlayStoryAnim(string name)
     {
+        ShowStory();
         Debug.Log("Play : "+ "Prefab/Story/" + name);
         GameObject ins = Instantiate(Resources.Load<GameObject>("Prefab/Story/"+name),GameObject.Find("StoryBoard").transform) as GameObject;
         Story story = ins.GetComponent<Story>();
@@ -32,10 +33,20 @@ public class Story : MonoBehaviour
         
     }
 
+    public static void ShowStory()
+    {
+        SuperController.Instance.StoryCanvas.localScale = Vector3.one;
+    }
+    public static void HideStory()
+    {
+        SuperController.Instance.StoryCanvas.localScale = Vector3.zero;
+    }
+
     public void Kill()
     {
         SuperController.Instance.NextStep(NextStoryStep);
         Destroy(gameObject);
+        Story.HideStory();
 
     }
 }

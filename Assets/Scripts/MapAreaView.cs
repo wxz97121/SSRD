@@ -7,35 +7,22 @@ using TMPro;
 public class MapAreaView : MonoBehaviour
 {
     public MapArea area = null;
+    public Text text;
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
+    public void Init()
+    {
+        text.text = area.AreaName;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (area != null)
-        {
-            transform.Find("Label").GetComponent<TextMeshProUGUI>().text = area.AreaName;
 
-            if (area.m_VisitType==VisitType.Visited)
-            {
-                GetComponent<Image>().color = Color.gray;
-                GetComponent<Button>().interactable = false;
-            }
-            else if (area.m_VisitType == VisitType.CanVisit)
-            {
-                GetComponent<Image>().color = Color.green;
-                GetComponent<Button>().interactable = true;
-            }
-            else
-            {
-                GetComponent<Image>().color = Color.red;
-                GetComponent<Button>().interactable = false;
-            }
-        }
     }
 
     public void OnClick()

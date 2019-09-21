@@ -58,6 +58,7 @@ public class SuperController : MonoBehaviour
     // public SkillData[] skillList;
     public NovelScript AfterStory;
 
+    public Transform StoryCanvas;
 
     #region 单例
     static SuperController _instance;
@@ -246,24 +247,41 @@ public class SuperController : MonoBehaviour
 
     }
 
-    #region 剧情关键点时调用
+    #region 主线剧情关键点时调用
     public void NextStep(string p_storystep)
     {
         StoryStep = p_storystep;
         Debug.Log("Next Step : " + p_storystep);
-        //todo:整体流程在这控制吧
+
         switch (p_storystep)
         {
             case "start game":
-                //todo 进游戏，展示剧情介绍
                 Story.PlayStoryAnim("Story1");
                 break;
             case "teaching":
-                //todo 进入教学
+                MapController.Instance.ShowMap();
                 Debug.Log("story animation over");
                 break;
-            case "story 1-1":
+            case "lesson1finished":
+                MapController.Instance.mapAreas.Find(a => a.AreaName == "安贞医院").m_VisitType = MapState.Unlocked;
+                MapController.Instance.UpdateAreaVisitStateAll();
                 break;
+            default:
+                break;
+        }
+    }
+    #endregion
+
+    #region 非主线剧情关键点时调用
+    public void Happen(string p_storystep)
+    {
+        StoryStep = p_storystep;
+        Debug.Log("Happen : " + p_storystep);
+        //todo:支线流程在这控制吧
+        switch (p_storystep)
+        {
+
+
             default:
                 break;
         }
@@ -366,6 +384,11 @@ public class SuperController : MonoBehaviour
         skillTipBarController.ClearSkillTipArea();
         //SoundController.Instance.SetPlayedTime();
         SoundController.Instance.FMODmusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        if (!MapController.Instance.currentMapArea.isVisited)
+        {
+            MapController.Instance.currentMapArea.isVisited = true;
+            SuperController.Instance.NextStep(MapController.Instance.currentMapArea.levelData.NextStoryStep);
+        }
         StartCoroutine("WinUI");
     }
     IEnumerator WinUI()
@@ -467,15 +490,8 @@ public class SuperController : MonoBehaviour
 
 
 
-    public void ReadLevelDatas()
-    {
-        levelData = Resources.Load("Data/Level/testLevel") as LevelData;
-        //Debug.Log("leveldata" + levelData.name);
-        //Debug.Log("scoredata" + levelData.scoreData.name);
-        //RhythmController.Instance.BGM = levelData.BGM;
-        score = OneSongScore.ReadScoreData(levelData.scoreData);
-        DuelController.Instance.enemyList = levelData.enemyList;
-    }
+
+
     public void ReadLevelDatas(LevelData newLevelData)
     {
         levelData = newLevelData;

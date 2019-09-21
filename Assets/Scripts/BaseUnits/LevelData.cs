@@ -15,4 +15,5 @@ public class LevelData : ScriptableObject
     public int AwardMoney;
     public NovelScript PreStory;
 	public NovelScript AfterStory;
+    public string NextStoryStep;
 }
