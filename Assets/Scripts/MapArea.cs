@@ -67,6 +67,12 @@ public class MapArea : MonoBehaviour
     //更新地块状态
     public void UpdateAreaVisitState()
     {
+        if (view == null)
+        {
+            InitView(this.gameObject);
+        }
+
+
         if (isVisited && m_VisitType == MapState.Current)
         {
             view.GetComponent<Image>().color = Color.white;

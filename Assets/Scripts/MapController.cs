@@ -53,6 +53,7 @@ public class MapController : MonoBehaviour
 
     void Start()
     {
+        
         mapAreas = new List<MapArea>(mapCanvas.transform.GetComponentsInChildren<MapArea>());
         //mapAreas = mapCanvas.transform.GetComponentsInChildren<MapArea>();
         foreach (MapArea m in mapAreas)
@@ -63,6 +64,7 @@ public class MapController : MonoBehaviour
             }
         }
         UpdateAreaVisitStateAll();
+        HideMap();
 
     }
 
@@ -109,7 +111,8 @@ public class MapController : MonoBehaviour
 
     public void ShowMap()
     {
-
+        mapCanvas.gameObject.SetActive(true);
+        mapCanvas.GetComponent<UIMapWindow>().Init();
         UpdateAreaVisitStateAll();
 
         mapCanvas.localScale = Vector3.one;
@@ -117,6 +120,8 @@ public class MapController : MonoBehaviour
     public void HideMap()
     {
         mapCanvas.localScale = Vector3.zero;
+        mapCanvas.gameObject.SetActive(false);
+
     }
 
     public void CreateChapterMap()

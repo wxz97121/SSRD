@@ -79,7 +79,7 @@ public class SuperController : MonoBehaviour
     void Start()
     {
         Random.InitState(System.DateTime.Now.Second);
-        mainMenu.gameObject.SetActive(true);
+
         commentController = GameObject.Find("Comment").GetComponent<CommentController>();
         skillTipBarController = GameObject.Find("SkillTipArea").GetComponent<UISkillTipBarController>();
         uiBarController = GameObject.Find("BarArea").GetComponent<UIBarController>();
@@ -88,9 +88,11 @@ public class SuperController : MonoBehaviour
         playerBattleInfo = playerBattleUIPos.GetComponentInChildren<UIBattleInfo>();
         enemyBattleInfo = enemyBattleUIPos.GetComponentInChildren<UIBattleInfo>();
 
-        //ReadLevelDatas();
         InputSequenceController.Instance.ResetAvailable();
-        //        ReadSkillDatas();
+
+        mainMenu.gameObject.SetActive(true);
+        mainMenu.GetComponent<UIMainMenu>().Init();
+
         SoundController.Instance.FMODmusic.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
 
         //此处有个坑，FMODInstance必须创建完成才能获取channelgroup
@@ -264,7 +266,6 @@ public class SuperController : MonoBehaviour
                 break;
             case "lesson1finished":
                 MapController.Instance.mapAreas.Find(a => a.AreaName == "安贞医院").m_VisitType = MapState.Unlocked;
-                MapController.Instance.UpdateAreaVisitStateAll();
                 break;
             default:
                 break;
@@ -289,14 +290,8 @@ public class SuperController : MonoBehaviour
     #endregion
 
 
-    public void NewGameButton()
-    {
-        NextStep("start game");
-
-        mainMenu.gameObject.SetActive(false);
 
 
-    }
 
 
 
