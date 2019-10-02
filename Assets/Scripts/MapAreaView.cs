@@ -31,6 +31,7 @@ public class MapAreaView : MonoBehaviour
     }
 
 
+
     public void ShowDesc()
     {
         string lootequip="";

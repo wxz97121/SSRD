@@ -38,30 +38,40 @@ public class MapArea : MonoBehaviour
 
     public void Activate()
     {
-
-        SuperController.Instance.ReadLevelDatas(levelData);
-        if (levelData.PreStory != null)
+        if (isVisited)
         {
-            VisualNovelController.Instance.InitScript(levelData.PreStory);
+            Debug.Log("show menu!!");
+            UIWindowController.Instance.StartCoroutine("OpenMapMenu");
         }
         else
         {
-            SuperController.Instance.BattleStart();
+
+            UIWindowController.Instance.arrow.transform.localScale = Vector3.zero;
+
+            SuperController.Instance.ReadLevelDatas(levelData);
+            if (levelData.PreStory != null)
+            {
+                VisualNovelController.Instance.InitScript(levelData.PreStory);
+            }
+            else
+            {
+                SuperController.Instance.BattleStart();
+            }
+            if (levelData.AfterStory != null)
+            {
+                SuperController.Instance.AfterStory = levelData.AfterStory;
+            }
+            else
+            {
+                SuperController.Instance.AfterStory = null;
+            }
+            MapController.Instance.currentMapArea.m_VisitType = MapState.Unlocked;
+            MapController.Instance.currentMapArea = this;
+
+            //isVisited =true;
+
+            MapController.Instance.HideMap();
         }
-        if (levelData.AfterStory != null)
-        {
-            SuperController.Instance.AfterStory = levelData.AfterStory;
-        }
-        else
-        {
-            SuperController.Instance.AfterStory = null;
-        }
-
-
-        //isVisited =true;
-
-        MapController.Instance.HideMap();
-
     }
 
     //更新地块状态

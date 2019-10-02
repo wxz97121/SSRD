@@ -14,6 +14,8 @@ public class Story : MonoBehaviour
 
     public static void PlayStoryAnim(string name)
     {
+        UIWindowController.Instance.arrow.transform.localScale = Vector3.zero;
+
         ShowStory();
         Debug.Log("Play : "+ "Prefab/Story/" + name);
         GameObject ins = Instantiate(Resources.Load<GameObject>("Prefab/Story/"+name),GameObject.Find("StoryBoard").transform) as GameObject;

@@ -119,11 +119,15 @@ public class SuperController : MonoBehaviour
                 pausing = false;
                 return;
             }
-            Pause(GameState.Wait);
-            pausing = true;
+            if(state == GameState.Start || state == GameState.QTE || state == GameState.Ulti)
+            {
+                Pause(GameState.Wait);
+                pausing = true;
+            }
+
         }
 
-        if (SuperController.Instance.state != GameState.Start && SuperController.Instance.state != GameState.QTE && SuperController.Instance.state != GameState.Ulti)
+        if (state != GameState.Start && state != GameState.QTE && state != GameState.Ulti)
         {
             return;
         }
@@ -318,6 +322,7 @@ public class SuperController : MonoBehaviour
         MapController.Instance.CreateChapterMap();
         MapController.Instance.ShowMap();
         UIWindowController.Instance.mainMenu.gameObject.SetActive(false);
+        UIWindowController.Instance.arrow.transform.localScale = Vector3.zero;
 
     }
 
@@ -400,6 +405,7 @@ public class SuperController : MonoBehaviour
 
         UIWindowController.Instance.winWindow.gameObject.SetActive(true);
         UIWindowController.Instance.winWindow.Init();
+
         if (levelData.AwardSkill)
         {
             Player.Instance.AddSkill(levelData.AwardSkill);

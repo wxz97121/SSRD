@@ -111,16 +111,15 @@ public class MapController : MonoBehaviour
 
     public void ShowMap()
     {
-        mapCanvas.gameObject.SetActive(true);
-        mapCanvas.GetComponent<UIMapWindow>().Init();
+        UIWindowController.Instance.mapWindow.gameObject.SetActive(true);
+        UIWindowController.Instance.mapWindow.Init();
         UpdateAreaVisitStateAll();
 
-        mapCanvas.localScale = Vector3.one;
+        UIWindowController.Instance.mapWindow.transform.localScale = Vector3.one;
     }
     public void HideMap()
     {
-        mapCanvas.localScale = Vector3.zero;
-        mapCanvas.gameObject.SetActive(false);
+        UIWindowController.Instance.mapWindow.gameObject.SetActive(false);
 
     }
 
