@@ -11,9 +11,9 @@ public class UIMainMenu : UIWindow
         base.SetSelect();
         buttons.Find(a => a.name == "Start").Select();
     }
-    public override void onClick(Button button)
+    public override void OnClick(Button button)
     {
-        base.onClick(button);
+        base.OnClick(button);
         if (button.name == "Start")
         {
             SuperController.Instance.NextStep("start game");

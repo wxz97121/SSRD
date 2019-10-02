@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using FMOD;
 using FMODUnity;
 using System.Runtime.InteropServices;
-using UnityEngine.UI;
+
 
 using System;
 
@@ -211,10 +213,11 @@ public class SoundController : MonoBehaviour {
     //计算当前播放的时间
     public float CalcDSPtime()
     {
-
-        channelGroup.getDSPClock(out dsp, out dsp2);
+        ulong m_dsp;
+        channelGroup.getDSPClock(out m_dsp, out dsp2);
+//        UnityEngine.Debug.Log("dsp " + m_dsp);
         //        UnityEngine.Debug.Log("dsp " + dsp);
-        dsptime = (float)dsp / (float)samplerate;
+        dsptime = (float)m_dsp / (float)samplerate;
         return dsptime;
     }
 
@@ -298,4 +301,35 @@ public class SoundController : MonoBehaviour {
         Text text = GameObject.Find("flag").GetComponent<Text>();
         text.text = (string)timelineInfo.lastMarker+timelineInfo.currentMusicBeat+"  "+ CalcDSPtime();
     }
+
+
+    public IEnumerator SetFadeOut(float time)
+    {
+        float volume=0.5f;
+        int steps=100;
+        float timeperstep = time / steps;
+        UnityEngine.Debug.Log("timeperstep = " + timeperstep);
+
+        while (time >= 0&& volume>0)
+        {
+            yield return new WaitForSeconds(timeperstep);
+            if (volume < 0.001)
+            {
+                channelGroup.setVolume(0f);
+                volume = 0;
+            }
+            else
+            {
+                volume *= 0.9f;
+                channelGroup.setVolume(volume);
+            }
+//            UnityEngine.Debug.Log("volume = " + volume);
+            time -= timeperstep;
+        }
+
+        FMODmusic.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    }
+
+
+
 }

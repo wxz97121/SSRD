@@ -46,7 +46,7 @@ public class MapArea : MonoBehaviour
         }
         else
         {
-            SuperController.Instance.SkillSelectUI();
+            SuperController.Instance.BattleStart();
         }
         if (levelData.AfterStory != null)
         {

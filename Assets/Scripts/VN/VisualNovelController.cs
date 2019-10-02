@@ -117,7 +117,7 @@ public class VisualNovelController : MonoBehaviour
         {
             case "startfight":
                 {
-                    SuperController.Instance.SkillSelectUI();
+                    SuperController.Instance.BattleStart();
                 }
                 break;
             case "showmap":

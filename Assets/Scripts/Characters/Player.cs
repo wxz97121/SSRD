@@ -67,6 +67,9 @@ public class Player : Character {
         Mp = maxMp;
         life = maxLife;
         spec.Start();
+        if (currentWeapon != null) currentWeapon.AddBuffs();
+        if (currentArmor != null) currentArmor.AddBuffs();
+        if (currentScroll != null) currentScroll.AddBuffs();
     }
     // Use this for initialization
     override protected void Start () {
@@ -109,21 +112,14 @@ public class Player : Character {
 
     public override void BattleStart()
     {
-        if (currentWeapon != null) currentWeapon.AddBuffs();
-        if (currentArmor != null) currentArmor.AddBuffs();
-        if (currentScroll != null) currentScroll.AddBuffs();
+        Reset();
+
     }
 
     override public void Damage(int dDamage, Character source)
     {
         base.Damage(dDamage, source);
         if (life <= 0) Die();
-
-      //  if (Player.Instance.animator.GetCurrentAnimatorStateInfo(0).IsName("player-idle"))
-      // {
-      //      animator.Play("player-damaged", 0);
-
-      //  }
 
     }
 
@@ -133,7 +129,7 @@ public class Player : Character {
     }
 
 
-    #region 更新技能 现在没啥用了
+    #region 更新技能CD 现在没啥用了
     public void UpdateCDs()
     {
         foreach(SkillSlot s in skillSlots)

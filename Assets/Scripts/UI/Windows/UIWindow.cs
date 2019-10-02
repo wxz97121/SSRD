@@ -36,7 +36,7 @@ public class UIWindow : MonoBehaviour
         foreach (Button b in buttons)
         {
             b.onClick.AddListener(delegate () {
-                onClick(b);
+                OnClick(b);
             });
         }
         SetSelect();
@@ -55,7 +55,7 @@ public class UIWindow : MonoBehaviour
         }
     }
 
-    public virtual void onClick(Button button)
+    public virtual void OnClick(Button button)
     {
         Debug.Log("button click : "+button.name);
     }

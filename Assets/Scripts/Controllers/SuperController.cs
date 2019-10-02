@@ -83,15 +83,16 @@ public class SuperController : MonoBehaviour
         commentController = GameObject.Find("Comment").GetComponent<CommentController>();
         skillTipBarController = GameObject.Find("SkillTipArea").GetComponent<UISkillTipBarController>();
         uiBarController = GameObject.Find("BarArea").GetComponent<UIBarController>();
-        //SRDTap = GameObject.Find("SrdTap").GetComponent<SrdTap>();
 
         playerBattleInfo = playerBattleUIPos.GetComponentInChildren<UIBattleInfo>();
         enemyBattleInfo = enemyBattleUIPos.GetComponentInChildren<UIBattleInfo>();
 
         InputSequenceController.Instance.ResetAvailable();
 
-        mainMenu.gameObject.SetActive(true);
-        mainMenu.GetComponent<UIMainMenu>().Init();
+        UIWindowController.Instance.mainMenu.gameObject.SetActive(true);
+        UIWindowController.Instance.mainMenu.Init();
+
+
 
         SoundController.Instance.FMODmusic.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
 
@@ -107,7 +108,7 @@ public class SuperController : MonoBehaviour
     }
 
 
-
+    #region 输入控制
     protected void UpdateInput()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -248,6 +249,7 @@ public class SuperController : MonoBehaviour
         }
 
     }
+    #endregion
 
     #region 主线剧情关键点时调用
     public void NextStep(string p_storystep)
@@ -262,12 +264,17 @@ public class SuperController : MonoBehaviour
                 break;
             case "teaching":
                 MapController.Instance.ShowMap();
-                Debug.Log("story animation over");
+                Player.Instance.skillSlots[0] = new SkillSlot
+                {
+                    skill = new Skill(0, "testSkill_00X_ATTACK"),
+                    requiredType = SkillType.attack
+                };
                 break;
             case "lesson1finished":
                 MapController.Instance.mapAreas.Find(a => a.AreaName == "安贞医院").m_VisitType = MapState.Unlocked;
                 break;
             default:
+                Debug.LogError("can not find step : " + p_storystep);
                 break;
         }
     }
@@ -276,7 +283,6 @@ public class SuperController : MonoBehaviour
     #region 非主线剧情关键点时调用
     public void Happen(string p_storystep)
     {
-        StoryStep = p_storystep;
         Debug.Log("Happen : " + p_storystep);
         //todo:支线流程在这控制吧
         switch (p_storystep)
@@ -311,21 +317,23 @@ public class SuperController : MonoBehaviour
         //SkillSelectUI();
         MapController.Instance.CreateChapterMap();
         MapController.Instance.ShowMap();
+        UIWindowController.Instance.mainMenu.gameObject.SetActive(false);
 
-        mainMenu.gameObject.SetActive(false);
     }
-    public void NextArea()
+
+
+    public void ContinueAfterWin()
     {
         DuelController.Instance.ClearEnemy();
         Player.Instance.buffs.Clear();
         CleanSelectUI();
-        Player.Instance.currentArmor = null;
-        Player.Instance.currentScroll = null;
-        Player.Instance.currentWeapon = null;
-        for (int index = 0; index < Player.Instance.skillSlots.Length; index++)
-            Player.Instance.skillSlots[index].skill = null;
+        //Player.Instance.currentArmor = null;
+        //Player.Instance.currentScroll = null;
+        //Player.Instance.currentWeapon = null;
+        //for (int index = 0; index < Player.Instance.skillSlots.Length; index++)
+            //Player.Instance.skillSlots[index].skill = null;
 
-        Player.Instance.Heal(Player.Instance.maxHp- Player.Instance.Hp);
+        Player.Instance.Reset();
 
         //SkillSelectUI();
         //MapController.Instance.CreateChapterMap();
@@ -338,7 +346,7 @@ public class SuperController : MonoBehaviour
             MapController.Instance.ShowMap();
         }
 
-        mainMenu.gameObject.SetActive(false);
+        UIWindowController.Instance.winWindow.gameObject.SetActive(false);
     }
 
 
@@ -370,15 +378,14 @@ public class SuperController : MonoBehaviour
     {
         //Debug.Log("Game Over");
         Player.Instance.money += levelData.AwardMoney;
-        if (levelData.AwardSkill)
-            Player.Instance.AddSkill(levelData.AwardSkill);
-        if (levelData.AwardEquip)
-            Player.Instance.equipmentList.Add(levelData.AwardEquip);
+
         state = GameState.End;
         uiBarController.ClearBarArea();
         skillTipBarController.ClearSkillTipArea();
         //SoundController.Instance.SetPlayedTime();
-        SoundController.Instance.FMODmusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        //SoundController.Instance.FMODmusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        StartCoroutine(SoundController.Instance.SetFadeOut(5f));
+
         if (!MapController.Instance.currentMapArea.isVisited)
         {
             MapController.Instance.currentMapArea.isVisited = true;
@@ -389,16 +396,27 @@ public class SuperController : MonoBehaviour
     IEnumerator WinUI()
     {
         yield return new WaitForSeconds(2.0f);
-        mainMenu.gameObject.SetActive(true);
-        //Debug.LogError("???");
-        //mainMenu.Find("Button").GetComponent<Button>().onClick.AddListener(NextArea);
-        mainMenu.Find("DescText").GetComponent<Text>().text = levelData.AreaName+" Clear !";
+        string award="";
 
+        UIWindowController.Instance.winWindow.gameObject.SetActive(true);
+        UIWindowController.Instance.winWindow.Init();
+        if (levelData.AwardSkill)
+        {
+            Player.Instance.AddSkill(levelData.AwardSkill);
+            award += levelData.AwardSkill._name+" ";
+        }
+        if (levelData.AwardEquip)
+        {
+            Player.Instance.equipmentList.Add(levelData.AwardEquip);
+            award += levelData.AwardEquip.name + " ";
 
-        mainMenu.Find("Title").GetComponent<Text>().text = "牛逼！";
-        mainMenu.Find("NextButton").Find("Text").GetComponent<Text>().text = "继续！";
-        mainMenu.Find("NewGameButton").transform.localScale = Vector3.zero;
-        mainMenu.Find("NextButton").transform.localScale = Vector3.one;
+        }
+
+        UIWindowController.Instance.winWindow.desc.text = "获得 ";
+        //UIWindowController.Instance.winWindow.desc.text = "获得 "+ levelData.AwardSkill._name +" "+ levelData.AwardEquip.name;
+
+        UIWindowController.Instance.winWindow.title.text = "牛逼！"+ levelData.AreaName + " Clear !";
+
 
     }
     void CleanSelectUI()
@@ -428,6 +446,26 @@ public class SuperController : MonoBehaviour
             inst.GetComponent<SkillDrag>().InitSkill(skill.name);
         }
     }*/
+
+
+
+
+
+    public void BattleStart()
+    {
+        state = GameState.Start;
+        Pause(GameState.Wait);
+
+        skillTipBarController.InitSkillTipBarArea();
+        RhythmController.Instance.Reset();
+
+        Player.Instance.BattleStart();
+        playerBattleInfo.init(Player.Instance);
+        InputSequenceController.Instance.ResetAvailable();
+        StartCoroutine(StateDelay());
+
+    }
+
 
     //真正的开始游戏 TODO：这里的一些初始化代码需要封装
     public void SkillSelectOK()
@@ -503,6 +541,7 @@ public class SuperController : MonoBehaviour
         Debug.Log("state" + state);
 
         SoundController.Instance.FMODmusic.setPaused(true);
+        SoundController.Instance.CalcDSPtime();
     }
 
     public void Resume()
@@ -511,6 +550,8 @@ public class SuperController : MonoBehaviour
         Debug.Log("state" + state);
 
         SoundController.Instance.FMODmusic.setPaused(false);
+        SoundController.Instance.CalcDSPtime();
+
     }
 
     //一些UI的按节奏闪动
