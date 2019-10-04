@@ -5,15 +5,19 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
-
 public class UIWindowController : MonoBehaviour
 {
     public List<UIWindow> windows;
+
+    public GameObject nowselect;
+    public GameObject lastselect;
+
 
     public UIMainMenu mainMenu;
     public UIMapWindow mapWindow;
     public UIWinWindow winWindow;
     public UIMapMenu mapMenu;
+    public UIPrepareWindow prepareWindow;
     //public 
 
     public Image arrow;
@@ -44,6 +48,8 @@ public class UIWindowController : MonoBehaviour
         windows.Add(mapWindow);
         windows.Add(winWindow);
         windows.Add(mapMenu);
+        windows.Add(prepareWindow);
+
 
     }
 
@@ -56,7 +62,24 @@ public class UIWindowController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (EventSystem.current.currentSelectedGameObject == null)
+        {
+            EventSystem.current.SetSelectedGameObject(nowselect);
+        }
+        else
+        {
+            if (nowselect != EventSystem.current.currentSelectedGameObject)
+            {
+                lastselect = nowselect;
+                nowselect = EventSystem.current.currentSelectedGameObject;
+
+
+                UIWindowController.Instance.StartCoroutine("ArrowMove");
+            }
+
+
+            nowselect = EventSystem.current.currentSelectedGameObject;
+        }
     }
 
 
@@ -113,7 +136,33 @@ public class UIWindowController : MonoBehaviour
         float time = 0.2f;
         float timecount = 0f;
         float a = 0f;
-        Vector3 startpos = arrow.transform.localPosition;
+        //todo 每个按钮要增加箭头指示位置
+        Vector3 vector3;
+        GameObject oldGO;
+        Vector3 oldoffset;
+        Vector3 startpos;
+        if (lastselect != null)
+        {
+            oldGO = lastselect;
+            oldoffset = new Vector3(oldGO.GetComponent<RectTransform>().rect.width/2f, oldGO.GetComponent<RectTransform>().rect.height/2f, 0f);
+            startpos = oldGO.transform.position;
+        }
+        else
+        {
+            oldoffset = new Vector3(0f, 0f, 0f);
+            startpos = new Vector3(0f, 0f, 0f);
+        }
+        GameObject GO = EventSystem.current.currentSelectedGameObject;
+        Vector3 newoffset = new Vector3(GO.GetComponent<RectTransform>().rect.width/2f, GO.GetComponent<RectTransform>().rect.height/2f, 0f);
+
+        Vector3 gopos = GO.transform.position;
+
+        Vector3 offset;
+
+
+
+
+
         while (timecount <= time)
         {
             yield return new WaitForSeconds(Time.deltaTime);
@@ -122,13 +171,48 @@ public class UIWindowController : MonoBehaviour
             a = -(timecount * timecount) / (time * time) + 2 * timecount / time;
             if (a > 1) { a = 1; }
 
-            arrow.transform.localPosition = Vector3.Lerp(
+
+
+
+
+            arrow.transform.position= Vector3.Lerp(
                     startpos,
-                    EventSystem.current.currentSelectedGameObject.transform.localPosition + new Vector3(-150f, -100f, 0),
+                    gopos,
                     a
             );
+
+            offset = Vector3.Lerp(
+                    oldoffset,
+                    newoffset,
+                    a
+            );
+            //nowX = Mathf.Lerp(
+            //        startposX,
+            //        endposX,
+            //        a
+            //);
+
+            //nowY = Mathf.Lerp(
+            //        startposY,
+            //        endposY,
+            //        a
+            //);
+            //arrow.transform.position = new Vector3(nowX, nowY, nowZ);
+            vector3=arrow.GetComponent<RectTransform>().anchoredPosition;
+            arrow.GetComponent<RectTransform>().anchoredPosition = vector3 - offset;
+
+            Debug.Log("start pos : " + startpos);
+
+            Debug.Log("end pos : " + gopos);
+
+
+
+
+
         }
         EventSystem.current.sendNavigationEvents = true;
 
     }
+
+
 }

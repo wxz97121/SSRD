@@ -8,8 +8,9 @@ public class UIMainMenu : UIWindow
 
     public override void SetSelect()
     {
-        base.SetSelect();
         buttons.Find(a => a.name == "Start").Select();
+        base.SetSelect();
+
     }
     public override void OnClick(Button button)
     {

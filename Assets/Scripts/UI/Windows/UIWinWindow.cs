@@ -11,8 +11,9 @@ public class UIWinWindow : UIWindow
 
     public override void SetSelect()
     {
-        base.SetSelect();
         buttons.Find(a => a.name == "Continue").Select();
+        base.SetSelect();
+
     }
 
     public override void OnClick(Button button)

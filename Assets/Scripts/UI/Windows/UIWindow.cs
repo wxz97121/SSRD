@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-
+using DG.Tweening;
 
 
 public class UIWindow : MonoBehaviour
@@ -15,7 +15,7 @@ public class UIWindow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lastselect = new GameObject();
+
 
         //Init();
 
@@ -26,54 +26,80 @@ public class UIWindow : MonoBehaviour
 
     public virtual void SetSelect()
     {
-
+        lastselect= EventSystem.current.currentSelectedGameObject;
     }
 
     public virtual void Init()
     {
-        UIWindowController.Instance.ClearFocus();
-        isFocus = true;
 
-        UIWindowController.Instance.arrow.transform.localScale = Vector3.one;
-        UIWindowController.Instance.StartCoroutine("ArrowMove");
 
         buttons = new List<Button>(this.transform.GetComponentsInChildren<Button>());
 
         foreach (Button b in buttons)
         {
+            b.onClick.RemoveAllListeners();
             b.onClick.AddListener(delegate () {
                 OnClick(b);
             });
+            if (b.GetComponent<MyEventHandler>() != null)
+            {
+                b.GetComponent<MyEventHandler>().onSelect.RemoveAllListeners();
+                b.GetComponent<MyEventHandler>().onSelect.AddListener(delegate () {
+                    OnSelect(b);
+                });
+            }
         }
+
+
+        UIWindowController.Instance.ClearFocus();
+        isFocus = true;
         SetSelect();
+
+        UIWindowController.Instance.arrow.transform.position =new Vector3(0, 0, 0);
+        UIWindowController.Instance.StartCoroutine("ArrowMove");
     }
 
     // Update is called once per frame
-    void Update()
+   public void Update()
     {
-        if (EventSystem.current.currentSelectedGameObject == null)
+        if (isFocus)
         {
-            EventSystem.current.SetSelectedGameObject(lastselect);
-        }
-        else
-        {
-            if(lastselect!= EventSystem.current.currentSelectedGameObject)
+            if (EventSystem.current.currentSelectedGameObject == null)
             {
-                OnChangeSelect();
-
+                EventSystem.current.SetSelectedGameObject(lastselect);
             }
-            lastselect = EventSystem.current.currentSelectedGameObject;
+            else
+            {
+                if (lastselect != EventSystem.current.currentSelectedGameObject)
+                {
+                    OnChangeSelect();
+
+                }
+
+
+                lastselect = EventSystem.current.currentSelectedGameObject;
+            }
         }
+
     }
 
     public virtual void OnClick(Button button)
     {
         Debug.Log("button click : "+button.name);
     }
-
+    public virtual void OnSelect(Button button)
+    {
+        Debug.Log("button select : " + button.name);
+    }
     public virtual void OnChangeSelect()
     {
+
+
+        lastselect = EventSystem.current.currentSelectedGameObject;
+
+
         UIWindowController.Instance.StartCoroutine("ArrowMove");
+        //UIWindowController.Instance.ArrowMoveDT();
 
     }
 

@@ -10,12 +10,10 @@ public class UIMapWindow : UIWindow
 
     public override void SetSelect()
     {
-        base.SetSelect();
         MapController.Instance.currentMapArea.view.GetComponent<Button>().Select();
+        base.SetSelect();
+
     }
-
-
-
 
 
 }

@@ -46,7 +46,7 @@ public class MapArea : MonoBehaviour
         else
         {
 
-            UIWindowController.Instance.arrow.transform.localScale = Vector3.zero;
+            UIWindowController.Instance.arrow.transform.position =new Vector3(10000,0,0);
 
             SuperController.Instance.ReadLevelDatas(levelData);
             if (levelData.PreStory != null)

@@ -9,8 +9,9 @@ public class UIMapMenu : UIWindow
 
     public override void SetSelect()
     {
-        base.SetSelect();
         buttons.Find(a => a.name == "Prepare").Select();
+        base.SetSelect();
+
     }
 
 

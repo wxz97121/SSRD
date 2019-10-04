@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+
+
 public enum GameState
 {
     Wait,
@@ -111,6 +114,23 @@ public class SuperController : MonoBehaviour
     #region 输入控制
     protected void UpdateInput()
     {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Pause(GameState.Wait);
+            UIWindowController.Instance.prepareWindow.gameObject.SetActive(true);
+            UIWindowController.Instance.prepareWindow.Init();
+
+            // Bubble.AddBubble(BubbleSprType.hp, "-6", Player.Instance);
+        }
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            Debug.Log(EventSystem.current.currentSelectedGameObject);
+
+            // Bubble.AddBubble(BubbleSprType.hp, "-6", Player.Instance);
+        }
+
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (pausing)
@@ -133,6 +153,9 @@ public class SuperController : MonoBehaviour
         }
 
         //测试专用键
+
+
+
         if (Input.GetKeyDown(KeyCode.A))
         {
             Instantiate(Resources.Load("VFX/HealStream"), DuelController.Instance.GetCurAI().transform.position + new Vector3(0, 0, -1), Quaternion.identity);
@@ -171,7 +194,7 @@ public class SuperController : MonoBehaviour
             SoundController.Instance.FMODSetParameter("outro", 1);
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             SoundController.Instance.FMODPlayOneShot("event:/instruments/snare");
             SoundController.Instance.PlayAudioEffect("Snare");
@@ -322,7 +345,7 @@ public class SuperController : MonoBehaviour
         MapController.Instance.CreateChapterMap();
         MapController.Instance.ShowMap();
         UIWindowController.Instance.mainMenu.gameObject.SetActive(false);
-        UIWindowController.Instance.arrow.transform.localScale = Vector3.zero;
+        UIWindowController.Instance.arrow.transform.position = new Vector3(10000, 0, 0);
 
     }
 

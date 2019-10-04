@@ -51,7 +51,7 @@ public class VisualNovelController : MonoBehaviour
             MapController.Instance.ShowMap();
             return;
         }
-        UIWindowController.Instance.arrow.transform.localScale = Vector3.zero;
+        UIWindowController.Instance.arrow.transform.position = new Vector3(10000, 0, 0);
 
         currentscript = script;
 
