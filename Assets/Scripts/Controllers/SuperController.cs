@@ -92,8 +92,8 @@ public class SuperController : MonoBehaviour
 
         InputSequenceController.Instance.ResetAvailable();
 
-        UIWindowController.Instance.mainMenu.gameObject.SetActive(true);
-        UIWindowController.Instance.mainMenu.Init();
+        UIWindowController.Instance.mainMenu.Open();
+
 
 
 
@@ -344,8 +344,7 @@ public class SuperController : MonoBehaviour
         //SkillSelectUI();
         MapController.Instance.CreateChapterMap();
         MapController.Instance.ShowMap();
-        UIWindowController.Instance.mainMenu.gameObject.SetActive(false);
-        UIWindowController.Instance.arrow.transform.position = new Vector3(10000, 0, 0);
+        UIWindowController.Instance.mainMenu.Close();
 
     }
 
@@ -354,7 +353,7 @@ public class SuperController : MonoBehaviour
     {
         DuelController.Instance.ClearEnemy();
         Player.Instance.buffs.Clear();
-        CleanSelectUI();
+        //CleanSelectUI();
         //Player.Instance.currentArmor = null;
         //Player.Instance.currentScroll = null;
         //Player.Instance.currentWeapon = null;
@@ -365,6 +364,8 @@ public class SuperController : MonoBehaviour
 
         //SkillSelectUI();
         //MapController.Instance.CreateChapterMap();
+        UIWindowController.Instance.winWindow.Close();
+
         if (AfterStory != null)
         {
             VisualNovelController.Instance.InitScript(AfterStory);
@@ -374,7 +375,6 @@ public class SuperController : MonoBehaviour
             MapController.Instance.ShowMap();
         }
 
-        UIWindowController.Instance.winWindow.gameObject.SetActive(false);
     }
 
 
@@ -426,8 +426,7 @@ public class SuperController : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         string award="";
 
-        UIWindowController.Instance.winWindow.gameObject.SetActive(true);
-        UIWindowController.Instance.winWindow.Init();
+        UIWindowController.Instance.winWindow.Open();
 
         if (levelData.AwardSkill)
         {
@@ -486,7 +485,6 @@ public class SuperController : MonoBehaviour
         Pause(GameState.Wait);
 
         skillTipBarController.InitSkillTipBarArea();
-        RhythmController.Instance.Reset();
 
         Player.Instance.BattleStart();
         playerBattleInfo.init(Player.Instance);
@@ -544,7 +542,10 @@ public class SuperController : MonoBehaviour
     }
     public IEnumerator StateDelay()
     {
+        Debug.Log("startdeley");
         yield return new WaitForSeconds(1f);
+        RhythmController.Instance.Reset();
+
         Resume();
         //SuperController.Instance.state = GameState.Start;
     }

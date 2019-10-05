@@ -12,13 +12,15 @@ public class UIWindowController : MonoBehaviour
     public GameObject nowselect;
     public GameObject lastselect;
 
+    public UIWindow focusWindow;
+
 
     public UIMainMenu mainMenu;
     public UIMapWindow mapWindow;
     public UIWinWindow winWindow;
     public UIMapMenu mapMenu;
     public UIPrepareWindow prepareWindow;
-    //public 
+    public UINoticeWindow noticeWindow;
 
     public Image arrow;
 
@@ -43,12 +45,15 @@ public class UIWindowController : MonoBehaviour
 
     public void Init()
     {
-        windows = new List<UIWindow>();
-        windows.Add(mainMenu);
-        windows.Add(mapWindow);
-        windows.Add(winWindow);
-        windows.Add(mapMenu);
-        windows.Add(prepareWindow);
+        windows = new List<UIWindow>
+        {
+            mainMenu,
+            mapWindow,
+            winWindow,
+            mapMenu,
+            prepareWindow,
+            noticeWindow
+        };
 
 
     }
@@ -150,8 +155,9 @@ public class UIWindowController : MonoBehaviour
         else
         {
             oldoffset = new Vector3(0f, 0f, 0f);
-            startpos = new Vector3(0f, 0f, 0f);
+            startpos = new Vector3(0f, 0f, 90f);
         }
+        startpos = arrow.transform.position;
         GameObject GO = EventSystem.current.currentSelectedGameObject;
         Vector3 newoffset = new Vector3(GO.GetComponent<RectTransform>().rect.width/2f, GO.GetComponent<RectTransform>().rect.height/2f, 0f);
 
@@ -186,24 +192,14 @@ public class UIWindowController : MonoBehaviour
                     newoffset,
                     a
             );
-            //nowX = Mathf.Lerp(
-            //        startposX,
-            //        endposX,
-            //        a
-            //);
 
-            //nowY = Mathf.Lerp(
-            //        startposY,
-            //        endposY,
-            //        a
-            //);
-            //arrow.transform.position = new Vector3(nowX, nowY, nowZ);
+
             vector3=arrow.GetComponent<RectTransform>().anchoredPosition;
-            arrow.GetComponent<RectTransform>().anchoredPosition = vector3 - offset;
+            //arrow.GetComponent<RectTransform>().anchoredPosition = vector3 - offset;
 
-            Debug.Log("start pos : " + startpos);
+      //      Debug.Log("start pos : " + startpos);
 
-            Debug.Log("end pos : " + gopos);
+      //      Debug.Log("end pos : " + gopos);
 
 
 

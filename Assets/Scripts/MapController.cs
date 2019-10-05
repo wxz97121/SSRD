@@ -111,15 +111,14 @@ public class MapController : MonoBehaviour
 
     public void ShowMap()
     {
-        UIWindowController.Instance.mapWindow.gameObject.SetActive(true);
-        UIWindowController.Instance.mapWindow.Init();
+        UIWindowController.Instance.mapWindow.Open();
         UpdateAreaVisitStateAll();
 
         UIWindowController.Instance.mapWindow.transform.localScale = Vector3.one;
     }
     public void HideMap()
     {
-        UIWindowController.Instance.mapWindow.gameObject.SetActive(false);
+        UIWindowController.Instance.mapWindow.Close();
 
     }
 

@@ -18,21 +18,62 @@ public class UIMapMenu : UIWindow
     public override void OnClick(Button button)
     {
         base.OnClick(button);
-        if (button.name == "Continue")
+        if (button.name == "Prepare")
         {
-
+            UIWindowController.Instance.prepareWindow.Open();
         }
 
 
     }
 
-    private void Update()
+    public void OpenMapMenu()
     {
-        if (Input.GetButtonDown("Cancel"))
+        gameObject.SetActive(true);
+        transform.localScale = Vector3.one;
+        UIWindowController.Instance.arrow.transform.localScale = Vector3.one;
+
+        if (UIWindowController.Instance.focusWindow != null)
         {
-            Debug.Log("cancel");
-                
+            lastWindow = UIWindowController.Instance.focusWindow;
+            UIWindowController.Instance.focusWindow.Unfocus();
+        }
+        UIWindowController.Instance.focusWindow = this;
+        AllButtonConnect();
+        StartCoroutine(OpenMapMenuCR());
+    }
+
+
+    IEnumerator OpenMapMenuCR()
+    {
+        Transform panel = transform.Find("Panel");
+
+
+        float posx = panel.transform.localPosition.x;
+        float posy = panel.transform.localPosition.y;
+        float posz = panel.transform.localPosition.z;
+
+
+        panel.transform.localPosition = new Vector3(posx + 500f, panel.transform.localPosition.y, panel.transform.localPosition.z);
+        float time = 0.2f;
+        float timecount = 0f;
+        float a = 0f;
+        //Vector3 startpos = arrow.transform.localPosition;
+        while (timecount <= time)
+        {
+            yield return new WaitForSeconds(Time.deltaTime);
+            timecount += Time.deltaTime;
+
+            a = -(timecount * timecount) / (time * time) + 2 * timecount / time;
+            if (a > 1) { a = 1; }
+
+            panel.transform.localPosition = Vector3.Lerp(
+                    new Vector3(posx + 500f, posy, posz),
+                    new Vector3(posx, posy, posz),
+                    a
+                );
         }
 
+        Init();
     }
+
 }

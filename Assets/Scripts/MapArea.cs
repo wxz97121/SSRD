@@ -41,12 +41,12 @@ public class MapArea : MonoBehaviour
         if (isVisited)
         {
             Debug.Log("show menu!!");
-            UIWindowController.Instance.StartCoroutine("OpenMapMenu");
+            UIWindowController.Instance.mapMenu.OpenMapMenu();
         }
         else
         {
 
-            UIWindowController.Instance.arrow.transform.position =new Vector3(10000,0,0);
+            //UIWindowController.Instance.arrow.transform.position =new Vector3(10000,0, 90.0f);
 
             SuperController.Instance.ReadLevelDatas(levelData);
             if (levelData.PreStory != null)

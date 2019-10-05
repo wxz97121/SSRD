@@ -14,7 +14,7 @@ public class Story : MonoBehaviour
 
     public static void PlayStoryAnim(string name)
     {
-        UIWindowController.Instance.arrow.transform.position = new Vector3(10000, 0, 0);
+        //UIWindowController.Instance.arrow.transform.position = new Vector3(10000, 0, 90.0f);
 
         ShowStory();
         Debug.Log("Play : "+ "Prefab/Story/" + name);

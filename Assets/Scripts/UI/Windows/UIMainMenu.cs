@@ -19,7 +19,7 @@ public class UIMainMenu : UIWindow
         {
             SuperController.Instance.NextStep("start game");
 
-            this.gameObject.SetActive(false);
+            Close();
         }
     }
 }
