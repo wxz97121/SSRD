@@ -45,7 +45,15 @@ public class UIPrepareWindow : UIWindow
 
 
 
+    public override void OnSelect(Button button)
+    {
+        base.OnSelect(button);
+        if (button.GetComponent<UISelectableItem>().type == 1)
+        {
+            textDesc.text = button.GetComponent<UISelectableItem>().skill.Desc;
 
+        }
+    }
 
 
 

@@ -96,7 +96,8 @@ public class Player : Character {
 
         Player.Instance.AddSkill("testSkill_0ZX_DEFEND");
         Player.Instance.skillSlots[1].skill = Player.Instance.skillListInBag[1];
-    
+        Player.Instance.AddSkill("testSkill_0ZX_ACCDEFEND");
+
 
         Player.Instance.AddSkill("SUPERSUPERATTACK");
         Player.Instance.AddSkill("PIERCEATTACK1");

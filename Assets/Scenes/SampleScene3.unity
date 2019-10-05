@@ -1034,7 +1034,7 @@ MonoBehaviour:
   buttons: []
   isFocus: 0
   lastWindow: {fileID: 0}
-  canBeClosedByCancel: 0
+  canBeClosedByCancel: 1
   buttonSkillAttack: {fileID: 1114654084}
   buttonSkillDefend: {fileID: 904328037}
   buttonSkillSpecial1: {fileID: 244250086}
@@ -1047,7 +1047,7 @@ MonoBehaviour:
   textDEF: {fileID: 0}
   textMoney: {fileID: 0}
   textNote: {fileID: 0}
-  textDesc: {fileID: 0}
+  textDesc: {fileID: 2047589248}
 --- !u!1 &153452229
 GameObject:
   m_ObjectHideFlags: 0
@@ -16182,7 +16182,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -332.4004, y: -357}
+  m_AnchoredPosition: {x: -332.40137, y: -357}
   m_SizeDelta: {x: -1493.4, y: -766.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1624516349
