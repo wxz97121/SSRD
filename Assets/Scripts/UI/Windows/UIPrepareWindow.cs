@@ -33,12 +33,17 @@ public class UIPrepareWindow : UIWindow
 
     public override void OnClick(Button button)
     {
-        base.OnClick(button);
-        if (button.name == "Continue")
+        if (isFocus)
         {
+            base.OnClick(button);
 
+
+            UIWindowController.Instance.itemSelect.Open(button);
         }
+
     }
+
+
 
 
 
@@ -55,16 +60,67 @@ public class UIPrepareWindow : UIWindow
 
     public void InitInfo()
     {
-        if(Player.Instance.skillSlots[0].skill!=null)
+        if (Player.Instance.skillSlots[0].skill != null)
+        {
+            buttonSkillAttack.GetComponent<UISelectableItem>().skill = Player.Instance.skillSlots[0].skill;
+            buttonSkillAttack.GetComponent<UISelectableItem>().type = 1;
             buttonSkillAttack.transform.Find("Image").GetComponent<Image>().sprite = Player.Instance.skillSlots[0].skill.Icon;
+        }
+        else
+        {
+            buttonSkillAttack.GetComponent<UISelectableItem>().skill = new Skill() { type= SkillType.attack};
+            buttonSkillAttack.GetComponent<UISelectableItem>().type = 1;
+            //todo:增加缺省图标
+        }
+
         if (Player.Instance.skillSlots[1].skill != null)
+        {
+            buttonSkillDefend.GetComponent<UISelectableItem>().skill = Player.Instance.skillSlots[1].skill;
+            buttonSkillDefend.GetComponent<UISelectableItem>().type = 1;
             buttonSkillDefend.transform.Find("Image").GetComponent<Image>().sprite = Player.Instance.skillSlots[1].skill.Icon;
+        }
+        else
+        {
+            buttonSkillDefend.GetComponent<UISelectableItem>().skill = new Skill() { type = SkillType.defend };
+            buttonSkillDefend.GetComponent<UISelectableItem>().type = 1;
+        }
+
+
         if (Player.Instance.skillSlots[2].skill != null)
+        {
+            buttonSkillSpecial1.GetComponent<UISelectableItem>().skill = Player.Instance.skillSlots[2].skill;
+            buttonSkillSpecial1.GetComponent<UISelectableItem>().type = 1;
             buttonSkillSpecial1.transform.Find("Image").GetComponent<Image>().sprite = Player.Instance.skillSlots[2].skill.Icon;
+        }
+        else
+        {
+            buttonSkillSpecial1.GetComponent<UISelectableItem>().skill = new Skill() { type = SkillType.special };
+            buttonSkillSpecial1.GetComponent<UISelectableItem>().type = 1;
+        }
+
         if (Player.Instance.skillSlots[3].skill != null)
+        {
+            buttonSkillSpecial2.GetComponent<UISelectableItem>().skill = Player.Instance.skillSlots[3].skill;
+            buttonSkillSpecial2.GetComponent<UISelectableItem>().type = 1;
             buttonSkillSpecial2.transform.Find("Image").GetComponent<Image>().sprite = Player.Instance.skillSlots[3].skill.Icon;
+        }
+        else
+        {
+            buttonSkillSpecial2.GetComponent<UISelectableItem>().skill = new Skill() { type = SkillType.special };
+            buttonSkillSpecial2.GetComponent<UISelectableItem>().type = 1;
+        }
+
         if (Player.Instance.skillSlots[4].skill != null)
+        {
+            buttonSkillUlti.GetComponent<UISelectableItem>().skill = Player.Instance.skillSlots[4].skill;
+            buttonSkillUlti.GetComponent<UISelectableItem>().type = 1;
             buttonSkillUlti.transform.Find("Image").GetComponent<Image>().sprite = Player.Instance.skillSlots[4].skill.Icon;
+        }
+        else
+        {
+            buttonSkillUlti.GetComponent<UISelectableItem>().skill =  new Skill() { type = SkillType.ulti };
+            buttonSkillUlti.GetComponent<UISelectableItem>().type = 1;
+        }
 
     }
 

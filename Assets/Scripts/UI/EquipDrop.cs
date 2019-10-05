@@ -46,10 +46,10 @@ public class EquipDrop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
                 }
                 break;
             case (1):
-                if (Player.Instance.currentArmor)
+                if (Player.Instance.currentCloth)
                 {
-                    GetComponent<Image>().sprite = Player.Instance.currentArmor.Icon;
-                    m_Text.text = Player.Instance.currentArmor.equipName;
+                    GetComponent<Image>().sprite = Player.Instance.currentCloth.Icon;
+                    m_Text.text = Player.Instance.currentCloth.equipName;
                 }
                 else
                 {
@@ -58,10 +58,10 @@ public class EquipDrop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
                 }
                 break;
             case (2):
-                if (Player.Instance.currentScroll)
+                if (Player.Instance.currentAmulet)
                 {
-                    GetComponent<Image>().sprite = Player.Instance.currentScroll.Icon;
-                    m_Text.text = Player.Instance.currentScroll.equipName;
+                    GetComponent<Image>().sprite = Player.Instance.currentAmulet.Icon;
+                    m_Text.text = Player.Instance.currentAmulet.equipName;
                 }
                 else
                 {

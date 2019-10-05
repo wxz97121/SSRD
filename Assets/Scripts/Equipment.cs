@@ -6,12 +6,12 @@ using System;
 public enum equipType
 {
     Armor = 1,
-    Weapon = 2,
-    Scroll = 3,
+    Cloth = 2,
+    Amulet = 3,
     Onetime = 4
 }
 [CreateAssetMenu(fileName = "NewEquipment", menuName = "Equipment Data")]
-//装备类，之后一种装备写一个子类
+
 public class Equipment: ScriptableObject{
 
     /*装备类型
@@ -23,6 +23,7 @@ public class Equipment: ScriptableObject{
     public int id;
     public string equipName;
     public string equipDesc;
+    //UI图
     public Sprite Icon;
 
     public equipType type = equipType.Armor;
@@ -34,13 +35,7 @@ public class Equipment: ScriptableObject{
 
     public List<string> buffs;
 
-    //UI图
 
-
-    virtual protected void init()
-    {
-        //装备戴上瞬间的效果在此实现
-    }
 
     // Update is called once per frame
     virtual protected void Update()

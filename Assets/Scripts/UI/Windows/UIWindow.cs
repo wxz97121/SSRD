@@ -126,7 +126,7 @@ public class UIWindow : MonoBehaviour
     }
 
     //窗口关闭
-    public void Close()
+    public virtual void  Close()
     {
         transform.localScale = Vector3.zero;
         Debug.Log("lastwindow : " + lastWindow);

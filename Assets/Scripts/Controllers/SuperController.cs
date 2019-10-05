@@ -92,6 +92,8 @@ public class SuperController : MonoBehaviour
 
         InputSequenceController.Instance.ResetAvailable();
 
+
+
         UIWindowController.Instance.mainMenu.Open();
 
 
@@ -117,8 +119,9 @@ public class SuperController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             Pause(GameState.Wait);
-            UIWindowController.Instance.prepareWindow.gameObject.SetActive(true);
-            UIWindowController.Instance.prepareWindow.Init();
+            UIWindowController.Instance.prepareWindow.Open();
+
+
 
             // Bubble.AddBubble(BubbleSprType.hp, "-6", Player.Instance);
         }
@@ -291,11 +294,8 @@ public class SuperController : MonoBehaviour
                 break;
             case "teaching":
                 MapController.Instance.ShowMap();
-                Player.Instance.skillSlots[0] = new SkillSlot
-                {
-                    skill = new Skill(0, "testSkill_00X_ATTACK"),
-                    requiredType = SkillType.attack
-                };
+
+
                 break;
             case "lesson1finished":
                 MapController.Instance.mapAreas.Find(a => a.AreaName == "安贞医院").m_VisitType = MapState.Unlocked;
@@ -331,8 +331,8 @@ public class SuperController : MonoBehaviour
     public void NewGame()
     {
         DuelController.Instance.ClearEnemy();
-        Player.Instance.currentArmor = null;
-        Player.Instance.currentScroll = null;
+        Player.Instance.currentCloth = null;
+        Player.Instance.currentAmulet = null;
         Player.Instance.currentWeapon = null;
         CleanSelectUI();
         //Player.Instance.equipmentList.Clear();
@@ -460,20 +460,12 @@ public class SuperController : MonoBehaviour
         foreach (var skill in Player.Instance.skillListInBag)
         {
             var inst = Instantiate(Resources.Load<GameObject>("Prefab/SkillDrag"), skillDragSlotUI);
-            Debug.Log(skill.name);
-            inst.GetComponent<SkillDrag>().InitSkill(skill.name);
+            Debug.Log(skill.m_name);
+            inst.GetComponent<SkillDrag>().InitSkill(skill.m_name);
         }
     }
-/*    public void EquipSelectUI()
-    {
-        skillSelectUI.gameObject.SetActive(true);
-        foreach (var skill in Player.Instance.skillListInBag)
-        {
-            var inst = Instantiate(Resources.Load<GameObject>("Prefab/SkillDrag"), skillDragSlotUI);
-            Debug.Log(skill.name);
-            inst.GetComponent<SkillDrag>().InitSkill(skill.name);
-        }
-    }*/
+
+
 
 
 

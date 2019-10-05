@@ -171,6 +171,33 @@ public class Skill
     }
 
 
+    public Skill(SkillData skillData)
+    {
+
+            m_name = skillData._name;
+            inputSequence = new List<Note>();
+            EffectStr = skillData.Effect;
+            cost = skillData.cost;
+            Icon = skillData.sprite;
+            type = skillData.type;
+            CooldownMax = skillData.CD;
+            Cooldown = 0;
+            Desc = skillData.Desc;
+            for (int i = 0; i < skillData.inputSequence.Count; i++)
+            {
+                inputSequence.Add(new Note
+                {
+                    type = skillData.inputSequence[i].type,
+                    beatInBar = skillData.inputSequence[i].beatInBar
+                }
+                );
+            }
+
+
+
+
+    }
+
     public Skill()
     {
 
@@ -179,6 +206,7 @@ public class Skill
     //public List<Effect> effects;
 
 
+        //高级攻击
     public void ATKPRO(string effstr, Character Char)
     {
 
@@ -199,9 +227,11 @@ public class Skill
                     noAfterattack = true;
                     break;
                 case ("IDTD"):
+                    //被防硬直
                     isDefenceToDisable = true;
                     break;
                 case ("IDP"):
+                    //无视防御
                     isDefencePenetrate = true;
                     break;
                 case ("sfx"):

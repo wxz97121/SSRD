@@ -43,10 +43,10 @@ public class Player : Character {
     //当前装备着的武器
     public Equipment currentWeapon;
     //当前装备着的护甲
-    public Equipment currentArmor;
+    public Equipment currentCloth;
     //当前装备着的卷轴
-    public Equipment currentScroll;
-    public List<SkillData> skillListInBag;
+    public Equipment currentAmulet;
+    public List<Skill> skillListInBag;
  
 
     private void Awake()
@@ -68,8 +68,8 @@ public class Player : Character {
         life = maxLife;
         spec.Start();
         if (currentWeapon != null) currentWeapon.AddBuffs();
-        if (currentArmor != null) currentArmor.AddBuffs();
-        if (currentScroll != null) currentScroll.AddBuffs();
+        if (currentCloth != null) currentCloth.AddBuffs();
+        if (currentAmulet != null) currentAmulet.AddBuffs();
     }
     // Use this for initialization
     override protected void Start () {
@@ -87,6 +87,19 @@ public class Player : Character {
         commonSkill = new Skill();
 
         autoSkills = new Queue<string>();
+
+        skillListInBag = new List<Skill>();
+
+
+        Player.Instance.AddSkill("testSkill_00X_ATTACK");
+        Player.Instance.skillSlots[0].skill = Player.Instance.skillListInBag[0];
+
+        Player.Instance.AddSkill("testSkill_0ZX_DEFEND");
+        Player.Instance.skillSlots[1].skill = Player.Instance.skillListInBag[1];
+    
+
+        Player.Instance.AddSkill("SUPERSUPERATTACK");
+        Player.Instance.AddSkill("PIERCEATTACK1");
     }
 
     // Update is called once per frame
@@ -195,20 +208,20 @@ public class Player : Character {
             weaponUI.Find("Name").GetComponent<TextMeshProUGUI>().text = "Weapon";
             weaponUI.Find("Desc").GetComponent<TextMeshProUGUI>().text = "Description";
         }
-        if (currentArmor != null)
+        if (currentCloth != null)
         {
-            armorUI.Find("Name").GetComponent<TextMeshProUGUI>().text = currentArmor.equipName;
-            armorUI.Find("Desc").GetComponent<TextMeshProUGUI>().text = currentArmor.equipDesc;
+            armorUI.Find("Name").GetComponent<TextMeshProUGUI>().text = currentCloth.equipName;
+            armorUI.Find("Desc").GetComponent<TextMeshProUGUI>().text = currentCloth.equipDesc;
         }
         else
         {
             armorUI.Find("Name").GetComponent<TextMeshProUGUI>().text = "Armor";
             armorUI.Find("Desc").GetComponent<TextMeshProUGUI>().text = "Description";
         }
-        if (currentScroll != null)
+        if (currentAmulet != null)
         {
-            scrollUI.Find("Name").GetComponent<TextMeshProUGUI>().text = currentScroll.equipName;
-            scrollUI.Find("Desc").GetComponent<TextMeshProUGUI>().text = currentScroll.equipDesc;
+            scrollUI.Find("Name").GetComponent<TextMeshProUGUI>().text = currentAmulet.equipName;
+            scrollUI.Find("Desc").GetComponent<TextMeshProUGUI>().text = currentAmulet.equipDesc;
         }
         else
         {
@@ -223,17 +236,17 @@ public class Player : Character {
         {
             case equipType.Armor:
                 {
-                    currentArmor = equipment;
+                    currentCloth = equipment;
                 }
                 break;
-            case equipType.Weapon:
+            case equipType.Cloth:
                 {
                     currentWeapon = equipment;
                 }
                 break;
-            case equipType.Scroll:
+            case equipType.Amulet:
                 {
-
+                    currentAmulet = equipment;
                 }
                 break;
         }
@@ -256,10 +269,10 @@ public class Player : Character {
         int mATK = ATK;
         if (currentWeapon)
             mATK += currentWeapon.ATK;
-        if (currentArmor)
-            mATK += currentArmor.ATK;
-        if (currentScroll)
-            mATK += currentScroll.ATK;
+        if (currentCloth)
+            mATK += currentCloth.ATK;
+        if (currentAmulet)
+            mATK += currentAmulet.ATK;
         return mATK;
     }
 
@@ -268,15 +281,21 @@ public class Player : Character {
         int mDEF = DEF;
         if (currentWeapon)
             mDEF += currentWeapon.DEF;
-        if (currentArmor)
-            mDEF += currentArmor.DEF;
-        if (currentScroll)
-            mDEF += currentScroll.DEF;
+        if (currentCloth)
+            mDEF += currentCloth.DEF;
+        if (currentAmulet)
+            mDEF += currentAmulet.DEF;
         return mDEF;
     }
     public void AddSkill(SkillData newSkillData)
     {
-        skillListInBag.Add(newSkillData);
+        Skill skill = new Skill(newSkillData);
+        skillListInBag.Add(skill);
+    }
+    public void AddSkill(string newSkillData)
+    {
+        Skill skill = new Skill(0,newSkillData);
+        skillListInBag.Add(skill);
     }
 
     #region 技能栏相关 @竹喵
@@ -311,9 +330,9 @@ public class Player : Character {
     }
     public bool CheckEquipSlot(int SlotIndex, Equipment NewEquip)
     {
-        if (NewEquip.type == equipType.Weapon && SlotIndex == 0) return true;
+        if (NewEquip.type == equipType.Cloth && SlotIndex == 0) return true;
         if (NewEquip.type == equipType.Armor && SlotIndex == 1) return true;
-        if (NewEquip.type == equipType.Scroll && SlotIndex == 2) return true;
+        if (NewEquip.type == equipType.Amulet && SlotIndex == 2) return true;
         return false;
     }
     //更换技能栏中的技能
@@ -325,12 +344,12 @@ public class Player : Character {
             {
                 Equipment OldEquip;
                 if (SlotIndex == 0) OldEquip = currentWeapon;
-                else if (SlotIndex == 1) OldEquip = currentArmor;
-                else OldEquip = currentScroll;
+                else if (SlotIndex == 1) OldEquip = currentCloth;
+                else OldEquip = currentAmulet;
 
                 if (SlotIndex == 0) currentWeapon = NewEquip;
-                else if (SlotIndex == 1) currentArmor = NewEquip;
-                else currentScroll = NewEquip;
+                else if (SlotIndex == 1) currentCloth = NewEquip;
+                else currentAmulet = NewEquip;
 
                 return OldEquip;
             }
