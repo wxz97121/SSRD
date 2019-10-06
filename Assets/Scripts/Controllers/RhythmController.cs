@@ -11,7 +11,6 @@ public class RhythmController : MonoBehaviour
     [HideInInspector] public float songStartTime;
     //每一拍长度
     [HideInInspector] public float secPerBeat;
-    ImageEffect m_Eff;
 
     //歌曲当前时间
     [HideInInspector] public float songPos;
@@ -50,7 +49,6 @@ public class RhythmController : MonoBehaviour
     private void Awake()
     {
         _instance = this;
-        m_Eff = Camera.main.GetComponent<ImageEffect>();
     }
     public static RhythmController Instance
     {
@@ -440,7 +438,6 @@ public class RhythmController : MonoBehaviour
         UIBarController.Instance.preBar.GetComponent<UIBar>().pin.GetComponent<UIBarPin>().SetSprite(0);
         UIBarController.Instance.postBar.GetComponent<UIBar>().pin.GetComponent<UIBarPin>().SetSprite(0);
         UIBarController.Instance.playingBar.GetComponent<UIBar>().pin.GetComponent<UIBarPin>().SetSprite(0);
-        if (m_Eff) m_Eff.isShake = false;
     }
     #endregion
 }

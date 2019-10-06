@@ -7407,7 +7407,8 @@ MonoBehaviour:
   buttons: []
   isFocus: 0
   lastWindow: {fileID: 0}
-  canBeClosedByCancel: 0
+  canBeClosedByCancel: 1
+  desctext: {fileID: 557652677}
 --- !u!1 &815737980
 GameObject:
   m_ObjectHideFlags: 0

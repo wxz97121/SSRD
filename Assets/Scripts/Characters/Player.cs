@@ -46,7 +46,7 @@ public class Player : Character {
     public Equipment currentCloth;
     //当前装备着的卷轴
     public Equipment currentAmulet;
-    public List<Skill> skillListInBag;
+    public List<Skill> skillList;
  
 
     private void Awake()
@@ -93,20 +93,24 @@ public class Player : Character {
 
         autoSkills = new Queue<string>();
 
-        skillListInBag = new List<Skill>();
+        skillList = new List<Skill>();
 
 
+
+        //测试
         AddSkill("testSkill_00X_ATTACK");
-        EquipSkill(0, skillListInBag[0]);
+        EquipSkill(0, skillList[0]);
         Debug.Log(skillSlots[0].skill);
         AddSkill("testSkill_0ZX_DEFEND");
-        EquipSkill(1, skillListInBag[1]);
+        EquipSkill(1, skillList[1]);
 
-        Player.Instance.AddSkill("testSkill_0ZX_ACCDEFEND");
+        AddSkill("testSkill_0ZX_ACCDEFEND");
 
 
-        Player.Instance.AddSkill("SUPERSUPERATTACK");
-        Player.Instance.AddSkill("PIERCEATTACK1");
+        AddSkill("SUPERSUPERATTACK");
+        AddSkill("PIERCEATTACK1");
+
+        AddEquip("Jacket");
     }
 
     // Update is called once per frame
@@ -121,12 +125,8 @@ public class Player : Character {
     {
         base.AddMp(dMp);
     }
-    ////玩家具体的控制
-    //override public bool Hit(int dDamage)
-    //{
-    //    //animator.Play("player_slash",0);
-    //    return base.Hit(dDamage);
-    //}
+
+
 
 
 
@@ -168,7 +168,7 @@ public class Player : Character {
     #endregion
 
 
-    #region 进入自动模式(蓄力或者硬直专用)
+    #region 自动模式(蓄力或者硬直专用)
     public void IntoAutoMode(Queue<string> skills)
     {
         automode = true;
@@ -176,18 +176,14 @@ public class Player : Character {
         autoSkills = skills;
         UIBarController.Instance.ShowNoInput();
     }
-    #endregion
 
-    #region 退出自动模式(蓄力或者硬直专用)
     public void LeaveAutoMode()
     {
         automode = false;
         autoSkills.Clear();
         UIBarController.Instance.HideNoInput();
     }
-    #endregion
 
-    #region 自动模式使用技能(蓄力或者硬直专用)
     public void CastAutoSkill()
     {
 
@@ -237,27 +233,39 @@ public class Player : Character {
         }
     }
 
-    public void Equip (Equipment equipment)
+    public void EquipEquipment (Equipment equipment)
     {
         switch (equipment.type)
         {
-            case equipType.Armor:
+            case equipType.Weapon:
                 {
-                    currentCloth = equipment;
+                    if (currentWeapon != null)
+                    {
+                        currentWeapon.isEquiped = false;
+                    }
+                    currentWeapon = equipment;
                 }
                 break;
             case equipType.Cloth:
                 {
-                    currentWeapon = equipment;
+                    if (currentCloth != null)
+                    {
+                        currentCloth.isEquiped = false;
+                    }
+                    currentCloth = equipment;
                 }
                 break;
             case equipType.Amulet:
                 {
+                    if (currentAmulet != null)
+                    {
+                        currentAmulet.isEquiped = false;
+                    }
                     currentAmulet = equipment;
                 }
                 break;
         }
-        equipment.OnEquip();
+        equipment.isEquiped = true;
     }
 
    override public void CastSkill(string str)
@@ -297,12 +305,18 @@ public class Player : Character {
     public void AddSkill(SkillData newSkillData)
     {
         Skill skill = new Skill(newSkillData);
-        skillListInBag.Add(skill);
+        skillList.Add(skill);
     }
     public void AddSkill(string newSkillData)
     {
         Skill skill = new Skill(0,newSkillData);
-        skillListInBag.Add(skill);
+        skillList.Add(skill);
+    }
+
+    public void AddEquip(string equipdata)
+    {
+        Equipment equip = Resources.Load<Equipment>("Data/Equipment/"+equipdata);
+        equipmentList.Add(equip);
     }
 
     public void EquipSkill(int slotID,Skill skill)
@@ -337,68 +351,6 @@ public class Player : Character {
     }
 
 
-
-
-    #region 技能栏相关 @竹喵
-    //检测技能栏是否能用
-    public bool CheckSkillSlot(int SlotIndex, Skill NewSkill)
-    {
-        if (NewSkill != null && SlotIndex < skillSlots.Length)
-        {
-            SkillType SlotType = skillSlots[SlotIndex].requiredType;
-            if (NewSkill.type == SkillType.ulti || SlotType == SkillType.ulti)
-                return SlotType == NewSkill.type;
-            else if (SlotType == SkillType.free || NewSkill.type == SkillType.free)
-                return true;
-            else return SlotType == NewSkill.type;
-        }
-        else return false;
-    }
-    //更换技能栏中的技能
-    public Skill ChangeSkill(int SlotIndex, Skill NewSkill)
-    {
-        if (NewSkill != null && SlotIndex < skillSlots.Length) 
-        {
-            if (CheckSkillSlot(SlotIndex, NewSkill))
-            {
-                Skill OldSkill = skillSlots[SlotIndex].skill;
-                skillSlots[SlotIndex].skill = NewSkill;
-                return OldSkill;
-            }
-            else return null;
-        }
-        return null;
-    }
-    public bool CheckEquipSlot(int SlotIndex, Equipment NewEquip)
-    {
-        if (NewEquip.type == equipType.Cloth && SlotIndex == 0) return true;
-        if (NewEquip.type == equipType.Armor && SlotIndex == 1) return true;
-        if (NewEquip.type == equipType.Amulet && SlotIndex == 2) return true;
-        return false;
-    }
-    //更换技能栏中的技能
-    public Equipment ChangeEquip(int SlotIndex, Equipment NewEquip)
-    {
-        if (NewEquip != null && SlotIndex < 3)
-        {
-            if (CheckEquipSlot(SlotIndex, NewEquip))
-            {
-                Equipment OldEquip;
-                if (SlotIndex == 0) OldEquip = currentWeapon;
-                else if (SlotIndex == 1) OldEquip = currentCloth;
-                else OldEquip = currentAmulet;
-
-                if (SlotIndex == 0) currentWeapon = NewEquip;
-                else if (SlotIndex == 1) currentCloth = NewEquip;
-                else currentAmulet = NewEquip;
-
-                return OldEquip;
-            }
-            else return null;
-        }
-        return null;
-    }
-    #endregion 
 }
 
 

@@ -16,7 +16,8 @@ MonoBehaviour:
   equipName: Iron Sword
   equipDesc: +2 ATK
   Icon: {fileID: 21300000, guid: 41502bf9111354e2c995dabab86daf32, type: 3}
-  type: 2
+  isEquiped: 0
+  type: 1
   ATK: 2
   DEF: 0
   maxHp: 0

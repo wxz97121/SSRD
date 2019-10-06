@@ -37,8 +37,43 @@ public class UIPrepareWindow : UIWindow
         {
             base.OnClick(button);
 
+            UISelectableItem item = button.GetComponent<UISelectableItem>();
+            bool hasitem = false;
+            if (item.type == 1)
+            {
+                foreach (Skill skill in Player.Instance.skillList)
+                {
+                    if (skill.type == item.skill.type)
+                    {
+                        hasitem = true;
+                        break;
+                    }
 
-            UIWindowController.Instance.itemSelect.Open(button);
+                }
+            }
+            else if (item.type == 2)
+            {
+                Debug.Log("222");
+                foreach (Equipment equipment in Player.Instance.equipmentList)
+                {
+                    Debug.Log("equiptype : " + equipment.type + "   item type : " + item.equipment.type);
+                    if (equipment.type == item.equipment.type)
+                    {
+                        hasitem = true;
+                        break;
+                    }
+
+                }
+            }
+
+            if (hasitem)
+            {
+                UIWindowController.Instance.itemSelect.Open(button);
+            }
+            else
+            {
+                UIWindowController.Instance.noticeWindow.Open("no such items");
+            }
         }
 
     }
@@ -138,6 +173,46 @@ public class UIPrepareWindow : UIWindow
             buttonSkillUlti.GetComponent<UISelectableItem>().type = 1;
             buttonSkillUlti.transform.Find("Image").GetComponent<Image>().sprite = null;
 
+        }
+
+
+        if (Player.Instance.currentWeapon != null)
+        {
+            buttonEquipWeapon.GetComponent<UISelectableItem>().equipment = Player.Instance.currentWeapon;
+            buttonEquipWeapon.GetComponent<UISelectableItem>().type = 2;
+            buttonEquipWeapon.transform.Find("Image").GetComponent<Image>().sprite = Player.Instance.currentWeapon.Icon;
+        }
+        else
+        {
+            buttonEquipWeapon.GetComponent<UISelectableItem>().equipment = new Equipment { type = equipType.Weapon };
+            buttonEquipWeapon.GetComponent<UISelectableItem>().type = 2;
+            buttonEquipWeapon.transform.Find("Image").GetComponent<Image>().sprite = null;
+        }
+
+        if (Player.Instance.currentCloth != null)
+        {
+            buttonEquipCloth.GetComponent<UISelectableItem>().equipment = Player.Instance.currentCloth;
+            buttonEquipCloth.GetComponent<UISelectableItem>().type = 2;
+            buttonEquipCloth.transform.Find("Image").GetComponent<Image>().sprite = Player.Instance.currentCloth.Icon;
+        }
+        else
+        {
+            buttonEquipCloth.GetComponent<UISelectableItem>().equipment = new Equipment { type = equipType.Cloth };
+            buttonEquipCloth.GetComponent<UISelectableItem>().type = 2;
+            buttonEquipCloth.transform.Find("Image").GetComponent<Image>().sprite = null;
+        }
+
+        if (Player.Instance.currentAmulet != null)
+        {
+            buttonEquipAmulet.GetComponent<UISelectableItem>().equipment = Player.Instance.currentAmulet;
+            buttonEquipAmulet.GetComponent<UISelectableItem>().type = 2;
+            buttonEquipAmulet.transform.Find("Image").GetComponent<Image>().sprite = Player.Instance.currentAmulet.Icon;
+        }
+        else
+        {
+            buttonEquipAmulet.GetComponent<UISelectableItem>().equipment = new Equipment { type = equipType.Amulet };
+            buttonEquipAmulet.GetComponent<UISelectableItem>().type = 2;
+            buttonEquipAmulet.transform.Find("Image").GetComponent<Image>().sprite = null;
         }
 
     }

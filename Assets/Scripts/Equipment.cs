@@ -5,7 +5,7 @@ using System;
 
 public enum equipType
 {
-    Armor = 1,
+    Weapon = 1,
     Cloth = 2,
     Amulet = 3,
     Onetime = 4
@@ -26,7 +26,9 @@ public class Equipment: ScriptableObject{
     //UI图
     public Sprite Icon;
 
-    public equipType type = equipType.Armor;
+    public bool isEquiped = false;
+
+    public equipType type = equipType.Weapon;
     //装备提供的基础属性加成
     public int ATK=0;
     public int DEF=0;

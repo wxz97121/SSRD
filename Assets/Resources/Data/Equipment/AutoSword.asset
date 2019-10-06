@@ -16,7 +16,8 @@ MonoBehaviour:
   equipName: Auto Sword
   equipDesc: Auto Collect Energy
   Icon: {fileID: 21300000, guid: 2607350232405f54686faef33a5cc4da, type: 3}
-  type: 2
+  isEquiped: 0
+  type: 1
   ATK: 0
   DEF: 0
   maxHp: 0

@@ -65,6 +65,7 @@ public class MapController : MonoBehaviour
         }
         UpdateAreaVisitStateAll();
         HideMap();
+        UIWindowController.Instance.mapWindow.gameObject.SetActive(false);
 
     }
 

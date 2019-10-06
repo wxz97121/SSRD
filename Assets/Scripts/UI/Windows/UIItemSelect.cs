@@ -42,7 +42,7 @@ public class UIItemSelect : UIWindow
     {
         if (item.type == 1)
         {
-            foreach (Skill skill in Player.Instance.skillListInBag)
+            foreach (Skill skill in Player.Instance.skillList)
             {
                 if (skill.type == item.skill.type)
                 {
@@ -54,6 +54,27 @@ public class UIItemSelect : UIWindow
 
                     Items.Add(inst);
                     inst.transform.localPosition = pos0.localPosition - (pos1.localPosition-pos0.localPosition) * (Items.Count - 1);
+                }
+
+            }
+        }else if(item.type == 2)
+        {
+            Debug.Log("222");
+            foreach (Equipment equipment in Player.Instance.equipmentList)
+            {
+                Debug.Log("equiptype : " + equipment.type + "   item type : " + item.equipment.type);
+                if (equipment.type == item.equipment.type)
+                {
+                    Debug.Log("333");
+
+                    var inst = Instantiate(Resources.Load<GameObject>("Prefab/UI/Buttons/UI_Item1"), content);
+                    inst.GetComponent<UISelectableItem>().equipment = equipment;
+                    inst.transform.Find("Image").GetComponent<Image>().sprite = equipment.Icon;
+                    inst.transform.Find("Text").GetComponent<Text>().text = equipment.name;
+                    inst.transform.Find("isEquiped").gameObject.SetActive(equipment.isEquiped);
+
+                    Items.Add(inst);
+                    inst.transform.localPosition = pos0.localPosition - (pos1.localPosition - pos0.localPosition) * (Items.Count - 1);
                 }
 
             }
@@ -82,6 +103,15 @@ public class UIItemSelect : UIWindow
                     break;
                 case "Ulti":
                     Player.Instance.EquipSkill(4, button.GetComponent<UISelectableItem>().skill);
+                    break;
+                case "Weapon":
+                    Player.Instance.EquipEquipment(button.GetComponent<UISelectableItem>().equipment);
+                    break;
+                case "Cloth":
+                    Player.Instance.EquipEquipment(button.GetComponent<UISelectableItem>().equipment);
+                    break;
+                case "Amulet":
+                    Player.Instance.EquipEquipment(button.GetComponent<UISelectableItem>().equipment);
                     break;
             }
 

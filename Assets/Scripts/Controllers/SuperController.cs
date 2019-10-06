@@ -334,7 +334,6 @@ public class SuperController : MonoBehaviour
         Player.Instance.currentCloth = null;
         Player.Instance.currentAmulet = null;
         Player.Instance.currentWeapon = null;
-        CleanSelectUI();
         //Player.Instance.equipmentList.Clear();
         for (int index = 0; index < Player.Instance.skillSlots.Length; index++)
             Player.Instance.skillSlots[index].skill = null;
@@ -447,23 +446,8 @@ public class SuperController : MonoBehaviour
 
 
     }
-    void CleanSelectUI()
-    {
-        for (int i = 0; i < skillDragSlotUI.childCount; i++)
-           Destroy(skillDragSlotUI.GetChild(i).gameObject);
-        for (int i = 0; i < EquipDragSlotUI.childCount; i++)
-            Destroy(EquipDragSlotUI.GetChild(i).gameObject);
-    }
-    public void SkillSelectUI()
-    {
-        skillSelectUI.gameObject.SetActive(true);
-        foreach (var skill in Player.Instance.skillListInBag)
-        {
-            var inst = Instantiate(Resources.Load<GameObject>("Prefab/SkillDrag"), skillDragSlotUI);
-            Debug.Log(skill.m_name);
-            inst.GetComponent<SkillDrag>().InitSkill(skill.m_name);
-        }
-    }
+
+
 
 
 
@@ -486,52 +470,10 @@ public class SuperController : MonoBehaviour
     }
 
 
-    //真正的开始游戏 TODO：这里的一些初始化代码需要封装
-    public void SkillSelectOK()
-    {
-        state = GameState.Start;
-
-        Pause(GameState.Loot);
-        skillSelectUI.gameObject.SetActive(false);
-        equipSelectUI.gameObject.SetActive(true);
-
-        foreach (var equipment in Player.Instance.equipmentList)
-        {
-//            Debug.LogError(equipment.equipDesc);
-            var inst = Instantiate(Resources.Load<GameObject>("Prefab/EquipDrag"), EquipDragSlotUI);
-            inst.GetComponent<EquipDrag>().InitSkill(equipment);
-        }
-        //LootController.Instance.NewLoot();
 
 
 
-        skillTipBarController.InitSkillTipBarArea();
-        RhythmController.Instance.Reset();
 
-        Player.Instance.Reset();
-        Player.Instance.BattleStart();
-       
-
-        //战斗UI
-
-
-        playerBattleInfo.init(Player.Instance);
-        //enemyBattleInfo.init(Player.Instance.mTarget.GetComponent<Character>());
-        InputSequenceController.Instance.ResetAvailable();
-
-    }
-    public void EquipSelectOK()
-    {
-        /*
-        for (int i = 0; i < optionView.Length; i++)
-        {
-            Destroy(optionView[i]);
-        }*/
-
-        m_Canvas.gameObject.SetActive(false);
-
-        StartCoroutine(StateDelay());
-    }
     public IEnumerator StateDelay()
     {
         Debug.Log("startdeley");
