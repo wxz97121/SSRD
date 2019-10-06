@@ -72,13 +72,15 @@ public class UIPrepareWindow : UIWindow
         {
             buttonSkillAttack.GetComponent<UISelectableItem>().skill = Player.Instance.skillSlots[0].skill;
             buttonSkillAttack.GetComponent<UISelectableItem>().type = 1;
+            Debug.Log("icon"+ Player.Instance.skillSlots[0].skill.Icon);
+
             buttonSkillAttack.transform.Find("Image").GetComponent<Image>().sprite = Player.Instance.skillSlots[0].skill.Icon;
         }
         else
         {
             buttonSkillAttack.GetComponent<UISelectableItem>().skill = new Skill() { type= SkillType.attack};
             buttonSkillAttack.GetComponent<UISelectableItem>().type = 1;
-            //todo:增加缺省图标
+            buttonSkillAttack.transform.Find("Image").GetComponent<Image>().sprite = null;
         }
 
         if (Player.Instance.skillSlots[1].skill != null)
@@ -91,6 +93,8 @@ public class UIPrepareWindow : UIWindow
         {
             buttonSkillDefend.GetComponent<UISelectableItem>().skill = new Skill() { type = SkillType.defend };
             buttonSkillDefend.GetComponent<UISelectableItem>().type = 1;
+            buttonSkillDefend.transform.Find("Image").GetComponent<Image>().sprite = null;
+
         }
 
 
@@ -104,6 +108,8 @@ public class UIPrepareWindow : UIWindow
         {
             buttonSkillSpecial1.GetComponent<UISelectableItem>().skill = new Skill() { type = SkillType.special };
             buttonSkillSpecial1.GetComponent<UISelectableItem>().type = 1;
+            buttonSkillSpecial1.transform.Find("Image").GetComponent<Image>().sprite = null;
+
         }
 
         if (Player.Instance.skillSlots[3].skill != null)
@@ -116,6 +122,8 @@ public class UIPrepareWindow : UIWindow
         {
             buttonSkillSpecial2.GetComponent<UISelectableItem>().skill = new Skill() { type = SkillType.special };
             buttonSkillSpecial2.GetComponent<UISelectableItem>().type = 1;
+            buttonSkillSpecial2.transform.Find("Image").GetComponent<Image>().sprite = null;
+
         }
 
         if (Player.Instance.skillSlots[4].skill != null)
@@ -128,6 +136,8 @@ public class UIPrepareWindow : UIWindow
         {
             buttonSkillUlti.GetComponent<UISelectableItem>().skill =  new Skill() { type = SkillType.ulti };
             buttonSkillUlti.GetComponent<UISelectableItem>().type = 1;
+            buttonSkillUlti.transform.Find("Image").GetComponent<Image>().sprite = null;
+
         }
 
     }

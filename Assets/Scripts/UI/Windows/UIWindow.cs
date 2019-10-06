@@ -57,7 +57,7 @@ public class UIWindow : MonoBehaviour
         isFocus = true;
         SetSelect();
 
-        //UIWindowController.Instance.arrow.transform.position =new Vector3(0, 0, 90.0f);
+        UIWindowController.Instance.StopCoroutine("ArrowMove");
         UIWindowController.Instance.StartCoroutine("ArrowMove");
     }
 
@@ -72,6 +72,13 @@ public class UIWindow : MonoBehaviour
                 this.Close();
             }
         }
+        //if (Input.GetKeyDown(KeyCode.X))
+        //{
+        //    if (isFocus && canBeClosedByCancel)
+        //    {
+        //        this.Close();
+        //    }
+        //}
 
     }
 

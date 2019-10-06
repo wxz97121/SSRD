@@ -80,8 +80,9 @@ public class UIWindowController : MonoBehaviour
                 lastselect = nowselect;
                 nowselect = EventSystem.current.currentSelectedGameObject;
 
+                StopCoroutine("ArrowMove");
 
-                UIWindowController.Instance.StartCoroutine("ArrowMove");
+                StartCoroutine("ArrowMove");
             }
 
 
@@ -139,7 +140,7 @@ public class UIWindowController : MonoBehaviour
 
     IEnumerator ArrowMove()
     {
-        EventSystem.current.sendNavigationEvents = false;
+       // EventSystem.current.sendNavigationEvents = false;
         float time = 0.2f;
         float timecount = 0f;
         float a = 0f;
@@ -208,7 +209,7 @@ public class UIWindowController : MonoBehaviour
 
 
         }
-        EventSystem.current.sendNavigationEvents = true;
+      //  EventSystem.current.sendNavigationEvents = true;
 
     }
 

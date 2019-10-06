@@ -37,8 +37,8 @@ public class Skill
     public int upgradeChoice3 = 0;
 
 
-
-
+    //装备中
+    public bool isEquiped=false;
 
 
 

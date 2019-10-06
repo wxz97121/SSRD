@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4085787565289749295}
   - component: {fileID: 2332178661886665076}
   m_Layer: 5
-  m_Name: equiping
+  m_Name: isEquiped
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

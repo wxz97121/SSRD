@@ -81,6 +81,11 @@ public class Player : Character {
         skillSlots[2].requiredType = SkillType.special;
         skillSlots[3].requiredType = SkillType.special;
         skillSlots[4].requiredType = SkillType.ulti;
+        skillSlots[0].skill = null;
+        skillSlots[1].skill = null;
+        skillSlots[2].skill = null;
+        skillSlots[3].skill = null;
+        skillSlots[4].skill = null;
         animator = GetComponent<Animator>();
 
         //范用技能，强行发招用
@@ -91,11 +96,12 @@ public class Player : Character {
         skillListInBag = new List<Skill>();
 
 
-        Player.Instance.AddSkill("testSkill_00X_ATTACK");
-        Player.Instance.skillSlots[0].skill = Player.Instance.skillListInBag[0];
+        AddSkill("testSkill_00X_ATTACK");
+        EquipSkill(0, skillListInBag[0]);
+        Debug.Log(skillSlots[0].skill);
+        AddSkill("testSkill_0ZX_DEFEND");
+        EquipSkill(1, skillListInBag[1]);
 
-        Player.Instance.AddSkill("testSkill_0ZX_DEFEND");
-        Player.Instance.skillSlots[1].skill = Player.Instance.skillListInBag[1];
         Player.Instance.AddSkill("testSkill_0ZX_ACCDEFEND");
 
 
@@ -299,6 +305,40 @@ public class Player : Character {
         skillListInBag.Add(skill);
     }
 
+    public void EquipSkill(int slotID,Skill skill)
+    {
+        //如果是已装备的技能，先卸下来
+        if (skill.isEquiped)
+        {
+            for(int i = 0; i < skillSlots.Length; i++)
+            {
+                if (skillSlots[i].skill == skill)
+                {
+                    skillSlots[i].skill = null;
+                }
+            }
+        }
+
+
+        if (skillSlots[slotID].skill == null)
+        {
+
+            skillSlots[slotID].skill = skill;
+            skill.isEquiped = true;
+            Debug.Log("new : "+ skill.m_name);
+        }
+        else
+        {
+
+            skillSlots[slotID].skill.isEquiped = false;
+            skillSlots[slotID].skill = skill;
+            skill.isEquiped = true;
+        }
+    }
+
+
+
+
     #region 技能栏相关 @竹喵
     //检测技能栏是否能用
     public bool CheckSkillSlot(int SlotIndex, Skill NewSkill)
@@ -366,9 +406,4 @@ public class Player : Character {
 
 
 
-public interface Item
-{
-    Sprite Icon { get; set; }
-    string Name { get; set; }
-    string Desc { get; set; }
-}
+

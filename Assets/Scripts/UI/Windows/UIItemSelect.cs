@@ -50,6 +50,8 @@ public class UIItemSelect : UIWindow
                     inst.GetComponent<UISelectableItem>().skill = skill;
                     inst.transform.Find("Image").GetComponent<Image>().sprite = skill.Icon;
                     inst.transform.Find("Text").GetComponent<Text>().text = skill.m_name;
+                    inst.transform.Find("isEquiped").gameObject.SetActive(skill.isEquiped);
+
                     Items.Add(inst);
                     inst.transform.localPosition = pos0.localPosition - (pos1.localPosition-pos0.localPosition) * (Items.Count - 1);
                 }
@@ -67,19 +69,19 @@ public class UIItemSelect : UIWindow
             switch (targetButton.name)
             {
                 case "Attack":
-                    Player.Instance.skillSlots[0].skill = button.GetComponent<UISelectableItem>().skill;
+                    Player.Instance.EquipSkill(0, button.GetComponent<UISelectableItem>().skill);
                     break;
                 case "Defend":
-                    Player.Instance.skillSlots[1].skill = button.GetComponent<UISelectableItem>().skill;
+                    Player.Instance.EquipSkill(1, button.GetComponent<UISelectableItem>().skill);
                     break;
                 case "Special1":
-                    Player.Instance.skillSlots[2].skill = button.GetComponent<UISelectableItem>().skill;
+                    Player.Instance.EquipSkill(2, button.GetComponent<UISelectableItem>().skill);
                     break;
                 case "Special2":
-                    Player.Instance.skillSlots[3].skill = button.GetComponent<UISelectableItem>().skill;
+                    Player.Instance.EquipSkill(3, button.GetComponent<UISelectableItem>().skill);
                     break;
                 case "Ulti":
-                    Player.Instance.skillSlots[4].skill = button.GetComponent<UISelectableItem>().skill;
+                    Player.Instance.EquipSkill(4, button.GetComponent<UISelectableItem>().skill);
                     break;
             }
 
