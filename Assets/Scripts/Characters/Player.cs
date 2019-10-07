@@ -100,7 +100,7 @@ public class Player : Character {
         //测试
         AddSkill("testSkill_00X_ATTACK");
         EquipSkill(0, skillList[0]);
-        Debug.Log(skillSlots[0].skill);
+//        Debug.Log(skillSlots[0].skill);
         AddSkill("testSkill_0ZX_DEFEND");
         EquipSkill(1, skillList[1]);
 

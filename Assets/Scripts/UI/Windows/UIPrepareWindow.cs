@@ -218,6 +218,10 @@ public class UIPrepareWindow : UIWindow
 
     }
 
-
+    public override void Focus()
+    {
+        base.Focus();
+        InitInfo();
+    }
 
 }

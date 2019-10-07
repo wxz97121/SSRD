@@ -16,19 +16,19 @@ MonoBehaviour:
   goods:
   - datapath: 
     type: 1
-    price: 0
+    price: 10
     skill: {fileID: 11400000, guid: 43fca907991854b99b1a8134485a37b6, type: 2}
     equipment: {fileID: 0}
     isSold: 1
   - datapath: 
     type: 1
-    price: 0
+    price: 5
     skill: {fileID: 11400000, guid: 70c94c18c0ffc4998b32f2309e815186, type: 2}
     equipment: {fileID: 0}
     isSold: 1
   - datapath: 
     type: 2
-    price: 0
+    price: 100
     skill: {fileID: 0}
     equipment: {fileID: 11400000, guid: e3218c1e1c94e49259d15b2e8e7f5061, type: 2}
-    isSold: 1
+    isSold: 0

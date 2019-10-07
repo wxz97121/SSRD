@@ -55,7 +55,6 @@ public class UIWindow : MonoBehaviour
 
 
         UIWindowController.Instance.ClearFocus();
-        isFocus = true;
         SetSelect();
 
         UIWindowController.Instance.StopCoroutine("ArrowMove");
@@ -168,8 +167,10 @@ public class UIWindow : MonoBehaviour
     }
 
     //窗口获得焦点
-    public void Focus()
+    public virtual void Focus()
     {
+        isFocus = true;
+
         UIWindowController.Instance.focusWindow = this;
         AllButtonConnect();
         if (tempselect != null)

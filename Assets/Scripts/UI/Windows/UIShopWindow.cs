@@ -39,28 +39,32 @@ public class UIShopWindow : UIWindow
 
         foreach (Goods g in shop.goods)
         {
+            var inst = Instantiate(Resources.Load<GameObject>("Prefab/UI/Buttons/UI_Goods1"), content);
+            inst.GetComponent<UISelectableItem>().goods = g;
+
             if (g.type == GoodsType.skill)
             {
-                var inst = Instantiate(Resources.Load<GameObject>("Prefab/UI/Buttons/UI_Goods1"), content);
-                inst.GetComponent<UISelectableItem>().goods = g;
                 inst.transform.Find("Image").GetComponent<Image>().sprite = g.skill.sprite;
                 inst.transform.Find("Text").GetComponent<Text>().text = g.skill._name;
-                inst.transform.Find("Text_price").GetComponent<Text>().text = g.price.ToString();
+                inst.name = g.skill._name;
 
-                Items.Add(inst);
-                inst.transform.localPosition = pos0.localPosition - (pos1.localPosition - pos0.localPosition) * (Items.Count - 1);
             }
             if (g.type == GoodsType.equipment)
             {
-                var inst = Instantiate(Resources.Load<GameObject>("Prefab/UI/Buttons/UI_Goods1"), content);
                 inst.GetComponent<UISelectableItem>().goods = g;
                 inst.transform.Find("Image").GetComponent<Image>().sprite = g.equipment.Icon;
                 inst.transform.Find("Text").GetComponent<Text>().text = g.equipment.name;
-                inst.transform.Find("Text_price").GetComponent<Text>().text = g.price.ToString();
+                inst.name = g.equipment.name;
 
-                Items.Add(inst);
-                inst.transform.localPosition = pos0.localPosition - (pos1.localPosition - pos0.localPosition) * (Items.Count - 1);
             }
+            inst.transform.Find("Text_price").GetComponent<Text>().text = g.price.ToString();
+            if (g.isSold)
+            {
+                SetSold(inst);
+            }
+            Items.Add(inst);
+            inst.transform.localPosition = pos0.localPosition - (pos1.localPosition - pos0.localPosition) * (Items.Count - 1);
+
         }
     }
 
@@ -83,5 +87,13 @@ public class UIShopWindow : UIWindow
         }
         Items.Clear();
         base.Close();
+    }
+
+    private void SetSold(GameObject go)
+    {
+        go.transform.Find("Image").GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f);
+        Color tempcolor = go.transform.Find("Text").GetComponent<Text>().color;
+        go.transform.Find("Text").GetComponent<Text>().color = new Color(tempcolor.r, tempcolor.g, tempcolor.b, 0.5f);
+        go.transform.Find("Text_price").GetComponent<Text>().text = "sold";
     }
 }

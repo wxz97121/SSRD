@@ -16,7 +16,15 @@ public class Shop
         {
             foreach (Goods g in data.goods)
             {
-                goods.Add(g);
+                Goods _goods = new Goods()
+                {
+                    type = g.type,
+                    price = g.price,
+                    skill = g.skill,
+                    equipment = g.equipment,
+                    isSold = false
+                };
+                goods.Add(_goods);
             }
         }
     }

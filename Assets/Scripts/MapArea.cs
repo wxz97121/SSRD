@@ -29,8 +29,9 @@ public class MapArea : MonoBehaviour
         {
             shop = new Shop()
             {
-                goods = levelData.shopData.goods
+                data = levelData.shopData
             };
+            shop.Init();
             Debug.Log("init shop , goods: " + shop.goods.Count);
         }
 
