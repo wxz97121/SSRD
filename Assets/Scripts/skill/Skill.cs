@@ -14,6 +14,7 @@ public enum SkillType
 
 }
 
+[System.Serializable]
 
 public class Skill
 {

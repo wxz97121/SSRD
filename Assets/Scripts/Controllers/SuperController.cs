@@ -118,10 +118,10 @@ public class SuperController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Pause(GameState.Wait);
-            UIWindowController.Instance.prepareWindow.Open();
+            //Pause(GameState.Wait);
+            //UIWindowController.Instance.prepareWindow.Open();
 
-
+            MapController.Instance.ShowMap();
 
             // Bubble.AddBubble(BubbleSprType.hp, "-6", Player.Instance);
         }

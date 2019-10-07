@@ -22,6 +22,7 @@ public class UIWindowController : MonoBehaviour
     public UIPrepareWindow prepareWindow;
     public UINoticeWindow noticeWindow;
     public UIItemSelect itemSelect;
+    public UIShopWindow shopWindow;
 
     public Image arrow;
 
@@ -54,7 +55,8 @@ public class UIWindowController : MonoBehaviour
             mapMenu,
             prepareWindow,
             noticeWindow,
-            itemSelect
+            itemSelect,
+            shopWindow
         };
 
 

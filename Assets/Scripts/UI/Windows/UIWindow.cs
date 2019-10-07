@@ -12,6 +12,7 @@ public class UIWindow : MonoBehaviour
     public bool isFocus = false;
     public UIWindow lastWindow=null;
     public bool canBeClosedByCancel=false;
+    public GameObject tempselect;
 
     // Start is called before the first frame update
     void Start()
@@ -89,6 +90,7 @@ public class UIWindow : MonoBehaviour
     public virtual void OnSelect(Button button)
     {
         Debug.Log("button select : " + button.name);
+        tempselect = button.gameObject;
     }
 
 
@@ -128,7 +130,9 @@ public class UIWindow : MonoBehaviour
             lastWindow = UIWindowController.Instance.focusWindow;
             UIWindowController.Instance.focusWindow.Unfocus();
         }
+        Init();
         Focus();
+
         transform.localScale = Vector3.one;
     }
 
@@ -168,7 +172,14 @@ public class UIWindow : MonoBehaviour
     {
         UIWindowController.Instance.focusWindow = this;
         AllButtonConnect();
-        Init();
+        if (tempselect != null)
+        {
+            EventSystem.current.SetSelectedGameObject(tempselect);
+        }
+        else
+        {
+            SetSelect();
+        }
 
     }
 }

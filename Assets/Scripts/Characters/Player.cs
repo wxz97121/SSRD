@@ -319,6 +319,11 @@ public class Player : Character {
         equipmentList.Add(equip);
     }
 
+    public void AddEquip(Equipment equipdata)
+    {
+        equipmentList.Add(equipdata);
+    }
+
     public void EquipSkill(int slotID,Skill skill)
     {
         //如果是已装备的技能，先卸下来
@@ -339,7 +344,7 @@ public class Player : Character {
 
             skillSlots[slotID].skill = skill;
             skill.isEquiped = true;
-            Debug.Log("new : "+ skill.m_name);
+//            Debug.Log("new : "+ skill.m_name);
         }
         else
         {

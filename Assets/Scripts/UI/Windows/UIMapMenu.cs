@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class UIMapMenu : UIWindow
 {
+    public MapArea mapArea;
+
 
     public override void SetSelect()
     {
@@ -22,16 +24,19 @@ public class UIMapMenu : UIWindow
         {
             UIWindowController.Instance.prepareWindow.Open();
         }
-
+        if (button.name == "Shop")
+        {
+            UIWindowController.Instance.shopWindow.Open(mapArea.shop);
+        }
 
     }
 
-    public void OpenMapMenu()
+    public void OpenMapMenu(MapArea map)
     {
         gameObject.SetActive(true);
         transform.localScale = Vector3.one;
         UIWindowController.Instance.arrow.transform.localScale = Vector3.one;
-
+        mapArea = map;
         if (UIWindowController.Instance.focusWindow != null)
         {
             lastWindow = UIWindowController.Instance.focusWindow;

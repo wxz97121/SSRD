@@ -8,6 +8,7 @@ public class MapArea : MonoBehaviour
 {
     public MapAreaView view;
     public LevelData levelData;
+    public Shop shop;
     public string AreaName;
     public MapState m_VisitType;
     public List<MapArea> LinkedMaps;
@@ -18,7 +19,24 @@ public class MapArea : MonoBehaviour
         view = this.GetComponent<MapAreaView>();
         view.area = this;
         view.Init();
+        InitShop();
+
     }
+
+    public void InitShop()
+    {
+        if (levelData.shopData != null)
+        {
+            shop = new Shop()
+            {
+                goods = levelData.shopData.goods
+            };
+            Debug.Log("init shop , goods: " + shop.goods.Count);
+        }
+
+        //shop.Init();
+    }
+
 
 
     public void InitMap(MapState visitType)
@@ -41,7 +59,7 @@ public class MapArea : MonoBehaviour
         if (isVisited)
         {
             Debug.Log("show menu!!");
-            UIWindowController.Instance.mapMenu.OpenMapMenu();
+            UIWindowController.Instance.mapMenu.OpenMapMenu(this);
         }
         else
         {

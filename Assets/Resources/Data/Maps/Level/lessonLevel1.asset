@@ -24,3 +24,4 @@ MonoBehaviour:
   PreStory: {fileID: 11400000, guid: dfb43526630734c11a304f31c2c94afb, type: 2}
   AfterStory: {fileID: 11400000, guid: 8a1b465d6ea304783ba2ff89e26add20, type: 2}
   NextStoryStep: lesson1finished
+  shopData: {fileID: 11400000, guid: ab9d73a29e36444e5b13b98c4163ac3c, type: 2}

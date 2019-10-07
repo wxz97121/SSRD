@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UIPrepareWindow : UIWindow
 {
+
     public Button buttonSkillAttack;
     public Button buttonSkillDefend;
     public Button buttonSkillSpecial1;

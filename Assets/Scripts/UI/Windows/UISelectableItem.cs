@@ -9,6 +9,6 @@ public class UISelectableItem : MonoBehaviour
     public int type;
     public Skill skill;
     public Equipment equipment;
-
+    public Goods goods;
 
 }

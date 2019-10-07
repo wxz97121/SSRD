@@ -16,4 +16,5 @@ public class LevelData : ScriptableObject
     public NovelScript PreStory;
 	public NovelScript AfterStory;
     public string NextStoryStep;
+    public ShopData shopData;
 }
