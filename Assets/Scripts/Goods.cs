@@ -46,7 +46,7 @@ public class Goods
 
                     break;
             }
-
+            Player.Instance.money -= price;
             isSold = true;
 
         }
