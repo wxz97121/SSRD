@@ -68,6 +68,37 @@ public class UIShopWindow : UIWindow
         }
     }
 
+
+    private void RefreshGoodsList()
+    {
+        foreach (GameObject inst in Items)
+        {
+            Goods g = inst.GetComponent<UISelectableItem>().goods;
+
+            if (g.type == GoodsType.skill)
+            {
+                inst.transform.Find("Image").GetComponent<Image>().sprite = g.skill.sprite;
+                inst.transform.Find("Text").GetComponent<Text>().text = g.skill._name;
+                inst.name = g.skill._name;
+
+            }
+            if (g.type == GoodsType.equipment)
+            {
+                inst.GetComponent<UISelectableItem>().goods = g;
+                inst.transform.Find("Image").GetComponent<Image>().sprite = g.equipment.Icon;
+                inst.transform.Find("Text").GetComponent<Text>().text = g.equipment.name;
+                inst.name = g.equipment.name;
+
+            }
+            inst.transform.Find("Text_price").GetComponent<Text>().text = g.price.ToString();
+            if (g.isSold)
+            {
+                SetSold(inst);
+            }
+
+        }
+    }
+
     public override void OnClick(Button button)
     {
         base.OnClick(button);
@@ -78,14 +109,16 @@ public class UIShopWindow : UIWindow
 
     }
 
+    public override void Focus()
+    {
+        RefreshGoodsList();
+
+        base.Focus();
+    }
 
     public override void Close()
     {
-        foreach (GameObject go in Items)
-        {
-            Destroy(go);
-        }
-        Items.Clear();
+
         base.Close();
     }
 

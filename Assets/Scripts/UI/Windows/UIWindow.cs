@@ -139,7 +139,7 @@ public class UIWindow : MonoBehaviour
     public virtual void  Close()
     {
         transform.localScale = Vector3.zero;
-        Debug.Log("lastwindow : " + lastWindow);
+        Debug.Log("lastwindow : " + lastWindow+"  thiswindow : "+this);
         if (lastWindow != null)
         {
             lastWindow.Focus();
@@ -160,6 +160,8 @@ public class UIWindow : MonoBehaviour
     //窗口失去焦点
     public void Unfocus()
     {
+        Debug.Log("window unfocus : " + this);
+
         UIWindowController.Instance.focusWindow = null;
 
         AllButtonDisconnect();
@@ -169,6 +171,7 @@ public class UIWindow : MonoBehaviour
     //窗口获得焦点
     public virtual void Focus()
     {
+        Debug.Log("window focus : " + this);
         isFocus = true;
 
         UIWindowController.Instance.focusWindow = this;

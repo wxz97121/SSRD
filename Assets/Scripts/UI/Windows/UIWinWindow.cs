@@ -22,7 +22,6 @@ public class UIWinWindow : UIWindow
         if (button.name == "Continue")
         {
             SuperController.Instance.ContinueAfterWin();
-
             this.gameObject.SetActive(false);
         }
     }
