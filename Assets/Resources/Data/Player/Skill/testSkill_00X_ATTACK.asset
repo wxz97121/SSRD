@@ -28,3 +28,9 @@ MonoBehaviour:
   Effect: ATK_1,ANI_player-attack
   CD: 0
   Desc: "\u666E\u901A\u653B\u51FB\uFF1A\u6D88\u80171\u80FD\u91CF\uFF0C\u8FDB\u884C1\u70B9\u653B\u51FB"
+  UpgradeSprites:
+  - {fileID: 2146727467498953082, guid: cbd840081a26d43e3bfd3d078492ac20, type: 3}
+  - {fileID: 5229205700533093654, guid: cbd840081a26d43e3bfd3d078492ac20, type: 3}
+  - {fileID: 1167047200040081433, guid: cbd840081a26d43e3bfd3d078492ac20, type: 3}
+  - {fileID: 5851721822939561029, guid: cbd840081a26d43e3bfd3d078492ac20, type: 3}
+  - {fileID: 2648894973301529397, guid: cbd840081a26d43e3bfd3d078492ac20, type: 3}

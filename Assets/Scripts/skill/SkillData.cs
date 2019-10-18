@@ -17,5 +17,7 @@ public class SkillData : ScriptableObject
     public string Effect;
     public int CD;
     public string Desc;
+
+    public List<Sprite> UpgradeSprites;
 }
 

@@ -36,6 +36,10 @@ public class Skill
     public int upgradeChoice1 = 0;
     public int upgradeChoice2 = 0;
     public int upgradeChoice3 = 0;
+    //升级图标
+    public List<Sprite> UpgradeSprites;
+
+
 
 
     //装备中
@@ -161,6 +165,9 @@ public class Skill
                 }
                 );
             }
+
+            UpgradeSprites = new List<Sprite>();
+            UpgradeSprites = data.UpgradeSprites;
         }
 
         if (mode == 1)
@@ -195,7 +202,8 @@ public class Skill
             }
 
 
-
+        UpgradeSprites = new List<Sprite>();
+        UpgradeSprites = skillData.UpgradeSprites;
 
     }
 
