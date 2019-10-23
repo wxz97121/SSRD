@@ -2366,11 +2366,30 @@ MonoBehaviour:
     CooldownMax: 0
     Cooldown: 0
     Desc: 
+    skillUpgrade11:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade21:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade22:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade31:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade32:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
     upgradeLevel: 0
     upgradeChoice1: 0
     upgradeChoice2: 0
     upgradeChoice3: 0
-    UpgradeSprites: []
     isEquiped: 0
   equipment: {fileID: 0}
   goods:
@@ -4325,11 +4344,30 @@ MonoBehaviour:
     CooldownMax: 0
     Cooldown: 0
     Desc: 
+    skillUpgrade11:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade21:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade22:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade31:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade32:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
     upgradeLevel: 0
     upgradeChoice1: 0
     upgradeChoice2: 0
     upgradeChoice3: 0
-    UpgradeSprites: []
     isEquiped: 0
   equipment: {fileID: 0}
   goods:
@@ -4601,6 +4639,7 @@ MonoBehaviour:
   noticeWindow: {fileID: 793405292}
   itemSelect: {fileID: 964457362}
   shopWindow: {fileID: 1574981471}
+  UISkillUpgradeSelectSkill: {fileID: 1612870094}
   arrow: {fileID: 2047773052}
 --- !u!4 &449656199
 Transform:
@@ -4867,11 +4906,30 @@ MonoBehaviour:
     CooldownMax: 0
     Cooldown: 0
     Desc: 
+    skillUpgrade11:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade21:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade22:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade31:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade32:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
     upgradeLevel: 0
     upgradeChoice1: 0
     upgradeChoice2: 0
     upgradeChoice3: 0
-    UpgradeSprites: []
     isEquiped: 0
   equipment: {fileID: 0}
   goods:
@@ -6018,11 +6076,30 @@ MonoBehaviour:
     CooldownMax: 0
     Cooldown: 0
     Desc: 
+    skillUpgrade11:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade21:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade22:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade31:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade32:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
     upgradeLevel: 0
     upgradeChoice1: 0
     upgradeChoice2: 0
     upgradeChoice3: 0
-    UpgradeSprites: []
     isEquiped: 0
   equipment: {fileID: 0}
   goods:
@@ -7121,11 +7198,30 @@ MonoBehaviour:
     CooldownMax: 0
     Cooldown: 0
     Desc: 
+    skillUpgrade11:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade21:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade22:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade31:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade32:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
     upgradeLevel: 0
     upgradeChoice1: 0
     upgradeChoice2: 0
     upgradeChoice3: 0
-    UpgradeSprites: []
     isEquiped: 0
   equipment: {fileID: 0}
   goods:
@@ -9456,11 +9552,30 @@ MonoBehaviour:
     CooldownMax: 0
     Cooldown: 0
     Desc: 
+    skillUpgrade11:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade21:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade22:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade31:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade32:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
     upgradeLevel: 0
     upgradeChoice1: 0
     upgradeChoice2: 0
     upgradeChoice3: 0
-    UpgradeSprites: []
     isEquiped: 0
   equipment: {fileID: 0}
   goods:
@@ -10960,11 +11075,30 @@ MonoBehaviour:
     CooldownMax: 0
     Cooldown: 0
     Desc: 
+    skillUpgrade11:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade21:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade22:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade31:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade32:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
     upgradeLevel: 0
     upgradeChoice1: 0
     upgradeChoice2: 0
     upgradeChoice3: 0
-    UpgradeSprites: []
     isEquiped: 0
   equipment: {fileID: 0}
   goods:
@@ -16808,11 +16942,30 @@ MonoBehaviour:
     CooldownMax: 0
     Cooldown: 0
     Desc: 
+    skillUpgrade11:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade21:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade22:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade31:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade32:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
     upgradeLevel: 0
     upgradeChoice1: 0
     upgradeChoice2: 0
     upgradeChoice3: 0
-    UpgradeSprites: []
     isEquiped: 0
   equipment: {fileID: 0}
   goods:
@@ -18398,11 +18551,30 @@ MonoBehaviour:
     CooldownMax: 0
     Cooldown: 0
     Desc: 
+    skillUpgrade11:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade21:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade22:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade31:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
+    skillUpgrade32:
+      sprite: {fileID: 0}
+      name: 
+      desc: 
     upgradeLevel: 0
     upgradeChoice1: 0
     upgradeChoice2: 0
     upgradeChoice3: 0
-    UpgradeSprites: []
     isEquiped: 0
   money: 10
   UIMoneyNum: {fileID: 60550191}

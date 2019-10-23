@@ -15,7 +15,7 @@ MonoBehaviour:
   SwitchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: /Users/heath/Documents/Project/SSRD/FMOD/srd_sound/srd_sound.fspro
+  sourceProjectPath: /Users/Ares/SSRD/FMOD/srd_sound/srd_sound.fspro
   SourceProjectPathUnformatted: FMOD/srd_sound/srd_sound.fspro
   SourceBankPathUnformatted: FMOD/srd_sound/Build
   AutomaticEventLoading: 1

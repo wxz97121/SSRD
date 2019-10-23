@@ -212,8 +212,8 @@ public class Skill
             }
 
 
-        UpgradeSprites = new List<Sprite>();
-        UpgradeSprites = skillData.UpgradeSprites;
+        //UpgradeSprites = new List<Sprite>();
+        //UpgradeSprites = skillData.UpgradeSprites;
 
     }
 
