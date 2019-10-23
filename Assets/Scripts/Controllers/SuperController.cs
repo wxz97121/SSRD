@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-
+using DG.Tweening;
 
 public enum GameState
 {
@@ -62,6 +62,8 @@ public class SuperController : MonoBehaviour
     public NovelScript AfterStory;
 
     public Transform StoryCanvas;
+
+    public Transform bgmask;
 
     #region 单例
     static SuperController _instance;
@@ -290,7 +292,8 @@ public class SuperController : MonoBehaviour
         switch (p_storystep)
         {
             case "start game":
-                Story.PlayStoryAnim("Story1");
+                //Story.PlayStoryAnim("Story1");
+                SuperController.Instance.NextStep("teaching");
                 break;
             case "teaching":
                 MapController.Instance.ShowMap();
@@ -530,5 +533,17 @@ public class SuperController : MonoBehaviour
     {
         GameObject tip = Instantiate(Resources.Load("Prefab/InputTip/InputTip"), InputTipPos.transform) as GameObject;
         tip.GetComponent<InputTip>().Init(text, type);
+    }
+
+    public void BgMaskTransition()
+    {
+        StartCoroutine(bgmaskeff());
+    }
+
+    IEnumerator bgmaskeff()
+    {
+        bgmask.GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, .8f), .5f);
+        yield return new WaitForSeconds(.5f);
+        bgmask.GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, 0), .5f);
     }
 }

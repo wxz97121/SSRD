@@ -104,6 +104,10 @@ public class EnemySkill
                     //出现特效
                     Vfx(InstancedEff[1], m_Char);
                     break;
+                case ("CAM"):
+                    //摄像机
+                    CAM(InstancedEff[1]);
+                    break;
                 case ("CBB"):
                     //可被打断宣言,用在第四拍
                     m_Char.isBreakable=true;
@@ -282,7 +286,7 @@ public class EnemySkill
         }
     }
 
-    private void SFX(string name,AI Char)
+    private void SFX(string name, AI Char)
     {
         SoundController.Instance.PlayAudioEffect(name);
     }
@@ -290,6 +294,14 @@ public class EnemySkill
     private void TIP(string str, int type)
     {
         SuperController.Instance.ShowInputTip(str, type);
+    }
+
+    private void CAM(string str)
+    {
+        if (str == "DShade")
+        {
+            SuperController.Instance.BgMaskTransition();
+        }
     }
 
     //当身技能

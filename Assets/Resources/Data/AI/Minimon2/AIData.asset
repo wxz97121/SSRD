@@ -33,7 +33,7 @@ MonoBehaviour:
     - ANIT_attack,ATK_3
   - name: Dattack
     enemySkills:
-    - ANIT_Dready,SFX_Danger
+    - ANIT_Dready,SFX_Danger,CAM_DShade
     - EPT
     - EPT
     - ANIT_attack,DATK_2

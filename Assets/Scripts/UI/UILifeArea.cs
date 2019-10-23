@@ -14,6 +14,7 @@ public class UILifeArea : MonoBehaviour
     public int Life;
     public float fill;
     public Character chara;
+    public Image delayimage;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +35,7 @@ public class UILifeArea : MonoBehaviour
         if (chara.life != Life)
         {
             Animate(chara.life);
+                StartCoroutine(IDelayAnimate(chara.life/(float)chara.maxLife));
         }
         Life = chara.life;
         lifeNum.text = Life.ToString() + "/" + maxLife.ToString();
@@ -58,5 +60,11 @@ public class UILifeArea : MonoBehaviour
     {
         fill = (float)hp / (float)maxLife;
         image.DOFillAmount(fill, 0.2f).SetEase(Ease.InQuad);
+    }
+
+    IEnumerator IDelayAnimate(float _fill)
+    {
+        yield return new WaitForSeconds(.5f);
+        delayimage.DOFillAmount(_fill, 0.2f).SetEase(Ease.InQuad);
     }
 }
