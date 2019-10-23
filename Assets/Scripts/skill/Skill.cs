@@ -31,13 +31,19 @@ public class Skill
     public int Cooldown;
     public string Desc;
 
+    //升级项目
+    public SkillUpgrade skillUpgrade11;
+    public SkillUpgrade skillUpgrade21;
+    public SkillUpgrade skillUpgrade22;
+    public SkillUpgrade skillUpgrade31;
+    public SkillUpgrade skillUpgrade32;
+
+
     //技能进阶级数
     public int upgradeLevel = 0;
     public int upgradeChoice1 = 0;
     public int upgradeChoice2 = 0;
     public int upgradeChoice3 = 0;
-    //升级图标
-    public List<Sprite> UpgradeSprites;
 
 
 
@@ -166,8 +172,12 @@ public class Skill
                 );
             }
 
-            UpgradeSprites = new List<Sprite>();
-            UpgradeSprites = data.UpgradeSprites;
+            skillUpgrade11 = data.skillUpgrade11;
+            skillUpgrade21 = data.skillUpgrade21;
+            skillUpgrade22 = data.skillUpgrade22;
+            skillUpgrade31 = data.skillUpgrade31;
+            skillUpgrade32 = data.skillUpgrade32;
+
         }
 
         if (mode == 1)

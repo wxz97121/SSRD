@@ -18,6 +18,12 @@ public class SkillData : ScriptableObject
     public int CD;
     public string Desc;
 
+    public SkillUpgrade skillUpgrade11;
+    public SkillUpgrade skillUpgrade21;
+    public SkillUpgrade skillUpgrade22;
+    public SkillUpgrade skillUpgrade31;
+    public SkillUpgrade skillUpgrade32;
+
     public List<Sprite> UpgradeSprites;
 }
 

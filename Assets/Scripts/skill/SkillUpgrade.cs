@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+[System.Serializable]
 
-public static class SkillUpgrade
+public class SkillUpgrade
 {
+
+    public Sprite sprite;
+    public string name;
+    public string desc;
 
     //集中处理技能的升级选择，level是档位，choice是选项序号
     public static void UpgradeSkill(string skillname,int level,int choice,Skill skill)
@@ -21,7 +26,7 @@ public static class SkillUpgrade
 
 
 
-    static void Attack(int level , int choice, Skill skill)
+    public static void Attack(int level , int choice, Skill skill)
     {
         //1级 A选项
         if (level==1&&choice==1)

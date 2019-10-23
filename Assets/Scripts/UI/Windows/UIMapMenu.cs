@@ -28,6 +28,10 @@ public class UIMapMenu : UIWindow
         {
             UIWindowController.Instance.shopWindow.Open(mapArea.shop);
         }
+        if (button.name == "Upgrade")
+        {
+            UIWindowController.Instance.UISkillUpgradeSelectSkill.Open();
+        }
 
     }
 
