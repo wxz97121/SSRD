@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//选择要升级天赋的技能
 public class UISkillUpgradeSelectSkill : UIWindow
 {
     public Transform content;
@@ -43,7 +44,7 @@ public class UISkillUpgradeSelectSkill : UIWindow
 
         foreach (Skill skill in Player.Instance.skillList)
         {
-            var inst = Instantiate(Resources.Load<GameObject>("Prefab/UI/Buttons/UI_Item1"), content);
+            var inst = Instantiate(Resources.Load<GameObject>("Prefab/UI/Buttons/UI_SkillToUpgrade"), content);
             inst.GetComponent<UISelectableItem>().skill = skill;
             inst.transform.Find("Image").GetComponent<Image>().sprite = skill.Icon;
             inst.transform.Find("Text").GetComponent<Text>().text = skill.m_name;
@@ -55,7 +56,7 @@ public class UISkillUpgradeSelectSkill : UIWindow
             }else if (skill.upgradeChoice1 == 1)
             {
                 inst.transform.Find("Up1").transform.localScale = Vector3.one;
-                inst.transform.Find("Up1").GetComponent<Image>().sprite = skill.UpgradeSprites[0];
+                inst.transform.Find("Up1").GetComponent<Image>().sprite = skill.skillUpgrade11.sprite;
             }
 
             switch (skill.upgradeChoice2)
@@ -65,11 +66,11 @@ public class UISkillUpgradeSelectSkill : UIWindow
                     break;
                 case 1:
                     inst.transform.Find("Up2").transform.localScale = Vector3.one;
-                    inst.transform.Find("Up2").GetComponent<Image>().sprite = skill.UpgradeSprites[1];
+                    inst.transform.Find("Up2").GetComponent<Image>().sprite = skill.skillUpgrade21.sprite;
                     break;
                 case 2:
                     inst.transform.Find("Up2").transform.localScale = Vector3.one;
-                    inst.transform.Find("Up2").GetComponent<Image>().sprite = skill.UpgradeSprites[2];
+                    inst.transform.Find("Up2").GetComponent<Image>().sprite = skill.skillUpgrade22.sprite;
                     break;
             }
 
@@ -80,11 +81,11 @@ public class UISkillUpgradeSelectSkill : UIWindow
                     break;
                 case 1:
                     inst.transform.Find("Up3").transform.localScale = Vector3.one;
-                    inst.transform.Find("Up3").GetComponent<Image>().sprite = skill.UpgradeSprites[3];
+                    inst.transform.Find("Up3").GetComponent<Image>().sprite = skill.skillUpgrade31.sprite;
                     break;
                 case 2:
                     inst.transform.Find("Up3").transform.localScale = Vector3.one;
-                    inst.transform.Find("Up3").GetComponent<Image>().sprite = skill.UpgradeSprites[4];
+                    inst.transform.Find("Up3").GetComponent<Image>().sprite = skill.skillUpgrade32.sprite;
                     break;
             }
 

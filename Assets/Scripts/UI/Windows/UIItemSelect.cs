@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//准备界面点进去，选择要替换的技能、装备
 public class UIItemSelect : UIWindow
 {
     public Transform content;

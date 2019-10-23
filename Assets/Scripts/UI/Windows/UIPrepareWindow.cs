@@ -89,6 +89,11 @@ public class UIPrepareWindow : UIWindow
             textDesc.text = button.GetComponent<UISelectableItem>().skill.Desc;
 
         }
+        if (button.GetComponent<UISelectableItem>().type == 2)
+        {
+            textDesc.text = button.GetComponent<UISelectableItem>().equipment.equipDesc;
+
+        }
     }
 
 

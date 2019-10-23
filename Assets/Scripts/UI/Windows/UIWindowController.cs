@@ -23,6 +23,7 @@ public class UIWindowController : MonoBehaviour
     public UINoticeWindow noticeWindow;
     public UIItemSelect itemSelect;
     public UIShopWindow shopWindow;
+    public UISkillUpgradeSelectSkill UISkillUpgradeSelectSkill;
 
     public Image arrow;
 
@@ -56,7 +57,8 @@ public class UIWindowController : MonoBehaviour
             prepareWindow,
             noticeWindow,
             itemSelect,
-            shopWindow
+            shopWindow,
+            UISkillUpgradeSelectSkill
         };
 
 
