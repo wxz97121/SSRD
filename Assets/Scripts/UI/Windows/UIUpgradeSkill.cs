@@ -32,7 +32,7 @@ public class UIUpgradeSkill : UIWindow
 
     public override void SetSelect()
     {
-        buttons.Find(a => a.name == "button11").Select();
+        buttons.Find(a => a.name == "Button11").Select();
         base.SetSelect();
 
     }

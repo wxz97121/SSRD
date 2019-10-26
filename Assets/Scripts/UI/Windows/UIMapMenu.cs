@@ -30,7 +30,7 @@ public class UIMapMenu : UIWindow
         }
         if (button.name == "Upgrade")
         {
-            UIWindowController.Instance.UISkillUpgradeSelectSkill.Open();
+            UIWindowController.Instance.SkillUpgradeSelectSkill.Open();
         }
 
     }
@@ -83,6 +83,8 @@ public class UIMapMenu : UIWindow
         }
 
         Init();
+        Focus();
+
     }
 
 }

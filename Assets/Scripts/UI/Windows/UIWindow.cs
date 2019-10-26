@@ -67,6 +67,7 @@ public class UIWindow : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
+            Debug.Log("press z"+"isfocus = "+isFocus+"canbeclose"+canBeClosedByCancel);
             if (isFocus&&canBeClosedByCancel)
             {
                 this.Close();

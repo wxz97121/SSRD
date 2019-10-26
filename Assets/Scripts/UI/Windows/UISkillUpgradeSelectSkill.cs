@@ -101,7 +101,7 @@ public class UISkillUpgradeSelectSkill : UIWindow
         if (isFocus)
         {
             base.OnClick(button);
-
+            UIWindowController.Instance.upgradeSkill.Open(button);
 
         }
 
