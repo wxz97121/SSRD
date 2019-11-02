@@ -207,7 +207,7 @@ public class SuperController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
-            SkillUpgrade.UpgradeSkill("attack", 1, 1, Player.Instance.skillSlots[0].skill);
+            //SkillUpgrade.UpgradeSkill("attack", 1, 1, Player.Instance.skillSlots[0].skill);
         }
 
 
@@ -297,7 +297,6 @@ public class SuperController : MonoBehaviour
                 break;
             case "teaching":
                 MapController.Instance.ShowMap();
-
 
                 break;
             case "lesson1finished":

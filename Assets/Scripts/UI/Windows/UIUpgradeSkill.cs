@@ -56,7 +56,7 @@ public class UIUpgradeSkill : UIWindow
     {
         skill = targetButton.GetComponent<UISelectableItem>().skill;
         pointText.text = Player.Instance.skillPoint.ToString();
-        Debug.Log(skill.m_name);
+//        Debug.Log(skill.m_name);
 
         button11.transform.Find("Icon").GetComponent<Image>().sprite = skill.skillUpgrade11.sprite; 
         button21.transform.Find("Icon").GetComponent<Image>().sprite = skill.skillUpgrade21.sprite;
@@ -242,10 +242,33 @@ public class UIUpgradeSkill : UIWindow
     public override void OnSelect(Button button)
     {
         base.OnSelect(button);
-        if (button.GetComponent<UISelectableItem>().type == 1)
+        switch (button.name)
         {
-            textDesc.text = button.GetComponent<UISelectableItem>().skill.Desc;
+            case "Button11":
 
+                textDesc.text = skill.skillUpgrade11.desc;
+
+                break;
+            case "Button21":
+
+                textDesc.text = skill.skillUpgrade21.desc;
+
+                break;
+            case "Button22":
+
+                textDesc.text = skill.skillUpgrade22.desc;
+
+                break;
+            case "Button31":
+
+                textDesc.text = skill.skillUpgrade31.desc;
+
+                break;
+            case "Button32":
+
+                textDesc.text = skill.skillUpgrade32.desc;
+
+                break;
         }
     }
 
@@ -288,32 +311,33 @@ public class UIUpgradeSkill : UIWindow
         {
             case 11:
 
-                    skill.upgradeChoice1 = 1;
+                SkillUpgrade.UpgradeSkill(11, skill);
+                    
                     Player.Instance.skillPoint -= price11;
 
                 break;
             case 21:
 
-                    skill.upgradeChoice2 = 1;
-                    Player.Instance.skillPoint -= price21;
+                SkillUpgrade.UpgradeSkill(21, skill);
+                Player.Instance.skillPoint -= price21;
 
                 break;
             case 22:
 
-                    skill.upgradeChoice2 = 2;
-                    Player.Instance.skillPoint -= price22;
+                SkillUpgrade.UpgradeSkill(22, skill);
+                Player.Instance.skillPoint -= price22;
                 
                 break;
             case 31:
 
-                    skill.upgradeChoice3 = 1;
-                    Player.Instance.skillPoint -= price31;
+                SkillUpgrade.UpgradeSkill(31, skill);
+                Player.Instance.skillPoint -= price31;
 
                 break;
             case 32:
 
-                    skill.upgradeChoice3 = 2;
-                    Player.Instance.skillPoint -= price32;
+                SkillUpgrade.UpgradeSkill(32, skill);
+                Player.Instance.skillPoint -= price32;
 
                 break;
         }

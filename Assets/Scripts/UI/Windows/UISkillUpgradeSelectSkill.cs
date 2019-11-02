@@ -12,6 +12,12 @@ public class UISkillUpgradeSelectSkill : UIWindow
     public Button targetButton;
     public List<GameObject> Items;
 
+    [Header("scroll view 相关")]
+    public Transform svUpPos;
+    public Transform svBottomPos;
+
+
+    private Vector2 tempContentSize = new Vector2(0f, 0f);
 
     public void Open(Button button)
     {
@@ -42,11 +48,20 @@ public class UISkillUpgradeSelectSkill : UIWindow
 
     private void ShowSkillList()
     {
+        if (tempContentSize == new Vector2(0f, 0f))
+        {
+            tempContentSize = content.GetComponent<RectTransform>().sizeDelta;
+        }
+        else
+        {
+            content.GetComponent<RectTransform>().sizeDelta = tempContentSize;
+        }
 
         foreach (Skill skill in Player.Instance.skillList)
         {
             var inst = Instantiate(Resources.Load<GameObject>("Prefab/UI/Buttons/UI_SkillToUpgrade"), content);
             inst.GetComponent<UISelectableItem>().skill = skill;
+            inst.name = skill.m_name;
             inst.transform.Find("Image").GetComponent<Image>().sprite = skill.Icon;
             inst.transform.Find("Text").GetComponent<Text>().text = skill.m_name;
             inst.transform.Find("isEquiped").gameObject.SetActive(skill.isEquiped);
@@ -91,10 +106,15 @@ public class UISkillUpgradeSelectSkill : UIWindow
             }
 
             Items.Add(inst);
-            inst.transform.localPosition = pos0.localPosition - (pos1.localPosition - pos0.localPosition) * (Items.Count - 1);
+            inst.transform.localPosition = pos0.localPosition + (pos1.localPosition - pos0.localPosition) * (Items.Count - 1);
+            Debug.Log("size delta = " + content.GetComponent<RectTransform>().sizeDelta);
+            content.GetComponent<RectTransform>().sizeDelta += new Vector2(0f,  pos0.GetComponent<RectTransform>().anchoredPosition.y- pos1.GetComponent<RectTransform>().anchoredPosition.y);
         }
 
     }
+
+
+    
 
 
     private void RefreshSkillList()
@@ -181,5 +201,27 @@ public class UISkillUpgradeSelectSkill : UIWindow
     {
         RefreshSkillList();
         base.Focus();
+    }
+
+
+    public override void OnSelect(Button button)
+    {
+        //处理scrollview
+        if (button.GetComponent<RectTransform>().anchoredPosition.y+ GetComponent<RectTransform>().anchoredPosition.y < svBottomPos.GetComponent<RectTransform>().anchoredPosition.y)
+        {
+            float distance = svBottomPos.GetComponent<RectTransform>().anchoredPosition.y - (button.GetComponent<RectTransform>().anchoredPosition.y+content.GetComponent<RectTransform>().anchoredPosition.y);
+            Debug.Log("OUT DOWN! + distance=" +distance);
+
+            content.GetComponent<RectTransform>().anchoredPosition = new Vector2(content.GetComponent<RectTransform>().anchoredPosition.x, content.GetComponent<RectTransform>().anchoredPosition.y+distance);
+        }
+
+        if (button.GetComponent<RectTransform>().anchoredPosition.y + GetComponent<RectTransform>().anchoredPosition.y > svUpPos.GetComponent<RectTransform>().anchoredPosition.y)
+        {
+            float distance = svUpPos.GetComponent<RectTransform>().anchoredPosition.y - (button.GetComponent<RectTransform>().anchoredPosition.y + content.GetComponent<RectTransform>().anchoredPosition.y);
+            Debug.Log("OUT DOWN! + distance=" + distance);
+
+            content.GetComponent<RectTransform>().anchoredPosition = new Vector2(content.GetComponent<RectTransform>().anchoredPosition.x, content.GetComponent<RectTransform>().anchoredPosition.y + distance);
+        }
+        base.OnSelect(button);
     }
 }
