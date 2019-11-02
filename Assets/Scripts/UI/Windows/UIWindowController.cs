@@ -25,6 +25,7 @@ public class UIWindowController : MonoBehaviour
     public UIShopWindow shopWindow;
     public UISkillUpgradeSelectSkill SkillUpgradeSelectSkill;
     public UIUpgradeSkill upgradeSkill;
+    public UIConfirmWindow confirmWindow;
     public Image arrow;
 
 

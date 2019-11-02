@@ -22,20 +22,33 @@ public class UIShopWindow : UIWindow
 
     public override void Init()
     {
-        Items = new List<GameObject>();
+        if (Items == null)
+        {
+            Items = new List<GameObject>();
+        }
         ShowGoodsList();
         base.Init();
     }
 
     public override void SetSelect()
     {
-        base.SetSelect();
         Items[0].GetComponent<Button>().Select();
+        base.SetSelect();
+
     }
 
 
     private void ShowGoodsList()
     {
+        Debug.Log("show list ");
+        if (Items.Count > 0)
+        {
+            for(int i = 0; i < Items.Count; i++)
+            {
+                Destroy(Items[i]);
+            }
+            Items.Clear();
+        }
 
         foreach (Goods g in shop.goods)
         {
@@ -118,7 +131,14 @@ public class UIShopWindow : UIWindow
 
     public override void Close()
     {
-
+        if (Items.Count > 0)
+        {
+            for (int i = 0; i < Items.Count; i++)
+            {
+                Destroy(Items[i]);
+            }
+            Items.Clear();
+        }
         base.Close();
     }
 

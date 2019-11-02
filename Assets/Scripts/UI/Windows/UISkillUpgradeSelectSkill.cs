@@ -33,8 +33,9 @@ public class UISkillUpgradeSelectSkill : UIWindow
 
     public override void SetSelect()
     {
-        base.SetSelect();
         Items[0].GetComponent<Button>().Select();
+        base.SetSelect();
+
     }
 
 
@@ -96,6 +97,65 @@ public class UISkillUpgradeSelectSkill : UIWindow
     }
 
 
+    private void RefreshSkillList()
+    {
+
+        foreach (GameObject inst in Items)
+        {
+            Skill skill = inst.GetComponent<UISelectableItem>().skill;
+            //var inst = Instantiate(Resources.Load<GameObject>("Prefab/UI/Buttons/UI_SkillToUpgrade"), content);
+            inst.GetComponent<UISelectableItem>().skill = skill;
+            inst.transform.Find("Image").GetComponent<Image>().sprite = skill.Icon;
+            inst.transform.Find("Text").GetComponent<Text>().text = skill.m_name;
+            inst.transform.Find("isEquiped").gameObject.SetActive(skill.isEquiped);
+
+            if (skill.upgradeChoice1 == 0)
+            {
+                inst.transform.Find("Up1").transform.localScale = Vector3.zero;
+            }
+            else if (skill.upgradeChoice1 == 1)
+            {
+                inst.transform.Find("Up1").transform.localScale = Vector3.one;
+                inst.transform.Find("Up1").GetComponent<Image>().sprite = skill.skillUpgrade11.sprite;
+            }
+
+            switch (skill.upgradeChoice2)
+            {
+                case 0:
+                    inst.transform.Find("Up2").transform.localScale = Vector3.zero;
+                    break;
+                case 1:
+                    inst.transform.Find("Up2").transform.localScale = Vector3.one;
+                    inst.transform.Find("Up2").GetComponent<Image>().sprite = skill.skillUpgrade21.sprite;
+                    break;
+                case 2:
+                    inst.transform.Find("Up2").transform.localScale = Vector3.one;
+                    inst.transform.Find("Up2").GetComponent<Image>().sprite = skill.skillUpgrade22.sprite;
+                    break;
+            }
+
+            switch (skill.upgradeChoice3)
+            {
+                case 0:
+                    inst.transform.Find("Up3").transform.localScale = Vector3.zero;
+                    break;
+                case 1:
+                    inst.transform.Find("Up3").transform.localScale = Vector3.one;
+                    inst.transform.Find("Up3").GetComponent<Image>().sprite = skill.skillUpgrade31.sprite;
+                    break;
+                case 2:
+                    inst.transform.Find("Up3").transform.localScale = Vector3.one;
+                    inst.transform.Find("Up3").GetComponent<Image>().sprite = skill.skillUpgrade32.sprite;
+                    break;
+            }
+
+            //Items.Add(inst);
+            //inst.transform.localPosition = pos0.localPosition - (pos1.localPosition - pos0.localPosition) * (Items.Count - 1);
+        }
+
+    }
+
+
     public override void OnClick(Button button)
     {
         if (isFocus)
@@ -115,5 +175,11 @@ public class UISkillUpgradeSelectSkill : UIWindow
         }
         Items.Clear();
         base.Close();
+    }
+
+    public override void Focus()
+    {
+        RefreshSkillList();
+        base.Focus();
     }
 }

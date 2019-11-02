@@ -28,7 +28,8 @@ public class UIWindow : MonoBehaviour
 
     public virtual void SetSelect()
     {
-       
+        UIWindowController.Instance.StopCoroutine("ArrowMove");
+        UIWindowController.Instance.StartCoroutine("ArrowMove");
 
     }
 
@@ -55,10 +56,9 @@ public class UIWindow : MonoBehaviour
 
 
         UIWindowController.Instance.ClearFocus();
-        SetSelect();
+        //SetSelect();
 
-        UIWindowController.Instance.StopCoroutine("ArrowMove");
-        UIWindowController.Instance.StartCoroutine("ArrowMove");
+
     }
 
     // Update is called once per frame
@@ -187,4 +187,15 @@ public class UIWindow : MonoBehaviour
         }
 
     }
+
+    ////触发确定取消弹窗
+    //public virtual IEnumerator OpenConfirmWindow()
+    //{
+    //    yield return new WaitUntil(UIWindowController.Instance.confirmWindow.Handler);
+    //    UIWindowController.Instance.confirmWindow.bSRD = false;
+
+
+    //}
+
+
 }

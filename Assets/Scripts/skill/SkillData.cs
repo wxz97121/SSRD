@@ -24,6 +24,6 @@ public class SkillData : ScriptableObject
     public SkillUpgrade skillUpgrade31;
     public SkillUpgrade skillUpgrade32;
 
-    public List<Sprite> UpgradeSprites;
+
 }
 

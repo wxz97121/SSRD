@@ -32,6 +32,10 @@ public class Player : Character {
     public int money=10;
     public TextMeshProUGUI UIMoneyNum;
 
+
+    //当前剩余技能点
+    public int skillPoint = 0;
+
     public SpecController spec;
 
     public Transform UIEquip;

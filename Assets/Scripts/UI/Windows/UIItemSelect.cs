@@ -33,8 +33,9 @@ public class UIItemSelect : UIWindow
 
     public override void SetSelect()
     {
-        base.SetSelect();
         Items[0].GetComponent<Button>().Select();
+
+        base.SetSelect();
     }
 
     

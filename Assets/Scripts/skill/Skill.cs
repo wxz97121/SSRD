@@ -178,6 +178,11 @@ public class Skill
             skillUpgrade31 = data.skillUpgrade31;
             skillUpgrade32 = data.skillUpgrade32;
 
+
+
+
+
+
         }
 
         if (mode == 1)
