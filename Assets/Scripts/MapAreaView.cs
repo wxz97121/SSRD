@@ -25,10 +25,7 @@ public class MapAreaView : MonoBehaviour
 
     }
 
-    public void OnClick()
-    {
-        area.Activate();
-    }
+
 
 
 

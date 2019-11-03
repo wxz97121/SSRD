@@ -53,19 +53,25 @@ public class MapController : MonoBehaviour
 
     void Start()
     {
-        
+        UIWindowController.Instance.mapWindow.transform.localScale = Vector3.zero;
+
+        UIWindowController.Instance.mapWindow.gameObject.SetActive(true);
+
         mapAreas = new List<MapArea>(mapCanvas.transform.GetComponentsInChildren<MapArea>());
         //mapAreas = mapCanvas.transform.GetComponentsInChildren<MapArea>();
         foreach (MapArea m in mapAreas)
         {
+            m.Init();
             if (m.m_VisitType == MapState.Current)
             {
                 currentMapArea = m;
+                Debug.Log("cur = " + m.AreaName);
             }
         }
         UpdateAreaVisitStateAll();
-        HideMap();
-        UIWindowController.Instance.mapWindow.gameObject.SetActive(false);
+        UIWindowController.Instance.mapWindow.Close();
+
+
 
     }
 
@@ -85,25 +91,8 @@ public class MapController : MonoBehaviour
 
     public void UpdateAreaVisitStateAll()
     {
+        UIWindowController.Instance.mapWindow.UpdateAreaVisitStateAll();
 
-        currentMapArea.m_VisitType = MapState.Current;
-
-        playerIcon.transform.localPosition = new Vector3(-180, 0, 0) + currentMapArea.view.transform.localPosition;
-
-        foreach (MapArea m in mapAreas)
-        {
-            m.UpdateAreaVisitState();
-        }
-        foreach (MapArea m in currentMapArea.LinkedMaps)
-        {
-            if (m.m_VisitType == MapState.Unlocked)
-            {
-                m.m_VisitType = MapState.Near;
-            }
-            m.UpdateAreaVisitState();
-        }
-
-        //todo:这里要增加解锁和显示隐藏的动画
 
     }
 
@@ -112,19 +101,40 @@ public class MapController : MonoBehaviour
 
     public void ShowMap()
     {
-        UIWindowController.Instance.mapWindow.Open();
-        UpdateAreaVisitStateAll();
 
-        UIWindowController.Instance.mapWindow.transform.localScale = Vector3.one;
+        StartCoroutine("ShowMapCR");
+
     }
     public void HideMap()
     {
-        UIWindowController.Instance.mapWindow.Close();
+        StartCoroutine("HideMapCR");
 
     }
 
-    public void CreateChapterMap()
+    public IEnumerator ShowMapCR()
     {
+        yield return StartCoroutine(UIWindowController.Instance.BlackIn());
+
+        //特殊处理，为了延迟关闭各种弹窗
+        UIWindowController.Instance.CloseAllExcept(UIWindowController.Instance.mapWindow);
+
+        UIWindowController.Instance.mapWindow.Open();
+
+
+        UpdateAreaVisitStateAll();
+
+        yield return StartCoroutine(UIWindowController.Instance.BlackOut());
+
+    }
+
+    public IEnumerator HideMapCR()
+    {
+        yield return StartCoroutine(UIWindowController.Instance.BlackIn());
+
+        UIWindowController.Instance.mapWindow.Close();
+        yield return StartCoroutine(UIWindowController.Instance.BlackOut());
+
+
 
     }
 }

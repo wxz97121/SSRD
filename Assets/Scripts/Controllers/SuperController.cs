@@ -343,7 +343,7 @@ public class SuperController : MonoBehaviour
         //Player.Instance.AddSkill(Resources.Load<SkillData>("Data/Skill/testSkill_00X_ATTACK"));
         Player.Instance.buffs.Clear();
         //SkillSelectUI();
-        MapController.Instance.CreateChapterMap();
+//        MapController.Instance.CreateChapterMap();
         MapController.Instance.ShowMap();
         UIWindowController.Instance.mainMenu.Close();
 

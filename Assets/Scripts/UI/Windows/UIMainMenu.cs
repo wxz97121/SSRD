@@ -17,7 +17,7 @@ public class UIMainMenu : UIWindow
         base.OnClick(button);
         if (button.name == "Start")
         {
-            Close();
+            //Close();
 
             SuperController.Instance.NextStep("start game");
 

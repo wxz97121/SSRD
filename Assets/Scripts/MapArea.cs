@@ -14,9 +14,10 @@ public class MapArea : MonoBehaviour
     public List<MapArea> LinkedMaps;
     public bool isVisited=false;
 
-    public void Start()
+    public void Init()
     {
         view = this.GetComponent<MapAreaView>();
+//        Debug.Log("get view");
         view.area = this;
         view.Init();
         InitShop();
@@ -88,6 +89,7 @@ public class MapArea : MonoBehaviour
             MapController.Instance.currentMapArea = this;
 
             //isVisited =true;
+
 
             MapController.Instance.HideMap();
         }

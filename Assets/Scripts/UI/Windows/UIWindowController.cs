@@ -28,7 +28,7 @@ public class UIWindowController : MonoBehaviour
     public UIConfirmWindow confirmWindow;
     public Image arrow;
 
-
+    public Image blackCurtain;
 
 
     #region 单例
@@ -60,7 +60,8 @@ public class UIWindowController : MonoBehaviour
             itemSelect,
             shopWindow,
             SkillUpgradeSelectSkill,
-            upgradeSkill
+            upgradeSkill,
+            confirmWindow
         };
 
 
@@ -102,6 +103,17 @@ public class UIWindowController : MonoBehaviour
         foreach(UIWindow w in windows)
         {
             w.isFocus = false;
+        }
+    }
+
+    public void CloseAllExcept(UIWindow win)
+    {
+        foreach (UIWindow w in windows)
+        {
+            if (w != win)
+            {
+                w.Close();
+            }
         }
     }
 
@@ -151,29 +163,16 @@ public class UIWindowController : MonoBehaviour
         float timecount = 0f;
         float a = 0f;
         //todo 每个按钮要增加箭头指示位置
-        Vector3 vector3;
-        GameObject oldGO;
-        Vector3 oldoffset;
+
+
         Vector3 startpos;
-        if (lastselect != null)
-        {
-            oldGO = lastselect;
-            oldoffset = new Vector3(oldGO.GetComponent<RectTransform>().rect.width/2f, oldGO.GetComponent<RectTransform>().rect.height/2f, 0f);
-            startpos = oldGO.transform.position;
-        }
-        else
-        {
-            oldoffset = new Vector3(0f, 0f, 0f);
-            startpos = new Vector3(0f, 0f, 90f);
-        }
+
+
         startpos = arrow.transform.position;
         GameObject GO = EventSystem.current.currentSelectedGameObject;
-        Vector3 newoffset = new Vector3(GO.GetComponent<RectTransform>().rect.width/2f, GO.GetComponent<RectTransform>().rect.height/2f, 0f);
+
 
         Vector3 gopos = GO.transform.position;
-
-        Vector3 offset;
-
 
 
 
@@ -187,35 +186,65 @@ public class UIWindowController : MonoBehaviour
             if (a > 1) { a = 1; }
 
 
-
-
-
             arrow.transform.position= Vector3.Lerp(
                     startpos,
                     gopos,
                     a
             );
 
-            offset = Vector3.Lerp(
-                    oldoffset,
-                    newoffset,
-                    a
-            );
-
-
-            vector3=arrow.GetComponent<RectTransform>().anchoredPosition;
-            //arrow.GetComponent<RectTransform>().anchoredPosition = vector3 - offset;
-
-      //      Debug.Log("start pos : " + startpos);
-
-      //      Debug.Log("end pos : " + gopos);
-
-
-
-
-
         }
       //  EventSystem.current.sendNavigationEvents = true;
+
+    }
+
+    public IEnumerator BlackIn()
+    {
+        Debug.Log("start black flash 2");
+
+        float time = 0.2f;
+        float timecount = 0f;
+        float a;
+        Debug.Log("start black flash 3");
+
+        while (timecount <= time/2)
+        {
+                    Debug.Log("start black flash 3");
+
+            yield return new WaitForSeconds(Time.deltaTime);
+            timecount += Time.deltaTime;
+
+            a = -(timecount * timecount) / (time * time) + 2 * timecount / time;
+            if (a > 1) { a = 1; }
+
+
+            blackCurtain.color = new Color(0f, 0f, 0f, a);
+            Debug.Log(blackCurtain.color);
+        }
+    }
+
+    public IEnumerator BlackOut()
+    {
+        Debug.Log("start black flash 2");
+
+        float time = 0.2f;
+        float timecount = 0f;
+        float a;
+        Debug.Log("start black flash 3");
+
+        while (timecount <= time / 2)
+        {
+            Debug.Log("start black flash 3");
+
+            yield return new WaitForSeconds(Time.deltaTime);
+            timecount += Time.deltaTime;
+
+            a = -(timecount * timecount) / (time * time) + 2 * timecount / time;
+            if (a > 1) { a = 1; }
+
+
+            blackCurtain.color = new Color(0f, 0f, 0f, 1-a);
+            Debug.Log(blackCurtain.color);
+        }
 
     }
 

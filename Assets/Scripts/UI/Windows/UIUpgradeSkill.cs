@@ -278,7 +278,7 @@ public class UIUpgradeSkill : UIWindow
         base.Init();
 
 
-        InitInfo();
+        //InitInfo();
     }
 
 
