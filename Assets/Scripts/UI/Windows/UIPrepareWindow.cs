@@ -19,7 +19,9 @@ public class UIPrepareWindow : UIWindow
     public Text textATK;
     public Text textDEF;
     public Text textMoney;
-    public Text textNote;
+    public Text textSkillPoint;
+
+    public UISkillDesc skillDesc;
 
     public Text textDesc;
 
@@ -57,7 +59,7 @@ public class UIPrepareWindow : UIWindow
                 Debug.Log("222");
                 foreach (Equipment equipment in Player.Instance.equipmentList)
                 {
-                    Debug.Log("equiptype : " + equipment.type + "   item type : " + item.equipment.type);
+//                    Debug.Log("equiptype : " + equipment.type + "   item type : " + item.equipment.type);
                     if (equipment.type == item.equipment.type)
                     {
                         hasitem = true;
@@ -84,15 +86,43 @@ public class UIPrepareWindow : UIWindow
     public override void OnSelect(Button button)
     {
         base.OnSelect(button);
+        UpdateDesc(button);
+    }
+
+    //更新右侧的详情
+    public void UpdateDesc(Button button)
+    {
         if (button.GetComponent<UISelectableItem>().type == 1)
         {
-            textDesc.text = button.GetComponent<UISelectableItem>().skill.Desc;
+            if (button.GetComponent<UISelectableItem>().skill.Icon != null)
+            {
+                skillDesc.gameObject.SetActive(true);
+                textDesc.gameObject.SetActive(false);
+
+                skillDesc.Init(button.GetComponent<UISelectableItem>().skill);
+            }
+            else
+            {
+                skillDesc.gameObject.SetActive(false);
+                textDesc.gameObject.SetActive(false);
+            }
+
 
         }
         if (button.GetComponent<UISelectableItem>().type == 2)
         {
-            textDesc.text = button.GetComponent<UISelectableItem>().equipment.equipDesc;
+            if (button.GetComponent<UISelectableItem>().equipment.equipDesc != null)
+            {
+                skillDesc.gameObject.SetActive(false);
+                textDesc.gameObject.SetActive(true);
+                textDesc.text = button.GetComponent<UISelectableItem>().equipment.equipDesc;
 
+            }
+            else
+            {
+                skillDesc.gameObject.SetActive(false);
+                textDesc.gameObject.SetActive(false);
+            }
         }
     }
 
@@ -190,7 +220,9 @@ public class UIPrepareWindow : UIWindow
         }
         else
         {
-            buttonEquipWeapon.GetComponent<UISelectableItem>().equipment = new Equipment { type = equipType.Weapon };
+            buttonEquipWeapon.GetComponent<UISelectableItem>().equipment = ScriptableObject.CreateInstance<Equipment>();
+            buttonEquipWeapon.GetComponent<UISelectableItem>().equipment.type = equipType.Weapon;
+            buttonEquipWeapon.GetComponent<UISelectableItem>().equipment.equipDesc = "";
             buttonEquipWeapon.GetComponent<UISelectableItem>().type = 2;
             buttonEquipWeapon.transform.Find("Image").GetComponent<Image>().sprite = null;
         }
@@ -203,7 +235,9 @@ public class UIPrepareWindow : UIWindow
         }
         else
         {
-            buttonEquipCloth.GetComponent<UISelectableItem>().equipment = new Equipment { type = equipType.Cloth };
+            buttonEquipCloth.GetComponent<UISelectableItem>().equipment = ScriptableObject.CreateInstance<Equipment>();
+            buttonEquipCloth.GetComponent<UISelectableItem>().equipment.type = equipType.Cloth;
+            buttonEquipCloth.GetComponent<UISelectableItem>().equipment.equipDesc = "";
             buttonEquipCloth.GetComponent<UISelectableItem>().type = 2;
             buttonEquipCloth.transform.Find("Image").GetComponent<Image>().sprite = null;
         }
@@ -216,7 +250,11 @@ public class UIPrepareWindow : UIWindow
         }
         else
         {
-            buttonEquipAmulet.GetComponent<UISelectableItem>().equipment = new Equipment { type = equipType.Amulet };
+            buttonEquipAmulet.GetComponent<UISelectableItem>().equipment = ScriptableObject.CreateInstance<Equipment>();
+            buttonEquipAmulet.GetComponent<UISelectableItem>().equipment.type = equipType.Amulet;
+            buttonEquipAmulet.GetComponent<UISelectableItem>().equipment.equipDesc = "";
+
+
             buttonEquipAmulet.GetComponent<UISelectableItem>().type = 2;
             buttonEquipAmulet.transform.Find("Image").GetComponent<Image>().sprite = null;
         }
@@ -227,6 +265,7 @@ public class UIPrepareWindow : UIWindow
     {
         base.Focus();
         InitInfo();
+        UpdateDesc(tempselect.GetComponent<Button>());
     }
 
 }

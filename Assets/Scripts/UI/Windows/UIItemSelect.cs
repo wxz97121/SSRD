@@ -12,6 +12,9 @@ public class UIItemSelect : UIWindow
     public Button targetButton;
     public List<GameObject> Items;
 
+    public UISkillDesc skillDesc;
+
+    public Text textDesc;
 
     public void Open(Button button)
     {
@@ -50,6 +53,8 @@ public class UIItemSelect : UIWindow
                 {
                     var inst = Instantiate(Resources.Load<GameObject>("Prefab/UI/Buttons/UI_Item1"), content);
                     inst.GetComponent<UISelectableItem>().skill = skill;
+                    inst.GetComponent<UISelectableItem>().type = 1;
+
                     inst.transform.Find("Image").GetComponent<Image>().sprite = skill.Icon;
                     inst.transform.Find("Text").GetComponent<Text>().text = skill.m_name;
                     inst.transform.Find("isEquiped").gameObject.SetActive(skill.isEquiped);
@@ -61,16 +66,18 @@ public class UIItemSelect : UIWindow
             }
         }else if(item.type == 2)
         {
-            Debug.Log("222");
+
             foreach (Equipment equipment in Player.Instance.equipmentList)
             {
                 Debug.Log("equiptype : " + equipment.type + "   item type : " + item.equipment.type);
                 if (equipment.type == item.equipment.type)
                 {
-                    Debug.Log("333");
+
 
                     var inst = Instantiate(Resources.Load<GameObject>("Prefab/UI/Buttons/UI_Item1"), content);
                     inst.GetComponent<UISelectableItem>().equipment = equipment;
+                    inst.GetComponent<UISelectableItem>().type = 2;
+
                     inst.transform.Find("Image").GetComponent<Image>().sprite = equipment.Icon;
                     inst.transform.Find("Text").GetComponent<Text>().text = equipment.name;
                     inst.transform.Find("isEquiped").gameObject.SetActive(equipment.isEquiped);
@@ -131,4 +138,58 @@ public class UIItemSelect : UIWindow
         Items.Clear();
         base.Close();
     }
+
+
+    //更新右侧的详情
+    public void UpdateDesc(Button button)
+    {
+        if (button.GetComponent<UISelectableItem>().type == 1)
+        {
+
+            if (button.GetComponent<UISelectableItem>().skill.Icon != null)
+            {
+                skillDesc.gameObject.SetActive(true);
+                textDesc.gameObject.SetActive(false);
+
+                skillDesc.Init(button.GetComponent<UISelectableItem>().skill);
+            }
+            else
+            {
+
+                skillDesc.gameObject.SetActive(false);
+                textDesc.gameObject.SetActive(false);
+            }
+
+
+        }
+        if (button.GetComponent<UISelectableItem>().type == 2)
+        {
+            if (button.GetComponent<UISelectableItem>().equipment.equipDesc != null)
+            {
+                skillDesc.gameObject.SetActive(false);
+                textDesc.gameObject.SetActive(true);
+                textDesc.text = button.GetComponent<UISelectableItem>().equipment.equipDesc;
+
+            }
+            else
+            {
+                skillDesc.gameObject.SetActive(false);
+                textDesc.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    public override void Focus()
+    {
+        base.Focus();
+        UpdateDesc(tempselect.GetComponent<Button>());
+
+    }
+
+    public override void OnSelect(Button button)
+    {
+        base.OnSelect(button);
+        UpdateDesc(button);
+    }
+
 }

@@ -67,7 +67,7 @@ public class UISkillTipBarController : MonoBehaviour
         instSkillTip.GetComponent<UISkillTipBar>().beatsThisBar = 4;
         instSkillTip.GetComponent<UISkillTipBar>().skill = skill;
 
-//        Debug.Log("skill name = " + instSkillTip.GetComponent<UISkillTipBar>().skill.m_name);
+        //Debug.Log("skill name = " + instSkillTip.GetComponent<UISkillTipBar>().skill.m_name);
 
         instSkillTip.GetComponent<UISkillTipBar>().Init();
 

@@ -11,6 +11,12 @@ public class UIShopWindow : UIWindow
     public Shop shop;
     public List<GameObject> Items;
 
+    public Text moneyText;
+
+    public UISkillDesc skillDesc;
+    public Text EquipDesc;
+
+
     public void Open(Shop p_shop)
     {
         gameObject.SetActive(true);
@@ -40,6 +46,9 @@ public class UIShopWindow : UIWindow
 
     private void ShowGoodsList()
     {
+
+        moneyText.text = Player.Instance.money.ToString();
+
         Debug.Log("show list ");
         if (Items.Count > 0)
         {
@@ -84,6 +93,9 @@ public class UIShopWindow : UIWindow
 
     private void RefreshGoodsList()
     {
+        moneyText.text = Player.Instance.money.ToString();
+
+
         foreach (GameObject inst in Items)
         {
             Goods g = inst.GetComponent<UISelectableItem>().goods;
@@ -127,6 +139,8 @@ public class UIShopWindow : UIWindow
         RefreshGoodsList();
 
         base.Focus();
+        UpdateDesc(tempselect.GetComponent<Button>());
+
     }
 
     public override void Close()
@@ -148,5 +162,37 @@ public class UIShopWindow : UIWindow
         Color tempcolor = go.transform.Find("Text").GetComponent<Text>().color;
         go.transform.Find("Text").GetComponent<Text>().color = new Color(tempcolor.r, tempcolor.g, tempcolor.b, 0.5f);
         go.transform.Find("Text_price").GetComponent<Text>().text = "sold";
+    }
+
+
+    public override void OnSelect(Button button)
+    {
+//        Debug.Log("button.GetComponent<UISelectableItem>().type == 1" + button.GetComponent<UISelectableItem>().type);
+
+        base.OnSelect(button);
+        UpdateDesc(button);
+    }
+
+
+
+
+    //更新右侧的详情
+    public void UpdateDesc(Button button)
+    {
+        if (button.GetComponent<UISelectableItem>().goods.type == GoodsType.skill)
+        {
+            skillDesc.gameObject.SetActive(true);
+            EquipDesc.gameObject.SetActive(false);
+
+            skillDesc.Init(new Skill(button.GetComponent<UISelectableItem>().goods.skill));
+
+        }
+        if (button.GetComponent<UISelectableItem>().goods.type == GoodsType.equipment)
+        {
+            skillDesc.gameObject.SetActive(false);
+            EquipDesc.gameObject.SetActive(true);
+            EquipDesc.text = button.GetComponent<UISelectableItem>().goods.equipment.equipDesc;
+
+        }
     }
 }

@@ -15,7 +15,7 @@ public class UISkillTipBar : MonoBehaviour {
     //本小节拍子数
     public float beatsThisBar;
     //指针
-    public GameObject pin;
+    //public GameObject pin;
     //背景
     public Image bg;
 
@@ -118,59 +118,59 @@ public class UISkillTipBar : MonoBehaviour {
     }
 
     //指针移动
-    public void PinMoving(float barposinbeat)
-    {
-        // Debug.Log("barpos="+ barposinbeat);
-        // Debug.Log("beatsThisBar=" + beatsThisBar);
-        if (!active)
-        {
-            return;
-        }
+    //public void PinMoving(float barposinbeat)
+    //{
+    //    // Debug.Log("barpos="+ barposinbeat);
+    //    // Debug.Log("beatsThisBar=" + beatsThisBar);
+    //    if (!active)
+    //    {
+    //        return;
+    //    }
 
-        //处理位置
-        pin.transform.localPosition = Vector2.Lerp
-        (
-            startPos- (oneBeatSpace),
-            startPos+ (oneBeatSpace *(beatsThisBar+0.3f)),
-            (barposinbeat+ 1) / (beatsThisBar+ 1.3f)
+    //    //处理位置
+    //    pin.transform.localPosition = Vector2.Lerp
+    //    (
+    //        startPos- (oneBeatSpace),
+    //        startPos+ (oneBeatSpace *(beatsThisBar+0.3f)),
+    //        (barposinbeat+ 1) / (beatsThisBar+ 1.3f)
             
-        );
+    //    );
 
 
-        //处理透明度 两头渐隐
-        if (barposinbeat<-1)
-        {
-            SetPinAlpha(0);
+    //    //处理透明度 两头渐隐
+    //    if (barposinbeat<-1)
+    //    {
+    //        SetPinAlpha(0);
 
-        }
-        else if(barposinbeat<0)
-        {
-            float a = Mathf.Lerp(
-            1,
-            0,
-            -barposinbeat / 1
-            );
-            SetPinAlpha(a);
-        }else if(barposinbeat> beatsThisBar)
-        {
-            float a = Mathf.Lerp(
-            1,
-            0,
-            (barposinbeat-beatsThisBar) / 0.3f
-            );
-            SetPinAlpha(a);
-        }
-        else
-        {
-            SetPinAlpha(1);
-        }
-    }
+    //    }
+    //    else if(barposinbeat<0)
+    //    {
+    //        float a = Mathf.Lerp(
+    //        1,
+    //        0,
+    //        -barposinbeat / 1
+    //        );
+    //        SetPinAlpha(a);
+    //    }else if(barposinbeat> beatsThisBar)
+    //    {
+    //        float a = Mathf.Lerp(
+    //        1,
+    //        0,
+    //        (barposinbeat-beatsThisBar) / 0.3f
+    //        );
+    //        SetPinAlpha(a);
+    //    }
+    //    else
+    //    {
+    //        SetPinAlpha(1);
+    //    }
+    //}
 
-    public void SetPinAlpha(float a)
-    {
-        Color tempcolor = pin.GetComponent<Image>().color;
-        pin.GetComponent<Image>().color = new Color(tempcolor.r,tempcolor.g,tempcolor.b,a);
-    }
+    //public void SetPinAlpha(float a)
+    //{
+    //    Color tempcolor = pin.GetComponent<Image>().color;
+    //    pin.GetComponent<Image>().color = new Color(tempcolor.r,tempcolor.g,tempcolor.b,a);
+    //}
 
 
     //设置显示透明度
@@ -208,7 +208,7 @@ public class UISkillTipBar : MonoBehaviour {
             Destroy(linelist[0].gameObject);
             linelist.RemoveAt(0);
         }
-        pin.transform.localPosition = startPos;
+        //pin.transform.localPosition = startPos;
        
     }
 
