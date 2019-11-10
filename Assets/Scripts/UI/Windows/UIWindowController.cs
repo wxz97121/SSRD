@@ -112,7 +112,7 @@ public class UIWindowController : MonoBehaviour
         {
             if (w != win)
             {
-                w.Close();
+                w.Close(false);
             }
         }
     }
@@ -243,7 +243,7 @@ public class UIWindowController : MonoBehaviour
 
 
             blackCurtain.color = new Color(0f, 0f, 0f, 1-a);
-            Debug.Log(blackCurtain.color);
+//            Debug.Log(blackCurtain.color);
         }
 
     }

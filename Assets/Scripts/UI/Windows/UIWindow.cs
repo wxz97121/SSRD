@@ -137,26 +137,41 @@ public class UIWindow : MonoBehaviour
     }
 
     //窗口关闭
-    public virtual void  Close()
+    public virtual void  Close(bool isChange=true)
     {
         transform.localScale = Vector3.zero;
         Debug.Log("lastwindow : " + lastWindow+"  thiswindow : "+this);
-        if (lastWindow != null)
+
+        //关闭后会切换UI
+        if (isChange)
         {
-            lastWindow.Focus();
+            if (lastWindow != null)
+            {
+                lastWindow.Focus();
+            }
+            else
+            {
+                Debug.Log("clear focusWindow");
+
+                UIWindowController.Instance.focusWindow = null;
+                Debug.Log("focusWindow : " + UIWindowController.Instance.focusWindow);
+
+                UIWindowController.Instance.arrow.transform.localScale = Vector3.zero;
+            }
         }
         else
         {
-            Debug.Log("clear focusWindow");
-
             UIWindowController.Instance.focusWindow = null;
-            Debug.Log("focusWindow : "+ UIWindowController.Instance.focusWindow);
-
             UIWindowController.Instance.arrow.transform.localScale = Vector3.zero;
         }
+
+
         isFocus = false;
         gameObject.SetActive(false);
     }
+
+
+
 
     //窗口失去焦点
     public void Unfocus()

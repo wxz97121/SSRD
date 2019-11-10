@@ -129,14 +129,14 @@ public class UIItemSelect : UIWindow
 
     }
 
-    public override void Close()
+    public override void Close(bool isChange=true)
     {
         foreach (GameObject go in Items)
         {
             Destroy(go);
         }
         Items.Clear();
-        base.Close();
+        base.Close(isChange);
     }
 
 

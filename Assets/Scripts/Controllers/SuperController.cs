@@ -24,6 +24,7 @@ public class SuperController : MonoBehaviour
 {
     //流程
     public string StoryStep = "fresh new";
+    public List<string> FinishedStorySteps;
 
     public GameObject m_Canvas;
     [HideInInspector]
@@ -38,8 +39,7 @@ public class SuperController : MonoBehaviour
     //在暂停时储存暂停前的状态
     public GameState tempstate;
     public bool pausing;
-    //SRDTap
-    public SrdTap SRDTap;
+
 
     public GameState state;
     //主菜单UI
@@ -91,6 +91,8 @@ public class SuperController : MonoBehaviour
 
         playerBattleInfo = playerBattleUIPos.GetComponentInChildren<UIBattleInfo>();
         enemyBattleInfo = enemyBattleUIPos.GetComponentInChildren<UIBattleInfo>();
+
+        FinishedStorySteps = new List<string>();
 
         InputSequenceController.Instance.ResetAvailable();
 
@@ -294,13 +296,60 @@ public class SuperController : MonoBehaviour
             case "start game":
                 //Story.PlayStoryAnim("Story1");
                 SuperController.Instance.NextStep("teaching");
+                FinishedStorySteps.Add("start game");
                 break;
             case "teaching":
                 MapController.Instance.ShowMap();
+                FinishedStorySteps.Add("teaching");
 
                 break;
             case "lesson1finished":
-                MapController.Instance.mapAreas.Find(a => a.AreaName == "安贞医院").m_VisitType = MapState.Unlocked;
+                if (MapController.Instance.mapAreas.Find(a => a.AreaName == "安贞医院").m_VisitType == MapState.Locked)
+                {
+                    MapController.Instance.mapAreas.Find(a => a.AreaName == "安贞医院").m_VisitType = MapState.Unlocked;
+                }
+                FinishedStorySteps.Add("lesson1finished");
+
+                break;
+
+            case "anzhenyiyuan_finished":
+                if (MapController.Instance.mapAreas.Find(a => a.AreaName == "北土城").m_VisitType == MapState.Locked)
+                {
+                    MapController.Instance.mapAreas.Find(a => a.AreaName == "北土城").m_VisitType = MapState.Unlocked;
+                }
+                if (MapController.Instance.mapAreas.Find(a => a.AreaName == "环宇会").m_VisitType == MapState.Locked)
+                {
+                    MapController.Instance.mapAreas.Find(a => a.AreaName == "环宇会").m_VisitType = MapState.Unlocked;
+                }
+                FinishedStorySteps.Add("anzhenyiyuan_finished");
+
+                break;
+
+            case "beitucheng_finished":
+                if (MapController.Instance.mapAreas.Find(a => a.AreaName == "奥体中心").m_VisitType == MapState.Locked)
+                {
+                    MapController.Instance.mapAreas.Find(a => a.AreaName == "奥体中心").m_VisitType = MapState.Unlocked;
+                }
+
+                FinishedStorySteps.Add("beitucheng_finished");
+
+                break;
+
+            case "huanyuhui_finished":
+                if (MapController.Instance.mapAreas.Find(a => a.AreaName == "小关").m_VisitType == MapState.Locked)
+                {
+                    MapController.Instance.mapAreas.Find(a => a.AreaName == "小关").m_VisitType = MapState.Unlocked;
+                }
+
+                FinishedStorySteps.Add("huanyuhui_finished");
+
+                break;
+            case "aotizhongxin_finished":
+
+
+
+                FinishedStorySteps.Add("aotizhongxin_finished");
+
                 break;
             default:
                 Debug.LogError("can not find step : " + p_storystep);
@@ -310,9 +359,9 @@ public class SuperController : MonoBehaviour
     #endregion
 
     #region 非主线剧情关键点时调用
-    public void Happen(string p_storystep)
+    public void SideStoryHappen(string p_storystep)
     {
-        Debug.Log("Happen : " + p_storystep);
+        Debug.Log("SideStoryHappen : " + p_storystep);
         //todo:支线流程在这控制吧
         switch (p_storystep)
         {
@@ -441,8 +490,24 @@ public class SuperController : MonoBehaviour
 
         }
 
-        UIWindowController.Instance.winWindow.desc.text = "获得 ";
-        //UIWindowController.Instance.winWindow.desc.text = "获得 "+ levelData.AwardSkill._name +" "+ levelData.AwardEquip.name;
+        //UIWindowController.Instance.winWindow.desc.text = "获得 ";p
+        string s_skill="";
+        string s_equip="";
+        string s_money = "";
+
+        if (levelData.AwardSkill != null)
+        {
+            s_skill = " skill:"+levelData.AwardSkill._name+" ";
+        }
+        if (levelData.AwardEquip != null)
+        {
+            s_equip = " equipment:" + levelData.AwardSkill._name+" ";
+        }
+        if (levelData.AwardMoney >0)
+        {
+            s_money = " money:" + levelData.AwardMoney.ToString() + " ";
+        }
+        UIWindowController.Instance.winWindow.desc.text = s_skill+s_equip+ s_money;
 
         UIWindowController.Instance.winWindow.title.text = "牛逼！"+ levelData.AreaName + " Clear !";
 

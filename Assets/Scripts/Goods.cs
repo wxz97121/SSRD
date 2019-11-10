@@ -45,6 +45,12 @@ public class Goods
                     UIWindowController.Instance.noticeWindow.Open("Now You Have " + equipment.name);
 
                     break;
+
+                case GoodsType.note:
+                    Player.Instance.NotePower+=1;
+                    UIWindowController.Instance.noticeWindow.Open("You Bought " + "1 Note Power");
+
+                    break;
             }
             Player.Instance.money -= price;
             isSold = true;

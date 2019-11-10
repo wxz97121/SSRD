@@ -16,6 +16,8 @@ public class UIShopWindow : UIWindow
     public UISkillDesc skillDesc;
     public Text EquipDesc;
 
+    public Sprite notepower_spr;
+
 
     public void Open(Shop p_shop)
     {
@@ -79,6 +81,18 @@ public class UIShopWindow : UIWindow
                 inst.name = g.equipment.name;
 
             }
+
+            if (g.type == GoodsType.note)
+            {
+                inst.GetComponent<UISelectableItem>().goods = g;
+                inst.transform.Find("Image").GetComponent<Image>().sprite = notepower_spr;
+                inst.transform.Find("Text").GetComponent<Text>().text = "Note Power";
+                inst.name = "NotePower";
+
+            }
+
+
+
             inst.transform.Find("Text_price").GetComponent<Text>().text = g.price.ToString();
             if (g.isSold)
             {
@@ -115,6 +129,15 @@ public class UIShopWindow : UIWindow
                 inst.name = g.equipment.name;
 
             }
+
+            if (g.type == GoodsType.note)
+            {
+                inst.GetComponent<UISelectableItem>().goods = g;
+                inst.transform.Find("Image").GetComponent<Image>().sprite = notepower_spr;
+                inst.transform.Find("Text").GetComponent<Text>().text = "Note Power";
+                inst.name = "NotePower";
+
+            }
             inst.transform.Find("Text_price").GetComponent<Text>().text = g.price.ToString();
             if (g.isSold)
             {
@@ -143,7 +166,7 @@ public class UIShopWindow : UIWindow
 
     }
 
-    public override void Close()
+    public override void Close(bool isChange=true)
     {
         if (Items.Count > 0)
         {
@@ -153,7 +176,7 @@ public class UIShopWindow : UIWindow
             }
             Items.Clear();
         }
-        base.Close();
+        base.Close(isChange);
     }
 
     private void SetSold(GameObject go)
@@ -192,6 +215,14 @@ public class UIShopWindow : UIWindow
             skillDesc.gameObject.SetActive(false);
             EquipDesc.gameObject.SetActive(true);
             EquipDesc.text = button.GetComponent<UISelectableItem>().goods.equipment.equipDesc;
+
+        }
+
+        if (button.GetComponent<UISelectableItem>().goods.type == GoodsType.note)
+        {
+            skillDesc.gameObject.SetActive(false);
+            EquipDesc.gameObject.SetActive(true);
+            EquipDesc.text = "To Upgrade Skills";
 
         }
     }

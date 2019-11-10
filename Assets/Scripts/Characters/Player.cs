@@ -34,7 +34,7 @@ public class Player : Character {
 
 
     //当前剩余技能点
-    public int skillPoint = 0;
+    public int NotePower = 0;
 
     public SpecController spec;
 
@@ -108,13 +108,13 @@ public class Player : Character {
         AddSkill("testSkill_0ZX_DEFEND");
         EquipSkill(1, skillList[1]);
 
-        AddSkill("testSkill_0ZX_ACCDEFEND");
+        //AddSkill("testSkill_0ZX_ACCDEFEND");
 
 
-        AddSkill("SUPERSUPERATTACK");
-        AddSkill("PIERCEATTACK1");
+        //AddSkill("SUPERSUPERATTACK");
+        //AddSkill("PIERCEATTACK1");
 
-        AddEquip("Jacket");
+        //AddEquip("Jacket");
     }
 
     // Update is called once per frame

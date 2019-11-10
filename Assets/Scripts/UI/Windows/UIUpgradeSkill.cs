@@ -55,10 +55,10 @@ public class UIUpgradeSkill : UIWindow
     public void InitInfo()
     {
         skill = targetButton.GetComponent<UISelectableItem>().skill;
-        pointText.text = Player.Instance.skillPoint.ToString();
-//        Debug.Log(skill.m_name);
+        pointText.text = Player.Instance.NotePower.ToString();
+        //        Debug.Log(skill.m_name);
 
-        button11.transform.Find("Icon").GetComponent<Image>().sprite = skill.skillUpgrade11.sprite; 
+        button11.transform.Find("Icon").GetComponent<Image>().sprite = skill.skillUpgrade11.sprite;
         button21.transform.Find("Icon").GetComponent<Image>().sprite = skill.skillUpgrade21.sprite;
         button22.transform.Find("Icon").GetComponent<Image>().sprite = skill.skillUpgrade22.sprite;
         button31.transform.Find("Icon").GetComponent<Image>().sprite = skill.skillUpgrade31.sprite;
@@ -159,13 +159,13 @@ public class UIUpgradeSkill : UIWindow
 
     public override void OnClick(Button button)
     {
-        
+
         if (isFocus)
         {
 
-            if (button.name == "Button11"&&skill.upgradeChoice1==0)
+            if (button.name == "Button11" && skill.upgradeChoice1 == 0)
             {
-                if (Player.Instance.skillPoint >= price11)
+                if (Player.Instance.NotePower >= price11)
                 {
                     StartCoroutine(SelectUpgrade(11));
 
@@ -180,7 +180,7 @@ public class UIUpgradeSkill : UIWindow
             if (button.name == "Button21" && skill.upgradeChoice2 == 0 && skill.upgradeChoice1 > 0)
             {
 
-                if (Player.Instance.skillPoint >= price21)
+                if (Player.Instance.NotePower >= price21)
                 {
                     StartCoroutine(SelectUpgrade(21));
 
@@ -191,10 +191,10 @@ public class UIUpgradeSkill : UIWindow
 
                 }
             }
-            if (button.name == "Button22" && skill.upgradeChoice2 == 0&&skill.upgradeChoice1>0)
+            if (button.name == "Button22" && skill.upgradeChoice2 == 0 && skill.upgradeChoice1 > 0)
             {
 
-                if (Player.Instance.skillPoint >= price22)
+                if (Player.Instance.NotePower >= price22)
                 {
                     StartCoroutine(SelectUpgrade(22));
 
@@ -206,10 +206,10 @@ public class UIUpgradeSkill : UIWindow
                 }
             }
 
-            if (button.name == "Button31" && skill.upgradeChoice3 == 0&&skill.upgradeChoice2>0)
+            if (button.name == "Button31" && skill.upgradeChoice3 == 0 && skill.upgradeChoice2 > 0)
             {
 
-                if (Player.Instance.skillPoint >= price31)
+                if (Player.Instance.NotePower >= price31)
                 {
                     StartCoroutine(SelectUpgrade(31));
 
@@ -223,7 +223,7 @@ public class UIUpgradeSkill : UIWindow
 
             if (button.name == "Button32" && skill.upgradeChoice3 == 0 && skill.upgradeChoice2 > 0)
             {
-                if (Player.Instance.skillPoint >= price32)
+                if (Player.Instance.NotePower >= price32)
                 {
                     StartCoroutine(SelectUpgrade(32));
 
@@ -304,7 +304,7 @@ public class UIUpgradeSkill : UIWindow
 
 
 
-        UIWindowController.Instance.confirmWindow.Open("test confirm",this);
+        UIWindowController.Instance.confirmWindow.Open("test confirm", this);
         yield return new WaitUntil(UIWindowController.Instance.confirmWindow.Handler);
         UIWindowController.Instance.confirmWindow.bSRD = false;
         switch (number)
@@ -312,32 +312,31 @@ public class UIUpgradeSkill : UIWindow
             case 11:
 
                 SkillUpgrade.UpgradeSkill(11, skill);
-                    
-                    Player.Instance.skillPoint -= price11;
+                Player.Instance.NotePower -= price11;
 
                 break;
             case 21:
 
                 SkillUpgrade.UpgradeSkill(21, skill);
-                Player.Instance.skillPoint -= price21;
+                Player.Instance.NotePower -= price21;
 
                 break;
             case 22:
 
                 SkillUpgrade.UpgradeSkill(22, skill);
-                Player.Instance.skillPoint -= price22;
-                
+                Player.Instance.NotePower -= price22;
+
                 break;
             case 31:
 
                 SkillUpgrade.UpgradeSkill(31, skill);
-                Player.Instance.skillPoint -= price31;
+                Player.Instance.NotePower -= price31;
 
                 break;
             case 32:
 
                 SkillUpgrade.UpgradeSkill(32, skill);
-                Player.Instance.skillPoint -= price32;
+                Player.Instance.NotePower -= price32;
 
                 break;
         }

@@ -18,5 +18,5 @@ MonoBehaviour:
     name: "\u7AF9\u55B5"
     content: "\u54C8\u54C8\u54C8\u7B54\u5BF9\u5566\uFF01"
     effstring:
-    - showmap
+    - startfight
     options: []

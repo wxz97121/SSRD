@@ -10,25 +10,37 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 365983ec174af46a082905a11036cd07, type: 3}
-  m_Name: TestShop
+  m_Name: TestShop2
   m_EditorClassIdentifier: 
   m_name: 
   goods:
   - datapath: 
     type: 1
-    price: 10
-    skill: {fileID: 11400000, guid: 43fca907991854b99b1a8134485a37b6, type: 2}
-    equipment: {fileID: 0}
-    isSold: 1
-  - datapath: 
-    type: 1
-    price: 5
-    skill: {fileID: 11400000, guid: 70c94c18c0ffc4998b32f2309e815186, type: 2}
+    price: 3
+    skill: {fileID: 11400000, guid: 4dd3de6ef86b14ad084e9bc2919194d5, type: 2}
     equipment: {fileID: 0}
     isSold: 1
   - datapath: 
     type: 2
-    price: 100
+    price: 8
+    skill: {fileID: 0}
+    equipment: {fileID: 11400000, guid: 3e5d28d9676e644e2b62996daad09c21, type: 2}
+    isSold: 1
+  - datapath: 
+    type: 2
+    price: 8
     skill: {fileID: 0}
     equipment: {fileID: 11400000, guid: e3218c1e1c94e49259d15b2e8e7f5061, type: 2}
+    isSold: 0
+  - datapath: 
+    type: 5
+    price: 4
+    skill: {fileID: 0}
+    equipment: {fileID: 11400000, guid: c94b7de4f3a454e1dac34349f8ee0e50, type: 2}
+    isSold: 0
+  - datapath: 
+    type: 5
+    price: 5
+    skill: {fileID: 0}
+    equipment: {fileID: 0}
     isSold: 0

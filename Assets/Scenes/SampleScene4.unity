@@ -3099,7 +3099,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -455, y: -205}
+  m_AnchoredPosition: {x: -548, y: -203}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &249284696
@@ -3254,8 +3254,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 668, y: 26.700012}
-  m_SizeDelta: {x: 312.9, y: 53.399994}
+  m_AnchoredPosition: {x: 627, y: 26.700012}
+  m_SizeDelta: {x: 333.7, y: 53.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &264238734
 MonoBehaviour:
@@ -3288,7 +3288,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Point
+  m_Text: Note Power
 --- !u!222 &264238735
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3791,7 +3791,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045222711}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5222,7 +5222,7 @@ RectTransform:
   - {fileID: 1497438155}
   - {fileID: 249284695}
   m_Father: {fileID: 2045222711}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -11781,7 +11781,7 @@ RectTransform:
   - {fileID: 192828966}
   - {fileID: 1647738163}
   m_Father: {fileID: 2045222711}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -17920,6 +17920,7 @@ MonoBehaviour:
   moneyText: {fileID: 451085037}
   skillDesc: {fileID: 828145008}
   EquipDesc: {fileID: 661101514}
+  notepower_spr: {fileID: 21300000, guid: 7f9ae3f673e694418bfc378fd10639a6, type: 3}
 --- !u!1 &1577626305
 GameObject:
   m_ObjectHideFlags: 0
@@ -18068,6 +18069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StoryStep: 
+  FinishedStorySteps: []
   m_Canvas: {fileID: 0}
   levelData: {fileID: 0}
   commentController: {fileID: 0}
@@ -18075,7 +18077,6 @@ MonoBehaviour:
   uiBarController: {fileID: 0}
   tempstate: 0
   pausing: 0
-  SRDTap: {fileID: 0}
   state: 0
   mainMenu: {fileID: 916387497}
   skillSelectUI: {fileID: 0}
@@ -18981,7 +18982,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 2045222711}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -22081,7 +22082,7 @@ MonoBehaviour:
     isEquiped: 0
   money: 30
   UIMoneyNum: {fileID: 60550191}
-  skillPoint: 5
+  NotePower: 0
   spec: {fileID: 242401760}
   UIEquip: {fileID: 2873717}
   enemyList: []
@@ -22606,11 +22607,11 @@ RectTransform:
   - {fileID: 1600055066}
   - {fileID: 194067826}
   - {fileID: 1876949653}
+  - {fileID: 1483135006}
   - {fileID: 916387497}
   - {fileID: 427736228}
   - {fileID: 334696684}
   - {fileID: 1670886428}
-  - {fileID: 1483135006}
   - {fileID: 1398576535}
   - {fileID: 1009640278}
   - {fileID: 108998661}
@@ -24013,7 +24014,7 @@ PrefabInstance:
     - target: {fileID: 6749404979679625505, guid: 84b10fca8c6cb4aaba589da28da80059,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6749404979679625505, guid: 84b10fca8c6cb4aaba589da28da80059,
         type: 3}
@@ -24166,7 +24167,7 @@ PrefabInstance:
         type: 3}
       propertyPath: levelData
       value: 
-      objectReference: {fileID: 11400000, guid: 1011eb46171f3419f8020d99206e2382,
+      objectReference: {fileID: 11400000, guid: a72711ea4198c4919968ac78fd496aed,
         type: 2}
     - target: {fileID: 8305833903720383879, guid: e5a592088cbc14e28b7d8868735ed9f4,
         type: 3}
@@ -24197,7 +24198,7 @@ PrefabInstance:
         type: 3}
       propertyPath: levelData
       value: 
-      objectReference: {fileID: 11400000, guid: 2cfa9fc8eb7b847babc007f2c871757b,
+      objectReference: {fileID: 11400000, guid: 16a668ea2879145068c5cd7342ecac8e,
         type: 2}
     - target: {fileID: 1045870913022105476, guid: e5a592088cbc14e28b7d8868735ed9f4,
         type: 3}
@@ -24333,7 +24334,7 @@ PrefabInstance:
         type: 3}
       propertyPath: levelData
       value: 
-      objectReference: {fileID: 11400000, guid: 28bd8629ba055494693987b648bfebc8,
+      objectReference: {fileID: 11400000, guid: aa51de7bccc924723839dbe165414a2b,
         type: 2}
     - target: {fileID: 471597154169917712, guid: e5a592088cbc14e28b7d8868735ed9f4,
         type: 3}
@@ -24364,7 +24365,7 @@ PrefabInstance:
         type: 3}
       propertyPath: levelData
       value: 
-      objectReference: {fileID: 11400000, guid: bf3b0ce3e2e254a3c9b6f48616f56a60,
+      objectReference: {fileID: 11400000, guid: 731489173e38148c99d09c27bbaf7136,
         type: 2}
     - target: {fileID: 5526731168459471208, guid: e5a592088cbc14e28b7d8868735ed9f4,
         type: 3}
@@ -24400,7 +24401,7 @@ PrefabInstance:
         type: 3}
       propertyPath: levelData
       value: 
-      objectReference: {fileID: 11400000, guid: cd0bf59c721888f44b899d61bf1d6a47,
+      objectReference: {fileID: 11400000, guid: 1d88e40ba7543410fb0321dcde30ec54,
         type: 2}
     - target: {fileID: 3504000619965200354, guid: e5a592088cbc14e28b7d8868735ed9f4,
         type: 3}

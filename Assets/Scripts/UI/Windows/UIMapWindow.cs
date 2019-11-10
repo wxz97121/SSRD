@@ -40,6 +40,9 @@ public class UIMapWindow : UIWindow
             }
             m.UpdateAreaVisitState();
         }
+
+
+
         //todo:这里要增加解锁和显示隐藏的动画
     }
 

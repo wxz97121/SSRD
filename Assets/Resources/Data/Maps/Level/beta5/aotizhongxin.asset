@@ -10,18 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5139e7cf22169455291dad706ec6f035, type: 3}
-  m_Name: lessonLevel1
+  m_Name: aotizhongxin
   m_EditorClassIdentifier: 
-  AreaName: XiaoGuan
+  AreaName: aotizhongxin
   scoreData: {fileID: 11400000, guid: 0440950d86df8420794bb8b7ae20d8c9, type: 2}
   enemyList:
   - Minimon1
+  - Minimon2
+  - Minimon1
+  - Minimon3
   BGMPath: event:/music/core
   LevelType: 0
-  AwardSkill: {fileID: 11400000, guid: 9768a1d9c4b3b40a2a403dc02350b52d, type: 2}
+  AwardSkill: {fileID: 0}
   AwardEquip: {fileID: 0}
-  AwardMoney: 10
-  PreStory: {fileID: 11400000, guid: dfb43526630734c11a304f31c2c94afb, type: 2}
-  AfterStory: {fileID: 11400000, guid: 8a1b465d6ea304783ba2ff89e26add20, type: 2}
-  NextStoryStep: lesson1finished
-  shopData: {fileID: 11400000, guid: ab9d73a29e36444e5b13b98c4163ac3c, type: 2}
+  AwardMoney: 30
+  PreStory: {fileID: 0}
+  AfterStory: {fileID: 0}
+  NextStoryStep: aotizhongxin_finished
+  shopData: {fileID: 0}
