@@ -139,5 +139,7 @@ public class MapArea : MonoBehaviour
             view.GetComponent<Image>().color = Color.white;
             view.GetComponent<Button>().interactable = true;
         }
+
+        view.RefreshInfo();
     }
 }

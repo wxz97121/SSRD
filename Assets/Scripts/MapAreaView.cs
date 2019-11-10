@@ -8,6 +8,10 @@ public class MapAreaView : MonoBehaviour
 {
     public MapArea area = null;
     public Text text;
+    public Image newAreaTag;
+    public Image shopTag;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +20,7 @@ public class MapAreaView : MonoBehaviour
 
     public void Init()
     {
-        text.text = area.AreaName;
+        RefreshInfo();
     }
 
     // Update is called once per frame
@@ -25,7 +29,27 @@ public class MapAreaView : MonoBehaviour
 
     }
 
+    public void RefreshInfo()
+    {
+        text.text = area.AreaName;
 
+        if (area.isVisited == false&&area.m_VisitType!=MapState.Locked)
+        {
+            newAreaTag.transform.localScale = Vector3.one;
+        }
+        else
+        {
+            newAreaTag.transform.localScale = Vector3.zero;
+        }
+        if (area.levelData.shopData != null)
+        {
+            shopTag.transform.localScale = Vector3.one;
+        }
+        else
+        {
+            shopTag.transform.localScale = Vector3.zero;
+        }
+    }
 
 
 
