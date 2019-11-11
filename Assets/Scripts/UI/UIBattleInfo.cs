@@ -6,7 +6,7 @@ public class UIBattleInfo : MonoBehaviour
 {
     public Character chara;
     public UIEnergyCells energyCells;
-    public UIHPArea hPArea;
+    //public UIHPArea hPArea;
     public UILifeArea lifeArea;
     public UISoulArea soulArea;
 
@@ -31,7 +31,8 @@ public class UIBattleInfo : MonoBehaviour
         {
             energyCells.init();
         }
-        hPArea.init(chara);
+        transform.localScale = Vector3.one;
+        //hPArea.init(chara);
         lifeArea.init(chara);
         soulArea.init(chara);
 

@@ -8,10 +8,13 @@ using TMPro;
 
 public class UILifeArea : MonoBehaviour
 {
+    public Image container;
     public Image image;
     public int maxLife;
     public TextMeshProUGUI lifeNum;
     public int Life;
+    float sizePerLife = 11.25f;
+
     public float fill;
     public Character chara;
     public Image delayimage;
@@ -32,11 +35,11 @@ public class UILifeArea : MonoBehaviour
         }
         //HP发生变化
         if (chara != null) { 
-        if (chara.life != Life)
-        {
-            Animate(chara.life);
+            if (chara.life != Life)
+            {
+                Animate(chara.life);
                 StartCoroutine(IDelayAnimate(chara.life/(float)chara.maxLife));
-        }
+            }
         Life = chara.life;
         lifeNum.text = Life.ToString() + "/" + maxLife.ToString();
 
@@ -50,16 +53,23 @@ public class UILifeArea : MonoBehaviour
         {
             maxLife = chara.maxLife;
             Life = chara.life;
+            float sizeX = container.GetComponent<RectTransform>().sizeDelta.x;
+            float sizeY = container.GetComponent<RectTransform>().sizeDelta.y;
+
+
+            container.GetComponent<RectTransform>().sizeDelta = maxLife < 50 ? new Vector2(sizeX + (sizePerLife * (maxLife - 1)), sizeY) : new Vector2(sizeX + (sizePerLife * (50 - 1)), sizeY);
+
             image.fillAmount = Life / (float)maxLife;
+            delayimage.fillAmount= Life / (float)maxLife;
             lifeNum.text = Life.ToString()+"/"+maxLife.ToString();
         }
     }
 
     //血量变化动画
-    public void Animate(int hp)
+    public void Animate(int lf)
     {
-        fill = (float)hp / (float)maxLife;
-        image.DOFillAmount(fill, 0.2f).SetEase(Ease.InQuad);
+        fill = (float)lf / (float)maxLife;
+        image.DOFillAmount(fill, 0.1f).SetEase(Ease.InQuad);
     }
 
     IEnumerator IDelayAnimate(float _fill)
