@@ -48,6 +48,7 @@ MonoBehaviour:
   spr_hp: {fileID: 21300014, guid: 2ead5eca57cdb4f5c8a17f50c6b603ff, type: 3}
   spr_mp: {fileID: 21300000, guid: 2ead5eca57cdb4f5c8a17f50c6b603ff, type: 3}
   spr_life: {fileID: 21300002, guid: 2ead5eca57cdb4f5c8a17f50c6b603ff, type: 3}
+  spr_money: {fileID: 21300000, guid: 6ba7134bec0780f46bc3e185b916dd59, type: 3}
   text: {fileID: 1497397396178217299}
   sprite: {fileID: 7804006796242782660}
 --- !u!1 &5293647441280097183
@@ -122,6 +123,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -160,8 +162,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: '45
 
 '
@@ -312,6 +312,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0

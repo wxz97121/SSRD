@@ -9,7 +9,8 @@ public enum BubbleSprType
     empty,
     hp,
     mp,
-    life
+    life,
+    money
 
 }
 public class Bubble : MonoBehaviour
@@ -17,6 +18,8 @@ public class Bubble : MonoBehaviour
     public Sprite spr_hp;
     public Sprite spr_mp;
     public Sprite spr_life;
+    public Sprite spr_money;
+
 
     public TextMeshPro text;
     public SpriteRenderer sprite;
@@ -57,6 +60,12 @@ public class Bubble : MonoBehaviour
             case BubbleSprType.life:
                 bub.sprite.sprite = bub.spr_life;
                 bub.sprite.color = new Color(255f / 255f, 76f / 255f, 76f / 255f,1f);
+
+
+                break;
+            case BubbleSprType.money:
+                bub.sprite.sprite = bub.spr_money;
+                bub.sprite.color = Color.white;
 
 
                 break;

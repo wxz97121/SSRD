@@ -224,16 +224,16 @@ public class UIWindowController : MonoBehaviour
 
     public IEnumerator BlackOut()
     {
-        Debug.Log("start black flash 2");
+//        Debug.Log("start black flash 2");
 
         float time = 0.2f;
         float timecount = 0f;
         float a;
-        Debug.Log("start black flash 3");
+//        Debug.Log("start black flash 3");
 
         while (timecount <= time / 2)
         {
-            Debug.Log("start black flash 3");
+//            Debug.Log("start black flash 3");
 
             yield return new WaitForSeconds(Time.deltaTime);
             timecount += Time.deltaTime;

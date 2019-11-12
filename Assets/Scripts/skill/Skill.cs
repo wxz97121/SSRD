@@ -114,6 +114,12 @@ public class Skill
                 case ("TBD"):
                     TBD(int.Parse(InstancedEff[1]),m_Char);
                     break;
+
+                //杀死对手+1钱 ADD MONEY WHEN KILL
+                case ("AMWK"):
+                    AMWK(m_Char);
+                    break;
+
                 //全力一击
                 case ("ALLMPATK"):
                     ALLMPATK(m_Char);
@@ -136,7 +142,9 @@ public class Skill
                     AUTO(InstancedEff[1], m_Char as Player);
                     break;
                 default:
+
                     break;
+                    
             }
         }
     }
@@ -239,6 +247,7 @@ public class Skill
         bool isDefenceToDisable = false;
         bool isDefencePenetrate = false;
         string sfxstr = "SLASH";
+        string fxstr = "NORMAL";
         string[] InstancedEffstr = effstr.Split('&');
         foreach(string s in InstancedEffstr)
         {
@@ -248,6 +257,7 @@ public class Skill
                     dDamage = int.Parse(s.Split(':')[1]);
                     break;
                 case ("NAA"):
+                    //不触发结束攻击效果
                     noAfterattack = true;
                     break;
                 case ("IDTD"):
@@ -259,12 +269,17 @@ public class Skill
                     isDefencePenetrate = true;
                     break;
                 case ("sfx"):
+                    //攻击音效
+                    sfxstr = s.Split(':')[1];
+                    break;
+                case ("fx"):
+                    //攻击特效
                     sfxstr = s.Split(':')[1];
                     break;
 
             }
         }
-        Char.Hit( dDamage,  noAfterattack ,  isDefenceToDisable,  isDefencePenetrate,  sfxstr);
+        Char.Hit( dDamage,  noAfterattack ,  isDefenceToDisable,  isDefencePenetrate,  sfxstr,fxstr);
     }
 
 
@@ -322,6 +337,16 @@ public class Skill
 
         Buff_tripledamage buff =new Buff_tripledamage();
         buff.BuffAdded(Char);
+
+    }
+
+    
+    public void AMWK(Character Char)
+    {
+
+        Debug.Log("技能：AMWK");
+        Buff_addmoneywhendie buff = new Buff_addmoneywhendie();
+        buff.BuffAdded(Char.mTarget.GetComponent<Character>());
 
     }
 

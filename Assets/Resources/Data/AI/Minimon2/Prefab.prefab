@@ -627,7 +627,7 @@ MonoBehaviour:
   skillGroupSeq: []
   animator: {fileID: 0}
   originPosition: {x: 0, y: 0, z: 0}
-  lootMoney: 1
+  lootMoney: 0
   isReadyToDie: 0
 --- !u!114 &7358456351069039335
 MonoBehaviour:

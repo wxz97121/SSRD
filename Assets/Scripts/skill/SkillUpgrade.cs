@@ -47,10 +47,10 @@ public class SkillUpgrade
 
         }
 
-        //2级 B选项 每打一下加一块钱
+        //2级 B选项 还是加一攻击力
         if (choice == 22)
         {
-            //todo:加一钱
+            skill.EffectStr = skill.EffectStr.Replace("ATK_2", "ATK_3");
             skill.upgradeChoice2 = 2;
 
         }
@@ -58,15 +58,7 @@ public class SkillUpgrade
         //3级 A选项 加2攻击力
         if (choice == 31)
         {
-            if (skill.EffectStr.Contains("ATK_2"))
-            {
-                skill.EffectStr = skill.EffectStr.Replace("ATK_2", "ATK_4");
-
-            }
-            else
-            {
-                skill.EffectStr = skill.EffectStr.Replace("ATK_3", "ATK_5");
-            }
+            skill.EffectStr = skill.EffectStr += ",AMWK";
             skill.upgradeChoice3 = 1;
 
         }

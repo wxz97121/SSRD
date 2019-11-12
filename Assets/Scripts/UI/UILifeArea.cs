@@ -13,7 +13,7 @@ public class UILifeArea : MonoBehaviour
     public int maxLife;
     public TextMeshProUGUI lifeNum;
     public int Life;
-    float sizePerLife = 11.25f;
+    float sizePerLife = 60f - 44.84f;
 
     public float fill;
     public Character chara;

@@ -101,4 +101,9 @@ public class Buff
 
     }
 
+    public virtual void WhenDie(Character p_chara)
+    {
+
+    }
+
 }

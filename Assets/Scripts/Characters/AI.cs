@@ -75,7 +75,7 @@ public class AI : Character
     //敌人死亡的时候从玩家的目标列表中去除，然后销毁模型和ui
     override public void Die()
     {
-
+        base.Die();
         gameObject.AddComponent<VFX>();
         VFX vfx = gameObject.GetComponent<VFX>();
 //        Destroy(UIHpNum.transform.parent.gameObject);

@@ -131,7 +131,11 @@ public class Player : Character {
     }
 
 
-
+    public void AddMoney(int dM)
+    {
+        money += dM;
+        Bubble.AddBubble(BubbleSprType.money, "+"+dM.ToString(), this, true);
+    }
 
 
     public override void BattleStart()

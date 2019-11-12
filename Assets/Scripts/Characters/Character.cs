@@ -99,7 +99,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    virtual public void Hit(int dDamage, bool noAfterattack=false,bool isDefenceToDisable= false,bool isDefencePenetrate = false,string sfxstr="SLASH")
+    virtual public void Hit(int dDamage, bool noAfterattack=false,bool isDefenceToDisable= false,bool isDefencePenetrate = false,string sfxstr="SLASH",string fxstr="NORMAL")
     {
         //普通攻击目标
         if (mTarget != null)
@@ -120,7 +120,7 @@ public class Character : MonoBehaviour
                 {
 
 
-                    //被防反;
+                    //被防到硬直;
                     if (isDefenceToDisable)
                     {
                         GameObject fxClone = Instantiate(Resources.Load("VFX/DefendBig"), cTarget.transform.position, Quaternion.identity) as GameObject;
@@ -130,6 +130,7 @@ public class Character : MonoBehaviour
                     }
                     else
                     {
+                        //被防住
                         GameObject fxClone = Instantiate(Resources.Load("VFX/Defend"), cTarget.transform.Find("pos_defendfx").transform.position, Quaternion.identity) as GameObject;
                         fxClone.transform.localScale = new Vector3(3f * cTarget.transform.Find("pos_defendfx").transform.localScale.x, 3f, 3f);
 
@@ -195,40 +196,8 @@ public class Character : MonoBehaviour
 
         //        lastAction = actionType.Hit;
     }
-    /*
-    virtual public bool Hit(int dDamage,bool nothaveAfterattack)
-    {
-        //普通攻击目标
-        if (mTarget != null)
-        {
-            Character cTarget = mTarget.GetComponent<Character>();
-            //判断对方护盾
-            if (cTarget.hasBuff<Buff_oneTimeShield>())
-            {
-                cTarget.transform.Find("oneTimeShield").GetComponent<VFX>().StartCoroutine("FadeOutLarger");
-                cTarget.RemoveBuff<Buff_oneTimeShield>();
-                return false;
-            }
-            else if (cTarget.hasBuff<Buff_defend>())
-            {
-                Instantiate(Resources.Load("VFX/Shield"), cTarget.transform.position, Quaternion.identity);
-                return false;
-            }
-            else
-            {
-   
 
-                Instantiate(Resources.Load("VFX/Slash"), cTarget.transform.position, Quaternion.identity);
-                cTarget.Damage(CalcDmg(getCurrentATK(), cTarget.getCurrentDEF(), dDamage), this);
 
-                return true;
-            }
-        }
-
-        //        lastAction = actionType.Hit;
-        return true;
-    }
-    */
 
 
 
@@ -257,6 +226,14 @@ public class Character : MonoBehaviour
     //死亡
     virtual public void Die()
     {
+        List<Buff> tempbuffs = new List<Buff>();
+        tempbuffs.AddRange(buffs);
+        foreach (Buff b in tempbuffs)
+        {
+            Debug.Log("When Die");
+
+            b.WhenDie(this);
+        }
     }
     //受到伤害(以后名字要改下)
     virtual public void Damage(int dDamage, Character source)
