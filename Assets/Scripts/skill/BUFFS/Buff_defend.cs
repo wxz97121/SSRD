@@ -13,6 +13,7 @@ public class Buff_defend : Buff
         base.BuffAdded(p_chara,str);
 
         EffStr = str.Replace('$','_');
+        EffStr = EffStr.Replace(';',',');
 
 
 

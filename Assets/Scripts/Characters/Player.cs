@@ -102,12 +102,15 @@ public class Player : Character {
 
 
         //测试
-        AddSkill("testSkill_00X_ATTACK");
+        AddSkill("ATTACK");
         EquipSkill(0, skillList[0]);
 //        Debug.Log(skillSlots[0].skill);
-        AddSkill("testSkill_0ZX_DEFEND");
+        AddSkill("DEFEND");
         EquipSkill(1, skillList[1]);
 
+        AddSkill("testSkill_0ZX_ACCDEFEND");
+        //EquipSkill(1, skillList[1]);
+        
         //AddSkill("testSkill_0ZX_ACCDEFEND");
 
 

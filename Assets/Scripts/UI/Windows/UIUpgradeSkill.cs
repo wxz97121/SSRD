@@ -11,7 +11,7 @@ public class UIUpgradeSkill : UIWindow
 
     public Button button11;
     public Button button21;
-    public Button button22;
+    //public Button button22;
     public Button button31;
     public Button button32;
 
@@ -60,19 +60,19 @@ public class UIUpgradeSkill : UIWindow
 
         button11.transform.Find("Icon").GetComponent<Image>().sprite = skill.skillUpgrade11.sprite;
         button21.transform.Find("Icon").GetComponent<Image>().sprite = skill.skillUpgrade21.sprite;
-        button22.transform.Find("Icon").GetComponent<Image>().sprite = skill.skillUpgrade22.sprite;
+        //button22.transform.Find("Icon").GetComponent<Image>().sprite = skill.skillUpgrade22.sprite;
         button31.transform.Find("Icon").GetComponent<Image>().sprite = skill.skillUpgrade31.sprite;
         button32.transform.Find("Icon").GetComponent<Image>().sprite = skill.skillUpgrade32.sprite;
 
         button11.transform.Find("Text").GetComponent<Text>().text = skill.skillUpgrade11.name;
         button21.transform.Find("Text").GetComponent<Text>().text = skill.skillUpgrade21.name;
-        button22.transform.Find("Text").GetComponent<Text>().text = skill.skillUpgrade22.name;
+        //button22.transform.Find("Text").GetComponent<Text>().text = skill.skillUpgrade22.name;
         button31.transform.Find("Text").GetComponent<Text>().text = skill.skillUpgrade31.name;
         button32.transform.Find("Text").GetComponent<Text>().text = skill.skillUpgrade32.name;
 
         button11.transform.Find("Price").GetComponent<Text>().text = price11.ToString();
         button21.transform.Find("Price").GetComponent<Text>().text = price21.ToString();
-        button22.transform.Find("Price").GetComponent<Text>().text = price22.ToString();
+        //button22.transform.Find("Price").GetComponent<Text>().text = price22.ToString();
         button31.transform.Find("Price").GetComponent<Text>().text = price31.ToString();
         button32.transform.Find("Price").GetComponent<Text>().text = price32.ToString();
 
@@ -94,32 +94,32 @@ public class UIUpgradeSkill : UIWindow
                 if (skill.upgradeChoice1 == 0)
                 {
                     button21.GetComponent<Image>().sprite = disablespr;
-                    button22.GetComponent<Image>().sprite = disablespr;
+                    //button22.GetComponent<Image>().sprite = disablespr;
 
                     button21.spriteState = ssDisable;
-                    button22.spriteState = ssDisable;
+                    //button22.spriteState = ssDisable;
                 }
                 else
                 {
                     button21.GetComponent<Image>().sprite = normalspr;
-                    button22.GetComponent<Image>().sprite = normalspr;
+                    //button22.GetComponent<Image>().sprite = normalspr;
                     button21.spriteState = ssNormal;
-                    button22.spriteState = ssNormal;
+                    //button22.spriteState = ssNormal;
                 }
                 break;
             case 1:
                 button21.GetComponent<Image>().sprite = activespr;
-                button22.GetComponent<Image>().sprite = disablespr;
+                //button22.GetComponent<Image>().sprite = disablespr;
                 button21.spriteState = ssActive;
-                button22.spriteState = ssDisable;
+                //button22.spriteState = ssDisable;
 
                 break;
-            case 2:
-                button21.GetComponent<Image>().sprite = disablespr;
-                button22.GetComponent<Image>().sprite = activespr;
-                button21.spriteState = ssDisable;
-                button22.spriteState = ssActive;
-                break;
+            //case 2:
+            //    button21.GetComponent<Image>().sprite = disablespr;
+            //    button22.GetComponent<Image>().sprite = activespr;
+            //    button21.spriteState = ssDisable;
+            //    button22.spriteState = ssActive;
+            //    break;
         }
 
         switch (skill.upgradeChoice3)
@@ -254,11 +254,11 @@ public class UIUpgradeSkill : UIWindow
                 textDesc.text = skill.skillUpgrade21.desc;
 
                 break;
-            case "Button22":
+            //case "Button22":
 
-                textDesc.text = skill.skillUpgrade22.desc;
+            //    textDesc.text = skill.skillUpgrade22.desc;
 
-                break;
+            //    break;
             case "Button31":
 
                 textDesc.text = skill.skillUpgrade31.desc;

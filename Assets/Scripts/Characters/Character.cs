@@ -139,7 +139,9 @@ public class Character : MonoBehaviour
                     }
 
                     //释放防御成功带的技能
-                    cTarget.CastSkill((cTarget.buffs.Find((Buff obj) => obj.m_name == "defend") as Buff_defend).EffStr);
+                    string defskillstr = (cTarget.buffs.Find((Buff obj) => obj.m_name == "defend") as Buff_defend).EffStr;
+                    cTarget.CastSkill(defskillstr);
+                    Debug.Log("防御成功附带技能：" + defskillstr);
                     ishit = false;
                 }
 

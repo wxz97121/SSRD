@@ -34,7 +34,7 @@ public class Skill
     //升级项目
     public SkillUpgrade skillUpgrade11;
     public SkillUpgrade skillUpgrade21;
-    public SkillUpgrade skillUpgrade22;
+    //public SkillUpgrade skillUpgrade22;
     public SkillUpgrade skillUpgrade31;
     public SkillUpgrade skillUpgrade32;
 
@@ -182,7 +182,7 @@ public class Skill
 
             skillUpgrade11 = data.skillUpgrade11;
             skillUpgrade21 = data.skillUpgrade21;
-            skillUpgrade22 = data.skillUpgrade22;
+            //skillUpgrade22 = data.skillUpgrade22;
             skillUpgrade31 = data.skillUpgrade31;
             skillUpgrade32 = data.skillUpgrade32;
 
@@ -393,7 +393,7 @@ public class Skill
     public void ENG(int dMP, Player player)
     {
 
-
+        Debug.Log("ENG + "+dMP);
         player.AddMp(dMP);
     }
 

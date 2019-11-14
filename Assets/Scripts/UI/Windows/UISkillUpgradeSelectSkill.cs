@@ -87,10 +87,10 @@ public class UISkillUpgradeSelectSkill : UIWindow
                     inst.transform.Find("Up2").transform.localScale = Vector3.one;
                     inst.transform.Find("Up2").GetComponent<Image>().sprite = skill.skillUpgrade21.sprite;
                     break;
-                case 2:
-                    inst.transform.Find("Up2").transform.localScale = Vector3.one;
-                    inst.transform.Find("Up2").GetComponent<Image>().sprite = skill.skillUpgrade22.sprite;
-                    break;
+                //case 2:
+                //    inst.transform.Find("Up2").transform.localScale = Vector3.one;
+                //    inst.transform.Find("Up2").GetComponent<Image>().sprite = skill.skillUpgrade22.sprite;
+                //    break;
             }
 
             switch (skill.upgradeChoice3)
@@ -153,10 +153,10 @@ public class UISkillUpgradeSelectSkill : UIWindow
                     inst.transform.Find("Up2").transform.localScale = Vector3.one;
                     inst.transform.Find("Up2").GetComponent<Image>().sprite = skill.skillUpgrade21.sprite;
                     break;
-                case 2:
-                    inst.transform.Find("Up2").transform.localScale = Vector3.one;
-                    inst.transform.Find("Up2").GetComponent<Image>().sprite = skill.skillUpgrade22.sprite;
-                    break;
+                //case 2:
+                //    inst.transform.Find("Up2").transform.localScale = Vector3.one;
+                //    inst.transform.Find("Up2").GetComponent<Image>().sprite = skill.skillUpgrade22.sprite;
+                //    break;
             }
 
             switch (skill.upgradeChoice3)

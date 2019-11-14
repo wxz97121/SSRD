@@ -87,4 +87,19 @@ public class UIMapMenu : UIWindow
 
     }
 
+    public override void Focus()
+    {
+        base.Focus();
+        if (mapArea.levelData.shopData == null)
+        {
+            buttons.Find(a => a.name == "Shop").enabled=false;
+
+        }
+        else
+        {
+            buttons.Find(a => a.name == "Shop").enabled = true;
+
+        }
+    }
+
 }

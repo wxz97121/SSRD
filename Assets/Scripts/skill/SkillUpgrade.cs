@@ -19,6 +19,9 @@ public class SkillUpgrade
             case "ATTACK":
                 Attack(choice, skill);
                 break;
+            case "DEFEND":
+                Defend(choice, skill);
+                break;
         }
     }
 
@@ -35,8 +38,8 @@ public class SkillUpgrade
 
             skill.EffectStr=skill.EffectStr.Replace("ATK_1", "ATK_2");
             skill.upgradeChoice1 = 1;
-            Debug.Log("1111111");
-            Debug.Log(skill.m_name + " " + skill.EffectStr);
+
+//            Debug.Log(skill.m_name + " " + skill.EffectStr);
         }
 
         //2级 A选项 加一攻击力
@@ -47,13 +50,8 @@ public class SkillUpgrade
 
         }
 
-        //2级 B选项 还是加一攻击力
-        if (choice == 22)
-        {
-            skill.EffectStr = skill.EffectStr.Replace("ATK_2", "ATK_3");
-            skill.upgradeChoice2 = 2;
 
-        }
+
 
         //3级 A选项 加2攻击力
         if (choice == 31)
@@ -74,6 +72,46 @@ public class SkillUpgrade
 
     }
 
+    public static void Defend(int choice, Skill skill)
+    {
+        //1级 A选项 防住返1费
+        if (choice == 11)
+        {
+            Debug.Log(skill.m_name + " " + skill.EffectStr);
 
+            skill.EffectStr = skill.EffectStr.Replace("DEF", "DEF_ENG$4");
+            skill.upgradeChoice1 = 1;
+
+        }
+
+        //2级 A选项 防住返1费
+        if (choice == 21)
+        {
+            skill.EffectStr = skill.EffectStr.Replace("DEF_ENG$4", "DEF_ENG$8");
+            skill.upgradeChoice2 = 1;
+
+        }
+
+
+
+
+        //3级 A选项 防住则反弹2伤害
+        if (choice == 31)
+        {
+            skill.EffectStr = skill.EffectStr.Replace("DEF_ENG$8", "DEF_ENG$8;ATK$2");
+            skill.upgradeChoice3 = 1;
+
+        }
+
+        //3级 B选项 减1费
+        if (choice == 32)
+        {
+            skill.cost -= 4;
+            skill.upgradeChoice3 = 2;
+
+        }
+
+
+    }
 
 }
