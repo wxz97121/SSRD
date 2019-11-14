@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf25b2aeb1e6b4c3a8f5b1efea2d3300, type: 3}
-  m_Name: SUPERSUPERATTACK
+  m_Name: CHARGEATTACK
   m_EditorClassIdentifier: 
   type: 4
   sprite: {fileID: 21300000, guid: dd4c9eba7bf1c4d72bf632e9f94c5081, type: 3}
-  _name: SUPER HEAVY DMG
-  cost: 8
+  _name: CHARGE_ATTACK
+  cost: 12
   inputSequence:
   - type: 21
     note: {fileID: 0}
@@ -43,4 +43,24 @@ MonoBehaviour:
     MissSkill: 
   Effect: AUTO_ANI=player-readytoslash>ANI=player-readytoslash>ANI=player-readytoslash>ANI=player-slash;ATK=6;VFX=SlashDownBig=7/1/0,ANI_player-readytoslash
   CD: 0
-  Desc: "\u8D85\u91CD\u51FB\uFF1A\u84C4\u529B\u4E00\u56DE\u5408\uFF0C\u6D88\u80172\u80FD\u91CF\uFF0C\u8FDB\u884C6\u70B9\u653B\u51FB"
+  Desc: "\u8D85\u91CD\u51FB\uFF1A\u84C4\u529B\u4E00\u56DE\u5408\uFF0C\u6D88\u80172\u80FD\u91CF\uFF0C\u8FDB\u884C\u8D85\u5F3A\u653B\u51FB"
+  skillUpgrade11:
+    sprite: {fileID: 2146727467498953082, guid: cbd840081a26d43e3bfd3d078492ac20,
+      type: 3}
+    name: "\u65391"
+    desc: "\u51CF\u5C111\u70B9\u80FD\u91CF\u6D88\u8017"
+  skillUpgrade21:
+    sprite: {fileID: 5229205700533093654, guid: cbd840081a26d43e3bfd3d078492ac20,
+      type: 3}
+    name: "\u65392"
+    desc: "\u589E\u52A0\u653B\u51FB\u529B"
+  skillUpgrade31:
+    sprite: {fileID: 5851721822939561029, guid: cbd840081a26d43e3bfd3d078492ac20,
+      type: 3}
+    name: "\u65393A"
+    desc: "\u84C4\u529B\u65F6\u88AB\u653B\u51FB\u4E0D\u53D7\u4F24\u5BB3"
+  skillUpgrade32:
+    sprite: {fileID: 2648894973301529397, guid: cbd840081a26d43e3bfd3d078492ac20,
+      type: 3}
+    name: "\u65393B"
+    desc: "\u51FB\u6655\u5BF9\u624B1\u5C0F\u8282"

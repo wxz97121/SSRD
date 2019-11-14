@@ -108,9 +108,11 @@ public class Player : Character {
         AddSkill("DEFEND");
         EquipSkill(1, skillList[1]);
 
-        AddSkill("testSkill_0ZX_ACCDEFEND");
+        AddSkill("HEAVYATTACK");
+        AddSkill("CHARGEATTACK");
+
         //EquipSkill(1, skillList[1]);
-        
+
         //AddSkill("testSkill_0ZX_ACCDEFEND");
 
 

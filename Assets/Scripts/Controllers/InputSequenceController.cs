@@ -271,8 +271,22 @@ public class InputSequenceController : MonoBehaviour
                         //                        Debug.Log("输入正确之后的发招 " +skill.m_name+" "+ skill.EffectStr);
                         skill.Cooldown = skill.CooldownMax;
 
-                        DuelController.Instance.SkillJudge(skill.EffectStr, DuelController.Instance.GetCurAI().GetNextSkill(3));
-                        if (DuelController.Instance.GetCurAI()) DuelController.Instance.GetCurAI().Action(3);
+
+                        if (DuelController.Instance.GetCurAI())
+                        {
+                            if (DuelController.Instance.GetCurAI().HasBuff("stunned"))
+                            {
+                                Debug.Log("晕菜");
+                                DuelController.Instance.SkillJudge(skill.EffectStr, "");
+
+                            }
+                            else
+                            {
+                                DuelController.Instance.SkillJudge(skill.EffectStr, DuelController.Instance.GetCurAI().GetNextSkill(3));
+                                if (DuelController.Instance.GetCurAI()) DuelController.Instance.GetCurAI().Action(3);
+                            }
+                        }
+
                         //更新技能CD
                         //Player.Instance.UpdateCDs();
                         SuperController.Instance.skillTipBarController.UpdateCDs();

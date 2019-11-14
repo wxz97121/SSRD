@@ -141,6 +141,15 @@ public class Skill
                     //开始自动操作
                     AUTO(InstancedEff[1], m_Char as Player);
                     break;
+
+                case ("STUN"):
+                    //击晕
+                    Debug.Log("击晕111");
+                    if (DuelController.Instance.GetCurAI() != null)
+                    {
+                        STUN(int.Parse(InstancedEff[1]), DuelController.Instance.GetCurAI());
+                    }
+                    break;
                 default:
 
                     break;
@@ -268,6 +277,8 @@ public class Skill
                     //无视防御
                     isDefencePenetrate = true;
                     break;
+
+ 
                 case ("sfx"):
                     //攻击音效
                     sfxstr = s.Split(':')[1];
@@ -352,7 +363,7 @@ public class Skill
 
     public void ALLMPATK(Character Char)
     {
-        Char.Hit((Char.Mp/4)*2);
+        Char.Hit(((Char.Mp-12)/4)*2+7);
         Char.Mp = 0;
         Char.AddSoul(4);
     }
@@ -424,5 +435,18 @@ public class Skill
         Vector3 vector = new Vector3(float.Parse(vecstrs[0]), float.Parse(vecstrs[1]), float.Parse(vecstrs[2]));
         VFX.ShowVFX(str,vector+Char.transform.localPosition);
 
+    }
+
+
+    public void STUN(int beats,Character Char)
+    {
+        Buff_stunned buff = new Buff_stunned
+        {
+            m_name = "stunned",
+            remainBeats = beats,
+            //character = Char,
+            activateTime = RhythmController.Instance.songPosInBeats
+        };
+        buff.BuffAdded(Char, "");
     }
 }

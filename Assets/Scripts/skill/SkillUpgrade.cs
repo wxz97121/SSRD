@@ -22,6 +22,12 @@ public class SkillUpgrade
             case "DEFEND":
                 Defend(choice, skill);
                 break;
+            case "HEAVY_ATTACK":
+                HEAVYATTACK(choice, skill);
+                break;
+            case "CHARGE_ATTACK":
+                CHARGEATTACK(choice, skill);
+                break;
         }
     }
 
@@ -114,4 +120,78 @@ public class SkillUpgrade
 
     }
 
+    public static void HEAVYATTACK(int choice, Skill skill)
+    {
+        //1级 A选项 加2攻
+        if (choice == 11)
+        {
+            Debug.Log(skill.m_name + " " + skill.EffectStr);
+
+            skill.EffectStr = skill.EffectStr.Replace("ATK_5", "ATK_7");
+            skill.upgradeChoice1 = 1;
+
+        }
+
+        //2级 A选项 减1费
+        if (choice == 21)
+        {
+            skill.cost-=4;
+            skill.upgradeChoice2 = 1;
+
+        }
+
+
+        //3级 A选项 额外攻击2
+        if (choice == 31)
+        {
+            skill.EffectStr += ",ATK_3";
+            skill.upgradeChoice3 = 1;
+
+        }
+
+        //3级 B选项 变成全力一击
+        if (choice == 32)
+        {
+            skill.EffectStr = skill.EffectStr.Replace("ATK_7", "ALLMPATK");
+            skill.upgradeChoice3 = 2;
+        }
+    }
+
+
+    public static void CHARGEATTACK(int choice, Skill skill)
+    {
+        //1级 A选项 加2攻
+        if (choice == 11)
+        {
+
+            skill.cost -= 4;
+            skill.upgradeChoice1 = 1;
+        }
+
+        //2级 A选项 减1费
+        if (choice == 21)
+        {
+            skill.EffectStr = skill.EffectStr.Replace("ATK=6", "ATK=10");
+            skill.upgradeChoice2 = 1;
+        }
+
+
+        //3级 A选项 蓄力时无敌
+        if (choice == 31)
+        {
+            skill.EffectStr = skill.EffectStr.Replace(",ANI_player-readytoslash", ",ANI_player-readytoslash,DEF");
+
+
+            skill.upgradeChoice3 = 1;
+
+        }
+
+        //3级 B选项 击晕对手1回合
+        if (choice == 32)
+        {
+            skill.EffectStr = skill.EffectStr.Replace("ATK_10", "ATK_10,STUN_4");
+
+            skill.upgradeChoice3 = 2;
+        }
+    }
 }

@@ -2567,10 +2567,6 @@ MonoBehaviour:
       sprite: {fileID: 0}
       name: 
       desc: 
-    skillUpgrade22:
-      sprite: {fileID: 0}
-      name: 
-      desc: 
     skillUpgrade31:
       sprite: {fileID: 0}
       name: 
@@ -3019,7 +3015,7 @@ RectTransform:
   m_LocalScale: {x: 1.0004042, y: 1.0004042, z: 1.0004042}
   m_Children: []
   m_Father: {fileID: 1202741575}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -4816,10 +4812,6 @@ MonoBehaviour:
       sprite: {fileID: 0}
       name: 
       desc: 
-    skillUpgrade22:
-      sprite: {fileID: 0}
-      name: 
-      desc: 
     skillUpgrade31:
       sprite: {fileID: 0}
       name: 
@@ -5520,10 +5512,6 @@ MonoBehaviour:
       sprite: {fileID: 0}
       name: 
       desc: 
-    skillUpgrade22:
-      sprite: {fileID: 0}
-      name: 
-      desc: 
     skillUpgrade31:
       sprite: {fileID: 0}
       name: 
@@ -5633,10 +5621,6 @@ MonoBehaviour:
       name: 
       desc: 
     skillUpgrade21:
-      sprite: {fileID: 0}
-      name: 
-      desc: 
-    skillUpgrade22:
       sprite: {fileID: 0}
       name: 
       desc: 
@@ -6750,10 +6734,6 @@ MonoBehaviour:
       name: 
       desc: 
     skillUpgrade21:
-      sprite: {fileID: 0}
-      name: 
-      desc: 
-    skillUpgrade22:
       sprite: {fileID: 0}
       name: 
       desc: 
@@ -7883,10 +7863,6 @@ MonoBehaviour:
       name: 
       desc: 
     skillUpgrade21:
-      sprite: {fileID: 0}
-      name: 
-      desc: 
-    skillUpgrade22:
       sprite: {fileID: 0}
       name: 
       desc: 
@@ -10209,10 +10185,6 @@ MonoBehaviour:
       sprite: {fileID: 0}
       name: 
       desc: 
-    skillUpgrade22:
-      sprite: {fileID: 0}
-      name: 
-      desc: 
     skillUpgrade31:
       sprite: {fileID: 0}
       name: 
@@ -11043,10 +11015,6 @@ MonoBehaviour:
       name: 
       desc: 
     skillUpgrade21:
-      sprite: {fileID: 0}
-      name: 
-      desc: 
-    skillUpgrade22:
       sprite: {fileID: 0}
       name: 
       desc: 
@@ -13134,10 +13102,6 @@ MonoBehaviour:
       sprite: {fileID: 0}
       name: 
       desc: 
-    skillUpgrade22:
-      sprite: {fileID: 0}
-      name: 
-      desc: 
     skillUpgrade31:
       sprite: {fileID: 0}
       name: 
@@ -14259,9 +14223,9 @@ RectTransform:
   - {fileID: 1065429611}
   - {fileID: 393327232}
   - {fileID: 944748582}
+  - {fileID: 264238733}
   - {fileID: 1775435776}
   - {fileID: 179224003}
-  - {fileID: 264238733}
   - {fileID: 1743604740}
   m_Father: {fileID: 1351216462}
   m_RootOrder: 2
@@ -15670,7 +15634,6 @@ MonoBehaviour:
   tempselect: {fileID: 0}
   button11: {fileID: 1595907067}
   button21: {fileID: 393327234}
-  button22: {fileID: 0}
   button31: {fileID: 1775435778}
   button32: {fileID: 179224005}
   textDesc: {fileID: 1006080986}
@@ -15690,10 +15653,6 @@ MonoBehaviour:
       name: 
       desc: 
     skillUpgrade21:
-      sprite: {fileID: 0}
-      name: 
-      desc: 
-    skillUpgrade22:
       sprite: {fileID: 0}
       name: 
       desc: 
@@ -16322,10 +16281,6 @@ MonoBehaviour:
       name: 
       desc: 
     skillUpgrade21:
-      sprite: {fileID: 0}
-      name: 
-      desc: 
-    skillUpgrade22:
       sprite: {fileID: 0}
       name: 
       desc: 
@@ -19185,10 +19140,6 @@ MonoBehaviour:
       sprite: {fileID: 0}
       name: 
       desc: 
-    skillUpgrade22:
-      sprite: {fileID: 0}
-      name: 
-      desc: 
     skillUpgrade31:
       sprite: {fileID: 0}
       name: 
@@ -19757,10 +19708,6 @@ MonoBehaviour:
       name: 
       desc: 
     skillUpgrade21:
-      sprite: {fileID: 0}
-      name: 
-      desc: 
-    skillUpgrade22:
       sprite: {fileID: 0}
       name: 
       desc: 
@@ -21410,10 +21357,6 @@ MonoBehaviour:
       name: 
       desc: 
     skillUpgrade21:
-      sprite: {fileID: 0}
-      name: 
-      desc: 
-    skillUpgrade22:
       sprite: {fileID: 0}
       name: 
       desc: 

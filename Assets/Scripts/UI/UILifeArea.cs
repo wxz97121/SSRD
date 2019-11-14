@@ -14,6 +14,7 @@ public class UILifeArea : MonoBehaviour
     public TextMeshProUGUI lifeNum;
     public int Life;
     float sizePerLife = 60f - 44.84f;
+    float sizeOrigin = 60f;
 
     public float fill;
     public Character chara;
@@ -57,7 +58,7 @@ public class UILifeArea : MonoBehaviour
             float sizeY = container.GetComponent<RectTransform>().sizeDelta.y;
 
 
-            container.GetComponent<RectTransform>().sizeDelta = maxLife < 50 ? new Vector2(sizeX + (sizePerLife * (maxLife - 1)), sizeY) : new Vector2(sizeX + (sizePerLife * (50 - 1)), sizeY);
+            container.GetComponent<RectTransform>().sizeDelta = maxLife < 50 ? new Vector2(sizeOrigin + (sizePerLife * (maxLife - 1)), sizeY) : new Vector2(sizeX + (sizePerLife * (50 - 1)), sizeY);
 
             image.fillAmount = Life / (float)maxLife;
             delayimage.fillAmount= Life / (float)maxLife;

@@ -211,8 +211,21 @@ public class RhythmController : MonoBehaviour
                     Player.Instance.UpdateCDs();
 
                     //Debug.Log("第三拍之后的发招" + "空");
-                    DuelController.Instance.SkillJudge("", DuelController.Instance.GetCurAI().GetNextSkill(3));
-                    DuelController.Instance.GetCurAI().Action(3);
+                    if (DuelController.Instance.GetCurAI())
+                    {
+                        if (DuelController.Instance.GetCurAI().HasBuff("stunned"))
+                        {
+                            Debug.Log("晕菜");
+
+                        }
+                        else
+                        {
+                            DuelController.Instance.SkillJudge("", DuelController.Instance.GetCurAI().GetNextSkill(3));
+                            DuelController.Instance.GetCurAI().Action(3);
+                        }
+                    }
+
+
                 }
             }
 
@@ -295,7 +308,20 @@ public class RhythmController : MonoBehaviour
             isInputMissed = false;
 
 
-            if (nowAI) nowAI.Action(1);
+            if (nowAI)
+            {
+                if (nowAI.HasBuff("stunned"))
+                {
+                    Debug.Log("晕菜");
+                }
+                else
+                {
+                    nowAI.Action(1);
+                }
+            }
+
+
+
             if (Player.Instance.automode) Player.Instance.CastAutoSkill();
 
         }
@@ -303,7 +329,17 @@ public class RhythmController : MonoBehaviour
         if (beatNum == 1)
         {
 
-            if (nowAI) nowAI.Action(2);
+            if (nowAI)
+            {
+                if (nowAI.HasBuff("stunned"))
+                {
+                    Debug.Log("晕菜");
+                }
+                else
+                {
+                    nowAI.Action(2);
+                }
+            }
             if (Player.Instance.automode) Player.Instance.CastAutoSkill();
 
 
@@ -315,12 +351,30 @@ public class RhythmController : MonoBehaviour
         {
             if (Player.Instance.automode&&DuelController.Instance.isActedAt3rdBeat==false)
             {
-                DuelController.Instance.SkillJudge(Player.Instance.autoSkills.Dequeue(), DuelController.Instance.GetCurAI().GetNextSkill(3));
+
+
+
+
+                if (nowAI)
+                {
+                    if (nowAI.HasBuff("stunned"))
+                    {
+                        Debug.Log("晕菜");
+                        DuelController.Instance.SkillJudge(Player.Instance.autoSkills.Dequeue(), "");
+
+                    }
+                    else
+                    {
+                        DuelController.Instance.SkillJudge(Player.Instance.autoSkills.Dequeue(), DuelController.Instance.GetCurAI().GetNextSkill(3));
+
+                        nowAI.Action(3);
+                    }
+                }
+
                 if (Player.Instance.autoSkills.Count == 0)
                 {
                     Player.Instance.LeaveAutoMode();
                 }
-                DuelController.Instance.GetCurAI().Action(3);
             }
 
             if (isCurBarCleaned == true&&DuelController.Instance.isActedAt3rdBeat==false&& DuelController.Instance.GetCurAI())
@@ -328,8 +382,20 @@ public class RhythmController : MonoBehaviour
                 Player.Instance.UpdateCDs();
 
                 //Debug.Log("BAD之后正点AI出招" + "空");
-                DuelController.Instance.SkillJudge("", DuelController.Instance.GetCurAI().GetNextSkill(3));
-                DuelController.Instance.GetCurAI().Action(3);
+
+                if (nowAI)
+                {
+                    if (nowAI.HasBuff("stunned"))
+                    {
+                        Debug.Log("晕菜");
+                    }
+                    else
+                    {
+                        DuelController.Instance.SkillJudge("", DuelController.Instance.GetCurAI().GetNextSkill(3));
+                        DuelController.Instance.GetCurAI().Action(3);
+                    }
+                }
+
                //Debug.Log("INPUT BAD ,ENEMY ACT AT TIME");
             }
 
@@ -343,7 +409,17 @@ public class RhythmController : MonoBehaviour
             }
 
 
-            if (nowAI) nowAI.Action(4);
+            if (nowAI)
+            {
+                if (nowAI.HasBuff("stunned"))
+                {
+                    Debug.Log("晕菜");
+                }
+                else
+                {
+                    nowAI.Action(4);
+                }
+            }
             if (Player.Instance.automode) Player.Instance.CastAutoSkill();
 
 

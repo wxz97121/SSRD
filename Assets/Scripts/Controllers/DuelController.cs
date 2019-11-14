@@ -59,7 +59,7 @@ public class DuelController : MonoBehaviour {
         UICanvas = GameObject.Find("Canvas").transform;
         s1 = new List<string> { "DEF", "ULTI","-CD","AUTO","CTR"};
         s2 = new List<string> { "ATK", "HEL", "DMP","ATKmini","ALLMPATK","HL","ATKPRO", "AMWK" };
-        s3 = new List<string> { "DHEL", "TBD",  "ANI", "ANIT", "SFX" ,"VFX","LVFX","DATK","CBB","DATKPRO"};
+        s3 = new List<string> { "DHEL", "TBD",  "ANI", "ANIT", "SFX" ,"VFX","LVFX","DATK","CBB","DATKPRO","STUN"};
         enemySkill = new EnemySkill();
         playerSkill = new Skill();
     }
