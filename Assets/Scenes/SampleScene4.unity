@@ -21373,9 +21373,9 @@ MonoBehaviour:
     upgradeChoice2: 0
     upgradeChoice3: 0
     isEquiped: 0
-  money: 30
+  money: 20
   UIMoneyNum: {fileID: 60550191}
-  NotePower: 20
+  NotePower: 1
   spec: {fileID: 242401760}
   UIEquip: {fileID: 2873717}
   enemyList: []

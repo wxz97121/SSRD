@@ -108,8 +108,8 @@ public class Player : Character {
         AddSkill("DEFEND");
         EquipSkill(1, skillList[1]);
 
-        AddSkill("HEAVYATTACK");
-        AddSkill("CHARGEATTACK");
+
+
 
         //EquipSkill(1, skillList[1]);
 
