@@ -106,4 +106,9 @@ public class Buff
 
     }
 
+    public virtual void AfterAction(Character p_chara)
+    {
+
+    }
+
 }

@@ -169,7 +169,7 @@ public class EnemySkill
 
             }
         }
-        Char.Hit(dDamage, noAfterattack, isDefenceToDisable, isDefencePenetrate, sfxstr);
+        Char.Hit(dDamage, noAfterattack, isDefenceToDisable, "",isDefencePenetrate, sfxstr);
     }
 
 

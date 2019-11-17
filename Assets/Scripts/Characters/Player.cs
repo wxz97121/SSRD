@@ -110,6 +110,9 @@ public class Player : Character {
 
 
 
+        //        Debug.Log(skillSlots[0].skill);
+
+
 
         //EquipSkill(1, skillList[1]);
 

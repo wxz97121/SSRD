@@ -4,11 +4,46 @@ using UnityEngine;
 
 public class Buff_tripledamage : Buff
 {
+    //最大层数
+    int maxMultiCount=2;
+
+    //每层倍数
+    int attackMulti = 2;
+
+    //挨打是否消失
+    bool isAttackedCancel = false;
 
     public override void BuffAdded(Character p_chara,string str="")
     {
-        Player.Instance.spec.transform.localScale=new Vector3(0.0195f,0.0195f,0.0195f);
 
+
+        string[] InstancedEffstr = str.Split('&');
+
+        foreach (string s in InstancedEffstr)
+        {
+            switch (s.Split(':')[0])
+            {
+                case ("count"):
+                    maxMultiCount = int.Parse(s.Split(':')[1]);
+                    break;
+                case ("multi"):
+
+                    attackMulti = int.Parse(s.Split(':')[1]);
+                    break;
+                case ("cancel"):
+                    isAttackedCancel = true;
+                    break;
+
+            }
+        }
+
+
+
+
+
+
+        Player.Instance.spec.transform.localScale=new Vector3(0.0195f,0.0195f,0.0195f);
+        
         m_name = "tripledamage";
         remainBeats = -1;
 
@@ -18,7 +53,7 @@ public class Buff_tripledamage : Buff
         if (oldbuff != null)
         {
             //如果层数已满，则什么都不发生
-            if (oldbuff.multicount >= 3)
+            if (oldbuff.multicount >= maxMultiCount)
             {
                 //p_chara.Hit(3);
                 //p_chara.buffs.Remove(oldbuff);
@@ -26,7 +61,7 @@ public class Buff_tripledamage : Buff
             }
 
             oldbuff.multicount++;
-            oldbuff.damageMulti += 3;
+            oldbuff.damageMulti += attackMulti;
 
             Player.Instance.spec.gameObject.SetActive(true);
             switch (oldbuff.multicount)
@@ -58,7 +93,7 @@ public class Buff_tripledamage : Buff
 
 
         multicount = 1;
-        damageMulti = 3;
+        damageMulti = attackMulti;
         Debug.Log("双倍伤害叠加：1，3");
 
 
@@ -73,7 +108,6 @@ public class Buff_tripledamage : Buff
 
     public override void AfterAttack(Character p_chara)
     {
-        Debug.Log("三倍伤害afterattack");
         base.AfterAttack(p_chara);
         p_chara.buffs.Remove(this);
         Player.Instance.spec._specDictionary["SpecTripledamage"].isEnabled = false;
@@ -83,9 +117,13 @@ public class Buff_tripledamage : Buff
     public override void AfterAttacked(Character p_chara)
     {
         base.AfterAttacked(p_chara);
-        p_chara.buffs.Remove(this);
-        Player.Instance.spec._specDictionary["SpecTripledamage"].isEnabled = false;
-        Player.Instance.spec.transform.localScale = new Vector3(0, 0, 0);
+
+        if (isAttackedCancel)
+        {
+            p_chara.buffs.Remove(this);
+            Player.Instance.spec._specDictionary["SpecTripledamage"].isEnabled = false;
+            Player.Instance.spec.transform.localScale = new Vector3(0, 0, 0);
+        }
 
     }
 

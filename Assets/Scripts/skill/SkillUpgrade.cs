@@ -28,6 +28,13 @@ public class SkillUpgrade
             case "CHARGE_ATTACK":
                 CHARGEATTACK(choice, skill);
                 break;
+            case "STAB":
+                STAB(choice, skill);
+                break;
+
+            case "CONCENTRATE":
+                CONCENTRATE(choice, skill);
+                break;
         }
     }
 
@@ -191,6 +198,82 @@ public class SkillUpgrade
         {
             skill.EffectStr = skill.EffectStr.Replace("ATK_10", "ATK_10,STUN_4");
 
+            skill.upgradeChoice3 = 2;
+        }
+    }
+
+
+    public static void STAB(int choice, Skill skill)
+    {
+        //1级 A选项 加1攻
+        if (choice == 11)
+        {
+            Debug.Log(skill.m_name + " " + skill.EffectStr);
+
+            skill.EffectStr = skill.EffectStr.Replace("ATK_3", "ATK_4");
+            skill.upgradeChoice1 = 1;
+
+        }
+
+        //2级 A选项 穿防
+        if (choice == 21)
+        {
+            skill.EffectStr = "STAB_4_0,ANI_player-attack";
+            skill.upgradeChoice2 = 1;
+
+        }
+
+
+        //3级 A选项 连续使用+2攻击
+        if (choice == 31)
+        {
+            skill.EffectStr = "STAB_4_1,ANI_player-attack";
+            skill.upgradeChoice3 = 1;
+
+        }
+
+        //3级 B选项 破防+5攻击
+        if (choice == 32)
+        {
+            skill.EffectStr = "STAB_4_2,ANI_player-attack";
+            skill.upgradeChoice3 = 2;
+        }
+    }
+
+
+    public static void CONCENTRATE(int choice, Skill skill)
+    {
+        //1级 A选项 最多3层
+        if (choice == 11)
+        {
+
+
+            skill.EffectStr = "TBD_count:3&multi:2&cancel";
+            skill.upgradeChoice1 = 1;
+
+        }
+
+        //2级 A选项 减1费
+        if (choice == 21)
+        {
+            skill.cost-=4;
+            skill.upgradeChoice2 = 1;
+
+        }
+
+
+        //3级 A选项 变成3倍
+        if (choice == 31)
+        {
+            skill.EffectStr = "TBD_count:3&multi:3&cancel";
+            skill.upgradeChoice3 = 1;
+
+        }
+
+        //3级 B选项 不会被打断
+        if (choice == 32)
+        {
+            skill.EffectStr = "TBD_count:3&multi:2";
             skill.upgradeChoice3 = 2;
         }
     }

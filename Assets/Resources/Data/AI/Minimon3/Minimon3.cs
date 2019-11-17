@@ -64,17 +64,15 @@ public class Minimon3 : AI
     }
 
 
-    public override void Hit(int dDamage, bool noAfterattack = false, bool isDefenceToDisable = false, bool isDefencePenetrate = false, string sfxstr = "SLASH", string fxstr = "NORMAL")
+
+    public override void IsDefended()
     {
-        base.Hit(dDamage, noAfterattack, isDefenceToDisable, isDefencePenetrate, sfxstr, fxstr);
-        if (isDefenced)
-        {
-            //.Break();
-            skillGroupSeq.Clear();
-            SGSAdd("disable");
-            //enemySkill.CommonEffect(this, "ANIT_disable");
-            //animator.ResetTrigger("attack");
-            isDefenced = false;
-        }
+        //.Break();
+        skillGroupSeq.Clear();
+        SGSAdd("disable");
+        //enemySkill.CommonEffect(this, "ANIT_disable");
+        //animator.ResetTrigger("attack");
+        base.IsDefended();
+
     }
 }

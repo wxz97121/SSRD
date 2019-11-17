@@ -99,7 +99,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    virtual public void Hit(int dDamage, bool noAfterattack=false,bool isDefenceToDisable= false,bool isDefencePenetrate = false,string sfxstr="SLASH",string fxstr="NORMAL")
+    virtual public void Hit(int dDamage, bool noAfterattack=false,bool isDefenceToDisable= false,string penetrateEffstr="",bool isDefencePenetrate = false,string sfxstr="SLASH",string fxstr="NORMAL")
     {
         //普通攻击目标
         if (mTarget != null)
@@ -112,8 +112,14 @@ public class Character : MonoBehaviour
                 //破防
                 if (isDefencePenetrate)
                 {
-                    
-                    //todo:通用的破防挨打动画，破防音效
+                    if (penetrateEffstr == "1")
+                    {
+                        dDamage += 5;
+                    }
+
+                    VFX.ShowVFX("PierceHit", new Vector3(4f,0f,-1f) +transform.localPosition) ;
+
+                    //todo:通用的破防音效
 
                 }
                 else
@@ -196,12 +202,22 @@ public class Character : MonoBehaviour
             }
         }
 
+        //如过被防住了 触发效果
+        if (isDefenced)
+        {
+
+            IsDefended();
+        }
         //        lastAction = actionType.Hit;
     }
 
 
 
+    virtual public void IsDefended()
+    {
+        isDefenced = false;
 
+    }
 
 
     virtual public void Heal(int dHeal)

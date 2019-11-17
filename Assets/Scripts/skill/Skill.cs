@@ -112,7 +112,7 @@ public class Skill
                     break;
                 //三倍蓄力
                 case ("TBD"):
-                    TBD(int.Parse(InstancedEff[1]),m_Char);
+                    TBD(InstancedEff[1],m_Char);
                     break;
 
                 //杀死对手+1钱 ADD MONEY WHEN KILL
@@ -136,6 +136,10 @@ public class Skill
                 case ("VFX"):
                     //出现特效
                     Vfx(InstancedEff[1], InstancedEff[2],m_Char);
+                    break;
+                case ("STAB"):
+                    //穿刺攻击  攻击力 是否叠层/是否破防加攻击
+                    Stab(int.Parse(InstancedEff[1]), int.Parse(InstancedEff[2]), m_Char);
                     break;
                 case ("AUTO"):
                     //开始自动操作
@@ -277,8 +281,6 @@ public class Skill
                     //无视防御
                     isDefencePenetrate = true;
                     break;
-
- 
                 case ("sfx"):
                     //攻击音效
                     sfxstr = s.Split(':')[1];
@@ -290,7 +292,7 @@ public class Skill
 
             }
         }
-        Char.Hit( dDamage,  noAfterattack ,  isDefenceToDisable,  isDefencePenetrate,  sfxstr,fxstr);
+        Char.Hit( dDamage,  noAfterattack ,  isDefenceToDisable,  "",isDefencePenetrate,  sfxstr,fxstr);
     }
 
 
@@ -310,8 +312,33 @@ public class Skill
 
     public void ATKpene(int dDamage, Character Char)
     {
-        Char.Hit(dDamage,false,false,true);
+        Char.Hit(dDamage,false,false,"",true);
         //        Debug.Log("ATK "+ dDamage);
+    }
+
+    public void Stab(int dDamage,int select,Character Char)
+    {
+        int newdamege = dDamage;
+        //如果已经有了连续攻击加成效果，检测目前叠了几层
+        if (select==1)
+        {
+            if (Char.HasBuff("continueSkill"))
+            {
+
+                newdamege += (Char.buffs.FindLast(b => b.m_name == "continueSkill") as Buff_continueSkill).multicount * 2;
+            }
+        }
+        string powerup = "";
+        //破防加攻击力效果
+        if (select==2)
+        {
+            powerup = "1";
+        }
+        Char.Hit(newdamege, false, false, powerup,true);
+
+        Buff_continueSkill buff = new Buff_continueSkill();
+        buff.BuffAdded(Char, "Stab");
+
     }
 
     public void HEL(int dHeal, Character Char)
@@ -342,12 +369,12 @@ public class Skill
     }
 
     //三倍伤害
-    public void TBD(int c, Character Char)
+    public void TBD(string str, Character Char)
     {
 //        Debug.Log("TBD");
 
         Buff_tripledamage buff =new Buff_tripledamage();
-        buff.BuffAdded(Char);
+        buff.BuffAdded(Char,str);
 
     }
 
